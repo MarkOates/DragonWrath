@@ -2,10 +2,12 @@
 
 #include <iostream>
 
-DragonWrath::ProgramRunner::ProgramRunner()
-   : AllegroFlare::Framework(screens)
-   , screens()
+DragonWrath::ProgramRunner::ProgramRunner(AllegroFlare::Framework &framework, AllegroFlare::Screens &screens)
+   : framework(framework)
+   , screens(screens)
+   , gameplay_screen(framework)
 {
+   std::cout << "DragonWrath initialized successfully." << std::endl;
 }
 
 DragonWrath::ProgramRunner::~ProgramRunner()

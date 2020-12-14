@@ -5,9 +5,12 @@
 
 int main(int argc, char **argv)
 {
-   DragonWrath::ProgramRunner program_runner;
+   AllegroFlare::Screens screens;
+   AllegroFlare::Framework framework(screens);
 
-   //program_runner.run_loop();
+   DragonWrath::ProgramRunner program_runner(framework, screens);
+
+   std::cout << "DragonWrath exited the master loop successfully." << std::endl;
 
    return 0;
 }

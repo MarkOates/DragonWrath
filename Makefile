@@ -9,7 +9,7 @@ OBJECTS := $(SOURCES:src/%.cpp=obj/%.o)
 
 main: objects program
 	@echo "=========== running executable ============="
-	./DragonWrath.exe
+	./bin/DragonWrath.exe
 
 
 objects: $(OBJECTS)
@@ -24,6 +24,6 @@ obj/%.o: src/%.cpp
 
 program:
 	@echo "=========== building debug target ============="
-	g++ -std=gnu++11 $(OBJECTS) ./programs/DragonWrath.cpp -o DragonWrath.exe -I./include -I$(ALLEGRO_DIR)/include -L$(ALLEGRO_DIR)/lib $(ALLEGRO_LIBS)
+	g++ -std=gnu++11 $(OBJECTS) ./programs/DragonWrath.cpp -o ./bin/DragonWrath.exe -I./include -I$(ALLEGRO_DIR)/include -L$(ALLEGRO_DIR)/lib $(ALLEGRO_LIBS)
 
 

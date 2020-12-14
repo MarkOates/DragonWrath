@@ -2,16 +2,19 @@
 
 #include <allegro5/allegro.h>
 #include <AllegroFlare/Framework.hpp>
+#include <DragonWrath/GameplayScreen.hpp>
 
 namespace DragonWrath
 {
-   class ProgramRunner : public AllegroFlare::Framework
+   class ProgramRunner
    {
    private: 
-      AllegroFlare::Screens screens;
+      AllegroFlare::Framework &framework;
+      AllegroFlare::Screens &screens;
+      DragonWrath::GameplayScreen gameplay_screen;
 
    public:
-      ProgramRunner();
+      ProgramRunner(AllegroFlare::Framework &framework, AllegroFlare::Screens &screens);
       ~ProgramRunner();
    };
 }
