@@ -198,6 +198,8 @@ namespace AllegroFlare
       //delete instance;
       //instance = nullptr;
 
+      bitmaps.clear(); // this needs to be fixed
+
       initialized = false;
 
       al_uninstall_system();
