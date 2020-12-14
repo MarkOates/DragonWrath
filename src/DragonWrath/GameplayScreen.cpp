@@ -12,7 +12,7 @@ DragonWrath::GameplayScreen::~GameplayScreen()
 
 void DragonWrath::GameplayScreen::primary_timer_func()
 {
-   sleep(2);
-   framework.shutdown_program = true;
+   ALLEGRO_BITMAP *dragon_bitmap = framework.bitmap("dragon.png");
+   al_draw_bitmap(dragon_bitmap, 100, 100, 0);
 }
 
