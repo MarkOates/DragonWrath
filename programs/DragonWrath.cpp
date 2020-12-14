@@ -1,11 +1,13 @@
-#include <allegro5/allegro.h>
 
-#include <AllegroFlare/Framework.hpp>
+#include <DragonWrath/ProgramRunner.hpp>
 
 #include <iostream>
 
 int main(int argc, char **argv)
 {
-   std::cout << "works!" << std::endl;
+   DragonWrath::ProgramRunner program_runner;
+
+   //program_runner.run_loop();
+
    return 0;
 }
