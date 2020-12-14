@@ -3,7 +3,8 @@
 #include <iostream>
 
 DragonWrath::ProgramRunner::ProgramRunner()
-   : screens()
+   : display(nullptr)
+   , screens()
    , framework(screens)
    , gameplay_screen(framework)
 {
@@ -17,6 +18,9 @@ DragonWrath::ProgramRunner::~ProgramRunner()
 void DragonWrath::ProgramRunner::run()
 {
    framework.initialize();
+   display = framework.create_display(AllegroFlare::Display::RESOLUTION_HD_1080);
+
+   screens.add(&gameplay_screen);
 
    framework.run_loop();
 

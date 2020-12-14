@@ -12,6 +12,7 @@ DragonWrath::GameplayScreen::~GameplayScreen()
 
 void DragonWrath::GameplayScreen::primary_timer_func()
 {
+   sleep(2);
    framework.shutdown_program = true;
 }
 
