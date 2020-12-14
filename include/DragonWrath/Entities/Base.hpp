@@ -6,24 +6,27 @@
 #include <AllegroFlare/ElementID.hpp>
 
 
-namespace Entity
+namespace DragonWrath
 {
-   class Base : public AllegroFlare::ElementID
+   namespace Entity
    {
-   public:
-      allegro_flare::placement2d place;
-      allegro_flare::placement2d velocity;
-      allegro_flare::BitmapObject bitmap;
+      class Base : public AllegroFlare::ElementID
+      {
+      public:
+         allegro_flare::placement2d place;
+         allegro_flare::placement2d velocity;
+         allegro_flare::BitmapObject bitmap;
 
-      Base(AllegroFlare::ElementID *parent, std::string type, float x, float y);
-      virtual ~Base();
+         Base(AllegroFlare::ElementID *parent, std::string type, float x, float y);
+         virtual ~Base();
 
-      virtual void update();
-      virtual void draw();
+         virtual void update();
+         virtual void draw();
 
-      void flag_for_deletion();
-      bool collides(const Base &other);
-   };
+         void flag_for_deletion();
+         bool collides(const Base &other);
+      };
+   }
 }
 
 
