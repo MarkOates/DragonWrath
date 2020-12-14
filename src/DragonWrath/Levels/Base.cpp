@@ -77,7 +77,7 @@ void Base::draw_all()
 {
    SceneCollectionHelper collection_helper(this);
 
-   std::vector<Entity::Base *> y_sorted_entities = collection_helper.get_all_entities_y_sorted();
+   std::vector<Entities::Base *> y_sorted_entities = collection_helper.get_all_entities_y_sorted();
 
    for (auto &entity : y_sorted_entities) if (!entity->exists(ALWAYS_ON_TOP)) entity->draw();
    for (auto &entity : y_sorted_entities) if (entity->exists(ALWAYS_ON_TOP)) entity->draw();

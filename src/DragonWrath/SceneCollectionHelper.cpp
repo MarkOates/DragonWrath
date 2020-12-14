@@ -11,24 +11,29 @@
 
 
 
+namespace DragonWrath
+{
+
+
+
 SceneCollectionHelper::SceneCollectionHelper(DragonWrath::Levels::Base *scene)
    : scene(scene)
 {}
 
 
 
-std::vector<Entity::Base *> SceneCollectionHelper::get_all_entities()
+std::vector<Entities::Base *> SceneCollectionHelper::get_all_entities()
 {
-   return scene->get_flat_list_of_descendants<Entity::Base>();
+   return scene->get_flat_list_of_descendants<Entities::Base>();
 }
 
 
 
-std::vector<Entity::Base *> SceneCollectionHelper::get_all_entities_y_sorted()
+std::vector<Entities::Base *> SceneCollectionHelper::get_all_entities_y_sorted()
 {
-   std::vector<Entity::Base *> flat_list = scene->get_flat_list_of_descendants<Entity::Base>();
+   std::vector<Entities::Base *> flat_list = scene->get_flat_list_of_descendants<Entities::Base>();
 
-   std::sort(flat_list.begin(), flat_list.end(),[](const Entity::Base *a, const Entity::Base *b)
+   std::sort(flat_list.begin(), flat_list.end(),[](const Entities::Base *a, const Entities::Base *b)
          { return a->place.position.y < b->place.position.y; }
       );
 
@@ -86,16 +91,16 @@ std::vector<Entity::Base *> SceneCollectionHelper::get_all_entities_y_sorted()
 
 
 
-std::vector<Entity::Base *> SceneCollectionHelper::get_entities_bound_in_world()
+std::vector<Entities::Base *> SceneCollectionHelper::get_entities_bound_in_world()
 {
-   return AllegroFlare::ElementID::recast_collection<Entity::Base>(scene->find_all_descendants("bound_in_world"));
+   return AllegroFlare::ElementID::recast_collection<Entities::Base>(scene->find_all_descendants("bound_in_world"));
 }
 
 
 
-std::vector<Entity::Base *> SceneCollectionHelper::get_all_flagged_for_deletion()
+std::vector<Entities::Base *> SceneCollectionHelper::get_all_flagged_for_deletion()
 {
-   return AllegroFlare::ElementID::recast_collection<Entity::Base>(scene->find_all_descendants("can_be_deleted"));
+   return AllegroFlare::ElementID::recast_collection<Entities::Base>(scene->find_all_descendants("can_be_deleted"));
 }
 
 
@@ -144,4 +149,5 @@ std::vector<Entity::Base *> SceneCollectionHelper::get_all_flagged_for_deletion(
 
 
 
+} // namespace DragonWrath
 
