@@ -9,13 +9,15 @@ namespace DragonWrath
    class ProgramRunner
    {
    private: 
-      AllegroFlare::Framework &framework;
-      AllegroFlare::Screens &screens;
+      AllegroFlare::Screens screens;
+      AllegroFlare::Framework framework;
       DragonWrath::GameplayScreen gameplay_screen;
 
    public:
-      ProgramRunner(AllegroFlare::Framework &framework, AllegroFlare::Screens &screens);
+      ProgramRunner();
       ~ProgramRunner();
+
+      void run();
    };
 }
 
