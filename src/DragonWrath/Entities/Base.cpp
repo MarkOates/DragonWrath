@@ -8,7 +8,7 @@
 
 namespace DragonWrath
 {
-namespace Entity
+namespace Entities
 {
 
 
@@ -67,7 +67,7 @@ bool Base::collides(const Base &other)
 
 
 
-} // namespace Entity
+} // namespace Entities
 } // namespace DragonWrath
 
 

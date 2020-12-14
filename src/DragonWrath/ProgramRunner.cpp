@@ -19,10 +19,11 @@ void DragonWrath::ProgramRunner::run()
    AllegroFlare::Screens screens;
    AllegroFlare::Framework framework(screens);
 
-   DragonWrath::GameplayScreen gameplay_screen(framework);
-
    framework.initialize();
    display = framework.create_display(AllegroFlare::Display::RESOLUTION_HD_1080);
+
+   DragonWrath::GameplayScreen gameplay_screen(framework);
+   gameplay_screen.initialize();
 
    screens.add(&gameplay_screen);
 

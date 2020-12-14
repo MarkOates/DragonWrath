@@ -8,7 +8,7 @@
 
 namespace DragonWrath
 {
-   namespace Entity
+   namespace Entities
    {
       class Base : public AllegroFlare::ElementID
       {
