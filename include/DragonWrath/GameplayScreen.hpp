@@ -17,6 +17,8 @@ namespace DragonWrath
 
       void initialize();
 
+      void load_level();
+
       void primary_timer_func() override;
       void key_down_func(ALLEGRO_EVENT *ev) override;
    };

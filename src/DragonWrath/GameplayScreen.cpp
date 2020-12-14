@@ -1,5 +1,7 @@
 #include <DragonWrath/GameplayScreen.hpp>
+
 #include <DragonWrath/Entities/Base.hpp>
+#include <AllegroFlare/Useful.hpp>
 
 DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
    : framework(framework)
@@ -14,6 +16,11 @@ DragonWrath::GameplayScreen::~GameplayScreen()
 
 void DragonWrath::GameplayScreen::initialize()
 {
+   load_level();
+}
+
+void DragonWrath::GameplayScreen::load_level()
+{
    if (current_level)
    {
       std::string error_message = "DragonWrath::GameplayScreen::initialize: A level already exists";
@@ -27,8 +34,23 @@ void DragonWrath::GameplayScreen::initialize()
       300,
       300
    );
-   ALLEGRO_BITMAP *dragon_bitmap = framework.bitmap("dragon.png");
-   player_dragon->bitmap.bitmap(dragon_bitmap);
+
+   player_dragon->bitmap.bitmap(framework.bitmap("dragon.png"));
+
+   for (int i=0; i<10; i++)
+   {
+      float x = AllegroFlare::random_float(0, 1920);
+      float y = AllegroFlare::random_float(0, 1080);
+
+      DragonWrath::Entities::Base *entity = new DragonWrath::Entities::Base(
+            current_level, "enemy", x, y
+         );
+      entity->bitmap.bitmap(framework.bitmap("dragon.png"));
+      entity->place.scale = AllegroFlare::vec2d(0.5, 0.5);
+      entity->place.flip.x = true;
+   }
+
+   std::cout << current_level->num_descendants() << std::endl;
 }
 
 void DragonWrath::GameplayScreen::primary_timer_func()
