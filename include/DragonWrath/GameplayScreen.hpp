@@ -14,5 +14,6 @@ namespace DragonWrath
       ~GameplayScreen();
 
       void primary_timer_func() override;
+      void key_down_func(ALLEGRO_EVENT *ev) override;
    };
 }

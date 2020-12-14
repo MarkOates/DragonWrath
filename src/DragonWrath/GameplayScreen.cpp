@@ -16,3 +16,15 @@ void DragonWrath::GameplayScreen::primary_timer_func()
    al_draw_bitmap(dragon_bitmap, 100, 100, 0);
 }
 
+void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
+{
+   switch(ev->keyboard.keycode)
+   {
+   case ALLEGRO_KEY_ESCAPE:
+      framework.shutdown_program = true;
+      break;
+   default:
+      break;
+   }
+}
+
