@@ -6,12 +6,10 @@
 #include <iostream>
 
 DragonWrath::ProgramRunner::ProgramRunner()
-{
-}
+{}
 
 DragonWrath::ProgramRunner::~ProgramRunner()
-{
-}
+{}
 
 void DragonWrath::ProgramRunner::run()
 {
