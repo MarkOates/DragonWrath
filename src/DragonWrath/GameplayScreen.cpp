@@ -38,9 +38,13 @@ void DragonWrath::GameplayScreen::load_level()
       300
    );
 
-   player_dragon->bitmap.bitmap(framework.bitmap("dragon.png"));
+   ALLEGRO_BITMAP *player_dragon_bitmap = framework.bitmap("dragon.png");
+   player_dragon->bitmap.bitmap(player_dragon_bitmap);
    player_dragon->set(ALWAYS_ON_TOP);
-   player_dragon->place.size = AllegroFlare::vec2d(100, 100);
+   player_dragon->place.size = AllegroFlare::vec2d(
+         al_get_bitmap_width(player_dragon_bitmap),
+         al_get_bitmap_height(player_dragon_bitmap)
+      );
 
    for (int i=0; i<10; i++)
    {
