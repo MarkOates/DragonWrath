@@ -54,9 +54,15 @@ void DragonWrath::GameplayScreen::load_level()
       DragonWrath::Entities::Base *entity = new DragonWrath::Entities::Base(
             current_level, "enemy", x, y
          );
-      entity->bitmap.bitmap(framework.bitmap("enemy.png"));
+
+      ALLEGRO_BITMAP *enemy_bitmap = framework.bitmap("enemy.png");
+      entity->bitmap.bitmap(enemy_bitmap);
       entity->place.flip.x = true;
       entity->place.size = AllegroFlare::vec2d(100, 100);
+      entity->place.size = AllegroFlare::vec2d(
+            al_get_bitmap_width(enemy_bitmap),
+            al_get_bitmap_height(enemy_bitmap)
+      );
    }
 }
 
