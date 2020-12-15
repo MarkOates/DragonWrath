@@ -148,6 +148,11 @@ std::vector<Entities::Base *> SceneCollectionHelper::get_all_flagged_for_deletio
 //}
 
 
+Entities::Base *SceneCollectionHelper::get_player_dragon()
+{
+   return static_cast<Entities::Base *>(scene->find_first("type", "player_dragon"));
+}
+
 
 } // namespace DragonWrath
 

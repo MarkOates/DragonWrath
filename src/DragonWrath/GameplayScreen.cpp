@@ -1,6 +1,7 @@
 #include <DragonWrath/GameplayScreen.hpp>
 
 #include <DragonWrath/Entities/Base.hpp>
+#include <DragonWrath/SceneCollectionHelper.hpp>
 #include <AllegroFlare/Useful.hpp>
 
 DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
@@ -64,8 +65,23 @@ void DragonWrath::GameplayScreen::primary_timer_func()
 
 void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
 {
+   DragonWrath::SceneCollectionHelper scene_collection_helper(current_level);
+   Entities::Base *player_dragon = scene_collection_helper.get_player_dragon();
+
    switch(ev->keyboard.keycode)
    {
+   case ALLEGRO_KEY_UP:
+      player_dragon->velocity.y = -8;
+      break;
+   case ALLEGRO_KEY_DOWN:
+      player_dragon->velocity.y = 8;
+      break;
+   case ALLEGRO_KEY_LEFT:
+      player_dragon->velocity.x = -8;
+      break;
+   case ALLEGRO_KEY_RIGHT:
+      player_dragon->velocity.x = 8;
+      break;
    case ALLEGRO_KEY_ESCAPE:
       framework.shutdown_program = true;
       break;
@@ -73,4 +89,29 @@ void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
       break;
    }
 }
+
+void DragonWrath::GameplayScreen::key_up_func(ALLEGRO_EVENT *ev)
+{
+   DragonWrath::SceneCollectionHelper scene_collection_helper(current_level);
+   Entities::Base *player_dragon = scene_collection_helper.get_player_dragon();
+
+   switch(ev->keyboard.keycode)
+   {
+   case ALLEGRO_KEY_UP:
+      player_dragon->velocity.y = 0;
+      break;
+   case ALLEGRO_KEY_DOWN:
+      player_dragon->velocity.y = 0;
+      break;
+   case ALLEGRO_KEY_LEFT:
+      player_dragon->velocity.x = 0;
+      break;
+   case ALLEGRO_KEY_RIGHT:
+      player_dragon->velocity.x = 0;
+      break;
+   default:
+      break;
+   }
+}
+
 

@@ -38,7 +38,7 @@ namespace DragonWrath
       //std::vector<KidEntity *> get_kids_flagged_for_deletion();
       //std::vector<DoorEntity *> get_doors();
       //std::vector<ItemEntity *> get_items();
-      //KrampusEntity *get_krampus();
+      Entities::Base *get_player_dragon();
       //DoorEntity *get_door(char door_name);
    };
 }
