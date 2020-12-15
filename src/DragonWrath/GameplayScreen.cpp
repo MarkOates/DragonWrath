@@ -55,7 +55,11 @@ void DragonWrath::GameplayScreen::load_level()
 
 void DragonWrath::GameplayScreen::primary_timer_func()
 {
-   if (current_level) current_level->draw_all();
+   if (current_level)
+   {
+      current_level->update_all();
+      current_level->draw_all();
+   }
 }
 
 void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
