@@ -13,6 +13,7 @@ namespace DragonWrath
       DragonWrath::Levels::Base *scene;
       SceneCollectionHelper collections;
 
+      void update_entities_position_by_velocity();
       void update_entities();
       //void limit_sprites_to_world_bounds();
       //void check_damage_zones_on_enemies();

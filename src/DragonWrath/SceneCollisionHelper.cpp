@@ -24,6 +24,16 @@ SceneCollisionHelper::SceneCollisionHelper(DragonWrath::Levels::Base *scene)
 
 
 
+void SceneCollisionHelper::update_entities_position_by_velocity()
+{
+   for (auto &entity : collections.get_all_entities())
+   {
+      entity->place.position += entity->velocity.position;
+   }
+}
+
+
+
 void SceneCollisionHelper::update_entities()
 {
    for (auto &entity : collections.get_all_entities())
@@ -120,6 +130,7 @@ void SceneCollisionHelper::resolve_collisions()
 {
    if (!scene) return;
 
+   update_entities_position_by_velocity();
    update_entities();
    //limit_sprites_to_world_bounds();
    //check_damage_zones_on_enemies();
