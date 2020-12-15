@@ -31,6 +31,8 @@ void DragonWrath::GameplayScreen::load_level()
    }
 
    current_level = new DragonWrath::Levels::Base(100);
+   DragonWrath::EntityFactory entity_factory(framework, current_level);
+
    DragonWrath::Entities::Base *player_dragon = new DragonWrath::Entities::Base(
       current_level,
       "player_dragon",
@@ -50,19 +52,7 @@ void DragonWrath::GameplayScreen::load_level()
    {
       float x = AllegroFlare::random_float(0, 1920);
       float y = AllegroFlare::random_float(0, 1080);
-
-      DragonWrath::Entities::Base *entity = new DragonWrath::Entities::Base(
-            current_level, "enemy", x, y
-         );
-
-      ALLEGRO_BITMAP *enemy_bitmap = framework.bitmap("enemy.png");
-      entity->bitmap.bitmap(enemy_bitmap);
-      entity->place.flip.x = true;
-      entity->place.size = AllegroFlare::vec2d(100, 100);
-      entity->place.size = AllegroFlare::vec2d(
-            al_get_bitmap_width(enemy_bitmap),
-            al_get_bitmap_height(enemy_bitmap)
-      );
+      entity_factory.create_enemy(x, y);
    }
 }
 

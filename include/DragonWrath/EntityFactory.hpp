@@ -19,6 +19,7 @@ namespace DragonWrath
       ~EntityFactory();
 
       DragonWrath::Entities::PlayerBullet *create_player_bullet(float x, float y);
+      DragonWrath::Entities::Base *create_enemy(float x, float y);
    };
 }
 
