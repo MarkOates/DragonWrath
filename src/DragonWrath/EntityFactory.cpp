@@ -24,6 +24,7 @@ DragonWrath::Entities::PlayerBullet *EntityFactory::create_player_bullet(float x
 
    player_bullet->velocity.position.x = 10;
    player_bullet->bitmap.bitmap(framework.bitmap("fireball.png"));
+   player_bullet->place.size = AllegroFlare::vec2d(100, 100);
 
    return player_bullet;
 }

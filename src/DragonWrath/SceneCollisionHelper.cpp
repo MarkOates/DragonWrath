@@ -41,6 +41,27 @@ void SceneCollisionHelper::update_entities()
 
 
 
+void SceneCollisionHelper::update_collisions_on_enemies()
+{
+   // start with player bullets
+   std::vector<Entities::PlayerBullet *> bullets = collections.get_all_player_bullets();
+   std::vector<Entities::Base *> enemies = collections.get_all_enemies();
+
+   for (auto &bullet : bullets)
+   {
+      for (auto &enemy : enemies)
+      {
+         if (bullet->collides(*enemy))
+         {
+            bullet->flag_for_deletion();
+            enemy->flag_for_deletion();
+         }
+      }
+   }
+}
+
+
+
 //void SceneCollisionHelper::limit_sprites_to_world_bounds()
 //{
    //float min_y, max_y;
@@ -129,8 +150,9 @@ void SceneCollisionHelper::resolve_collisions()
 {
    if (!scene) return;
 
-   update_entities_position_by_velocity();
    update_entities();
+   update_entities_position_by_velocity();
+   update_collisions_on_enemies();
    //limit_sprites_to_world_bounds();
    //check_damage_zones_on_enemies();
    //check_damage_zones_on_krampus();

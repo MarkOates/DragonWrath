@@ -40,6 +40,7 @@ void DragonWrath::GameplayScreen::load_level()
 
    player_dragon->bitmap.bitmap(framework.bitmap("dragon.png"));
    player_dragon->set(ALWAYS_ON_TOP);
+   player_dragon->place.size = AllegroFlare::vec2d(100, 100);
 
    for (int i=0; i<10; i++)
    {
@@ -49,9 +50,9 @@ void DragonWrath::GameplayScreen::load_level()
       DragonWrath::Entities::Base *entity = new DragonWrath::Entities::Base(
             current_level, "enemy", x, y
          );
-      entity->bitmap.bitmap(framework.bitmap("dragon.png"));
-      entity->place.scale = AllegroFlare::vec2d(0.5, 0.5);
+      entity->bitmap.bitmap(framework.bitmap("enemy.png"));
       entity->place.flip.x = true;
+      entity->place.size = AllegroFlare::vec2d(100, 100);
    }
 }
 
@@ -61,7 +62,11 @@ void DragonWrath::GameplayScreen::primary_timer_func()
 
    if (current_level)
    {
+      // update
       current_level->update_all();
+      current_level->cleanup_all();
+
+      // draw
       current_level->draw_all();
    }
 }

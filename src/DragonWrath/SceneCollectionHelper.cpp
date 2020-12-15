@@ -104,6 +104,22 @@ std::vector<Entities::Base *> SceneCollectionHelper::get_all_flagged_for_deletio
 }
 
 
+
+
+std::vector<Entities::Base *> SceneCollectionHelper::get_all_enemies()
+{
+   return AllegroFlare::ElementID::recast_collection<Entities::Base>(scene->find_all_descendants("type", "enemy"));
+}
+
+
+
+std::vector<Entities::PlayerBullet *> SceneCollectionHelper::get_all_player_bullets()
+{
+   return AllegroFlare::ElementID::recast_collection<Entities::PlayerBullet>(scene->find_all_descendants("type", "player_bullet"));
+}
+
+
+
 //std::vector<KidEntity *> SceneCollectionHelper::get_kids_flagged_for_deletion()
 //{
    //std::vector<KidEntity* > kids_flagged_for_deletion;
