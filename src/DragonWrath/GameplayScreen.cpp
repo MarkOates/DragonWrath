@@ -33,7 +33,7 @@ void DragonWrath::GameplayScreen::load_level()
    current_level = new DragonWrath::Levels::Base(100);
    DragonWrath::EntityFactory entity_factory(framework, current_level);
 
-   entity_factory.create_player_dragon(300, 300);
+   entity_factory.create_player_dragon(0, 0);
 
    for (int i=0; i<10; i++)
    {

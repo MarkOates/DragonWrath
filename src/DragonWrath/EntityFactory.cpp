@@ -23,9 +23,14 @@ DragonWrath::Entities::PlayerBullet *EntityFactory::create_player_bullet(float x
    DragonWrath::Entities::PlayerBullet *player_bullet =
       new DragonWrath::Entities::PlayerBullet(current_level, x, y);
 
+   ALLEGRO_BITMAP *bullet_bitmap = framework.bitmap("fireball.png");
    player_bullet->velocity.position.x = 10;
-   player_bullet->bitmap.bitmap(framework.bitmap("fireball.png"));
-   player_bullet->place.size = AllegroFlare::vec2d(100, 100);
+   player_bullet->bitmap.bitmap(bullet_bitmap);
+   player_bullet->bitmap.align(0.5, 0.5);
+   player_bullet->place.size = AllegroFlare::vec2d(
+         al_get_bitmap_width(bullet_bitmap),
+         al_get_bitmap_height(bullet_bitmap)
+      );
 
    return player_bullet;
 }
@@ -38,6 +43,7 @@ DragonWrath::Entities::Base *EntityFactory::create_enemy(float x, float y)
 
    ALLEGRO_BITMAP *enemy_bitmap = framework.bitmap("enemy.png");
    enemy->bitmap.bitmap(enemy_bitmap);
+   enemy->bitmap.align(0.5, 0.5);
    enemy->place.flip.x = true;
    enemy->place.size = AllegroFlare::vec2d(
          al_get_bitmap_width(enemy_bitmap),
@@ -55,6 +61,7 @@ DragonWrath::Entities::Base *EntityFactory::create_player_dragon(float x, float 
 
    ALLEGRO_BITMAP *player_dragon_bitmap = framework.bitmap("dragon.png");
    player_dragon->bitmap.bitmap(player_dragon_bitmap);
+   player_dragon->bitmap.align(0.5, 0.5);
    player_dragon->set(ALWAYS_ON_TOP);
    player_dragon->place.size = AllegroFlare::vec2d(
          al_get_bitmap_width(player_dragon_bitmap),
