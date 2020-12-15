@@ -6,6 +6,7 @@
 //#include <dungeon/helpers/scene_collision_helper.hpp>
 #include <DragonWrath/Levels/Base.hpp>
 #include <DragonWrath/EntityAttributeNames.hpp>
+#include <DragonWrath/SceneCollisionHelper.hpp>
 #include <DragonWrath/SceneCollectionHelper.hpp>
 #include <algorithm>
 
@@ -57,8 +58,8 @@ float Base::get_width()
 
 void Base::update_all()
 {
-   //SceneCollisionHelper collision_helper(this);
-   //collision_helper.resolve_collisions();
+   SceneCollisionHelper collision_helper(this);
+   collision_helper.resolve_collisions();
 }
 
 
