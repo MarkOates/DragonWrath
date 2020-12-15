@@ -3,6 +3,7 @@
 #include <DragonWrath/Entities/Base.hpp>
 #include <DragonWrath/SceneCollectionHelper.hpp>
 #include <DragonWrath/EntityAttributeNames.hpp>
+#include <DragonWrath/EntityFactory.hpp>
 #include <AllegroFlare/Useful.hpp>
 
 DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
@@ -52,8 +53,6 @@ void DragonWrath::GameplayScreen::load_level()
       entity->place.scale = AllegroFlare::vec2d(0.5, 0.5);
       entity->place.flip.x = true;
    }
-
-   std::cout << current_level->num_descendants() << std::endl;
 }
 
 void DragonWrath::GameplayScreen::primary_timer_func()
@@ -72,6 +71,8 @@ void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
    DragonWrath::SceneCollectionHelper scene_collection_helper(current_level);
    Entities::Base *player_dragon = scene_collection_helper.get_player_dragon();
 
+   DragonWrath::EntityFactory entity_factory(framework, current_level);
+
    switch(ev->keyboard.keycode)
    {
    case ALLEGRO_KEY_UP:
@@ -85,6 +86,16 @@ void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
       break;
    case ALLEGRO_KEY_RIGHT:
       player_dragon->velocity.x = 8;
+      break;
+   case ALLEGRO_KEY_SPACE:
+      {
+         if (player_dragon)
+         {
+            float bullet_spawn_x = player_dragon->place.position.x;
+            float bullet_spawn_y = player_dragon->place.position.y;
+            entity_factory.create_player_bullet(bullet_spawn_x, bullet_spawn_y);
+         }
+      }
       break;
    case ALLEGRO_KEY_ESCAPE:
       framework.shutdown_program = true;

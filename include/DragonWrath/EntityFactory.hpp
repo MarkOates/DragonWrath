@@ -1,6 +1,7 @@
 #pragma once
 
 #include <DragonWrath/Levels/Base.hpp>
+#include <AllegroFlare/Framework.hpp>
 #include <DragonWrath/Entities/Base.hpp>
 #include <DragonWrath/Entities/PlayerBullet.hpp>
 
@@ -9,10 +10,11 @@ namespace DragonWrath
    class EntityFactory
    {
    private:
+      AllegroFlare::Framework &framework;
       DragonWrath::Levels::Base *current_level;
 
    public:
-      EntityFactory(DragonWrath::Levels::Base *current_level);
+      EntityFactory(AllegroFlare::Framework &framework, DragonWrath::Levels::Base *current_level);
 
       ~EntityFactory();
 
