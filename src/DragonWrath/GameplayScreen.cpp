@@ -37,7 +37,7 @@ void DragonWrath::GameplayScreen::load_level()
 
    for (int i=0; i<10; i++)
    {
-      float x = AllegroFlare::random_float(0, 1920);
+      float x = AllegroFlare::random_float(1920/2, 1920);
       float y = AllegroFlare::random_float(0, 1080);
       entity_factory.create_enemy(x, y);
    }
