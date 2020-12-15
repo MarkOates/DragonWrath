@@ -33,20 +33,7 @@ void DragonWrath::GameplayScreen::load_level()
    current_level = new DragonWrath::Levels::Base(100);
    DragonWrath::EntityFactory entity_factory(framework, current_level);
 
-   DragonWrath::Entities::Base *player_dragon = new DragonWrath::Entities::Base(
-      current_level,
-      "player_dragon",
-      300,
-      300
-   );
-
-   ALLEGRO_BITMAP *player_dragon_bitmap = framework.bitmap("dragon.png");
-   player_dragon->bitmap.bitmap(player_dragon_bitmap);
-   player_dragon->set(ALWAYS_ON_TOP);
-   player_dragon->place.size = AllegroFlare::vec2d(
-         al_get_bitmap_width(player_dragon_bitmap),
-         al_get_bitmap_height(player_dragon_bitmap)
-      );
+   entity_factory.create_player_dragon(300, 300);
 
    for (int i=0; i<10; i++)
    {
