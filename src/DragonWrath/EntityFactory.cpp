@@ -1,5 +1,6 @@
 
 #include <DragonWrath/EntityFactory.hpp>
+#include <DragonWrath/EntityAttributeNames.hpp>
 
 namespace DragonWrath
 {
@@ -45,6 +46,24 @@ DragonWrath::Entities::Base *EntityFactory::create_enemy(float x, float y)
 
    return enemy;
 }
+
+DragonWrath::Entities::Base *EntityFactory::create_player_dragon(float x, float y)
+{
+   DragonWrath::Entities::Base *player_dragon = new DragonWrath::Entities::Base(
+      current_level, "player_dragon", x, x
+   );
+
+   ALLEGRO_BITMAP *player_dragon_bitmap = framework.bitmap("dragon.png");
+   player_dragon->bitmap.bitmap(player_dragon_bitmap);
+   player_dragon->set(ALWAYS_ON_TOP);
+   player_dragon->place.size = AllegroFlare::vec2d(
+         al_get_bitmap_width(player_dragon_bitmap),
+         al_get_bitmap_height(player_dragon_bitmap)
+      );
+
+   return player_dragon;
+}
+
 
 }
 
