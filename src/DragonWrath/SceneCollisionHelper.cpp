@@ -27,9 +27,7 @@ SceneCollisionHelper::SceneCollisionHelper(DragonWrath::Levels::Base *scene)
 void SceneCollisionHelper::update_entities_position_by_velocity()
 {
    for (auto &entity : collections.get_all_entities())
-   {
       entity->place.position += entity->velocity.position;
-   }
 }
 
 
