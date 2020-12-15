@@ -17,6 +17,7 @@ namespace DragonWrath
 {
 
 
+
 SceneCollisionHelper::SceneCollisionHelper(DragonWrath::Levels::Base *scene)
    : scene(scene)
    , collections(scene)
