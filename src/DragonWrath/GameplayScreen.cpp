@@ -2,6 +2,7 @@
 
 #include <DragonWrath/Entities/Base.hpp>
 #include <DragonWrath/SceneCollectionHelper.hpp>
+#include <DragonWrath/EntityAttributeNames.hpp>
 #include <AllegroFlare/Useful.hpp>
 
 DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
@@ -37,6 +38,7 @@ void DragonWrath::GameplayScreen::load_level()
    );
 
    player_dragon->bitmap.bitmap(framework.bitmap("dragon.png"));
+   player_dragon->set(ALWAYS_ON_TOP);
 
    for (int i=0; i<10; i++)
    {
@@ -56,6 +58,8 @@ void DragonWrath::GameplayScreen::load_level()
 
 void DragonWrath::GameplayScreen::primary_timer_func()
 {
+   al_clear_to_color(AllegroFlare::color::black);
+
    if (current_level)
    {
       current_level->update_all();
