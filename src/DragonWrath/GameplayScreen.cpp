@@ -7,8 +7,8 @@
 #include <AllegroFlare/Useful.hpp>
 
 DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
-   : framework(framework)
-   , AllegroFlare::Screen()
+   : AllegroFlare::Screen()
+   , framework(framework)
    , current_level(nullptr)
 {
 }
