@@ -13,7 +13,7 @@ OBJECTS := $(SOURCES:src/%.cpp=obj/%.o)
 
 main: objects program
 	@echo "=========== running executable ============="
-	./bin/DragonWrath.exe
+	#./bin/DragonWrath.exe
 
 
 objects: $(OBJECTS)
