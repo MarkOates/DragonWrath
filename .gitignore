@@ -1,3 +1,4 @@
 *.exe
 **/*.o
+**/*.o.tmp
 .DS_Store
