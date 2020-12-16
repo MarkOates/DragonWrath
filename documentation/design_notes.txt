@@ -1,0 +1,23 @@
+# Enemy Movement Strategies
+  VelcitySinWave
+  MoveLeft
+  MoveRight
+  ...
+
+
+# Examples
+create_enemy(x, y, MoveLeft);
+create_enemy(x, y, VelocitySinWave);
+
+
+# gameplay screen is updating
+  # delegates to the collision helper
+    # iterates over each enemy
+      # enemy->update() // inside the enemy, the movement strategy will update the velocity
+      # enemy->movement_strategy->update() // movement stategy acts on the enemy
+
+
+# level
+  # types
+    # TimedScroll
+    # KillAll

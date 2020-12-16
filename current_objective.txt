@@ -1,1 +1,1 @@
-Current Objective: (not currently set)
+Current Objective: Enemies spawn and exit the scene with a movement pattern
