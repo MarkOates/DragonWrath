@@ -28,6 +28,7 @@ namespace DragonWrath
 
       void set_player_health(int player_health);
       void set_player_max_health(int player_max_health);
+      void active_game_over_banner_showing();
    };
 }
 

@@ -105,6 +105,12 @@ void GameplayScreenHud::set_player_max_health(int player_max_health)
 }
 
 
+void GameplayScreenHud::active_game_over_banner_showing()
+{
+   this->game_over_banner_showing = true;
+}
+
+
 }
 
 
