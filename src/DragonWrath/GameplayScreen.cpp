@@ -56,6 +56,11 @@ void DragonWrath::GameplayScreen::primary_timer_func()
       // update
       current_level->update_all();
 
+      if (player_dragon && player_dragon->is_dead())
+      {
+         hud.active_game_over_banner_showing();
+      }
+
       // update the hud
       if (player_dragon)
       {
