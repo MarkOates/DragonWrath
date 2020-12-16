@@ -53,6 +53,18 @@ bool PlayerDragon::is_dead()
 }
 
 
+int PlayerDragon::get_health()
+{
+   return health;
+}
+
+
+int PlayerDragon::get_max_health()
+{
+   return max_health;
+}
+
+
 } // namespace Entities
 } // namespace DragonWrath
 

@@ -26,6 +26,8 @@ namespace DragonWrath
 
          void take_damage(int amount);
          bool is_dead();
+         int get_health();
+         int get_max_health();
       };
    }
 }

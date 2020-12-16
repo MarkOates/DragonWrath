@@ -50,16 +50,27 @@ void DragonWrath::GameplayScreen::primary_timer_func()
 
    if (current_level)
    {
+      DragonWrath::SceneCollectionHelper collection_helper(current_level);
+      DragonWrath::Entities::PlayerDragon *player_dragon = collection_helper.get_player_dragon();
+
       // update
       current_level->update_all();
-      current_level->cleanup_all();
+
+      // update the hud
+      if (player_dragon)
+      {
+         hud.set_player_health(player_dragon->get_health());
+         hud.set_player_max_health(player_dragon->get_max_health());
+      }
 
       // draw
       current_level->draw_all();
+      hud.draw();
+
+      // cleanup
+      current_level->cleanup_all();
    }
 
-   DragonWrath::GameplayScreenHud hud(framework);
-   hud.draw();
 }
 
 void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
