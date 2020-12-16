@@ -5,7 +5,9 @@ namespace DragonWrath
 {
 
 
-GameplayScreenHud::GameplayScreenHud()
+GameplayScreenHud::GameplayScreenHud(AllegroFlare::Framework &framework)
+   : bitmap_bin(framework.get_bitmap_bin_ref())
+   , font_bin(framework.get_font_bin_ref())
 {
 }
 
