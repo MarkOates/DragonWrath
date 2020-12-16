@@ -4,6 +4,7 @@
 #include <DragonWrath/Entities/Base.hpp>
 //#include <dungeon/models/entities/item_entity.hpp>
 //#include <dungeon/models/entities/krampus_entity.hpp>
+#include <DragonWrath/Entities/PlayerDragon.hpp>
 #include <DragonWrath/Entities/PlayerBullet.hpp>
 #include <DragonWrath/Levels/Base.hpp>
 
@@ -37,11 +38,11 @@ namespace DragonWrath
       std::vector<Entities::Base *> get_all_flagged_for_deletion();
       std::vector<Entities::Base *> get_all_enemies();
       std::vector<Entities::PlayerBullet *> get_all_player_bullets();
+      Entities::PlayerDragon *get_player_dragon();
       //std::vector<Enemy::Base *> get_enemies_flagged_for_deletion();
       //std::vector<KidEntity *> get_kids_flagged_for_deletion();
       //std::vector<DoorEntity *> get_doors();
       //std::vector<ItemEntity *> get_items();
-      Entities::Base *get_player_dragon();
       //DoorEntity *get_door(char door_name);
    };
 }

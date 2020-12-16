@@ -8,6 +8,7 @@
 //#include <dungeon/models/entities/damage_zone_entity.hpp>
 //#include <dungeon/models/entities/door_entity.hpp>
 #include <DragonWrath/EntityAttributeNames.hpp>
+#include <DragonWrath/EntityTypeNames.hpp>
 
 
 
@@ -120,6 +121,14 @@ std::vector<Entities::PlayerBullet *> SceneCollectionHelper::get_all_player_bull
 
 
 
+Entities::PlayerDragon *SceneCollectionHelper::get_player_dragon()
+{
+   return static_cast<Entities::PlayerDragon *>(scene->find_first_descendant("type", PLAYER_DRAGON));
+}
+
+
+
+
 //std::vector<KidEntity *> SceneCollectionHelper::get_kids_flagged_for_deletion()
 //{
    //std::vector<KidEntity* > kids_flagged_for_deletion;
@@ -162,12 +171,6 @@ std::vector<Entities::PlayerBullet *> SceneCollectionHelper::get_all_player_bull
 //{
    //return static_cast<DoorEntity *>(scene->find_first("door_name", tostring(door_name)));
 //}
-
-
-Entities::Base *SceneCollectionHelper::get_player_dragon()
-{
-   return static_cast<Entities::Base *>(scene->find_first("type", "player_dragon"));
-}
 
 
 } // namespace DragonWrath

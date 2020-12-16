@@ -7,6 +7,7 @@
 //#include <dungeon/models/entities/enemy/kid_entity.hpp>
 //#include <dungeon/models/entities/damage_zone_entity.hpp>
 #include <DragonWrath/Entities/Base.hpp>
+#include <DragonWrath/Entities/PlayerDragon.hpp>
 //#include <dungeon/models/entities/door_entity.hpp>
 //#include <dungeon/models/entities/krampus_entity.hpp>
 #include <DragonWrath/SceneCollectionHelper.hpp>
