@@ -11,7 +11,7 @@ namespace DragonWrath
       class Base : public AllegroFlare::ElementID
       {
       public:
-         Base();
+         Base(std::string type);
          ~Base();
 
          virtual void update();

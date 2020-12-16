@@ -18,9 +18,11 @@ namespace Levels
 {
 
 
-Base::Base()
+Base::Base(std::string type)
    : ElementID(nullptr)
-{}
+{
+   set("type", type);
+}
 
 
 

@@ -10,7 +10,7 @@ namespace Levels
 
 
 TimedScroll::TimedScroll()
-   : DragonWrath::Levels::Base()
+   : DragonWrath::Levels::Base("TimedScroll")
    , timer(0)
    , timer_step(ALLEGRO_BPS_TO_SECS(60))
 {}
