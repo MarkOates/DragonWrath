@@ -63,6 +63,24 @@ void SceneCollisionHelper::update_collisions_on_enemies()
 
 
 
+void SceneCollisionHelper::update_collisions_on_player_dragon()
+{
+   Entities::PlayerDragon *player_dragon = collections.get_player_dragon();
+   std::vector<Entities::Base *> enemies = collections.get_all_enemies();
+
+   for (auto &enemy : enemies)
+   {
+      if (player_dragon->collides(*enemy))
+      {
+         player_dragon->take_damage(1);
+         enemy->flag_for_deletion();
+      }
+   }
+}
+
+
+
+
 //void SceneCollisionHelper::limit_sprites_to_world_bounds()
 //{
    //float min_y, max_y;
@@ -154,6 +172,7 @@ void SceneCollisionHelper::resolve_collisions()
    update_entities();
    update_entities_position_by_velocity();
    update_collisions_on_enemies();
+   update_collisions_on_player_dragon();
    //limit_sprites_to_world_bounds();
    //check_damage_zones_on_enemies();
    //check_damage_zones_on_krampus();

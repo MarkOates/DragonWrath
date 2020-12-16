@@ -29,8 +29,11 @@ void PlayerDragon::take_damage(int amount)
    if (health <= 0)
    {
       health = 0;
-      std::cout << "Dragon takes damage of " << amount << "!!" << std::endl;
       // state = DEAD
+   }
+   else
+   {
+      std::cout << "Dragon takes damage of " << amount << "!!" << std::endl;
    }
 }
 
