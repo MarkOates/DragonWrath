@@ -11,6 +11,12 @@ namespace DragonWrath
       class PlayerDragon : public DragonWrath::Entities::Base
       {
       private:
+         enum state_t {
+            NONE = 0,
+            ALIVE,
+            DEAD
+         };
+         state_t state;
          int max_health;
          int health;
 
@@ -19,6 +25,7 @@ namespace DragonWrath
          ~PlayerDragon();
 
          void take_damage(int amount);
+         bool is_dead();
       };
    }
 }
