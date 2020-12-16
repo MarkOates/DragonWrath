@@ -26,6 +26,12 @@ void TimedScroll::update()
 }
 
 
+float TimedScroll::get_timer()
+{
+   return timer;
+}
+
+
 } // namespace Levels
 } // namespace DragonWrath
 

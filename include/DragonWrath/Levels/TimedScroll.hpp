@@ -17,6 +17,7 @@ namespace DragonWrath
          ~TimedScroll();
 
          void update() override;
+         float get_timer();
       };
    }
 }
