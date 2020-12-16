@@ -21,13 +21,38 @@ GameplayScreenHud::~GameplayScreenHud()
 }
 
 
-void GameplayScreenHud::draw()
+void GameplayScreenHud::draw_health_bar()
 {
+   float x = 60;
+   float y = 20;
+
+   float health_bar_max_width = 480;
+   float health_bar_height = 40;
+
+   float health_percentage = (float)player_health / player_max_health;
+
+   ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.25, 0.25, 0.25, 1.0};
+   ALLEGRO_COLOR fill_color = ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
+   ALLEGRO_COLOR border_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+
    ALLEGRO_FONT *font = font_bin.auto_get("ChronoTrigger.ttf 32");
    std::stringstream health_text;
    health_text << player_health << "/" << player_max_health;
 
    al_draw_text(font, ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}, 10, 10, 0, health_text.str().c_str());
+
+   // backfill
+   al_draw_filled_rectangle(x, y, x+health_bar_max_width, y+health_bar_height, backfill_color);
+   // active health
+   al_draw_filled_rectangle(x, y, x+health_bar_max_width*health_percentage, y+health_bar_height, fill_color);
+   // frame
+   al_draw_rectangle(x, y, x+health_bar_max_width, y+health_bar_height, border_color, 4.0f);
+}
+
+
+void GameplayScreenHud::draw()
+{
+   draw_health_bar();
 }
 
 

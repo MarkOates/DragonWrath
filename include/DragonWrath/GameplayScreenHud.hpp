@@ -19,6 +19,8 @@ namespace DragonWrath
       GameplayScreenHud(AllegroFlare::Framework &framework);
       ~GameplayScreenHud();
 
+      void draw_health_bar();
+
       void draw();
 
       void set_player_health(int player_health);
