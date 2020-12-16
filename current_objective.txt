@@ -1,1 +1,1 @@
-Current Objective: Player dragon collides with enemies
+Current Objective: Have player dragon die when damage is 0

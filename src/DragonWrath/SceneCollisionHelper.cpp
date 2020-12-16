@@ -68,12 +68,20 @@ void SceneCollisionHelper::update_collisions_on_player_dragon()
    Entities::PlayerDragon *player_dragon = collections.get_player_dragon();
    std::vector<Entities::Base *> enemies = collections.get_all_enemies();
 
+   if (!player_dragon) return;
+   if (player_dragon && player_dragon->is_dead()) return;
+
    for (auto &enemy : enemies)
    {
       if (player_dragon->collides(*enemy))
       {
          player_dragon->take_damage(1);
          enemy->flag_for_deletion();
+
+         if (player_dragon->is_dead())
+         {
+            player_dragon->flag_for_deletion();
+         }
       }
    }
 }
