@@ -10,6 +10,7 @@ DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
    : AllegroFlare::Screen()
    , framework(framework)
    , current_level(nullptr)
+   , hud(framework)
 {
 }
 
@@ -56,6 +57,9 @@ void DragonWrath::GameplayScreen::primary_timer_func()
       // draw
       current_level->draw_all();
    }
+
+   DragonWrath::GameplayScreenHud hud(framework);
+   hud.draw();
 }
 
 void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)

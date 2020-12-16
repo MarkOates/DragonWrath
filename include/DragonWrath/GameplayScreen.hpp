@@ -1,6 +1,7 @@
 #include <AllegroFlare/Screen.hpp>
 #include <AllegroFlare/Framework.hpp>
 #include <DragonWrath/Levels/Base.hpp>
+#include <DragonWrath/GameplayScreenHud.hpp>
 
 
 namespace DragonWrath
@@ -10,6 +11,7 @@ namespace DragonWrath
    private:
       AllegroFlare::Framework &framework;
       DragonWrath::Levels::Base *current_level;
+      DragonWrath::GameplayScreenHud hud;
 
    public:
       GameplayScreen(AllegroFlare::Framework &framework);

@@ -8,13 +8,15 @@ namespace DragonWrath
 {
    class GameplayScreenHud
    {
-   public:
+   private:
       AllegroFlare::BitmapBin &bitmap_bin;
       AllegroFlare::FontBin &font_bin;
 
-   private:
+   public:
       GameplayScreenHud(AllegroFlare::Framework &framework);
       ~GameplayScreenHud();
+
+      void draw();
    };
 }
 
