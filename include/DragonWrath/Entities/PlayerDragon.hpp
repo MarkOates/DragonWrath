@@ -17,6 +17,8 @@ namespace DragonWrath
       public:
          PlayerDragon(ElementID *parent, float x, float y);
          ~PlayerDragon();
+
+         void take_damage(int amount);
       };
    }
 }

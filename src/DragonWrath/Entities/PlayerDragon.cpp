@@ -23,6 +23,18 @@ PlayerDragon::~PlayerDragon()
 }
 
 
+void PlayerDragon::take_damage(int amount)
+{
+   health -= amount;
+   if (health <= 0)
+   {
+      health = 0;
+      std::cout << "Dragon takes damage of " << amount << "!!" << std::endl;
+      // state = DEAD
+   }
+}
+
+
 } // namespace Entities
 } // namespace DragonWrath
 
