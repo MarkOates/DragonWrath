@@ -12,6 +12,7 @@ GameplayScreenHud::GameplayScreenHud(AllegroFlare::Framework &framework)
    , font_bin(framework.get_font_bin_ref())
    , player_health(0)
    , player_max_health(10)
+   , game_over_banner_showing(false)
 {
 }
 
@@ -50,9 +51,45 @@ void GameplayScreenHud::draw_health_bar()
 }
 
 
+void GameplayScreenHud::draw_game_over_banner()
+{
+   ALLEGRO_FONT *title_text_font = font_bin.auto_get("ChronoTrigger.ttf 200");
+   ALLEGRO_FONT *subtitle_text_font = font_bin.auto_get("ChronoTrigger.ttf 60");
+
+   std::string title_text = "GAME OVER";
+   std::string subtitle_text = "Press ESC key to quit";
+
+   ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+
+   float title_text_x = 1920 / 2;
+   float title_text_y = 1080 / 2 - 150;
+
+   float subtitle_text_x = 1920 / 2;
+   float subtitle_text_y = 1080 / 2 + 100;
+
+   al_draw_text(
+      title_text_font,
+      text_color,
+      title_text_x,
+      title_text_y,
+      ALLEGRO_ALIGN_CENTER,
+      title_text.c_str()
+   );
+   al_draw_text(
+      subtitle_text_font,
+      text_color,
+      subtitle_text_x,
+      subtitle_text_y,
+      ALLEGRO_ALIGN_CENTER,
+      subtitle_text.c_str()
+   );
+}
+
+
 void GameplayScreenHud::draw()
 {
    draw_health_bar();
+   if (game_over_banner_showing) draw_game_over_banner();
 }
 
 

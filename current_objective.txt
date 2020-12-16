@@ -1,1 +1,1 @@
-Current Objective: Player health bar
+Current Objective: "Game Over" overlay on death

@@ -15,11 +15,14 @@ namespace DragonWrath
       int player_health;
       int player_max_health;
 
+      bool game_over_banner_showing;
+
    public:
       GameplayScreenHud(AllegroFlare::Framework &framework);
       ~GameplayScreenHud();
 
       void draw_health_bar();
+      void draw_game_over_banner();
 
       void draw();
 
