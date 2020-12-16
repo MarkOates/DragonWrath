@@ -10,6 +10,10 @@ namespace DragonWrath
    {
       class PlayerDragon : public DragonWrath::Entities::Base
       {
+      private:
+         int max_health;
+         int health;
+
       public:
          PlayerDragon(ElementID *parent, float x, float y);
          ~PlayerDragon();
