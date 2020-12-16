@@ -4,6 +4,7 @@
 #include <AllegroFlare/Framework.hpp>
 #include <DragonWrath/Entities/Base.hpp>
 #include <DragonWrath/Entities/PlayerBullet.hpp>
+#include <DragonWrath/Entities/PlayerDragon.hpp>
 
 namespace DragonWrath
 {
@@ -20,7 +21,7 @@ namespace DragonWrath
 
       DragonWrath::Entities::PlayerBullet *create_player_bullet(float x, float y);
       DragonWrath::Entities::Base *create_enemy(float x, float y);
-      DragonWrath::Entities::Base *create_player_dragon(float x, float y);
+      DragonWrath::Entities::PlayerDragon *create_player_dragon(float x, float y);
    };
 }
 

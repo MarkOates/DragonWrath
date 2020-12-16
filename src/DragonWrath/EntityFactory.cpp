@@ -53,10 +53,10 @@ DragonWrath::Entities::Base *EntityFactory::create_enemy(float x, float y)
    return enemy;
 }
 
-DragonWrath::Entities::Base *EntityFactory::create_player_dragon(float x, float y)
+DragonWrath::Entities::PlayerDragon *EntityFactory::create_player_dragon(float x, float y)
 {
-   DragonWrath::Entities::Base *player_dragon = new DragonWrath::Entities::Base(
-      current_level, "player_dragon", x, x
+   DragonWrath::Entities::PlayerDragon *player_dragon = new DragonWrath::Entities::PlayerDragon(
+      current_level, x, x
    );
 
    ALLEGRO_BITMAP *player_dragon_bitmap = framework.bitmap("dragon.png");
