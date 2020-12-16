@@ -1,1 +1,1 @@
-Current Objective: "Game Over" overlay on death
+Current Objective: Restore player health to 10

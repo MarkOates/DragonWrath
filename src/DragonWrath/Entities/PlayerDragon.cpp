@@ -13,8 +13,8 @@ namespace Entities
 PlayerDragon::PlayerDragon(ElementID *parent, float x, float y)
    : DragonWrath::Entities::Base(parent, PLAYER_DRAGON, x, y)
    , state(ALIVE)
-   , max_health(2)
-   , health(2)
+   , max_health(10)
+   , health(10)
 {
 }
 
