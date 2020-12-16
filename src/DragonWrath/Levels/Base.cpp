@@ -68,6 +68,12 @@ void Base::draw_all()
 
 
 
+bool Base::is_type(std::string type)
+{
+   return exists("type", type);
+}
+
+
 } // namespace Levels
 } // namespace DragonWrath
 

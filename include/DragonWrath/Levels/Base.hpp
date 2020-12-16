@@ -19,6 +19,8 @@ namespace DragonWrath
          void update_all();
          void cleanup_all();
          void draw_all();
+
+         bool is_type(std::string type);
       };
    }
 }
