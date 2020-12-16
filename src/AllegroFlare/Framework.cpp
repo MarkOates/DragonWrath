@@ -123,6 +123,19 @@ namespace AllegroFlare
 
 
 
+   BitmapBin &Framework::get_bitmap_bin_ref()
+   {
+      return bitmaps;
+   }
+
+
+
+   FontBin &Framework::get_font_bin_ref()
+   {
+      return fonts;
+   }
+
+
 
    bool Framework::initialize()
    {

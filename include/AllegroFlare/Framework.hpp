@@ -56,6 +56,8 @@ namespace AllegroFlare
       Model3D *model(std::string identifier);
       Motion &motion(); // we'll do this for now
       Config &get_config();
+      BitmapBin &get_bitmap_bin_ref();
+      FontBin &get_font_bin_ref();
 
       bool initialize();
       bool destruct();
