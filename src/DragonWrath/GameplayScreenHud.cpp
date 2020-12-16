@@ -13,6 +13,8 @@ GameplayScreenHud::GameplayScreenHud(AllegroFlare::Framework &framework)
    , player_health(0)
    , player_max_health(10)
    , game_over_banner_showing(false)
+   , debug_mode(true)
+   , level_scroll_timer(0)
 {
 }
 
@@ -90,6 +92,7 @@ void GameplayScreenHud::draw()
 {
    draw_health_bar();
    if (game_over_banner_showing) draw_game_over_banner();
+   if (debug_mode) debug__show_level_scroll_timer();
 }
 
 
@@ -108,6 +111,29 @@ void GameplayScreenHud::set_player_max_health(int player_max_health)
 void GameplayScreenHud::active_game_over_banner_showing()
 {
    this->game_over_banner_showing = true;
+}
+
+
+void GameplayScreenHud::debug__show_level_scroll_timer()
+{
+   ALLEGRO_FONT *font = font_bin.auto_get("ChronoTrigger.ttf 32");
+   std::stringstream level_scroll_timer_text;
+   level_scroll_timer_text << (int)level_scroll_timer;
+
+   al_draw_text(
+      font,
+      ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0},
+      1920/2,
+      1080-50,
+      ALLEGRO_ALIGN_CENTER,
+      level_scroll_timer_text.str().c_str()
+   );
+}
+
+
+void GameplayScreenHud::debug__set_level_scroll_timer(float time)
+{
+   this->level_scroll_timer = time;
 }
 
 
