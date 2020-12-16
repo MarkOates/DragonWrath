@@ -9,9 +9,14 @@ namespace DragonWrath
       class TimedScroll : public DragonWrath::Levels::Base
       {
       private:
+         float timer;
+         const float timer_step;
+
       public:
          TimedScroll();
          ~TimedScroll();
+
+         void update() override;
       };
    }
 }

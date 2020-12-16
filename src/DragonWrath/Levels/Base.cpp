@@ -30,6 +30,12 @@ Base::~Base()
 
 
 
+void Base::update()
+{
+}
+
+
+
 void Base::update_all()
 {
    SceneCollisionHelper collision_helper(this);

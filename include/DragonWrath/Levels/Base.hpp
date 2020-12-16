@@ -14,6 +14,8 @@ namespace DragonWrath
          Base();
          ~Base();
 
+         virtual void update();
+
          void update_all();
          void cleanup_all();
          void draw_all();
