@@ -1,1 +1,2 @@
 Current Objective: Enemies spawn and exit the scene with a movement pattern
+Objective OVERRIDE: Remove "length" property from Levels::Base

@@ -9,7 +9,7 @@ namespace Levels
 
 
 TimedScroll::TimedScroll()
-   : DragonWrath::Levels::Base(100)
+   : DragonWrath::Levels::Base()
 {}
 
 

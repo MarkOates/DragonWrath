@@ -18,11 +18,10 @@ namespace Levels
 {
 
 
-Base::Base(int width)
+Base::Base()
    : ElementID(nullptr)
    , floor_min_y(465)
    , floor_max_y(600)
-   , width(width)
 {}
 
 
@@ -45,13 +44,6 @@ void Base::get_y_bounds(float *min_y, float *max_y)
 {
    *min_y = floor_min_y;
    *max_y = floor_max_y;
-}
-
-
-
-float Base::get_width()
-{
-   return width;
 }
 
 

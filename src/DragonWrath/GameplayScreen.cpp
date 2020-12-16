@@ -31,7 +31,7 @@ void DragonWrath::GameplayScreen::load_level()
       throw std::runtime_error(error_message);
    }
 
-   current_level = new DragonWrath::Levels::Base(100);
+   current_level = new DragonWrath::Levels::Base();
    DragonWrath::EntityFactory entity_factory(framework, current_level);
 
    entity_factory.create_player_dragon(480, 1080/2);
