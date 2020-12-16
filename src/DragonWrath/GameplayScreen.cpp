@@ -68,16 +68,16 @@ void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
    switch(ev->keyboard.keycode)
    {
    case ALLEGRO_KEY_UP:
-      player_dragon->velocity.y = -8;
+      if (player_dragon) player_dragon->velocity.y = -8;
       break;
    case ALLEGRO_KEY_DOWN:
-      player_dragon->velocity.y = 8;
+      if (player_dragon) player_dragon->velocity.y = 8;
       break;
    case ALLEGRO_KEY_LEFT:
-      player_dragon->velocity.x = -8;
+      if (player_dragon) player_dragon->velocity.x = -8;
       break;
    case ALLEGRO_KEY_RIGHT:
-      player_dragon->velocity.x = 8;
+      if (player_dragon) player_dragon->velocity.x = 8;
       break;
    case ALLEGRO_KEY_SPACE:
       {
