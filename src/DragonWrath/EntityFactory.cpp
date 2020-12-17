@@ -37,7 +37,7 @@ DragonWrath::Entities::PlayerBullet *EntityFactory::create_player_bullet(float x
    return player_bullet;
 }
 
-DragonWrath::Entities::BasicEnemy *EntityFactory::create_enemy(float x, float y)
+DragonWrath::Entities::BasicEnemy *EntityFactory::create_enemy(float x, float y, std::string movement_strategy)
 {
    DragonWrath::Entities::BasicEnemy *enemy = new DragonWrath::Entities::BasicEnemy(current_level, x, y);
 
@@ -50,7 +50,7 @@ DragonWrath::Entities::BasicEnemy *EntityFactory::create_enemy(float x, float y)
          al_get_bitmap_height(enemy_bitmap)
       );
 
-   enemy->set_movement_strategy("sin_wave_moving_left");
+   enemy->set_movement_strategy(movement_strategy);
 
    return enemy;
 }
@@ -82,7 +82,7 @@ std::vector<DragonWrath::Entities::Base *> EntityFactory::create_10_random_enemi
    {
       float x = AllegroFlare::random_float(1920/2, 1920);
       float y = AllegroFlare::random_float(0, 1080);
-      result.push_back(create_enemy(x, y));
+      result.push_back(create_enemy(x, y, "sin_wave_moving_left"));
    }
 
    return result;

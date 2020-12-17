@@ -37,11 +37,11 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_t
    // enemies to create
   // EnemyToSpawn(float spawn_time, std::string enemy_type, float spawn_x, float spawn_y, std::string movement_strategy);
    std::vector<EnemyToSpawn> enemies_to_spawn = {
-      { 1, "doesnt-matter-right-now", 1920*0.75 - 300, 1080/2 - 100, "doesnt-matter-right-now" },
-      { 2, "doesnt-matter-right-now", 1920*0.75 - 150, 1080/2 - 50,  "doesnt-matter-right-now" },
-      { 3, "doesnt-matter-right-now", 1920*0.75 + 0,   1080/2 + 0,   "doesnt-matter-right-now" },
-      { 4, "doesnt-matter-right-now", 1920*0.75 + 150, 1080/2 + 50,  "doesnt-matter-right-now" },
-      { 5, "doesnt-matter-right-now", 1920*0.75 + 300, 1080/2 + 100, "doesnt-matter-right-now" },
+      { 1, "doesnt-matter-right-now", 1920*0.75 - 300, 1080/2 - 100, "move_left" },
+      { 2, "doesnt-matter-right-now", 1920*0.75 - 150, 1080/2 - 50,  "move_right" },
+      { 3, "doesnt-matter-right-now", 1920*0.75 + 0,   1080/2 + 0,   "sin_wave_move_left" },
+      { 4, "doesnt-matter-right-now", 1920*0.75 + 150, 1080/2 + 50,  "move_right" },
+      { 5, "doesnt-matter-right-now", 1920*0.75 + 300, 1080/2 + 100, "move_left" },
    };
 
    DragonWrath::Levels::TimedScroll *timed_scroll_level =

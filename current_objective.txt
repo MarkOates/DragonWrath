@@ -1,1 +1,1 @@
-Current Objective: Enemies spawn and exit the scene with a movement pattern
+Current Objective: Load movement strategies on initialization

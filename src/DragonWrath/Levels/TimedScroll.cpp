@@ -49,7 +49,11 @@ void TimedScroll::update_level_specific_behavior()
       if (enemy_to_spawn.spawned) continue;
       if (timer > enemy_to_spawn.spawn_time)
       {
-         entity_factory.create_enemy(enemy_to_spawn.spawn_x, enemy_to_spawn.spawn_y);
+         entity_factory.create_enemy(
+               enemy_to_spawn.spawn_x,
+               enemy_to_spawn.spawn_y,
+               enemy_to_spawn.movement_strategy
+            );
          enemy_to_spawn.spawned = true;
       }
    }
