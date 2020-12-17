@@ -1,1 +1,2 @@
 Current Objective: Enemies spawn and exit the scene with a movement pattern
+Current Objective OVERRIDE: Create "enemies_to_spawn" datatype and list

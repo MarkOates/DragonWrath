@@ -29,12 +29,16 @@ create_enemy(x, y, VelocitySinWave);
   #      spawned: bool
   #      spawn_time: float
   #      enemy_type: string
+  #      spawn_x: string
+  #      spawn_y: string
   #      movement_strategy: string
   #   },
   #   {
   #      spawned:
   #      spawn_time:
   #      enemy_type:
+  #      spawn_x:
+  #      spawn_y:
   #      movement_strategy:
   #   }
   # ]
