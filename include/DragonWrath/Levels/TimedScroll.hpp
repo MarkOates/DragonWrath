@@ -35,7 +35,8 @@ namespace DragonWrath
          TimedScroll(AllegroFlare::Framework &framework, std::vector<EnemyToSpawn> enemies_to_spawn={});
          ~TimedScroll();
 
-         void update() override;
+         void update_level_specific_behavior() override;
+
          float get_timer();
       };
    }

@@ -38,7 +38,7 @@ TimedScroll::~TimedScroll()
 {}
 
 
-void TimedScroll::update()
+void TimedScroll::update_level_specific_behavior()
 {
    timer += timer_step;
 

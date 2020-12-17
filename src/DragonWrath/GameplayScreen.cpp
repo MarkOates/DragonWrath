@@ -48,17 +48,19 @@ void DragonWrath::GameplayScreen::primary_timer_func()
       DragonWrath::SceneCollectionHelper collection_helper(current_level);
       DragonWrath::Entities::PlayerDragon *player_dragon = collection_helper.get_player_dragon();
 
+      // update
       current_level->update();
 
-      // update
-      current_level->update_all();
-
+      // update the hud
       if (player_dragon && player_dragon->is_dead())
       {
          hud.active_game_over_banner_showing();
       }
-
-      // update the hud
+      if (player_dragon)
+      {
+         hud.set_player_health(player_dragon->get_health());
+         hud.set_player_max_health(player_dragon->get_max_health());
+      }
       if (current_level && current_level->is_type(TIMED_SCROLL))
       {
          DragonWrath::Levels::TimedScroll *timed_scroll_level =
@@ -66,18 +68,13 @@ void DragonWrath::GameplayScreen::primary_timer_func()
          float level_scroll_timer = timed_scroll_level->get_timer();
          hud.debug__set_level_scroll_timer(level_scroll_timer);
       }
-      if (player_dragon)
-      {
-         hud.set_player_health(player_dragon->get_health());
-         hud.set_player_max_health(player_dragon->get_max_health());
-      }
 
       // draw
-      current_level->draw_all();
+      current_level->draw();
       hud.draw();
 
       // cleanup
-      current_level->cleanup_all();
+      current_level->cleanup();
    }
 
 }

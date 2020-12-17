@@ -34,11 +34,13 @@ Base::~Base()
 
 void Base::update()
 {
+   update_level_specific_behavior();
+   update_collisions();
 }
 
 
 
-void Base::update_all()
+void Base::update_collisions()
 {
    SceneCollisionHelper collision_helper(this);
    collision_helper.resolve_collisions();
@@ -46,17 +48,7 @@ void Base::update_all()
 
 
 
-void Base::cleanup_all()
-{
-   SceneCollectionHelper collection_helper(this);
-
-   for (auto &descendant : collection_helper.get_all_flagged_for_deletion())
-      delete descendant;
-}
-
-
-
-void Base::draw_all()
+void Base::draw()
 {
    SceneCollectionHelper collection_helper(this);
 
@@ -64,6 +56,16 @@ void Base::draw_all()
 
    for (auto &entity : y_sorted_entities) if (!entity->exists(ALWAYS_ON_TOP)) entity->draw();
    for (auto &entity : y_sorted_entities) if (entity->exists(ALWAYS_ON_TOP)) entity->draw();
+}
+
+
+
+void Base::cleanup()
+{
+   SceneCollectionHelper collection_helper(this);
+
+   for (auto &descendant : collection_helper.get_all_flagged_for_deletion())
+      delete descendant;
 }
 
 

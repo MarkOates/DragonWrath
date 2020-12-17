@@ -10,15 +10,17 @@ namespace DragonWrath
    {
       class Base : public AllegroFlare::ElementID
       {
+      private:
+         virtual void update_level_specific_behavior() = 0;
+         void update_collisions();
+
       public:
          Base(std::string type);
          ~Base();
 
-         virtual void update();
-
-         void update_all();
-         void cleanup_all();
-         void draw_all();
+         void update();
+         void draw();
+         void cleanup();
 
          bool is_type(std::string type);
       };
