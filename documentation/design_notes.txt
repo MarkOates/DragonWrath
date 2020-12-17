@@ -21,3 +21,21 @@ create_enemy(x, y, VelocitySinWave);
   # types
     # TimedScroll
     # KillAll
+
+
+# enemies_to_spawn
+  # [
+  #   {
+  #      spawned: bool
+  #      spawn_time: float
+  #      enemy_type: string
+  #      movement_strategy: string
+  #   },
+  #   {
+  #      spawned:
+  #      spawn_time:
+  #      enemy_type:
+  #      movement_strategy:
+  #   }
+  # ]
+
