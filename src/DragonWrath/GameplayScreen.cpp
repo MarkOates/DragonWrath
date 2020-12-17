@@ -4,6 +4,7 @@
 #include <DragonWrath/SceneCollectionHelper.hpp>
 #include <DragonWrath/EntityAttributeNames.hpp>
 #include <DragonWrath/EntityFactory.hpp>
+#include <DragonWrath/LevelFactory.hpp>
 #include <AllegroFlare/Useful.hpp>
 
 DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
@@ -31,7 +32,9 @@ void DragonWrath::GameplayScreen::load_level()
       throw std::runtime_error(error_message);
    }
 
-   current_level = new DragonWrath::Levels::Base();
+   DragonWrath::LevelFactory level_factory;
+   current_level = level_factory.create_timed_scroll_level();
+
    DragonWrath::EntityFactory entity_factory(framework, current_level);
 
    entity_factory.create_player_dragon(480, 1080/2);
@@ -52,6 +55,8 @@ void DragonWrath::GameplayScreen::primary_timer_func()
    {
       DragonWrath::SceneCollectionHelper collection_helper(current_level);
       DragonWrath::Entities::PlayerDragon *player_dragon = collection_helper.get_player_dragon();
+
+      current_level->update();
 
       // update
       current_level->update_all();
