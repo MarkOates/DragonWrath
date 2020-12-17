@@ -2,6 +2,7 @@
 #include <DragonWrath/EntityFactory.hpp>
 
 #include <DragonWrath/EntityAttributeNames.hpp>
+#include <DragonWrath/MovementStrategyNames.hpp>
 #include <AllegroFlare/Useful.hpp>
 
 namespace DragonWrath
@@ -82,7 +83,7 @@ std::vector<DragonWrath::Entities::Base *> EntityFactory::create_10_random_enemi
    {
       float x = AllegroFlare::random_float(1920/2, 1920);
       float y = AllegroFlare::random_float(0, 1080);
-      result.push_back(create_enemy(x, y, "sin_wave_moving_left"));
+      result.push_back(create_enemy(x, y, SIN_WAVE_MOVE_LEFT));
    }
 
    return result;

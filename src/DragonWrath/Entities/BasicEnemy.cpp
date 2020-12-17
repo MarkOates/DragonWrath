@@ -2,6 +2,7 @@
 
 #include <DragonWrath/Entities/BasicEnemy.hpp>
 
+#include <DragonWrath/MovementStrategyNames.hpp>
 #include <sstream>
 #include <math.h>
 
@@ -14,7 +15,7 @@ namespace Entities
 
 BasicEnemy::BasicEnemy(ElementID *parent, float x, float y)
    : DragonWrath::Entities::Base(parent, "basic_enemy", x, y)
-   , movement_strategy("sin_wave_move_left")
+   , movement_strategy(SIN_WAVE_MOVE_LEFT)
 {
 }
 
@@ -26,22 +27,22 @@ BasicEnemy::~BasicEnemy()
 
 void BasicEnemy::update()
 {
-   if (movement_strategy == "move_left")
+   if (movement_strategy == MOVE_LEFT)
    {
       velocity.position.y = 0;
       velocity.position.x = -8;
    }
-   else if (movement_strategy == "move_right")
+   else if (movement_strategy == MOVE_RIGHT)
    {
       velocity.position.y = 0;
       velocity.position.x = 8;
    }
-   else if (movement_strategy == "stay_still")
+   else if (movement_strategy == STAY_STILL)
    {
       velocity.position.x = 0;
       velocity.position.y = 0;
    }
-   else if (movement_strategy == "sin_wave_move_left")
+   else if (movement_strategy == SIN_WAVE_MOVE_LEFT)
    {
       velocity.position.x = -8;
       velocity.position.y = sin(al_get_time() * 4) * 10;

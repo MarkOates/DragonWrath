@@ -1,1 +1,1 @@
-Current Objective: Load movement strategies on initialization
+Current Objective: Define and use constants for movement strategy identifiers
