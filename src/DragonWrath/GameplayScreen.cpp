@@ -3,9 +3,11 @@
 #include <DragonWrath/Entities/Base.hpp>
 #include <DragonWrath/SceneCollectionHelper.hpp>
 #include <DragonWrath/EntityAttributeNames.hpp>
+#include <DragonWrath/LevelTypeNames.hpp>
 #include <DragonWrath/EntityFactory.hpp>
 #include <DragonWrath/LevelFactory.hpp>
 #include <AllegroFlare/Useful.hpp>
+#include <DragonWrath/Levels/TimedScroll.hpp>
 
 DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
    : AllegroFlare::Screen()
@@ -67,6 +69,13 @@ void DragonWrath::GameplayScreen::primary_timer_func()
       }
 
       // update the hud
+      if (current_level && current_level->is_type(TIMED_SCROLL))
+      {
+         DragonWrath::Levels::TimedScroll *timed_scroll_level =
+            static_cast<DragonWrath::Levels::TimedScroll *>(current_level);
+         float level_scroll_timer = timed_scroll_level->get_timer();
+         hud.debug__set_level_scroll_timer(level_scroll_timer);
+      }
       if (player_dragon)
       {
          hud.set_player_health(player_dragon->get_health());
