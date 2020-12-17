@@ -88,6 +88,21 @@ void SceneCollisionHelper::update_collisions_on_player_dragon()
 
 
 
+void SceneCollisionHelper::destroy_entities_that_are_off_screen()
+{
+   std::vector<Entities::Base *> all_entities = collections.get_all_entities();
+
+   //float padding = -50;
+   for (auto &entity : all_entities)
+   {
+      if (entity->place.x < 0) entity->flag_for_deletion();
+      if (entity->place.x > 1920) entity->flag_for_deletion();
+      if (entity->place.y < 0) entity->flag_for_deletion();
+      if (entity->place.y > 1080) entity->flag_for_deletion();
+   }
+}
+
+
 
 //void SceneCollisionHelper::limit_sprites_to_world_bounds()
 //{
@@ -181,6 +196,7 @@ void SceneCollisionHelper::resolve_collisions()
    update_entities_position_by_velocity();
    update_collisions_on_enemies();
    update_collisions_on_player_dragon();
+   destroy_entities_that_are_off_screen();
    //limit_sprites_to_world_bounds();
    //check_damage_zones_on_enemies();
    //check_damage_zones_on_krampus();
