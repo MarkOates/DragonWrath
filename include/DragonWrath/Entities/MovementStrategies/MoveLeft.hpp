@@ -9,9 +9,9 @@ namespace DragonWrath
 {
    namespace Entities
    {
-      namespace MovementStrategy
+      namespace MovementStrategies
       {
-         class MoveLeft : public DragonWrath::Entities::MovementStrategy::Base
+         class MoveLeft : public DragonWrath::Entities::MovementStrategies::Base
          {
          private:
             DragonWrath::Entities::Base *entity;

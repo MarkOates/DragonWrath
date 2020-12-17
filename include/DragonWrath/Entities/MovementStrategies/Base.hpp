@@ -5,7 +5,7 @@ namespace DragonWrath
 {
    namespace Entities
    {
-      namespace MovementStrategy
+      namespace MovementStrategies
       {
          class Base
          {

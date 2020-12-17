@@ -7,12 +7,12 @@ namespace DragonWrath
 {
 namespace Entities
 {
-namespace MovementStrategy
+namespace MovementStrategies
 {
 
 
 StayStill::StayStill()
-   : DragonWrath::Entities::MovementStrategy::Base()
+   : DragonWrath::Entities::MovementStrategies::Base()
 {
 }
 
@@ -28,7 +28,7 @@ void StayStill::update()
 }
 
 
-} // namespace MovementStrategy
+} // namespace MovementStrategies
 } // namespace Entities
 } // namespace DragonWrath
 

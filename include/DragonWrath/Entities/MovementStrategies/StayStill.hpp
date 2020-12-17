@@ -8,9 +8,9 @@ namespace DragonWrath
 {
    namespace Entities
    {
-      namespace MovementStrategy
+      namespace MovementStrategies
       {
-         class StayStill : public DragonWrath::Entities::MovementStrategy::Base
+         class StayStill : public DragonWrath::Entities::MovementStrategies::Base
          {
          public:
             StayStill();

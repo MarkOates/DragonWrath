@@ -7,12 +7,12 @@ namespace DragonWrath
 {
 namespace Entities
 {
-namespace MovementStrategy
+namespace MovementStrategies
 {
 
 
 MoveLeft::MoveLeft(DragonWrath::Entities::Base *entity, float speed)
-   : DragonWrath::Entities::MovementStrategy::Base()
+   : DragonWrath::Entities::MovementStrategies::Base()
    , entity(entity)
    , speed(speed)
 {
@@ -30,7 +30,7 @@ void MoveLeft::update()
 }
 
 
-} // namespace MovementStrategy
+} // namespace MovementStrategies
 } // namespace Entities
 } // namespace DragonWrath
 

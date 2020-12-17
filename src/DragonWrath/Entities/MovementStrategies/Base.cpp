@@ -7,7 +7,7 @@ namespace DragonWrath
 {
 namespace Entities
 {
-namespace MovementStrategy
+namespace MovementStrategies
 {
 
 
@@ -26,7 +26,7 @@ void Base::update()
 }
 
 
-} // namespace MovementStrategy
+} // namespace MovementStrategies
 } // namespace Entities
 } // namespace DragonWrath
 
