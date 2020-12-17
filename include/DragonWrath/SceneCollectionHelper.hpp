@@ -6,6 +6,7 @@
 //#include <dungeon/models/entities/krampus_entity.hpp>
 #include <DragonWrath/Entities/PlayerDragon.hpp>
 #include <DragonWrath/Entities/PlayerBullet.hpp>
+#include <DragonWrath/Entities/BasicEnemy.hpp>
 #include <DragonWrath/Levels/Base.hpp>
 
 
@@ -36,7 +37,7 @@ namespace DragonWrath
       //std::vector<DamageZoneEntity *> get_all_damage_zones_that_damage_enemies();
       std::vector<Entities::Base *> get_entities_bound_in_world();
       std::vector<Entities::Base *> get_all_flagged_for_deletion();
-      std::vector<Entities::Base *> get_all_enemies();
+      std::vector<Entities::BasicEnemy *> get_all_basic_enemies();
       std::vector<Entities::PlayerBullet *> get_all_player_bullets();
       Entities::PlayerDragon *get_player_dragon();
       //std::vector<Enemy::Base *> get_enemies_flagged_for_deletion();

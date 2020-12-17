@@ -107,9 +107,9 @@ std::vector<Entities::Base *> SceneCollectionHelper::get_all_flagged_for_deletio
 
 
 
-std::vector<Entities::Base *> SceneCollectionHelper::get_all_enemies()
+std::vector<Entities::BasicEnemy *> SceneCollectionHelper::get_all_basic_enemies()
 {
-   return AllegroFlare::ElementID::recast_collection<Entities::Base>(scene->find_all_descendants("type", "enemy"));
+   return AllegroFlare::ElementID::recast_collection<Entities::BasicEnemy>(scene->find_all_descendants("type", "basic_enemy"));
 }
 
 

@@ -37,11 +37,9 @@ DragonWrath::Entities::PlayerBullet *EntityFactory::create_player_bullet(float x
    return player_bullet;
 }
 
-DragonWrath::Entities::Base *EntityFactory::create_enemy(float x, float y)
+DragonWrath::Entities::BasicEnemy *EntityFactory::create_enemy(float x, float y)
 {
-   DragonWrath::Entities::Base *enemy = new DragonWrath::Entities::Base(
-         current_level, "enemy", x, y
-      );
+   DragonWrath::Entities::BasicEnemy *enemy = new DragonWrath::Entities::BasicEnemy(current_level, x, y);
 
    ALLEGRO_BITMAP *enemy_bitmap = framework.bitmap("enemy.png");
    enemy->bitmap.bitmap(enemy_bitmap);
@@ -51,6 +49,8 @@ DragonWrath::Entities::Base *EntityFactory::create_enemy(float x, float y)
          al_get_bitmap_width(enemy_bitmap),
          al_get_bitmap_height(enemy_bitmap)
       );
+
+   enemy->set_movement_strategy("sin_wave_moving_left");
 
    return enemy;
 }
