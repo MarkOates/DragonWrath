@@ -1,6 +1,8 @@
 
 #include <DragonWrath/EntityFactory.hpp>
+
 #include <DragonWrath/EntityAttributeNames.hpp>
+#include <AllegroFlare/Useful.hpp>
 
 namespace DragonWrath
 {
@@ -69,6 +71,21 @@ DragonWrath::Entities::PlayerDragon *EntityFactory::create_player_dragon(float x
       );
 
    return player_dragon;
+}
+
+
+std::vector<DragonWrath::Entities::Base *> EntityFactory::create_10_random_enemies()
+{
+   std::vector<DragonWrath::Entities::Base *> result;
+
+   for (int i=0; i<10; i++)
+   {
+      float x = AllegroFlare::random_float(1920/2, 1920);
+      float y = AllegroFlare::random_float(0, 1080);
+      result.push_back(create_enemy(x, y));
+   }
+
+   return result;
 }
 
 

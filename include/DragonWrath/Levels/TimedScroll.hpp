@@ -1,5 +1,6 @@
 #pragma once
 
+#include <AllegroFlare/Framework.hpp>
 #include <DragonWrath/Levels/Base.hpp>
 
 
@@ -25,12 +26,13 @@ namespace DragonWrath
       class TimedScroll : public DragonWrath::Levels::Base
       {
       private:
+         AllegroFlare::Framework &framework;
          float timer;
          const float timer_step;
          std::vector<EnemyToSpawn> enemies_to_spawn;
 
       public:
-         TimedScroll(std::vector<EnemyToSpawn> enemies_to_spawn={});
+         TimedScroll(AllegroFlare::Framework &framework, std::vector<EnemyToSpawn> enemies_to_spawn={});
          ~TimedScroll();
 
          void update() override;

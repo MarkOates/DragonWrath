@@ -34,19 +34,9 @@ void DragonWrath::GameplayScreen::load_level()
       throw std::runtime_error(error_message);
    }
 
-   DragonWrath::LevelFactory level_factory;
-   current_level = level_factory.create_timed_scroll_level();
-
-   DragonWrath::EntityFactory entity_factory(framework, current_level);
-
-   entity_factory.create_player_dragon(480, 1080/2);
-
-   for (int i=0; i<10; i++)
-   {
-      float x = AllegroFlare::random_float(1920/2, 1920);
-      float y = AllegroFlare::random_float(0, 1080);
-      entity_factory.create_enemy(x, y);
-   }
+   DragonWrath::LevelFactory level_factory(framework);
+   current_level = level_factory.create_timed_scroll_level_with_test_enemies();
+   //current_level = level_factory.create_timed_scroll_level_with_10_random_enemies();
 }
 
 void DragonWrath::GameplayScreen::primary_timer_func()
