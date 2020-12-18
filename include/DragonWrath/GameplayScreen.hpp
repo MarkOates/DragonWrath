@@ -21,6 +21,8 @@ namespace DragonWrath
 
       void initialize();
 
+      void draw_you_have_won_banner();
+
       void load_next_level();
 
       void primary_timer_func() override;

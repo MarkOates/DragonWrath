@@ -1,1 +1,1 @@
-Current Objective: Fix crash on exit related to nullptr root in SceneCollectionHelper
+Current Objective: Create a Screen switching architecture

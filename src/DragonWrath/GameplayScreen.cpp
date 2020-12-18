@@ -27,6 +27,41 @@ void DragonWrath::GameplayScreen::initialize()
    load_next_level();
 }
 
+void DragonWrath::GameplayScreen::draw_you_have_won_banner()
+{
+   ALLEGRO_FONT *title_text_font = framework.font("ChronoTrigger.ttf 100");
+   ALLEGRO_FONT *subtitle_text_font = framework.font("ChronoTrigger.ttf 60");
+
+   std::string title_text = "--  CONGRATULATIONS  --";
+   std::string subtitle_text = "You have won the game";
+
+   ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+
+   float title_text_x = 1920 / 2;
+   float title_text_y = 1080 / 2 - 150;
+
+   float subtitle_text_x = 1920 / 2;
+   float subtitle_text_y = 1080 / 2 + 100;
+
+   al_draw_text(
+      title_text_font,
+      text_color,
+      title_text_x,
+      title_text_y,
+      ALLEGRO_ALIGN_CENTER,
+      title_text.c_str()
+   );
+   al_draw_text(
+      subtitle_text_font,
+      text_color,
+      subtitle_text_x,
+      subtitle_text_y,
+      ALLEGRO_ALIGN_CENTER,
+      subtitle_text.c_str()
+   );
+}
+
+
 void DragonWrath::GameplayScreen::load_next_level()
 {
    hud.deactivate_all_banners();
@@ -50,10 +85,6 @@ void DragonWrath::GameplayScreen::primary_timer_func()
       {
          hud.activate_game_over_banner();
       }
-      else if (current_level && current_level->is_completed() && !world.next_level_exists())
-      {
-         hud.activate_you_have_won_banner();
-      }
       else if (current_level && current_level->is_completed())
       {
          hud.activate_level_complete_banner();
@@ -74,6 +105,7 @@ void DragonWrath::GameplayScreen::primary_timer_func()
 
       // draw
       current_level->draw();
+      hud.draw();
 
       // cleanup
       current_level->cleanup();
@@ -81,8 +113,10 @@ void DragonWrath::GameplayScreen::primary_timer_func()
       // see if the next level should be loaded
       if (current_level->is_ready_to_destroy()) load_next_level();
    }
-
-   hud.draw();
+   else
+   {
+      draw_you_have_won_banner();
+   }
 }
 
 void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)

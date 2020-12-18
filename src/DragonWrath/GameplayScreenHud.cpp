@@ -124,47 +124,11 @@ void GameplayScreenHud::draw_level_complete_banner()
 }
 
 
-void GameplayScreenHud::draw_you_have_won_banner()
-{
-   ALLEGRO_FONT *title_text_font = font_bin.auto_get("ChronoTrigger.ttf 100");
-   ALLEGRO_FONT *subtitle_text_font = font_bin.auto_get("ChronoTrigger.ttf 60");
-
-   std::string title_text = "--  CONGRATULATIONS  --";
-   std::string subtitle_text = "You have won the game";
-
-   ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
-
-   float title_text_x = 1920 / 2;
-   float title_text_y = 1080 / 2 - 150;
-
-   float subtitle_text_x = 1920 / 2;
-   float subtitle_text_y = 1080 / 2 + 100;
-
-   al_draw_text(
-      title_text_font,
-      text_color,
-      title_text_x,
-      title_text_y,
-      ALLEGRO_ALIGN_CENTER,
-      title_text.c_str()
-   );
-   al_draw_text(
-      subtitle_text_font,
-      text_color,
-      subtitle_text_x,
-      subtitle_text_y,
-      ALLEGRO_ALIGN_CENTER,
-      subtitle_text.c_str()
-   );
-}
-
-
 void GameplayScreenHud::draw()
 {
    draw_health_bar();
    if (game_over_banner_showing) draw_game_over_banner();
    if (level_complete_banner_showing) draw_level_complete_banner();
-   if (you_have_won_banner_showing) draw_you_have_won_banner();
    if (debug_mode) debug__show_level_scroll_timer();
 }
 
@@ -193,12 +157,6 @@ void GameplayScreenHud::activate_level_complete_banner()
 }
 
 
-void GameplayScreenHud::activate_you_have_won_banner()
-{
-   this->you_have_won_banner_showing = true;
-}
-
-
 void GameplayScreenHud::deactivate_game_over_banner()
 {
    this->game_over_banner_showing = false;
@@ -211,17 +169,10 @@ void GameplayScreenHud::deactivate_level_complete_banner()
 }
 
 
-void GameplayScreenHud::deactivate_you_have_won_banner()
-{
-   this->you_have_won_banner_showing = false;
-}
-
-
 void GameplayScreenHud::deactivate_all_banners()
 {
    deactivate_game_over_banner();
    deactivate_level_complete_banner();
-   deactivate_you_have_won_banner();
 }
 
 

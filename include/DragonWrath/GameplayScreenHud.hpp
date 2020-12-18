@@ -17,7 +17,6 @@ namespace DragonWrath
 
       bool game_over_banner_showing;
       bool level_complete_banner_showing;
-      bool you_have_won_banner_showing;
 
       bool debug_mode;
       float level_scroll_timer;
@@ -29,7 +28,6 @@ namespace DragonWrath
       void draw_health_bar();
       void draw_game_over_banner();
       void draw_level_complete_banner();
-      void draw_you_have_won_banner();
 
       void draw();
 
@@ -37,10 +35,8 @@ namespace DragonWrath
       void set_player_max_health(int player_max_health);
       void activate_game_over_banner();
       void activate_level_complete_banner();
-      void activate_you_have_won_banner();
       void deactivate_game_over_banner();
       void deactivate_level_complete_banner();
-      void deactivate_you_have_won_banner();
       void deactivate_all_banners();
 
       void debug__show_level_scroll_timer();
