@@ -1,1 +1,1 @@
-Current Objective: Define and use constants for movement strategy identifiers
+Current Objective: Create list of levels as World class
