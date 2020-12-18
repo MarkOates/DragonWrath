@@ -20,7 +20,7 @@ LevelFactory::~LevelFactory()
 
 DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_10_random_enemies()
 {
-   DragonWrath::Levels::TimedScroll *timed_scroll_level = new DragonWrath::Levels::TimedScroll(framework);
+   DragonWrath::Levels::TimedScroll *timed_scroll_level = new DragonWrath::Levels::TimedScroll(framework, 10);
    DragonWrath::EntityFactory entity_factory(framework, timed_scroll_level);
 
    // create player dragon
@@ -51,7 +51,7 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_t
    };
 
    DragonWrath::Levels::TimedScroll *timed_scroll_level =
-      new DragonWrath::Levels::TimedScroll(framework, enemies_to_spawn);
+      new DragonWrath::Levels::TimedScroll(framework, 10, enemies_to_spawn);
    DragonWrath::EntityFactory entity_factory(framework, timed_scroll_level);
 
    // create player dragon
@@ -61,6 +61,33 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_t
 }
 
 
+DragonWrath::Levels::Base *LevelFactory::create_level_by_identifier(std::string identifier)
+{
+   DragonWrath::Levels::Base *result = nullptr;
+
+   if (identifier == "level_1")
+   {
+      result = create_timed_scroll_level_with_test_enemies();
+   }
+   else if (identifier == "level_2")
+   {
+      result = create_timed_scroll_level_with_10_random_enemies();
+   }
+   else
+   {
+      std::stringstream error_message;
+      error_message << "DragonWrath::Levels::Base::create_level_by_identifier(): "
+         << "error: undefined identifier \""
+         << identifier
+         << "\""
+         << std::endl;
+      throw std::runtime_error(error_message.str());
+   }
+
+   return result;
 }
+
+
+} // namespace DragonWrath
 
 

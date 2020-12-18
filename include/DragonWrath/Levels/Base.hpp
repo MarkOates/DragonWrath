@@ -13,6 +13,7 @@ namespace DragonWrath
       private:
          virtual void update_level_specific_behavior() = 0;
          void update_collisions();
+         float level_end_padding_timer;
 
       public:
          Base(std::string type);
@@ -23,6 +24,8 @@ namespace DragonWrath
          void cleanup();
 
          bool is_type(std::string type);
+         virtual bool is_completed() = 0;
+         bool is_ready_to_destroy();
       };
    }
 }

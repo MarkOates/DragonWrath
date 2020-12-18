@@ -8,6 +8,7 @@
 #include <DragonWrath/EntityAttributeNames.hpp>
 #include <DragonWrath/SceneCollisionHelper.hpp>
 #include <DragonWrath/SceneCollectionHelper.hpp>
+#include <allegro5/allegro.h>
 #include <algorithm>
 
 
@@ -20,6 +21,7 @@ namespace Levels
 
 Base::Base(std::string type)
    : ElementID(nullptr)
+   , level_end_padding_timer(5)
 {
    set("type", type);
 }
@@ -34,6 +36,8 @@ Base::~Base()
 
 void Base::update()
 {
+   if (is_completed()) level_end_padding_timer -= 1.0/60.0f; //ALLEGRO_BPS_TO_SECS(60);
+
    update_level_specific_behavior();
    update_collisions();
 }
@@ -73,6 +77,12 @@ void Base::cleanup()
 bool Base::is_type(std::string type)
 {
    return exists("type", type);
+}
+
+
+bool Base::is_ready_to_destroy()
+{
+   return level_end_padding_timer <= 0.0f;
 }
 
 

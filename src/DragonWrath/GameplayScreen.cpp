@@ -14,6 +14,7 @@ DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
    , framework(framework)
    , current_level(nullptr)
    , hud(framework)
+   , world(framework, "World of DragonWrath", { "level_1", "level_2" })
 {
 }
 
@@ -23,20 +24,13 @@ DragonWrath::GameplayScreen::~GameplayScreen()
 
 void DragonWrath::GameplayScreen::initialize()
 {
-   load_level();
+   load_next_level();
 }
 
-void DragonWrath::GameplayScreen::load_level()
+void DragonWrath::GameplayScreen::load_next_level()
 {
-   if (current_level)
-   {
-      std::string error_message = "DragonWrath::GameplayScreen::initialize: A level already exists";
-      throw std::runtime_error(error_message);
-   }
-
-   DragonWrath::LevelFactory level_factory(framework);
-   current_level = level_factory.create_timed_scroll_level_with_test_enemies();
-   //current_level = level_factory.create_timed_scroll_level_with_10_random_enemies();
+   hud.deactivate_all_banners();
+   current_level = world.create_next_level_and_destroy_current();
 }
 
 void DragonWrath::GameplayScreen::primary_timer_func()
@@ -54,8 +48,17 @@ void DragonWrath::GameplayScreen::primary_timer_func()
       // update the hud
       if (player_dragon && player_dragon->is_dead())
       {
-         hud.active_game_over_banner_showing();
+         hud.activate_game_over_banner();
       }
+      else if (current_level && current_level->is_completed() && !world.next_level_exists())
+      {
+         hud.activate_you_have_won_banner();
+      }
+      else if (current_level && current_level->is_completed())
+      {
+         hud.activate_level_complete_banner();
+      }
+
       if (player_dragon)
       {
          hud.set_player_health(player_dragon->get_health());
@@ -71,12 +74,15 @@ void DragonWrath::GameplayScreen::primary_timer_func()
 
       // draw
       current_level->draw();
-      hud.draw();
 
       // cleanup
       current_level->cleanup();
+
+      // see if the next level should be loaded
+      if (current_level->is_ready_to_destroy()) load_next_level();
    }
 
+   hud.draw();
 }
 
 void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)

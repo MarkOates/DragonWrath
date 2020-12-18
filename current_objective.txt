@@ -1,1 +1,1 @@
-Current Objective: Create list of levels as World class
+Current Objective: Achieve win state

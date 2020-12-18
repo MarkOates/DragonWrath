@@ -25,10 +25,11 @@ namespace Levels
 {
 
 
-TimedScroll::TimedScroll(AllegroFlare::Framework &framework, std::vector<EnemyToSpawn> enemies_to_spawn)
+TimedScroll::TimedScroll(AllegroFlare::Framework &framework, float duration_to_end, std::vector<EnemyToSpawn> enemies_to_spawn)
    : DragonWrath::Levels::Base(TIMED_SCROLL)
    , framework(framework)
    , timer(0)
+   , duration_to_end(duration_to_end)
    , timer_step(ALLEGRO_BPS_TO_SECS(60))
    , enemies_to_spawn(enemies_to_spawn)
 {}
@@ -64,6 +65,13 @@ float TimedScroll::get_timer()
 {
    return timer;
 }
+
+
+bool TimedScroll::is_completed()
+{
+   return timer >= duration_to_end;
+}
+
 
 
 } // namespace Levels

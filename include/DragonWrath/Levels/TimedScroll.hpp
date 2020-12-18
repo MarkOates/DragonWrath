@@ -28,16 +28,19 @@ namespace DragonWrath
       private:
          AllegroFlare::Framework &framework;
          float timer;
+         float duration_to_end;
          const float timer_step;
          std::vector<EnemyToSpawn> enemies_to_spawn;
 
       public:
-         TimedScroll(AllegroFlare::Framework &framework, std::vector<EnemyToSpawn> enemies_to_spawn={});
+         TimedScroll(AllegroFlare::Framework &framework, float duration, std::vector<EnemyToSpawn> enemies_to_spawn={});
          ~TimedScroll();
 
          void update_level_specific_behavior() override;
 
          float get_timer();
+
+         bool is_completed() override;
       };
    }
 }
