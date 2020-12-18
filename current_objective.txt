@@ -1,1 +1,1 @@
-Current Objective: Achieve win state
+Current Objective: Fix crash on exit related to nullptr root in SceneCollectionHelper

@@ -25,6 +25,7 @@ SceneCollectionHelper::SceneCollectionHelper(DragonWrath::Levels::Base *scene)
 
 std::vector<Entities::Base *> SceneCollectionHelper::get_all_entities()
 {
+   if (!scene) return {};
    return scene->get_flat_list_of_descendants<Entities::Base>();
 }
 
@@ -32,6 +33,7 @@ std::vector<Entities::Base *> SceneCollectionHelper::get_all_entities()
 
 std::vector<Entities::Base *> SceneCollectionHelper::get_all_entities_y_sorted()
 {
+   if (!scene) return {};
    std::vector<Entities::Base *> flat_list = scene->get_flat_list_of_descendants<Entities::Base>();
 
    std::sort(flat_list.begin(), flat_list.end(),[](const Entities::Base *a, const Entities::Base *b)
@@ -94,6 +96,7 @@ std::vector<Entities::Base *> SceneCollectionHelper::get_all_entities_y_sorted()
 
 std::vector<Entities::Base *> SceneCollectionHelper::get_entities_bound_in_world()
 {
+   if (!scene) return {};
    return AllegroFlare::ElementID::recast_collection<Entities::Base>(scene->find_all_descendants("bound_in_world"));
 }
 
@@ -101,6 +104,7 @@ std::vector<Entities::Base *> SceneCollectionHelper::get_entities_bound_in_world
 
 std::vector<Entities::Base *> SceneCollectionHelper::get_all_flagged_for_deletion()
 {
+   if (!scene) return {};
    return AllegroFlare::ElementID::recast_collection<Entities::Base>(scene->find_all_descendants("can_be_deleted"));
 }
 
@@ -109,6 +113,7 @@ std::vector<Entities::Base *> SceneCollectionHelper::get_all_flagged_for_deletio
 
 std::vector<Entities::BasicEnemy *> SceneCollectionHelper::get_all_basic_enemies()
 {
+   if (!scene) return {};
    return AllegroFlare::ElementID::recast_collection<Entities::BasicEnemy>(scene->find_all_descendants("type", "basic_enemy"));
 }
 
@@ -116,6 +121,7 @@ std::vector<Entities::BasicEnemy *> SceneCollectionHelper::get_all_basic_enemies
 
 std::vector<Entities::PlayerBullet *> SceneCollectionHelper::get_all_player_bullets()
 {
+   if (!scene) return {};
    return AllegroFlare::ElementID::recast_collection<Entities::PlayerBullet>(scene->find_all_descendants("type", "player_bullet"));
 }
 
@@ -123,6 +129,7 @@ std::vector<Entities::PlayerBullet *> SceneCollectionHelper::get_all_player_bull
 
 Entities::PlayerDragon *SceneCollectionHelper::get_player_dragon()
 {
+   if (!scene) return nullptr;
    return static_cast<Entities::PlayerDragon *>(scene->find_first_descendant("type", PLAYER_DRAGON));
 }
 
