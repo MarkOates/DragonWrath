@@ -3,6 +3,7 @@
 #include <DragonWrath/Screens/TitleScreen.hpp>
 
 #include <allegro5/allegro_color.h>
+#include <AllegroFlare/Color.hpp>
 
 
 namespace DragonWrath
@@ -22,7 +23,7 @@ TitleScreen::~TitleScreen()
 }
 
 
-void TitleScreen::primary_timer_func()
+void TitleScreen::draw_main_title()
 {
    ALLEGRO_FONT *title_text_font = framework.font("ChronoTrigger.ttf 300");
    ALLEGRO_FONT *subtitle_text_font = framework.font("ChronoTrigger.ttf 60");
@@ -58,9 +59,16 @@ void TitleScreen::primary_timer_func()
 }
 
 
+void TitleScreen::primary_timer_func()
+{
+   al_clear_to_color(AllegroFlare::color::black);
+
+   draw_main_title();
+}
+
+
 void TitleScreen::key_down_func(ALLEGRO_EVENT *ev)
 {
-   framework.shutdown_program = true;
 }
 
 

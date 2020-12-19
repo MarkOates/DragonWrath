@@ -16,6 +16,8 @@ namespace DragonWrath
          TitleScreen(AllegroFlare::Framework &framework);
          ~TitleScreen();
 
+         void draw_main_title();
+
          void primary_timer_func() override;
          void key_down_func(ALLEGRO_EVENT *ev) override;
       };

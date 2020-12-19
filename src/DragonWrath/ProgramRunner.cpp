@@ -2,8 +2,7 @@
 
 #include <AllegroFlare/Framework.hpp>
 #include <AllegroFlare/Display.hpp>
-#include <DragonWrath/Screens/GameplayScreen.hpp>
-#include <DragonWrath/Screens/TitleScreen.hpp>
+#include <DragonWrath/ScreenManager.hpp>
 #include <iostream>
 
 DragonWrath::ProgramRunner::ProgramRunner()
@@ -24,24 +23,17 @@ void DragonWrath::ProgramRunner::run()
    display = framework.create_display(AllegroFlare::Display::RESOLUTION_HD_1080);
 
 
-   DragonWrath::Screens::Base *current_screen = nullptr;
+   DragonWrath::ScreenManager *screen_manager = new DragonWrath::ScreenManager(framework, screens);
+   screen_manager->initialize();
 
-   
-   {
-      DragonWrath::Screens::TitleScreen *title_screen = new DragonWrath::Screens::TitleScreen(framework);
-      current_screen = title_screen;
-   }
-   {
-      //DragonWrath::Screens::GameplayScreen *gameplay_screen =
-         //new DragonWrath::Screens::GameplayScreen(framework);
-      //gameplay_screen->initialize();
-      //current_screen = gameplay_screen;
-   }
+   screens.add(screen_manager);
 
-
-   screens.add(current_screen);
+   screen_manager->load_initial_screen();
 
    framework.run_loop();
+
+   delete screen_manager;
+
 
    std::cout << "DragonWrath exited the master loop successfully." << std::endl;
 }

@@ -178,7 +178,7 @@ namespace AllegroFlare
    void Screens::user_event_funcs(ALLEGRO_EVENT *ev)
    {
       for (unsigned i=0; i<screens.size(); i++)
-         screens[i]->user_event_func(ALLEGRO_EVENT *ev);
+         screens[i]->user_event_func(ev);
    }
 
 

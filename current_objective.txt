@@ -1,2 +1,1 @@
 - North Star: Create a Screen switching architecture
-  - Current Objective: Create a Title Screen
