@@ -1,1 +1,1 @@
-- North Star: Create a Screen switching architecture
+- North Star: Enable switching screens arbitrarily within the system
