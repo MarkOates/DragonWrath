@@ -1,1 +1,2 @@
-Current Objective: Create a Screen switching architecture
+North Star: Create a Screen switching architecture
+   Current Objective: Move GameplayScreen into a Screens namespace

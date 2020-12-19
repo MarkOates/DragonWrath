@@ -1,4 +1,4 @@
-#include <DragonWrath/GameplayScreen.hpp>
+#include <DragonWrath/Screens/GameplayScreen.hpp>
 
 #include <DragonWrath/Entities/Base.hpp>
 #include <DragonWrath/SceneCollectionHelper.hpp>
@@ -9,7 +9,14 @@
 #include <AllegroFlare/Useful.hpp>
 #include <DragonWrath/Levels/TimedScroll.hpp>
 
-DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
+
+namespace DragonWrath
+{
+namespace Screens
+{
+
+
+GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
    : AllegroFlare::Screen()
    , framework(framework)
    , current_level(nullptr)
@@ -18,16 +25,16 @@ DragonWrath::GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
 {
 }
 
-DragonWrath::GameplayScreen::~GameplayScreen()
+GameplayScreen::~GameplayScreen()
 {
 }
 
-void DragonWrath::GameplayScreen::initialize()
+void GameplayScreen::initialize()
 {
    load_next_level();
 }
 
-void DragonWrath::GameplayScreen::draw_you_have_won_banner()
+void GameplayScreen::draw_you_have_won_banner()
 {
    ALLEGRO_FONT *title_text_font = framework.font("ChronoTrigger.ttf 100");
    ALLEGRO_FONT *subtitle_text_font = framework.font("ChronoTrigger.ttf 60");
@@ -62,13 +69,13 @@ void DragonWrath::GameplayScreen::draw_you_have_won_banner()
 }
 
 
-void DragonWrath::GameplayScreen::load_next_level()
+void GameplayScreen::load_next_level()
 {
    hud.deactivate_all_banners();
    current_level = world.create_next_level_and_destroy_current();
 }
 
-void DragonWrath::GameplayScreen::primary_timer_func()
+void GameplayScreen::primary_timer_func()
 {
    al_clear_to_color(AllegroFlare::color::black);
 
@@ -119,7 +126,7 @@ void DragonWrath::GameplayScreen::primary_timer_func()
    }
 }
 
-void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
+void GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
 {
    DragonWrath::SceneCollectionHelper scene_collection_helper(current_level);
    Entities::Base *player_dragon = scene_collection_helper.get_player_dragon();
@@ -158,7 +165,7 @@ void DragonWrath::GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
    }
 }
 
-void DragonWrath::GameplayScreen::key_up_func(ALLEGRO_EVENT *ev)
+void GameplayScreen::key_up_func(ALLEGRO_EVENT *ev)
 {
    DragonWrath::SceneCollectionHelper scene_collection_helper(current_level);
    Entities::Base *player_dragon = scene_collection_helper.get_player_dragon();
@@ -182,4 +189,7 @@ void DragonWrath::GameplayScreen::key_up_func(ALLEGRO_EVENT *ev)
    }
 }
 
+
+} // GameplayScreen
+} // DragonWrath
 

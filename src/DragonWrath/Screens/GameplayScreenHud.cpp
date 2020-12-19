@@ -1,9 +1,12 @@
-#include <DragonWrath/GameplayScreenHud.hpp>
+
+#include <DragonWrath/Screens/GameplayScreenHud.hpp>
 
 #include <sstream>
 
 
 namespace DragonWrath
+{
+namespace Screens
 {
 
 
@@ -199,6 +202,7 @@ void GameplayScreenHud::debug__set_level_scroll_timer(float time)
 }
 
 
-}
+} // Screens
+} // GameplayScreenHud
 
 
