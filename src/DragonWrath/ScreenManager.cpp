@@ -37,12 +37,10 @@ void ScreenManager::initialize()
 
 void ScreenManager::load_initial_screen()
 {
-   std::cout << "start load_initial_screen" << std::endl;
    ALLEGRO_EVENT event;
    event.user.type = SCREEN_MANAGER_SWITCH_SCREEN_EVENT;
    event.user.data1 = 1;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
-   std::cout << "end load_initial_screen" << std::endl;
 }
 
 
