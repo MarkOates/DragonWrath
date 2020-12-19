@@ -17,7 +17,7 @@ namespace Screens
 
 
 GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
-   : AllegroFlare::Screen()
+   : DragonWrath::Screens::Base()
    , framework(framework)
    , current_level(nullptr)
    , hud(framework)

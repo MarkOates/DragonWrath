@@ -1,2 +1,3 @@
-North Star: Create a Screen switching architecture
-   Current Objective: Move GameplayScreen into a Screens namespace
+- North Star: Create a Screen switching architecture
+  - Current Objective: Create a Title Screen
+    - Current Objective: Make GameplayScreen inherit from Screens::Base

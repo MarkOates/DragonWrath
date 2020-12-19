@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <AllegroFlare/Screen.hpp>
+#include <DragonWrath/Screens/Base.hpp>
 #include <AllegroFlare/Framework.hpp>
 #include <DragonWrath/Levels/Base.hpp>
 #include <DragonWrath/Worlds/Base.hpp>
@@ -12,7 +12,7 @@ namespace DragonWrath
 {
    namespace Screens
    {
-      class GameplayScreen : public AllegroFlare::Screen
+      class GameplayScreen : public DragonWrath::Screens::Base
       {
       private:
          AllegroFlare::Framework &framework;
