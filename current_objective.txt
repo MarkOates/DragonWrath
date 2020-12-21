@@ -1,1 +1,3 @@
-- North Star: Enable switching screens arbitrarily within the system
+- Choice: Add the Multiple-Scrolling Background System
+- Choice: 5 new enemy types, 5 new attack waves in level 1, 8 attack waves in level 2
+- Choice: Add boss enemy
