@@ -22,7 +22,7 @@ objects: $(OBJECTS)
 obj/%.o: src/%.cpp
 	@mkdir -p $(@D)
 	@printf "compiling object file \e[1m\e[34m$<\033[0m..."
-	@g++ -c -std=c++17 $(UNUSED_ARGUMENTS_FLAG) -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -D_XOPEN_SOURCE_EXTENDED
+	@g++ -c -ferror-limit=1 -std=c++17 $(UNUSED_ARGUMENTS_FLAG) -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -D_XOPEN_SOURCE_EXTENDED
 	@printf "done\n"
 
 
