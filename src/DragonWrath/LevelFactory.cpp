@@ -7,6 +7,7 @@ namespace DragonWrath
 {
 
 
+
 LevelFactory::LevelFactory(AllegroFlare::Framework &framework)
    : framework(framework)
 {
