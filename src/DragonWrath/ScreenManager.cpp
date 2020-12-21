@@ -73,7 +73,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
    if (ev->type != SCREEN_MANAGER_SWITCH_SCREEN_EVENT) return;
 
    int index_of_level_to_start = ev->user.data1;
-   std::cout << " index_of_level_to_start: " << index_of_level_to_start << std::endl;
+   std::cout << "index_of_level_to_start: " << index_of_level_to_start << std::endl;
 
    DragonWrath::Screens::Base *newly_created_screen = nullptr;
 
