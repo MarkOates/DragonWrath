@@ -4,7 +4,6 @@
 
 #include <DragonWrath/Screens/GameplayScreen.hpp>
 #include <DragonWrath/Screens/TitleScreen.hpp>
-#include <DragonWrath/UserEventEmitter.hpp>
 #include <DragonWrath/UserEventNames.hpp>
 
 
@@ -19,6 +18,7 @@ ScreenManager::ScreenManager(AllegroFlare::Framework &framework, AllegroFlare::S
    , screens(screens)
    , current_screen(nullptr)
    , screen_switcher_event_souce()
+   , user_event_emitter(screen_switcher_event_souce)
 {
 }
 
@@ -37,7 +37,6 @@ void ScreenManager::initialize()
 
 void ScreenManager::load_initial_screen()
 {
-   DragonWrath::UserEventEmitter user_event_emitter(&screen_switcher_event_souce);
    user_event_emitter.emit_start_title_screen_event();
 }
 
@@ -48,13 +47,11 @@ void ScreenManager::key_down_func(ALLEGRO_EVENT *ev)
    {
    case ALLEGRO_KEY_1:
       {
-         DragonWrath::UserEventEmitter user_event_emitter(&screen_switcher_event_souce);
          user_event_emitter.emit_start_title_screen_event();
       }
       break;
    case ALLEGRO_KEY_2:
       {
-         DragonWrath::UserEventEmitter user_event_emitter(&screen_switcher_event_souce);
          user_event_emitter.emit_start_gameplay_screen_event();
       }
       break;
@@ -76,7 +73,8 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
    case 1:
       {
          std::cout << "  creating TitleScreen" << std::endl;
-         DragonWrath::Screens::TitleScreen *title_screen = new DragonWrath::Screens::TitleScreen(framework);
+         DragonWrath::Screens::TitleScreen *title_screen =
+            new DragonWrath::Screens::TitleScreen(framework, user_event_emitter);
          newly_created_screen = title_screen;
       }
       break;

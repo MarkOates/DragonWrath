@@ -2,6 +2,7 @@
 
 #include <DragonWrath/Screens/Base.hpp>
 #include <AllegroFlare/Framework.hpp>
+#include <DragonWrath/UserEventEmitter.hpp>
 
 namespace DragonWrath
 {
@@ -11,9 +12,10 @@ namespace DragonWrath
       {
       private:
          AllegroFlare::Framework &framework;
+         DragonWrath::UserEventEmitter &user_event_emitter;
 
       public:
-         TitleScreen(AllegroFlare::Framework &framework);
+         TitleScreen(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter);
          ~TitleScreen();
 
          void draw_main_title();

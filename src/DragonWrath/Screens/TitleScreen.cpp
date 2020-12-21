@@ -12,8 +12,9 @@ namespace Screens
 {
 
 
-TitleScreen::TitleScreen(AllegroFlare::Framework &framework)
+TitleScreen::TitleScreen(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter)
    : framework(framework)
+   , user_event_emitter(user_event_emitter)
 {
 }
 
@@ -69,6 +70,7 @@ void TitleScreen::primary_timer_func()
 
 void TitleScreen::key_down_func(ALLEGRO_EVENT *ev)
 {
+   user_event_emitter.emit_start_gameplay_screen_event();
 }
 
 
