@@ -1,1 +1,2 @@
 - North Star: Enable switching screens arbitrarily within the system
+  - Objective OVERRIDE: Switch to stream on the Windows machine
