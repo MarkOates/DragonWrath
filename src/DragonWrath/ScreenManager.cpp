@@ -4,9 +4,9 @@
 
 #include <DragonWrath/Screens/GameplayScreen.hpp>
 #include <DragonWrath/Screens/TitleScreen.hpp>
+#include <DragonWrath/UserEventEmitter.hpp>
+#include <DragonWrath/UserEventNames.hpp>
 
-
-#define SCREEN_MANAGER_SWITCH_SCREEN_EVENT ALLEGRO_GET_EVENT_TYPE('L','v','l','S')
 
 
 namespace DragonWrath
@@ -37,10 +37,8 @@ void ScreenManager::initialize()
 
 void ScreenManager::load_initial_screen()
 {
-   ALLEGRO_EVENT event;
-   event.user.type = SCREEN_MANAGER_SWITCH_SCREEN_EVENT;
-   event.user.data1 = 1;
-   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+   DragonWrath::UserEventEmitter user_event_emitter(&screen_switcher_event_souce);
+   user_event_emitter.emit_start_title_screen_event();
 }
 
 
@@ -50,18 +48,14 @@ void ScreenManager::key_down_func(ALLEGRO_EVENT *ev)
    {
    case ALLEGRO_KEY_1:
       {
-         ALLEGRO_EVENT event;
-         event.user.type = SCREEN_MANAGER_SWITCH_SCREEN_EVENT;
-         event.user.data1 = 1;
-         al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+         DragonWrath::UserEventEmitter user_event_emitter(&screen_switcher_event_souce);
+         user_event_emitter.emit_start_title_screen_event();
       }
       break;
    case ALLEGRO_KEY_2:
       {
-         ALLEGRO_EVENT event;
-         event.user.type = SCREEN_MANAGER_SWITCH_SCREEN_EVENT;
-         event.user.data1 = 2;
-         al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+         DragonWrath::UserEventEmitter user_event_emitter(&screen_switcher_event_souce);
+         user_event_emitter.emit_start_gameplay_screen_event();
       }
       break;
    }

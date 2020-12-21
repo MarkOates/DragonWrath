@@ -1,0 +1,4 @@
+#pragma once
+
+#define SCREEN_MANAGER_SWITCH_SCREEN_EVENT ALLEGRO_GET_EVENT_TYPE('L','v','l','S')
+
