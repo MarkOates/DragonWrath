@@ -1,6 +1,7 @@
 
 #include <DragonWrath/Levels/TimedScroll.hpp>
 #include <DragonWrath/LevelTypeNames.hpp>
+#include <DragonWrath/EntityTypeNames.hpp>
 #include <DragonWrath/EntityFactory.hpp>
 #include <allegro5/allegro.h>
 
@@ -51,6 +52,7 @@ void TimedScroll::update_level_specific_behavior()
       if (timer > enemy_to_spawn.spawn_time)
       {
          entity_factory.create_enemy(
+               YELLOW_DRAGON,
                enemy_to_spawn.spawn_x,
                enemy_to_spawn.spawn_y,
                enemy_to_spawn.movement_strategy

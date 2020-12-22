@@ -21,7 +21,7 @@ namespace DragonWrath
       ~EntityFactory();
 
       DragonWrath::Entities::PlayerBullet *create_player_bullet(float x, float y);
-      DragonWrath::Entities::BasicEnemy *create_enemy(float x, float y, std::string movement_strategy);
+      DragonWrath::Entities::BasicEnemy *create_enemy(std::string enemy_type, float x, float y, std::string movement_strategy);
       DragonWrath::Entities::PlayerDragon *create_player_dragon(float x, float y);
 
       std::vector<DragonWrath::Entities::Base *> create_10_random_enemies();
