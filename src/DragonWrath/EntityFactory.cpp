@@ -27,7 +27,12 @@ EntityFactory::~EntityFactory()
 }
 
 
-ALLEGRO_BITMAP *EntityFactory::get_or_generate_dragon_bitmap_for_type(std::string enemy_type, float hue_rotation, std::string generated_bitmap_identifier)
+ALLEGRO_BITMAP *EntityFactory::get_or_generate_dragon_bitmap_for_type(
+      std::string enemy_type,
+      float hue_rotation,
+      float lightness_change,
+      std::string generated_bitmap_identifier
+   )
 {
    AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
 
@@ -43,6 +48,15 @@ ALLEGRO_BITMAP *EntityFactory::get_or_generate_dragon_bitmap_for_type(std::strin
       ALLEGRO_BITMAP *original_bitmap = framework.bitmap("enemy.png");
       ALLEGRO_BITMAP *clone_of_bitmap = al_clone_bitmap(original_bitmap);
       AllegroFlare::color::change_hue(clone_of_bitmap, hue_rotation, AllegroFlare::color::blend_op::add);
+
+      std::cout << "EntityFactory::get_or_generate_dragon_bitmap_for_type() warning: "
+         << "\"lightness_change\" parameter is unused at this time." << std::endl;
+
+      //AllegroFlare::color::change_value(
+            //clone_of_bitmap,
+            //lightness_change,
+            //AllegroFlare::color::blend_op::add
+         //);
 
       AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
       bitmap_bin.include(generated_bitmap_identifier, clone_of_bitmap);
@@ -62,11 +76,11 @@ ALLEGRO_BITMAP *EntityFactory::get_dragon_enemy_bitmap(std::string enemy_type)
    }
    else if (enemy_type == BLUE_DRAGON)
    {
-      return get_or_generate_dragon_bitmap_for_type(BLUE_DRAGON, 0.5, BLUE_DRAGON_BITMAP_IDENTFIER);
+      return get_or_generate_dragon_bitmap_for_type(BLUE_DRAGON, 0.5, 0.0, BLUE_DRAGON_BITMAP_IDENTFIER);
    }
    else if (enemy_type == GREEN_DRAGON)
    {
-      return get_or_generate_dragon_bitmap_for_type(GREEN_DRAGON, 0.25, GREEN_DRAGON_BITMAP_IDENTFIER);
+      return get_or_generate_dragon_bitmap_for_type(GREEN_DRAGON, 0.25, 0.0, GREEN_DRAGON_BITMAP_IDENTFIER);
    }
    else
    {
