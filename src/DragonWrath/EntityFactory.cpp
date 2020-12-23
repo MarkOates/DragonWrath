@@ -7,7 +7,8 @@
 #include <AllegroFlare/Useful.hpp>
 
 
-#define BLUE_DRAGON_BITMAP_IDENTFIER "generate-blue-dragon-from-enemy.png"
+#define BLUE_DRAGON_BITMAP_IDENTFIER "generated-blue-dragon-from-enemy.png"
+#define GREEN_DRAGON_BITMAP_IDENTFIER "generated-green-dragon-from-enemy.png"
 
 namespace DragonWrath
 {
@@ -62,6 +63,10 @@ ALLEGRO_BITMAP *EntityFactory::get_dragon_enemy_bitmap(std::string enemy_type)
    else if (enemy_type == BLUE_DRAGON)
    {
       return get_or_generate_dragon_bitmap_for_type(BLUE_DRAGON, 0.5, BLUE_DRAGON_BITMAP_IDENTFIER);
+   }
+   else if (enemy_type == GREEN_DRAGON)
+   {
+      return get_or_generate_dragon_bitmap_for_type(GREEN_DRAGON, 0.25, GREEN_DRAGON_BITMAP_IDENTFIER);
    }
    else
    {

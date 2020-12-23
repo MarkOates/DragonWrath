@@ -67,6 +67,14 @@ void TimedScroll::update_level_specific_behavior()
                enemy_to_spawn.movement_strategy
             );
          }
+         else if (enemy_to_spawn.enemy_type == GREEN_DRAGON)
+         {
+            entity_factory.create_green_dragon(
+               enemy_to_spawn.spawn_x,
+               enemy_to_spawn.spawn_y,
+               enemy_to_spawn.movement_strategy
+            );
+         }
          else
          {
             std::stringstream error_message;
