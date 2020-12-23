@@ -51,12 +51,25 @@ void TimedScroll::update_level_specific_behavior()
       if (enemy_to_spawn.spawned) continue;
       if (timer > enemy_to_spawn.spawn_time)
       {
-         entity_factory.create_enemy(
-               YELLOW_DRAGON,
+         if (enemy_to_spawn.enemy_type == YELLOW_DRAGON)
+         {
+            entity_factory.create_yellow_dragon(
                enemy_to_spawn.spawn_x,
                enemy_to_spawn.spawn_y,
                enemy_to_spawn.movement_strategy
             );
+         }
+         else
+         {
+            std::stringstream error_message;
+            error_message << "TimedScroll::update_level_specific_behavior()"
+               << "error: undefined enemy_type for enemy_to_spawn \""
+               << enemy_to_spawn.enemy_type
+               << "\""
+               << std::endl;
+            throw std::runtime_error(error_message.str());
+         }
+
          enemy_to_spawn.spawned = true;
       }
    }
