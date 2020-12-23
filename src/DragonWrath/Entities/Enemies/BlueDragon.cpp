@@ -1,6 +1,6 @@
 
 
-#include <DragonWrath/Entities/BlueDragon.hpp>
+#include <DragonWrath/Entities/Enemies/BlueDragon.hpp>
 
 #include <DragonWrath/MovementStrategyNames.hpp>
 #include <sstream>

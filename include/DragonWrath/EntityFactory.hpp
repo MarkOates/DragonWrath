@@ -2,12 +2,12 @@
 
 #include <DragonWrath/Levels/Base.hpp>
 #include <AllegroFlare/Framework.hpp>
+#include <DragonWrath/Entities/Enemies/YellowDragon.hpp>
+#include <DragonWrath/Entities/Enemies/BlueDragon.hpp>
+#include <DragonWrath/Entities/Enemies/GreenDragon.hpp>
 #include <DragonWrath/Entities/Base.hpp>
 #include <DragonWrath/Entities/PlayerBullet.hpp>
 #include <DragonWrath/Entities/PlayerDragon.hpp>
-#include <DragonWrath/Entities/YellowDragon.hpp>
-#include <DragonWrath/Entities/BlueDragon.hpp>
-#include <DragonWrath/Entities/GreenDragon.hpp>
 
 namespace DragonWrath
 {

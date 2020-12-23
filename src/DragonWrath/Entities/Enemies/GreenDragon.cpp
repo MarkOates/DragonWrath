@@ -1,6 +1,6 @@
 
 
-#include <DragonWrath/Entities/BasicEnemy.hpp>
+#include <DragonWrath/Entities/Enemies/GreenDragon.hpp>
 
 #include <DragonWrath/MovementStrategyNames.hpp>
 #include <sstream>
@@ -13,19 +13,19 @@ namespace Entities
 {
 
 
-BasicEnemy::BasicEnemy(ElementID *parent, float x, float y)
+GreenDragon::GreenDragon(ElementID *parent, float x, float y)
    : DragonWrath::Entities::Base(parent, "basic_enemy", x, y)
    , movement_strategy(SIN_WAVE_MOVE_LEFT)
 {
 }
 
 
-BasicEnemy::~BasicEnemy()
+GreenDragon::~GreenDragon()
 {
 }
 
 
-void BasicEnemy::update()
+void GreenDragon::update()
 {
    if (movement_strategy == MOVE_LEFT)
    {
@@ -50,7 +50,7 @@ void BasicEnemy::update()
    else
    {
       std::stringstream error_message;
-      error_message << "BasicEnemy::update(): error: undefined movement_strategy \""
+      error_message << "GreenDragon::update(): error: undefined movement_strategy \""
          << movement_strategy
          << "\""
          << std::endl;
@@ -59,7 +59,7 @@ void BasicEnemy::update()
 }
 
 
-void BasicEnemy::set_movement_strategy(std::string movement_strategy)
+void GreenDragon::set_movement_strategy(std::string movement_strategy)
 {
    this->movement_strategy = movement_strategy;
 }

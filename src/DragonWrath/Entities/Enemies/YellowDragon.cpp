@@ -1,6 +1,6 @@
 
 
-#include <DragonWrath/Entities/YellowDragon.hpp>
+#include <DragonWrath/Entities/Enemies/YellowDragon.hpp>
 
 #include <DragonWrath/MovementStrategyNames.hpp>
 #include <sstream>

@@ -4,9 +4,9 @@
 #include <DragonWrath/Entities/Base.hpp>
 //#include <dungeon/models/entities/item_entity.hpp>
 //#include <dungeon/models/entities/krampus_entity.hpp>
+#include <DragonWrath/Entities/Enemies/BasicEnemy.hpp>
 #include <DragonWrath/Entities/PlayerDragon.hpp>
 #include <DragonWrath/Entities/PlayerBullet.hpp>
-#include <DragonWrath/Entities/BasicEnemy.hpp>
 #include <DragonWrath/Levels/Base.hpp>
 
 
