@@ -63,6 +63,16 @@ ALLEGRO_BITMAP *EntityFactory::get_dragon_enemy_bitmap(std::string enemy_type)
    {
       return get_or_generate_dragon_bitmap_for_type(BLUE_DRAGON, 0.5, BLUE_DRAGON_BITMAP_IDENTFIER);
    }
+   else
+   {
+      std::stringstream error_message;
+      error_message << "EntityFactory::get_dragon_enemy_bitmap(): "
+         << "error: unrecognized enemy_type \""
+         << enemy_type
+         << "\""
+         << std::endl;
+      throw std::runtime_error(error_message.str());
+   }
 }
 
 
