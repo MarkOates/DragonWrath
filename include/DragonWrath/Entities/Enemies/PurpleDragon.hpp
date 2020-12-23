@@ -14,16 +14,13 @@ namespace DragonWrath
          class PurpleDragon : public DragonWrath::Entities::Base
          {
          private:
-            //TODO DragonWrath::Entities::MovementStrategies::Base *movement_strategy;
-            std::string movement_strategy;
+            DragonWrath::Entities::MovementStrategies::Base *movement_strategy;
 
          public:
             PurpleDragon(ElementID *parent, float x, float y);
             ~PurpleDragon();
 
             void update() override;
-
-            void set_movement_strategy(std::string movement_strategy);
          };
       }
    }

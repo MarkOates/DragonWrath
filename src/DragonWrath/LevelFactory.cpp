@@ -40,11 +40,11 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_t
    // enemies to create
   // EnemyToSpawn(float spawn_time, std::string enemy_type, float spawn_x, float spawn_y, std::string movement_strategy);
    std::vector<EnemyToSpawn> enemies_to_spawn = {
-      { 0, BLUE_DRAGON, 1920*0.75 - 300, 1080/2 - 100, MOVE_LEFT},
-      { 0.5, GREEN_DRAGON, 1920*0.75 - 150, 1080/2 - 50,  MOVE_LEFT},
-      { 1, PURPLE_DRAGON, 1920*0.75 + 0,   1080/2 + 0,   MOVE_LEFT},
-      { 1.5, RED_DRAGON, 1920*0.75 + 150, 1080/2 + 50,  MOVE_LEFT},
-      { 2, YELLOW_DRAGON, 1920*0.75 + 300, 1080/2 + 100, MOVE_LEFT},
+      { 0, PURPLE_DRAGON, 1920*0.75 - 300, 1080/2 - 100, MOVE_LEFT},
+      //{ 0.5, GREEN_DRAGON, 1920*0.75 - 150, 1080/2 - 50,  MOVE_LEFT},
+      //{ 1, PURPLE_DRAGON, 1920*0.75 + 0,   1080/2 + 0,   MOVE_LEFT},
+      //{ 1.5, RED_DRAGON, 1920*0.75 + 150, 1080/2 + 50,  MOVE_LEFT},
+      //{ 2, YELLOW_DRAGON, 1920*0.75 + 300, 1080/2 + 100, MOVE_LEFT},
    };
 
    DragonWrath::Levels::TimedScroll *timed_scroll_level =

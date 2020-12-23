@@ -53,8 +53,7 @@ namespace DragonWrath
          );
       DragonWrath::Entities::Enemies::PurpleDragon *create_purple_dragon(
             float x,
-            float y,
-            std::string movement_strategy
+            float y
          );
       DragonWrath::Entities::PlayerBullet *create_player_bullet(float x, float y);
       DragonWrath::Entities::PlayerDragon *create_player_dragon(float x, float y);

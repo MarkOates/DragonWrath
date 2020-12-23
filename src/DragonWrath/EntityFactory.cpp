@@ -206,7 +206,7 @@ DragonWrath::Entities::Enemies::RedDragon *EntityFactory::create_red_dragon(floa
 }
 
 
-DragonWrath::Entities::Enemies::PurpleDragon *EntityFactory::create_purple_dragon(float x, float y, std::string movement_strategy)
+DragonWrath::Entities::Enemies::PurpleDragon *EntityFactory::create_purple_dragon(float x, float y)
 {
    DragonWrath::Entities::Enemies::PurpleDragon *purple_dragon =
       new DragonWrath::Entities::Enemies::PurpleDragon(current_level, x, y);
@@ -219,8 +219,6 @@ DragonWrath::Entities::Enemies::PurpleDragon *EntityFactory::create_purple_drago
          al_get_bitmap_width(enemy_bitmap),
          al_get_bitmap_height(enemy_bitmap)
       );
-
-   purple_dragon->set_movement_strategy(movement_strategy);
 
    return purple_dragon;
 }
