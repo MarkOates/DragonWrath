@@ -52,7 +52,7 @@ DragonWrath::Entities::YellowDragon *EntityFactory::create_yellow_dragon(float x
    DragonWrath::Entities::YellowDragon *yellow_dragon =
       new DragonWrath::Entities::YellowDragon(current_level, x, y);
 
-   ALLEGRO_BITMAP *enemy_bitmap = framework.bitmap("enemy.png");
+   ALLEGRO_BITMAP *enemy_bitmap = get_dragon_enemy_bitmap(YELLOW_DRAGON);
    yellow_dragon->bitmap.bitmap(enemy_bitmap);
    yellow_dragon->bitmap.align(0.5, 0.5);
    yellow_dragon->place.flip.x = true;
@@ -72,7 +72,7 @@ DragonWrath::Entities::BlueDragon *EntityFactory::create_blue_dragon(float x, fl
    DragonWrath::Entities::BlueDragon *blue_dragon =
       new DragonWrath::Entities::BlueDragon(current_level, x, y);
 
-   ALLEGRO_BITMAP *enemy_bitmap = framework.bitmap("enemy.png");
+   ALLEGRO_BITMAP *enemy_bitmap = get_dragon_enemy_bitmap(BLUE_DRAGON);
    blue_dragon->bitmap.bitmap(enemy_bitmap);
    blue_dragon->bitmap.align(0.5, 0.5);
    blue_dragon->place.flip.x = true;
