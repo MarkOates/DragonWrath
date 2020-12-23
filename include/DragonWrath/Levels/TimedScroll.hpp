@@ -14,7 +14,13 @@ public:
   float spawn_y;
   std::string movement_strategy;
 
-  EnemyToSpawn(float spawn_time, std::string enemy_type, float spawn_x, float spawn_y, std::string movement_strategy);
+  EnemyToSpawn(
+        float spawn_time,
+        std::string enemy_type,
+        float spawn_x,
+        float spawn_y,
+        std::string movement_strategy
+     );
   ~EnemyToSpawn();
 };
 
@@ -33,7 +39,11 @@ namespace DragonWrath
          std::vector<EnemyToSpawn> enemies_to_spawn;
 
       public:
-         TimedScroll(AllegroFlare::Framework &framework, float duration, std::vector<EnemyToSpawn> enemies_to_spawn={});
+         TimedScroll(
+               AllegroFlare::Framework &framework,
+               float duration,
+               std::vector<EnemyToSpawn> enemies_to_spawn={}
+            );
          ~TimedScroll();
 
          void update_level_specific_behavior() override;
