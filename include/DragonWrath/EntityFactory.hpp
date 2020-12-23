@@ -5,7 +5,7 @@
 #include <DragonWrath/Entities/Base.hpp>
 #include <DragonWrath/Entities/PlayerBullet.hpp>
 #include <DragonWrath/Entities/PlayerDragon.hpp>
-#include <DragonWrath/Entities/BasicEnemy.hpp>
+#include <DragonWrath/Entities/YellowDragon.hpp>
 
 namespace DragonWrath
 {
@@ -16,14 +16,13 @@ namespace DragonWrath
       DragonWrath::Levels::Base *current_level;
 
       ALLEGRO_BITMAP *get_dragon_enemy_bitmap(std::string enemy_type);
-      DragonWrath::Entities::BasicEnemy *create_enemy(std::string enemy_type, float x, float y, std::string movement_strategy);
 
    public:
       EntityFactory(AllegroFlare::Framework &framework, DragonWrath::Levels::Base *current_level);
 
       ~EntityFactory();
 
-      DragonWrath::Entities::BasicEnemy *create_yellow_dragon(float x, float y, std::string movement_strategy);
+      DragonWrath::Entities::YellowDragon *create_yellow_dragon(float x, float y, std::string movement_strategy);
       DragonWrath::Entities::PlayerBullet *create_player_bullet(float x, float y);
       DragonWrath::Entities::PlayerDragon *create_player_dragon(float x, float y);
 

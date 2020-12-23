@@ -29,25 +29,6 @@ ALLEGRO_BITMAP *EntityFactory::get_dragon_enemy_bitmap(std::string enemy_type)
 }
 
 
-DragonWrath::Entities::BasicEnemy *EntityFactory::create_enemy(std::string enemy_type, float x, float y, std::string movement_strategy)
-{
-   DragonWrath::Entities::BasicEnemy *enemy = new DragonWrath::Entities::BasicEnemy(current_level, x, y);
-
-   ALLEGRO_BITMAP *enemy_bitmap = get_dragon_enemy_bitmap(enemy_type);
-   enemy->bitmap.bitmap(enemy_bitmap);
-   enemy->bitmap.align(0.5, 0.5);
-   enemy->place.flip.x = true;
-   enemy->place.size = AllegroFlare::vec2d(
-         al_get_bitmap_width(enemy_bitmap),
-         al_get_bitmap_height(enemy_bitmap)
-      );
-
-   enemy->set_movement_strategy(movement_strategy);
-
-   return enemy;
-}
-
-
 DragonWrath::Entities::PlayerBullet *EntityFactory::create_player_bullet(float x, float y)
 {
    DragonWrath::Entities::PlayerBullet *player_bullet =
@@ -66,9 +47,23 @@ DragonWrath::Entities::PlayerBullet *EntityFactory::create_player_bullet(float x
 }
 
 
-DragonWrath::Entities::BasicEnemy *EntityFactory::create_yellow_dragon(float x, float y, std::string movement_strategy)
+DragonWrath::Entities::YellowDragon *EntityFactory::create_yellow_dragon(float x, float y, std::string movement_strategy)
 {
-   return create_enemy(YELLOW_DRAGON, x, y, movement_strategy);
+   DragonWrath::Entities::YellowDragon *yellow_dragon =
+      new DragonWrath::Entities::YellowDragon(current_level, x, y);
+
+   ALLEGRO_BITMAP *enemy_bitmap = framework.bitmap("enemy.png");
+   yellow_dragon->bitmap.bitmap(enemy_bitmap);
+   yellow_dragon->bitmap.align(0.5, 0.5);
+   yellow_dragon->place.flip.x = true;
+   yellow_dragon->place.size = AllegroFlare::vec2d(
+         al_get_bitmap_width(enemy_bitmap),
+         al_get_bitmap_height(enemy_bitmap)
+      );
+
+   yellow_dragon->set_movement_strategy(movement_strategy);
+
+   return yellow_dragon;
 }
 
 
@@ -99,7 +94,7 @@ std::vector<DragonWrath::Entities::Base *> EntityFactory::create_10_random_enemi
    {
       float x = AllegroFlare::random_float(1920/2, 1920);
       float y = AllegroFlare::random_float(0, 1080);
-      result.push_back(create_enemy(YELLOW_DRAGON, x, y, SIN_WAVE_MOVE_LEFT));
+      result.push_back(create_yellow_dragon(x, y, SIN_WAVE_MOVE_LEFT));
    }
 
    return result;
