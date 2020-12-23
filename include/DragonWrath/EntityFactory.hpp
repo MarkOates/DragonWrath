@@ -16,6 +16,7 @@ namespace DragonWrath
       AllegroFlare::Framework &framework;
       DragonWrath::Levels::Base *current_level;
 
+      ALLEGRO_BITMAP *get_or_generate_dragon_bitmap_for_type(std::string enemy_type, float hue_rotation, std::string generated_bitmap_identifier);
       ALLEGRO_BITMAP *get_dragon_enemy_bitmap(std::string enemy_type);
 
    public:

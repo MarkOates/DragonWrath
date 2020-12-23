@@ -26,6 +26,33 @@ EntityFactory::~EntityFactory()
 }
 
 
+ALLEGRO_BITMAP *EntityFactory::get_or_generate_dragon_bitmap_for_type(std::string enemy_type, float hue_rotation, std::string generated_bitmap_identifier)
+{
+   AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
+
+   ALLEGRO_BITMAP *already_existing_blue_dragon_bitmap =
+      bitmap_bin.get(generated_bitmap_identifier);
+
+   if (already_existing_blue_dragon_bitmap)
+   {
+      return already_existing_blue_dragon_bitmap;
+   }
+   else
+   {
+      ALLEGRO_BITMAP *original_bitmap = framework.bitmap("enemy.png");
+      ALLEGRO_BITMAP *clone_of_bitmap = al_clone_bitmap(original_bitmap);
+      AllegroFlare::color::change_hue(clone_of_bitmap, hue_rotation, AllegroFlare::color::blend_op::add);
+
+      AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
+      bitmap_bin.include(generated_bitmap_identifier, clone_of_bitmap);
+
+      return clone_of_bitmap;
+   }
+
+   return nullptr;
+}
+
+
 ALLEGRO_BITMAP *EntityFactory::get_dragon_enemy_bitmap(std::string enemy_type)
 {
    if (enemy_type == YELLOW_DRAGON)
@@ -34,26 +61,7 @@ ALLEGRO_BITMAP *EntityFactory::get_dragon_enemy_bitmap(std::string enemy_type)
    }
    else if (enemy_type == BLUE_DRAGON)
    {
-      AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
-
-      ALLEGRO_BITMAP *already_existing_blue_dragon_bitmap =
-         bitmap_bin.get(BLUE_DRAGON_BITMAP_IDENTFIER);
-
-      if (already_existing_blue_dragon_bitmap)
-      {
-         return already_existing_blue_dragon_bitmap;
-      }
-      else
-      {
-         ALLEGRO_BITMAP *original_bitmap = framework.bitmap("enemy.png");
-         ALLEGRO_BITMAP *clone_of_bitmap = al_clone_bitmap(original_bitmap);
-         AllegroFlare::color::change_hue(clone_of_bitmap, 0.5, AllegroFlare::color::blend_op::add);
-
-         AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
-         bitmap_bin.include(BLUE_DRAGON_BITMAP_IDENTFIER, clone_of_bitmap);
-
-         return clone_of_bitmap;
-      }
+      return get_or_generate_dragon_bitmap_for_type(BLUE_DRAGON, 0.5, BLUE_DRAGON_BITMAP_IDENTFIER);
    }
 }
 
