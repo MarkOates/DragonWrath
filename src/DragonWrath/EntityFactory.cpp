@@ -6,6 +6,9 @@
 #include <DragonWrath/MovementStrategyNames.hpp>
 #include <AllegroFlare/Useful.hpp>
 
+
+#define BLUE_DRAGON_BITMAP_IDENTFIER "generate-blue-dragon-from-enemy.png"
+
 namespace DragonWrath
 {
 
@@ -31,11 +34,26 @@ ALLEGRO_BITMAP *EntityFactory::get_dragon_enemy_bitmap(std::string enemy_type)
    }
    else if (enemy_type == BLUE_DRAGON)
    {
-      ALLEGRO_BITMAP *original_bitmap = framework.bitmap("enemy.png");
-      ALLEGRO_BITMAP *clone_of_bitmap = al_clone_bitmap(original_bitmap);
-      AllegroFlare::color::change_hue(clone_of_bitmap, 0.5, AllegroFlare::color::blend_op::add);
+      AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
 
-      return clone_of_bitmap;
+      ALLEGRO_BITMAP *already_existing_blue_dragon_bitmap =
+         bitmap_bin.get(BLUE_DRAGON_BITMAP_IDENTFIER);
+
+      if (already_existing_blue_dragon_bitmap)
+      {
+         return already_existing_blue_dragon_bitmap;
+      }
+      else
+      {
+         ALLEGRO_BITMAP *original_bitmap = framework.bitmap("enemy.png");
+         ALLEGRO_BITMAP *clone_of_bitmap = al_clone_bitmap(original_bitmap);
+         AllegroFlare::color::change_hue(clone_of_bitmap, 0.5, AllegroFlare::color::blend_op::add);
+
+         AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
+         bitmap_bin.include(BLUE_DRAGON_BITMAP_IDENTFIER, clone_of_bitmap);
+
+         return clone_of_bitmap;
+      }
    }
 }
 
