@@ -1,6 +1,6 @@
 
 
-#include <DragonWrath/Entities/MovementStrategies/StayStill.hpp>
+#include <DragonWrath/Entities/MovementStrategies/MoveRight.hpp>
 
 
 namespace DragonWrath
@@ -11,24 +11,25 @@ namespace MovementStrategies
 {
 
 
-StayStill::StayStill(DragonWrath::Entities::Base *entity)
+MoveRight::MoveRight(DragonWrath::Entities::Base *entity, float speed)
    : DragonWrath::Entities::MovementStrategies::Base()
    , entity(entity)
+   , speed(speed)
 {
 }
 
 
-StayStill::~StayStill()
+MoveRight::~MoveRight()
 {
 }
 
 
-void StayStill::update()
+void MoveRight::update()
 {
    if (entity)
    {
       entity->velocity.position.y = 0;
-      entity->velocity.position.x = 0;
+      entity->velocity.position.x = speed;
    }
 }
 

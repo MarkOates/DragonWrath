@@ -11,14 +11,15 @@ namespace DragonWrath
    {
       namespace MovementStrategies
       {
-         class StayStill : public DragonWrath::Entities::MovementStrategies::Base
+         class MoveRight : public DragonWrath::Entities::MovementStrategies::Base
          {
          private:
             DragonWrath::Entities::Base *entity;
+            float speed;
 
          public:
-            StayStill(DragonWrath::Entities::Base *entity);
-            ~StayStill();
+            MoveRight(DragonWrath::Entities::Base *entity, float speed=5);
+            ~MoveRight();
 
             void update() override;
          };

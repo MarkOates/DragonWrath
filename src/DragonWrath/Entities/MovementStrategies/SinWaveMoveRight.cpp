@@ -1,6 +1,6 @@
 
 
-#include <DragonWrath/Entities/MovementStrategies/MoveLeft.hpp>
+#include <DragonWrath/Entities/MovementStrategies/SinWaveMoveRight.hpp>
 
 
 namespace DragonWrath
@@ -11,7 +11,7 @@ namespace MovementStrategies
 {
 
 
-MoveLeft::MoveLeft(DragonWrath::Entities::Base *entity, float speed)
+SinWaveMoveRight::SinWaveMoveRight(DragonWrath::Entities::Base *entity, float speed)
    : DragonWrath::Entities::MovementStrategies::Base()
    , entity(entity)
    , speed(speed)
@@ -19,17 +19,17 @@ MoveLeft::MoveLeft(DragonWrath::Entities::Base *entity, float speed)
 }
 
 
-MoveLeft::~MoveLeft()
+SinWaveMoveRight::~SinWaveMoveRight()
 {
 }
 
 
-void MoveLeft::update()
+void SinWaveMoveRight::update()
 {
    if (entity)
    {
-      entity->velocity.position.y = 0;
       entity->velocity.position.x = -speed;
+      entity->velocity.position.y = sin(al_get_time() * 4) * 10;
    }
 }
 
