@@ -6,6 +6,7 @@
 #include <DragonWrath/Entities/PlayerBullet.hpp>
 #include <DragonWrath/Entities/PlayerDragon.hpp>
 #include <DragonWrath/Entities/YellowDragon.hpp>
+#include <DragonWrath/Entities/BlueDragon.hpp>
 
 namespace DragonWrath
 {
@@ -23,6 +24,7 @@ namespace DragonWrath
       ~EntityFactory();
 
       DragonWrath::Entities::YellowDragon *create_yellow_dragon(float x, float y, std::string movement_strategy);
+      DragonWrath::Entities::BlueDragon *create_blue_dragon(float x, float y, std::string movement_strategy);
       DragonWrath::Entities::PlayerBullet *create_player_bullet(float x, float y);
       DragonWrath::Entities::PlayerDragon *create_player_dragon(float x, float y);
 

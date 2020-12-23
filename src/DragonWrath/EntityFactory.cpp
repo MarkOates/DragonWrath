@@ -67,6 +67,26 @@ DragonWrath::Entities::YellowDragon *EntityFactory::create_yellow_dragon(float x
 }
 
 
+DragonWrath::Entities::BlueDragon *EntityFactory::create_blue_dragon(float x, float y, std::string movement_strategy)
+{
+   DragonWrath::Entities::BlueDragon *blue_dragon =
+      new DragonWrath::Entities::BlueDragon(current_level, x, y);
+
+   ALLEGRO_BITMAP *enemy_bitmap = framework.bitmap("enemy.png");
+   blue_dragon->bitmap.bitmap(enemy_bitmap);
+   blue_dragon->bitmap.align(0.5, 0.5);
+   blue_dragon->place.flip.x = true;
+   blue_dragon->place.size = AllegroFlare::vec2d(
+         al_get_bitmap_width(enemy_bitmap),
+         al_get_bitmap_height(enemy_bitmap)
+      );
+
+   blue_dragon->set_movement_strategy(movement_strategy);
+
+   return blue_dragon;
+}
+
+
 DragonWrath::Entities::PlayerDragon *EntityFactory::create_player_dragon(float x, float y)
 {
    DragonWrath::Entities::PlayerDragon *player_dragon = new DragonWrath::Entities::PlayerDragon(
