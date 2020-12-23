@@ -84,6 +84,26 @@ DragonWrath::Entities::PlayerBullet *EntityFactory::create_player_bullet(float x
 }
 
 
+DragonWrath::Entities::GreenDragon *EntityFactory::create_green_dragon(float x, float y, std::string movement_strategy)
+{
+   DragonWrath::Entities::GreenDragon *green_dragon =
+      new DragonWrath::Entities::GreenDragon(current_level, x, y);
+
+   ALLEGRO_BITMAP *enemy_bitmap = get_dragon_enemy_bitmap(GREEN_DRAGON);
+   green_dragon->bitmap.bitmap(enemy_bitmap);
+   green_dragon->bitmap.align(0.5, 0.5);
+   green_dragon->place.flip.x = true;
+   green_dragon->place.size = AllegroFlare::vec2d(
+         al_get_bitmap_width(enemy_bitmap),
+         al_get_bitmap_height(enemy_bitmap)
+      );
+
+   green_dragon->set_movement_strategy(movement_strategy);
+
+   return green_dragon;
+}
+
+
 DragonWrath::Entities::YellowDragon *EntityFactory::create_yellow_dragon(float x, float y, std::string movement_strategy)
 {
    DragonWrath::Entities::YellowDragon *yellow_dragon =
