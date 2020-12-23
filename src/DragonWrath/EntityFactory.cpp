@@ -25,7 +25,18 @@ EntityFactory::~EntityFactory()
 
 ALLEGRO_BITMAP *EntityFactory::get_dragon_enemy_bitmap(std::string enemy_type)
 {
-   return framework.bitmap("enemy.png");
+   if (enemy_type == YELLOW_DRAGON)
+   {
+      return framework.bitmap("enemy.png");
+   }
+   else if (enemy_type == BLUE_DRAGON)
+   {
+      ALLEGRO_BITMAP *original_bitmap = framework.bitmap("enemy.png");
+      ALLEGRO_BITMAP *clone_of_bitmap = al_clone_bitmap(original_bitmap);
+      AllegroFlare::color::change_hue(clone_of_bitmap, 0.5, AllegroFlare::color::blend_op::add);
+
+      return clone_of_bitmap;
+   }
 }
 
 
