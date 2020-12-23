@@ -11,6 +11,8 @@ namespace DragonWrath
 {
 namespace Entities
 {
+namespace Enemies
+{
 
 
 GreenDragon::GreenDragon(ElementID *parent, float x, float y)
@@ -65,6 +67,7 @@ void GreenDragon::set_movement_strategy(std::string movement_strategy)
 }
 
 
+} // namespace Enemies
 } // namespace Entities
 } // namespace DragonWrath
 

@@ -113,10 +113,10 @@ DragonWrath::Entities::PlayerBullet *EntityFactory::create_player_bullet(float x
 }
 
 
-DragonWrath::Entities::GreenDragon *EntityFactory::create_green_dragon(float x, float y, std::string movement_strategy)
+DragonWrath::Entities::Enemies::GreenDragon *EntityFactory::create_green_dragon(float x, float y, std::string movement_strategy)
 {
-   DragonWrath::Entities::GreenDragon *green_dragon =
-      new DragonWrath::Entities::GreenDragon(current_level, x, y);
+   DragonWrath::Entities::Enemies::GreenDragon *green_dragon =
+      new DragonWrath::Entities::Enemies::GreenDragon(current_level, x, y);
 
    ALLEGRO_BITMAP *enemy_bitmap = get_dragon_enemy_bitmap(GREEN_DRAGON);
    green_dragon->bitmap.bitmap(enemy_bitmap);
@@ -133,10 +133,10 @@ DragonWrath::Entities::GreenDragon *EntityFactory::create_green_dragon(float x, 
 }
 
 
-DragonWrath::Entities::YellowDragon *EntityFactory::create_yellow_dragon(float x, float y, std::string movement_strategy)
+DragonWrath::Entities::Enemies::YellowDragon *EntityFactory::create_yellow_dragon(float x, float y, std::string movement_strategy)
 {
-   DragonWrath::Entities::YellowDragon *yellow_dragon =
-      new DragonWrath::Entities::YellowDragon(current_level, x, y);
+   DragonWrath::Entities::Enemies::YellowDragon *yellow_dragon =
+      new DragonWrath::Entities::Enemies::YellowDragon(current_level, x, y);
 
    ALLEGRO_BITMAP *enemy_bitmap = get_dragon_enemy_bitmap(YELLOW_DRAGON);
    yellow_dragon->bitmap.bitmap(enemy_bitmap);
@@ -153,10 +153,10 @@ DragonWrath::Entities::YellowDragon *EntityFactory::create_yellow_dragon(float x
 }
 
 
-DragonWrath::Entities::BlueDragon *EntityFactory::create_blue_dragon(float x, float y, std::string movement_strategy)
+DragonWrath::Entities::Enemies::BlueDragon *EntityFactory::create_blue_dragon(float x, float y, std::string movement_strategy)
 {
-   DragonWrath::Entities::BlueDragon *blue_dragon =
-      new DragonWrath::Entities::BlueDragon(current_level, x, y);
+   DragonWrath::Entities::Enemies::BlueDragon *blue_dragon =
+      new DragonWrath::Entities::Enemies::BlueDragon(current_level, x, y);
 
    ALLEGRO_BITMAP *enemy_bitmap = get_dragon_enemy_bitmap(BLUE_DRAGON);
    blue_dragon->bitmap.bitmap(enemy_bitmap);

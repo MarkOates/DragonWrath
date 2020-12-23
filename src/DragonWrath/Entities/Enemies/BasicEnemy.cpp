@@ -11,6 +11,8 @@ namespace DragonWrath
 {
 namespace Entities
 {
+namespace Enemies
+{
 
 
 BasicEnemy::BasicEnemy(ElementID *parent, float x, float y)
@@ -65,6 +67,7 @@ void BasicEnemy::set_movement_strategy(std::string movement_strategy)
 }
 
 
+} // namespace Enemies
 } // namespace Entities
 } // namespace DragonWrath
 

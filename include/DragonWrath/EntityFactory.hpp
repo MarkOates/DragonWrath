@@ -29,17 +29,17 @@ namespace DragonWrath
 
       ~EntityFactory();
 
-      DragonWrath::Entities::GreenDragon *create_green_dragon(
+      DragonWrath::Entities::Enemies::GreenDragon *create_green_dragon(
             float x,
             float y,
             std::string movement_strategy
          );
-      DragonWrath::Entities::YellowDragon *create_yellow_dragon(
+      DragonWrath::Entities::Enemies::YellowDragon *create_yellow_dragon(
             float x,
             float y,
             std::string movement_strategy
          );
-      DragonWrath::Entities::BlueDragon *create_blue_dragon(
+      DragonWrath::Entities::Enemies::BlueDragon *create_blue_dragon(
             float x,
             float y,
             std::string movement_strategy

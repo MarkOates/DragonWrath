@@ -48,7 +48,7 @@ void SceneCollisionHelper::update_collisions_on_enemies()
 {
    // start with player bullets
    std::vector<Entities::PlayerBullet *> bullets = collections.get_all_player_bullets();
-   std::vector<Entities::BasicEnemy *> enemies = collections.get_all_basic_enemies();
+   std::vector<Entities::Enemies::BasicEnemy *> enemies = collections.get_all_basic_enemies();
 
    for (auto &bullet : bullets)
    {
@@ -68,7 +68,7 @@ void SceneCollisionHelper::update_collisions_on_enemies()
 void SceneCollisionHelper::update_collisions_on_player_dragon()
 {
    Entities::PlayerDragon *player_dragon = collections.get_player_dragon();
-   std::vector<Entities::BasicEnemy *> enemies = collections.get_all_basic_enemies();
+   std::vector<Entities::Enemies::BasicEnemy *> enemies = collections.get_all_basic_enemies();
 
    if (!player_dragon) return;
    if (player_dragon && player_dragon->is_dead()) return;

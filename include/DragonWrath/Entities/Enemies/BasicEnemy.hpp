@@ -9,20 +9,23 @@ namespace DragonWrath
 {
    namespace Entities
    {
-      class BasicEnemy : public DragonWrath::Entities::Base
+      namespace Enemies
       {
-      private:
-         //TODO DragonWrath::Entities::MovementStrategies::Base *movement_strategy;
-         std::string movement_strategy;
+         class BasicEnemy : public DragonWrath::Entities::Base
+         {
+         private:
+            //TODO DragonWrath::Entities::MovementStrategies::Base *movement_strategy;
+            std::string movement_strategy;
 
-      public:
-         BasicEnemy(ElementID *parent, float x, float y);
-         ~BasicEnemy();
+         public:
+            BasicEnemy(ElementID *parent, float x, float y);
+            ~BasicEnemy();
 
-         void update() override;
+            void update() override;
 
-         void set_movement_strategy(std::string movement_strategy);
-      };
+            void set_movement_strategy(std::string movement_strategy);
+         };
+      }
    }
 }
 
