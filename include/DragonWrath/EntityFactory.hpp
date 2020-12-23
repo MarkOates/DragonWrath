@@ -5,6 +5,8 @@
 #include <DragonWrath/Entities/Enemies/YellowDragon.hpp>
 #include <DragonWrath/Entities/Enemies/BlueDragon.hpp>
 #include <DragonWrath/Entities/Enemies/GreenDragon.hpp>
+#include <DragonWrath/Entities/Enemies/RedDragon.hpp>
+#include <DragonWrath/Entities/Enemies/PurpleDragon.hpp>
 #include <DragonWrath/Entities/Base.hpp>
 #include <DragonWrath/Entities/PlayerBullet.hpp>
 #include <DragonWrath/Entities/PlayerDragon.hpp>
@@ -40,6 +42,16 @@ namespace DragonWrath
             std::string movement_strategy
          );
       DragonWrath::Entities::Enemies::BlueDragon *create_blue_dragon(
+            float x,
+            float y,
+            std::string movement_strategy
+         );
+      DragonWrath::Entities::Enemies::RedDragon *create_red_dragon(
+            float x,
+            float y,
+            std::string movement_strategy
+         );
+      DragonWrath::Entities::Enemies::PurpleDragon *create_purple_dragon(
             float x,
             float y,
             std::string movement_strategy

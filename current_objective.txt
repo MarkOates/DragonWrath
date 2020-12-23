@@ -1,3 +1,3 @@
 - North Star: 5 new enemy types, 5 new attack waves in level 1, 8 attack waves in level 2
   - Objective: Finish 5 new enemy types, Add unique behavior for each
-    - Objective: Introduce "Enemies" namespace
+    - Objective: Add last 2 enemy types
