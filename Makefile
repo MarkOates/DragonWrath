@@ -11,6 +11,12 @@ SOURCES := $(shell find src -name '*.cpp')
 OBJECTS := $(SOURCES:src/%.cpp=obj/%.o)
 
 
+ifeq ($(OS),Windows_NT)
+else
+	MAC_DEV_FLAGS=-ferror-limit=1
+endif
+
+
 main: objects program
 	@echo "=========== running executable ============="
 	./bin/DragonWrath.exe
@@ -22,7 +28,7 @@ objects: $(OBJECTS)
 obj/%.o: src/%.cpp
 	@mkdir -p $(@D)
 	@printf "compiling object file \e[1m\e[34m$<\033[0m..."
-	@g++ -c -ferror-limit=1 -std=c++17 $(UNUSED_ARGUMENTS_FLAG) -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -D_XOPEN_SOURCE_EXTENDED
+	@g++ -c $(MAC_DEV_FLAGS) -std=c++17 $(UNUSED_ARGUMENTS_FLAG) -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -D_XOPEN_SOURCE_EXTENDED
 	@printf "done\n"
 
 
