@@ -2,6 +2,8 @@
 
 #include <DragonWrath/Entities/MovementStrategies/SinWaveMoveRight.hpp>
 
+#include <cmath>
+
 
 namespace DragonWrath
 {
