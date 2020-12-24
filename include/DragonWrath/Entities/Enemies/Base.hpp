@@ -14,12 +14,15 @@ namespace DragonWrath
          {
          private:
             int health;
+            bool dead;
 
          public:
             Base(AllegroFlare::ElementID *parent, std::string type, float x, float y, int initial_health);
             ~Base();
 
-            float get_health();
+            int get_health();
+            void take_damage(int damage);
+            bool is_dead();
          };
       }
    }
