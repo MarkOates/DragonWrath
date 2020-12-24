@@ -16,7 +16,7 @@ namespace Enemies
 
 
 BasicEnemy::BasicEnemy(ElementID *parent, float x, float y)
-   : DragonWrath::Entities::Base(parent, "basic_enemy", x, y)
+   : DragonWrath::Entities::Enemies::Base(parent, "basic_enemy", x, y, 1)
    , movement_strategy(SIN_WAVE_MOVE_LEFT)
 {
 }
