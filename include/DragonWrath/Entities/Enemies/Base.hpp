@@ -12,9 +12,14 @@ namespace DragonWrath
       {
          class Base : public DragonWrath::Entities::Base
          {
+         private:
+            int health;
+
          public:
-            Base(AllegroFlare::ElementID *parent, std::string type, float x, float y);
+            Base(AllegroFlare::ElementID *parent, std::string type, float x, float y, int initial_health);
             ~Base();
+
+            float get_health();
          };
       }
    }
