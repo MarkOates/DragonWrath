@@ -3,6 +3,7 @@
 
 #include <DragonWrath/Levels/Base.hpp>
 #include <DragonWrath/SceneCollectionHelper.hpp>
+#include <DragonWrath/UserEventEmitter.hpp>
 
 
 namespace DragonWrath
@@ -12,6 +13,7 @@ namespace DragonWrath
    private:
       DragonWrath::Levels::Base *scene;
       SceneCollectionHelper collections;
+      DragonWrath::UserEventEmitter &user_event_emitter;
 
       void update_entities_position_by_velocity();
       void update_entities();
@@ -25,7 +27,7 @@ namespace DragonWrath
       //void check_krampus_on_items();
 
    public:
-      SceneCollisionHelper(DragonWrath::Levels::Base *scene);
+      SceneCollisionHelper(DragonWrath::Levels::Base *scene, DragonWrath::UserEventEmitter &user_event_emitter);
 
       void resolve_collisions();
    };

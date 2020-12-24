@@ -11,8 +11,10 @@ namespace Worlds
 {
 
 
-Base::Base(AllegroFlare::Framework &framework, std::string title, std::vector<std::string> levels_to_load)
+Base::Base(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter, 
+std::string title, std::vector<std::string> levels_to_load)
    : framework(framework)
+   , user_event_emitter(user_event_emitter)
    , title(title)
    , levels_to_load({ "level_1", "level_2" })
    , current_level_index_num(-1)
@@ -42,7 +44,7 @@ DragonWrath::Levels::Base *Base::create_next_level_and_destroy_current()
 
    if (next_level_exists())
    {
-      DragonWrath::LevelFactory level_factory(framework);
+      DragonWrath::LevelFactory level_factory(framework, user_event_emitter);
 
       std::string next_level_identifier = levels_to_load[current_level_index_num + 1];
       std::cout << "loading next level \"" << next_level_identifier << "\"...";

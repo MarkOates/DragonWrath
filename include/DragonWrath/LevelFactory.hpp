@@ -2,6 +2,7 @@
 
 #include <DragonWrath/Levels/TimedScroll.hpp>
 #include <AllegroFlare/Framework.hpp>
+#include <DragonWrath/UserEventEmitter.hpp>
 
 namespace DragonWrath
 {
@@ -9,9 +10,10 @@ namespace DragonWrath
    {
    private:
       AllegroFlare::Framework &framework;
+      DragonWrath::UserEventEmitter &user_event_emitter;
 
    public:
-      LevelFactory(AllegroFlare::Framework &framework);
+      LevelFactory(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter);
       ~LevelFactory();
 
       DragonWrath::Levels::TimedScroll *create_timed_scroll_level_with_10_random_enemies();

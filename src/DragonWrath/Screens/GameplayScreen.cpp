@@ -8,6 +8,8 @@
 #include <DragonWrath/LevelFactory.hpp>
 #include <AllegroFlare/Useful.hpp>
 #include <DragonWrath/Levels/TimedScroll.hpp>
+#include <DragonWrath/UserEventEmitter.hpp>
+#include <DragonWrath/UserEventNames.hpp>
 
 
 namespace DragonWrath
@@ -16,12 +18,12 @@ namespace Screens
 {
 
 
-GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
+GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter)
    : DragonWrath::Screens::Base()
    , framework(framework)
    , current_level(nullptr)
    , hud(framework)
-   , world(framework, "World of DragonWrath", { "level_1", "level_2" })
+   , world(framework, user_event_emitter, "World of DragonWrath", { "level_1", "level_2" })
    , player_score(0)
 {
 }
@@ -187,6 +189,23 @@ void GameplayScreen::key_up_func(ALLEGRO_EVENT *ev)
       break;
    case ALLEGRO_KEY_RIGHT:
       if (player_dragon) player_dragon->velocity.x = 0;
+      break;
+   default:
+      break;
+   }
+}
+
+
+void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
+{
+   switch (ev->type)
+   {
+   case INCREASE_PLAYER_SCORE_EVENT:
+      {
+         std::cout << "in GameplayScreen::user_event_func" << std::endl;
+         int points_to_add = ev->user.data1;
+         player_score += points_to_add;
+      }
       break;
    default:
       break;

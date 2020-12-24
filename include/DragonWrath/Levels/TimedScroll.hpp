@@ -41,6 +41,7 @@ namespace DragonWrath
       public:
          TimedScroll(
                AllegroFlare::Framework &framework,
+               DragonWrath::UserEventEmitter &user_event_emitter,
                float duration,
                std::vector<EnemyToSpawn> enemies_to_spawn={}
             );

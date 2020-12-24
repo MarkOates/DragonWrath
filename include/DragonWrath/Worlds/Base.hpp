@@ -13,13 +13,14 @@ namespace DragonWrath
       {
       private:
          AllegroFlare::Framework &framework;
+         DragonWrath::UserEventEmitter &user_event_emitter;
          std::string title;
          std::vector<std::string> levels_to_load;
          int current_level_index_num;
          DragonWrath::Levels::Base *current_level;
 
       public:
-         Base(AllegroFlare::Framework &framework, std::string title, std::vector<std::string> levels_to_load);
+         Base(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter, std::string title, std::vector<std::string> levels_to_load);
          ~Base();
 
          std::string get_title();

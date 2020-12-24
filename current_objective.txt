@@ -1,3 +1,2 @@
 - North Star: Add power-ups
   - Current Objective: Add speed powerups
-    - Add points collected for killing enemies

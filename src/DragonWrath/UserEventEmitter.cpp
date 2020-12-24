@@ -35,5 +35,14 @@ void UserEventEmitter::emit_start_gameplay_screen_event()
 }
 
 
+void UserEventEmitter::emit_increase_player_score(int points_to_add)
+{
+   ALLEGRO_EVENT event;
+   event.user.type = INCREASE_PLAYER_SCORE_EVENT;
+   event.user.data1 = points_to_add;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
 } // namespace DragonWrath
 

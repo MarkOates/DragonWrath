@@ -26,8 +26,13 @@ namespace Levels
 {
 
 
-TimedScroll::TimedScroll(AllegroFlare::Framework &framework, float duration_to_end, std::vector<EnemyToSpawn> enemies_to_spawn)
-   : DragonWrath::Levels::Base(TIMED_SCROLL)
+TimedScroll::TimedScroll(
+      AllegroFlare::Framework &framework,
+      DragonWrath::UserEventEmitter &user_event_emitter,
+      float duration_to_end,
+      std::vector<EnemyToSpawn> enemies_to_spawn
+   )
+   : DragonWrath::Levels::Base(TIMED_SCROLL, user_event_emitter)
    , framework(framework)
    , timer(0)
    , duration_to_end(duration_to_end)

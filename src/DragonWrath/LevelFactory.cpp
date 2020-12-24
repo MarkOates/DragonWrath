@@ -9,8 +9,9 @@ namespace DragonWrath
 
 
 
-LevelFactory::LevelFactory(AllegroFlare::Framework &framework)
+LevelFactory::LevelFactory(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter)
    : framework(framework)
+   , user_event_emitter(user_event_emitter)
 {
 }
 
@@ -22,7 +23,8 @@ LevelFactory::~LevelFactory()
 
 DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_10_random_enemies()
 {
-   DragonWrath::Levels::TimedScroll *timed_scroll_level = new DragonWrath::Levels::TimedScroll(framework, 10);
+   DragonWrath::Levels::TimedScroll *timed_scroll_level =
+      new DragonWrath::Levels::TimedScroll(framework, user_event_emitter, 10);
    DragonWrath::EntityFactory entity_factory(framework, timed_scroll_level);
 
    // create player dragon
@@ -48,7 +50,7 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_t
    };
 
    DragonWrath::Levels::TimedScroll *timed_scroll_level =
-      new DragonWrath::Levels::TimedScroll(framework, 10, enemies_to_spawn);
+      new DragonWrath::Levels::TimedScroll(framework, user_event_emitter, 10, enemies_to_spawn);
    DragonWrath::EntityFactory entity_factory(framework, timed_scroll_level);
 
    // create player dragon

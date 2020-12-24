@@ -19,9 +19,13 @@ namespace DragonWrath
 
 
 
-SceneCollisionHelper::SceneCollisionHelper(DragonWrath::Levels::Base *scene)
+SceneCollisionHelper::SceneCollisionHelper(
+      DragonWrath::Levels::Base *scene,
+      DragonWrath::UserEventEmitter &user_event_emitter
+   )
    : scene(scene)
    , collections(scene)
+   , user_event_emitter(user_event_emitter)
 {}
 
 
@@ -63,6 +67,8 @@ void SceneCollisionHelper::update_collisions_on_enemies()
             if (enemy->is_dead())
             {
                enemy->flag_for_deletion();
+               int points_to_add = enemy->get_points_worth();
+               user_event_emitter.emit_increase_player_score(points_to_add);
             }
 
             bullet->flag_for_deletion();

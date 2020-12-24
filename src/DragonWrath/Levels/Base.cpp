@@ -19,8 +19,9 @@ namespace Levels
 {
 
 
-Base::Base(std::string type)
+Base::Base(std::string type, DragonWrath::UserEventEmitter &user_event_emitter)
    : ElementID(nullptr)
+   , user_event_emitter(user_event_emitter)
    , level_end_padding_timer(5)
 {
    set("type", type);
@@ -46,7 +47,7 @@ void Base::update()
 
 void Base::update_collisions()
 {
-   SceneCollisionHelper collision_helper(this);
+   SceneCollisionHelper collision_helper(this, user_event_emitter);
    collision_helper.resolve_collisions();
 }
 

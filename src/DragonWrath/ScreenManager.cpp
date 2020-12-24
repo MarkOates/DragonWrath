@@ -82,7 +82,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
       {
          std::cout << "  creating GameplayScreen" << std::endl;
          DragonWrath::Screens::GameplayScreen *gameplay_screen =
-            new DragonWrath::Screens::GameplayScreen(framework);
+            new DragonWrath::Screens::GameplayScreen(framework, user_event_emitter);
          gameplay_screen->initialize();
          newly_created_screen = gameplay_screen;
       }

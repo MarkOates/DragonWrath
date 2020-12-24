@@ -23,7 +23,7 @@ namespace DragonWrath
          int player_score;
 
       public:
-         GameplayScreen(AllegroFlare::Framework &framework);
+         GameplayScreen(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter);
          ~GameplayScreen();
 
          void initialize();
@@ -35,6 +35,7 @@ namespace DragonWrath
          void primary_timer_func() override;
          void key_down_func(ALLEGRO_EVENT *ev) override;
          void key_up_func(ALLEGRO_EVENT *ev) override;
+         void user_event_func(ALLEGRO_EVENT *ev) override;
       };
    }
 }

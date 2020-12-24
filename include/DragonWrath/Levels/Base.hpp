@@ -2,6 +2,7 @@
 
 
 #include <AllegroFlare/ElementID.hpp>
+#include <DragonWrath/UserEventEmitter.hpp>
 
 
 namespace DragonWrath
@@ -11,12 +12,13 @@ namespace DragonWrath
       class Base : public AllegroFlare::ElementID
       {
       private:
+         DragonWrath::UserEventEmitter &user_event_emitter;
          virtual void update_level_specific_behavior() = 0;
          void update_collisions();
          float level_end_padding_timer;
 
       public:
-         Base(std::string type);
+         Base(std::string type, DragonWrath::UserEventEmitter &user_event_emitter);
          ~Base();
 
          void update();
