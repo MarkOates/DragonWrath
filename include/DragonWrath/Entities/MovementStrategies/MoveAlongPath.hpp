@@ -16,6 +16,7 @@ namespace DragonWrath
          private:
             DragonWrath::Entities::Base *entity;
             float speed;
+            float position_along_path;
 
          public:
             MoveAlongPath(DragonWrath::Entities::Base *entity, float speed=5);

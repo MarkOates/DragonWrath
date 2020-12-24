@@ -1,2 +1,1 @@
 - North Star: 5 new enemy types, 5 new attack waves in level 1, 8 attack waves in level 2
-  - OBJECTIVE OVERRIDE: Introduce path shapes for the purpose of enemy movement

@@ -3,7 +3,7 @@
 #include <DragonWrath/Entities/Enemies/PurpleDragon.hpp>
 
 #include <DragonWrath/MovementStrategyNames.hpp>
-#include <DragonWrath/Entities/MovementStrategies/SinWaveMoveRight.hpp>
+#include <DragonWrath/Entities/MovementStrategies/MoveAlongPath.hpp>
 #include <sstream>
 #include <math.h>
 
@@ -18,7 +18,7 @@ namespace Enemies
 
 PurpleDragon::PurpleDragon(ElementID *parent, float x, float y)
    : DragonWrath::Entities::Base(parent, "basic_enemy", x, y)
-   , movement_strategy(new DragonWrath::Entities::MovementStrategies::SinWaveMoveRight(this))
+   , movement_strategy(new DragonWrath::Entities::MovementStrategies::MoveAlongPath(this, 10))
 {
 }
 
