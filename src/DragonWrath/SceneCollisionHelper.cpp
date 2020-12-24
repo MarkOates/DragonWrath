@@ -67,8 +67,13 @@ void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
             if (enemy->is_dead())
             {
                enemy->flag_for_deletion();
+
                int points_to_add = enemy->get_points_worth();
                user_event_emitter.emit_increase_player_score(points_to_add);
+
+               float power_up_spawn_x = enemy->place.position.x;
+               float power_up_spawn_y = enemy->place.position.y;
+               user_event_emitter.emit_spawn_speed_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
             }
 
             bullet->flag_for_deletion();
@@ -98,6 +103,29 @@ void SceneCollisionHelper::update_enemy_collisions_on_player_dragon()
          {
             player_dragon->flag_for_deletion();
          }
+      }
+   }
+}
+
+
+
+void SceneCollisionHelper::update_power_up_collisions_on_player_dragon()
+{
+   Entities::PlayerDragon *player_dragon = collections.get_player_dragon();
+   std::vector<Entities::PowerUps::Base *> power_ups = collections.get_all_power_ups();
+
+   if (!player_dragon) return;
+   if (player_dragon && player_dragon->is_dead()) return;
+
+   for (auto &power_up : power_ups)
+   {
+      if (player_dragon->collides(*power_up))
+      {
+         // TODO
+         power_up->flag_for_deletion();
+
+         int points_to_add = 200;
+         user_event_emitter.emit_increase_player_score(points_to_add);
       }
    }
 }
@@ -211,6 +239,7 @@ void SceneCollisionHelper::resolve_collisions()
    update_entities();
    update_entities_position_by_velocity();
    update_player_bullet_collisions_on_enemies();
+   update_power_up_collisions_on_player_dragon();
    update_enemy_collisions_on_player_dragon();
    destroy_entities_that_are_off_screen();
    //limit_sprites_to_world_bounds();

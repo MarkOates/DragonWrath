@@ -202,9 +202,20 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
    {
    case INCREASE_PLAYER_SCORE_EVENT:
       {
-         std::cout << "in GameplayScreen::user_event_func" << std::endl;
          int points_to_add = ev->user.data1;
          player_score += points_to_add;
+      }
+      break;
+   case SPAWN_POWER_UP_EVENT:
+      {
+         if (current_level)
+         {
+            DragonWrath::EntityFactory entity_factory(framework, current_level);
+
+            float speed_boost_spawn_x = ev->user.data2;
+            float speed_boost_spawn_y = ev->user.data3;
+            entity_factory.create_speed_boost(speed_boost_spawn_x, speed_boost_spawn_y);
+         }
       }
       break;
    default:

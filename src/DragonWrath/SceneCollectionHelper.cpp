@@ -123,6 +123,12 @@ std::vector<Entities::Enemies::Base *> SceneCollectionHelper::get_all_enemies()
 }
 
 
+std::vector<Entities::PowerUps::Base *> SceneCollectionHelper::get_all_power_ups()
+{
+   return AllegroFlare::ElementID::recast_collection<Entities::PowerUps::Base>(
+         scene->find_all_descendants("power_up")
+      );
+}
 
 std::vector<Entities::PlayerBullet *> SceneCollectionHelper::get_all_player_bullets()
 {

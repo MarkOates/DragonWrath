@@ -220,7 +220,7 @@ DragonWrath::Entities::Enemies::PurpleDragon *EntityFactory::create_purple_drago
 DragonWrath::Entities::PlayerDragon *EntityFactory::create_player_dragon(float x, float y)
 {
    DragonWrath::Entities::PlayerDragon *player_dragon = new DragonWrath::Entities::PlayerDragon(
-      current_level, x, x
+      current_level, x, y
    );
 
    ALLEGRO_BITMAP *source_bitmap = framework.bitmap("player_dragon/flying_1.png");
@@ -231,6 +231,22 @@ DragonWrath::Entities::PlayerDragon *EntityFactory::create_player_dragon(float x
    player_dragon->place.size = AllegroFlare::vec2d(96, 96);
 
    return player_dragon;
+}
+
+
+DragonWrath::Entities::PowerUps::SpeedBoost *EntityFactory::create_speed_boost(float x, float y)
+{
+   DragonWrath::Entities::PowerUps::SpeedBoost *speed_boost =
+      new DragonWrath::Entities::PowerUps::SpeedBoost(current_level, x, y);
+
+   ALLEGRO_BITMAP *source_bitmap = framework.bitmap("power_ups/speed_boost.png");
+   ALLEGRO_BITMAP *speed_boost_bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
+   speed_boost->bitmap.bitmap(speed_boost_bitmap);
+   speed_boost->bitmap.align(0.5, 0.5);
+   speed_boost->set(ALWAYS_ON_TOP);
+   speed_boost->place.size = AllegroFlare::vec2d(96, 96);
+
+   return speed_boost;
 }
 
 

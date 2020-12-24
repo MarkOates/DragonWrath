@@ -14,7 +14,7 @@ namespace PowerUps
 Base::Base(ElementID *parent, std::string type, float x, float y)
    : DragonWrath::Entities::Base(parent, type, x, y)
 {
-   set("power-up");
+   set("power_up");
 }
 
 
