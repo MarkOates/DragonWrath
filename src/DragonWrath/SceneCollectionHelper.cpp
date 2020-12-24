@@ -111,10 +111,15 @@ std::vector<Entities::Base *> SceneCollectionHelper::get_all_flagged_for_deletio
 
 
 
-std::vector<Entities::Enemies::BasicEnemy *> SceneCollectionHelper::get_all_basic_enemies()
+std::vector<Entities::Enemies::Base *> SceneCollectionHelper::get_all_enemies()
 {
    if (!scene) return {};
-   return AllegroFlare::ElementID::recast_collection<Entities::Enemies::BasicEnemy>(scene->find_all_descendants("type", "basic_enemy"));
+   // This technique currently uses { "type" => "basic_enemy" } as the qualifier for selection.
+   // It works for now, but if we needed to select or pull types (based on their derived class name),
+   // that would look like { "type" => "Entities::Enemies::Base:PurpleDragon" }, and we would need
+   // a new selection method that would likely mean setting a simple property on the Enemies::Base
+   // class, a-la { "enemy" }, and done via a call to ElementID::set("enemy").
+   return AllegroFlare::ElementID::recast_collection<Entities::Enemies::Base>(scene->find_all_descendants("type", "basic_enemy"));
 }
 
 
