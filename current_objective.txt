@@ -1,2 +1,2 @@
 - North Star: 5 new enemy types, 5 new attack waves in level 1, 8 attack waves in level 2
-  - OBJECTIVE OVERRIDE: Introduce enemy health
+  - OBJECTIVE OVERRIDE: Integrate enemy health with collision detection
