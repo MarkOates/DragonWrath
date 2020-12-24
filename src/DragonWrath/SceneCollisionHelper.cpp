@@ -56,8 +56,16 @@ void SceneCollisionHelper::update_collisions_on_enemies()
       {
          if (bullet->collides(*enemy))
          {
+            //int damage_from_bullet = bullet->get_damage(); // TODO
+            int damage_from_bullet = 1;
+
+            enemy->take_damage(damage_from_bullet);
+            if (enemy->is_dead())
+            {
+               enemy->flag_for_deletion();
+            }
+
             bullet->flag_for_deletion();
-            enemy->flag_for_deletion();
          }
       }
    }

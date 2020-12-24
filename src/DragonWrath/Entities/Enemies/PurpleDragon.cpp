@@ -17,7 +17,7 @@ namespace Enemies
 
 
 PurpleDragon::PurpleDragon(ElementID *parent, float x, float y)
-   : DragonWrath::Entities::Enemies::Base(parent, "basic_enemy", x, y, 1)
+   : DragonWrath::Entities::Enemies::Base(parent, "basic_enemy", x, y, 3)
    , movement_strategy(new DragonWrath::Entities::MovementStrategies::MoveAlongPath(this, 10))
 {
 }

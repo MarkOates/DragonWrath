@@ -34,7 +34,7 @@ int Base::get_health()
 void Base::take_damage(int damage)
 {
    health -= damage;
-   if (health < 0)
+   if (health <= 0)
    {
       health = 0;
       dead = true;
