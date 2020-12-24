@@ -17,8 +17,8 @@ namespace DragonWrath
 
       void update_entities_position_by_velocity();
       void update_entities();
-      void update_collisions_on_enemies();
-      void update_collisions_on_player_dragon();
+      void update_player_bullet_collisions_on_enemies();
+      void update_enemy_collisions_on_player_dragon();
       void destroy_entities_that_are_off_screen();
       //void limit_sprites_to_world_bounds();
       //void check_damage_zones_on_enemies();

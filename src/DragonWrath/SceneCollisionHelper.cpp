@@ -48,7 +48,7 @@ void SceneCollisionHelper::update_entities()
 
 
 
-void SceneCollisionHelper::update_collisions_on_enemies()
+void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
 {
    // start with player bullets
    std::vector<Entities::PlayerBullet *> bullets = collections.get_all_player_bullets();
@@ -79,7 +79,7 @@ void SceneCollisionHelper::update_collisions_on_enemies()
 
 
 
-void SceneCollisionHelper::update_collisions_on_player_dragon()
+void SceneCollisionHelper::update_enemy_collisions_on_player_dragon()
 {
    Entities::PlayerDragon *player_dragon = collections.get_player_dragon();
    std::vector<Entities::Enemies::Base *> enemies = collections.get_all_enemies();
@@ -210,8 +210,8 @@ void SceneCollisionHelper::resolve_collisions()
 
    update_entities();
    update_entities_position_by_velocity();
-   update_collisions_on_enemies();
-   update_collisions_on_player_dragon();
+   update_player_bullet_collisions_on_enemies();
+   update_enemy_collisions_on_player_dragon();
    destroy_entities_that_are_off_screen();
    //limit_sprites_to_world_bounds();
    //check_damage_zones_on_enemies();
