@@ -16,6 +16,7 @@ namespace DragonWrath
 
          int player_health;
          int player_max_health;
+         int player_score;
 
          bool game_over_banner_showing;
          bool level_complete_banner_showing;
@@ -28,6 +29,7 @@ namespace DragonWrath
          ~GameplayScreenHud();
 
          void draw_health_bar();
+         void draw_player_score();
          void draw_game_over_banner();
          void draw_level_complete_banner();
 
@@ -35,6 +37,7 @@ namespace DragonWrath
 
          void set_player_health(int player_health);
          void set_player_max_health(int player_max_health);
+         void set_player_score(int player_score);
          void activate_game_over_banner();
          void activate_level_complete_banner();
          void deactivate_game_over_banner();

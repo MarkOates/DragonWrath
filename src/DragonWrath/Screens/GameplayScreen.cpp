@@ -22,6 +22,7 @@ GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework)
    , current_level(nullptr)
    , hud(framework)
    , world(framework, "World of DragonWrath", { "level_1", "level_2" })
+   , player_score(0)
 {
 }
 
@@ -32,6 +33,7 @@ GameplayScreen::~GameplayScreen()
 void GameplayScreen::initialize()
 {
    load_next_level();
+   player_score = 0;
 }
 
 void GameplayScreen::draw_you_have_won_banner()
@@ -109,6 +111,8 @@ void GameplayScreen::primary_timer_func()
          float level_scroll_timer = timed_scroll_level->get_timer();
          hud.debug__set_level_scroll_timer(level_scroll_timer);
       }
+
+      hud.set_player_score(this->player_score);
 
       // draw
       current_level->draw();

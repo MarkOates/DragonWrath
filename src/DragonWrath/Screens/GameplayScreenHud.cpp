@@ -2,7 +2,7 @@
 #include <DragonWrath/Screens/GameplayScreenHud.hpp>
 
 #include <sstream>
-
+#include <iomanip>
 
 namespace DragonWrath
 {
@@ -15,6 +15,7 @@ GameplayScreenHud::GameplayScreenHud(AllegroFlare::Framework &framework)
    , font_bin(framework.get_font_bin_ref())
    , player_health(0)
    , player_max_health(10)
+   , player_score(0)
    , game_over_banner_showing(false)
    , level_complete_banner_showing(false)
    , debug_mode(true)
@@ -54,6 +55,20 @@ void GameplayScreenHud::draw_health_bar()
    al_draw_filled_rectangle(x, y, x+health_bar_max_width*health_percentage, y+health_bar_height, fill_color);
    // frame
    al_draw_rectangle(x, y, x+health_bar_max_width, y+health_bar_height, border_color, 4.0f);
+}
+
+
+void GameplayScreenHud::draw_player_score()
+{
+   float x = 1920 - 300;
+   float y = 20;
+
+   ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+   ALLEGRO_FONT *font = font_bin.auto_get("ChronoTrigger.ttf 72");
+   std::stringstream player_score_text;
+   player_score_text << std::setw(6) << std::setfill('0') << player_score;
+
+   al_draw_text(font, text_color, x, y, 0, player_score_text.str().c_str());
 }
 
 
@@ -132,6 +147,9 @@ void GameplayScreenHud::draw()
    draw_health_bar();
    if (game_over_banner_showing) draw_game_over_banner();
    if (level_complete_banner_showing) draw_level_complete_banner();
+
+   draw_player_score();
+
    if (debug_mode) debug__show_level_scroll_timer();
 }
 
@@ -145,6 +163,12 @@ void GameplayScreenHud::set_player_health(int player_health)
 void GameplayScreenHud::set_player_max_health(int player_max_health)
 {
    this->player_max_health = player_max_health;
+}
+
+
+void GameplayScreenHud::set_player_score(int player_score)
+{
+   this->player_score = player_score;
 }
 
 

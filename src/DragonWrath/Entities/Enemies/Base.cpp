@@ -12,9 +12,10 @@ namespace Enemies
 {
 
 
-Base::Base(AllegroFlare::ElementID *parent, std::string type, float x, float y, int initial_health)
+Base::Base(AllegroFlare::ElementID *parent, std::string type, float x, float y, int initial_health, int points_worth)
    : DragonWrath::Entities::Base(parent, type, x, y)
    , health(initial_health)
+   , points_worth(points_worth)
    , dead(false)
 {
 }
@@ -28,6 +29,12 @@ Base::~Base()
 int Base::get_health()
 {
    return this->health;
+}
+
+
+int Base::get_points_worth()
+{
+   return this->points_worth;
 }
 
 
