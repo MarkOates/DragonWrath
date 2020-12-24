@@ -5,7 +5,9 @@
 #include <DragonWrath/EntityTypeNames.hpp>
 #include <DragonWrath/MovementStrategyNames.hpp>
 #include <AllegroFlare/Useful.hpp>
+#include <allegro_flare/image_processing.h>
 
+#define YELLOW_DRAGON_BITMAP_IDENTFIER "generated-yellow-dragon-from-enemy.png"
 #define BLUE_DRAGON_BITMAP_IDENTFIER "generated-blue-dragon-from-enemy.png"
 #define GREEN_DRAGON_BITMAP_IDENTFIER "generated-green-dragon-from-enemy.png"
 #define RED_DRAGON_BITMAP_IDENTFIER "generated-red-dragon-from-enemy.png"
@@ -28,45 +30,44 @@ EntityFactory::~EntityFactory()
 }
 
 
-ALLEGRO_BITMAP *EntityFactory::get_or_generate_dragon_bitmap_for_type(
-      std::string enemy_type,
-      float hue_rotation,
-      float lightness_change,
-      std::string generated_bitmap_identifier
+ALLEGRO_BITMAP *EntityFactory::get_or_generate_modified_bitmap(
+      std::string generated_bitmap_identifier,
+      ALLEGRO_BITMAP *source_bitmap,
+      float hue_rotation
    )
 {
    AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
 
-   ALLEGRO_BITMAP *already_existing_blue_dragon_bitmap =
+   ALLEGRO_BITMAP *already_existing_bitmap =
       bitmap_bin.get(generated_bitmap_identifier);
 
-   if (already_existing_blue_dragon_bitmap)
+   if (already_existing_bitmap)
    {
-      return already_existing_blue_dragon_bitmap;
+      return already_existing_bitmap;
    }
    else
    {
-      ALLEGRO_BITMAP *original_bitmap = framework.bitmap("enemy.png");
+      ALLEGRO_BITMAP *original_bitmap = source_bitmap;
       ALLEGRO_BITMAP *clone_of_bitmap = al_clone_bitmap(original_bitmap);
+
+      // change hue
       AllegroFlare::color::change_hue(clone_of_bitmap, hue_rotation, AllegroFlare::color::blend_op::add);
 
-      std::cout << "EntityFactory::get_or_generate_dragon_bitmap_for_type() warning: "
-         << "\"lightness_change\" parameter is unused at this time." << std::endl;
+      // change scale
+      ALLEGRO_BITMAP *scaled_bitmap = allegro_flare::create_pixel_perfect_scaled_render(clone_of_bitmap, 4); 
+      al_destroy_bitmap(clone_of_bitmap);
 
-      //AllegroFlare::color::change_value(
-            //clone_of_bitmap,
-            //lightness_change,
-            //AllegroFlare::color::blend_op::add
-         //);
-
+      // add the image to the bin
       AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
-      bitmap_bin.include(generated_bitmap_identifier, clone_of_bitmap);
+      bitmap_bin.include(generated_bitmap_identifier, scaled_bitmap);
 
+      // save the bitmap to the Desktop (for visual reference)
       std::stringstream filename;
       filename << "/Users/markoates/Desktop/" << generated_bitmap_identifier;
-      al_save_bitmap(filename.str().c_str(), clone_of_bitmap);
+      al_save_bitmap(filename.str().c_str(), scaled_bitmap);
 
-      return clone_of_bitmap;
+      // return the final result
+      return scaled_bitmap;
    }
 
    return nullptr;
@@ -75,25 +76,27 @@ ALLEGRO_BITMAP *EntityFactory::get_or_generate_dragon_bitmap_for_type(
 
 ALLEGRO_BITMAP *EntityFactory::get_dragon_enemy_bitmap(std::string enemy_type)
 {
+   ALLEGRO_BITMAP *source_bitmap = framework.bitmap("enemies/dragons/attack_loop_1.png");
+
    if (enemy_type == YELLOW_DRAGON)
    {
-      return framework.bitmap("enemy.png");
+      return get_or_generate_modified_bitmap(YELLOW_DRAGON_BITMAP_IDENTFIER, source_bitmap, 0.0);
    }
    else if (enemy_type == BLUE_DRAGON)
    {
-      return get_or_generate_dragon_bitmap_for_type(BLUE_DRAGON, 0.5, 0.0, BLUE_DRAGON_BITMAP_IDENTFIER);
+      return get_or_generate_modified_bitmap(BLUE_DRAGON_BITMAP_IDENTFIER, source_bitmap, 0.5);
    }
    else if (enemy_type == GREEN_DRAGON)
    {
-      return get_or_generate_dragon_bitmap_for_type(GREEN_DRAGON, 0.25, 0.0, GREEN_DRAGON_BITMAP_IDENTFIER);
+      return get_or_generate_modified_bitmap(GREEN_DRAGON_BITMAP_IDENTFIER, source_bitmap, 0.25);
    }
    else if (enemy_type == RED_DRAGON)
    {
-      return get_or_generate_dragon_bitmap_for_type(RED_DRAGON, 0.95, 0.0, RED_DRAGON_BITMAP_IDENTFIER);
+      return get_or_generate_modified_bitmap(RED_DRAGON_BITMAP_IDENTFIER, source_bitmap, 0.95);
    }
    else if (enemy_type == PURPLE_DRAGON)
    {
-      return get_or_generate_dragon_bitmap_for_type(PURPLE_DRAGON, 0.75, 0.0, PURPLE_DRAGON_BITMAP_IDENTFIER);
+      return get_or_generate_modified_bitmap(PURPLE_DRAGON_BITMAP_IDENTFIER, source_bitmap, 0.75);
    }
    else
    {
@@ -108,19 +111,26 @@ ALLEGRO_BITMAP *EntityFactory::get_dragon_enemy_bitmap(std::string enemy_type)
 }
 
 
+AllegroFlare::vec2d EntityFactory::default_enemy_dragon_size()
+{
+   return AllegroFlare::vec2d(96, 96);
+}
+
+
 DragonWrath::Entities::PlayerBullet *EntityFactory::create_player_bullet(float x, float y)
 {
    DragonWrath::Entities::PlayerBullet *player_bullet =
       new DragonWrath::Entities::PlayerBullet(current_level, x, y);
 
-   ALLEGRO_BITMAP *bullet_bitmap = framework.bitmap("fireball.png");
-   player_bullet->velocity.position.x = 10;
+   ALLEGRO_BITMAP *bullet_bitmap = get_or_generate_modified_bitmap(
+            "player-bullet",
+            framework.bitmap("player_bullets/fire_bolt_small_3_1.png"),
+            0.0
+         );
+   player_bullet->velocity.position.x = 20;
    player_bullet->bitmap.bitmap(bullet_bitmap);
    player_bullet->bitmap.align(0.5, 0.5);
-   player_bullet->place.size = AllegroFlare::vec2d(
-         al_get_bitmap_width(bullet_bitmap),
-         al_get_bitmap_height(bullet_bitmap)
-      );
+   player_bullet->place.size = AllegroFlare::vec2d(48, 48);
 
    return player_bullet;
 }
@@ -135,11 +145,7 @@ DragonWrath::Entities::Enemies::GreenDragon *EntityFactory::create_green_dragon(
    green_dragon->bitmap.bitmap(enemy_bitmap);
    green_dragon->bitmap.align(0.5, 0.5);
    green_dragon->place.flip.x = true;
-   green_dragon->place.size = AllegroFlare::vec2d(
-         al_get_bitmap_width(enemy_bitmap),
-         al_get_bitmap_height(enemy_bitmap)
-      );
-
+   green_dragon->place.size = default_enemy_dragon_size();
    green_dragon->set_movement_strategy(movement_strategy);
 
    return green_dragon;
@@ -155,11 +161,7 @@ DragonWrath::Entities::Enemies::YellowDragon *EntityFactory::create_yellow_drago
    yellow_dragon->bitmap.bitmap(enemy_bitmap);
    yellow_dragon->bitmap.align(0.5, 0.5);
    yellow_dragon->place.flip.x = true;
-   yellow_dragon->place.size = AllegroFlare::vec2d(
-         al_get_bitmap_width(enemy_bitmap),
-         al_get_bitmap_height(enemy_bitmap)
-      );
-
+   yellow_dragon->place.size = default_enemy_dragon_size();
    yellow_dragon->set_movement_strategy(movement_strategy);
 
    return yellow_dragon;
@@ -175,11 +177,7 @@ DragonWrath::Entities::Enemies::BlueDragon *EntityFactory::create_blue_dragon(fl
    blue_dragon->bitmap.bitmap(enemy_bitmap);
    blue_dragon->bitmap.align(0.5, 0.5);
    blue_dragon->place.flip.x = true;
-   blue_dragon->place.size = AllegroFlare::vec2d(
-         al_get_bitmap_width(enemy_bitmap),
-         al_get_bitmap_height(enemy_bitmap)
-      );
-
+   blue_dragon->place.size = default_enemy_dragon_size();
    blue_dragon->set_movement_strategy(movement_strategy);
 
    return blue_dragon;
@@ -195,10 +193,7 @@ DragonWrath::Entities::Enemies::RedDragon *EntityFactory::create_red_dragon(floa
    red_dragon->bitmap.bitmap(enemy_bitmap);
    red_dragon->bitmap.align(0.5, 0.5);
    red_dragon->place.flip.x = true;
-   red_dragon->place.size = AllegroFlare::vec2d(
-         al_get_bitmap_width(enemy_bitmap),
-         al_get_bitmap_height(enemy_bitmap)
-      );
+   red_dragon->place.size = default_enemy_dragon_size();
 
    red_dragon->set_movement_strategy(movement_strategy);
 
@@ -215,10 +210,8 @@ DragonWrath::Entities::Enemies::PurpleDragon *EntityFactory::create_purple_drago
    purple_dragon->bitmap.bitmap(enemy_bitmap);
    purple_dragon->bitmap.align(0.5, 0.5);
    purple_dragon->place.flip.x = true;
-   purple_dragon->place.size = AllegroFlare::vec2d(
-         al_get_bitmap_width(enemy_bitmap),
-         al_get_bitmap_height(enemy_bitmap)
-      );
+   purple_dragon->place.size = default_enemy_dragon_size();
+
 
    return purple_dragon;
 }
@@ -230,14 +223,12 @@ DragonWrath::Entities::PlayerDragon *EntityFactory::create_player_dragon(float x
       current_level, x, x
    );
 
-   ALLEGRO_BITMAP *player_dragon_bitmap = framework.bitmap("dragon.png");
+   ALLEGRO_BITMAP *source_bitmap = framework.bitmap("player_dragon/flying_1.png");
+   ALLEGRO_BITMAP *player_dragon_bitmap = get_or_generate_modified_bitmap("player-dragon", source_bitmap, 0.0);
    player_dragon->bitmap.bitmap(player_dragon_bitmap);
    player_dragon->bitmap.align(0.5, 0.5);
    player_dragon->set(ALWAYS_ON_TOP);
-   player_dragon->place.size = AllegroFlare::vec2d(
-         al_get_bitmap_width(player_dragon_bitmap),
-         al_get_bitmap_height(player_dragon_bitmap)
-      );
+   player_dragon->place.size = AllegroFlare::vec2d(96, 96);
 
    return player_dragon;
 }

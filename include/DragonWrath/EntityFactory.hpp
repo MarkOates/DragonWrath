@@ -19,12 +19,13 @@ namespace DragonWrath
       AllegroFlare::Framework &framework;
       DragonWrath::Levels::Base *current_level;
 
-      ALLEGRO_BITMAP *get_or_generate_dragon_bitmap_for_type(std::string enemy_type,
-            float hue_rotation,
-            float lightness_change,
-            std::string generated_bitmap_identifier
+      ALLEGRO_BITMAP *get_or_generate_modified_bitmap(
+            std::string generated_bitmap_identifier,
+            ALLEGRO_BITMAP *source_bitmap,
+            float hue_rotation
          );
       ALLEGRO_BITMAP *get_dragon_enemy_bitmap(std::string enemy_type);
+      AllegroFlare::vec2d default_enemy_dragon_size();
 
    public:
       EntityFactory(AllegroFlare::Framework &framework, DragonWrath::Levels::Base *current_level);
