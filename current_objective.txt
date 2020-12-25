@@ -1,3 +1,2 @@
-- North Star: Add power-ups
-  - Current Objective: Draw the hud with the speed level
-    - Quickly: Test gameplay speed on Windows machine
+- North Star: Have all power-ups implemented, Stats rendered on HUD
+  - Current Objective: Draw the HUD with the speed level
