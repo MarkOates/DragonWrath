@@ -1,1 +1,1 @@
-- North Star: Have all power-ups implemented
+- North Star: Implement behavior for remaining power-ups
