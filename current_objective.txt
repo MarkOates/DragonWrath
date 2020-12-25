@@ -1,2 +1,1 @@
-- North Star: Have all power-ups implemented, Stats rendered on HUD
-  - Current Objective: Draw the HUD with the speed level
+- North Star: Have all power-ups implemented

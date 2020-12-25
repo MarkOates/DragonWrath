@@ -15,11 +15,10 @@ namespace Entities
 PlayerDragon::PlayerDragon(ElementID *parent, float x, float y)
    : DragonWrath::Entities::Base(parent, PLAYER_DRAGON, x, y)
    , state(ALIVE)
-   , max_health(3)
-   , health(3)
-   , bullet_level(1)
-   , speed_level(1)
-   , options_level(1)
+   , shield_level(0)
+   , bullet_level(0)
+   , speed_level(0)
+   , options_level(0)
 {
 }
 
@@ -37,17 +36,17 @@ void PlayerDragon::take_damage(int amount)
       return;
    }
 
-   health -= amount;
-   if (health <= 0)
+   shield_level -= amount;
+   if (shield_level <= 0)
    {
-      health = 0;
+      shield_level = 0;
       state = DEAD;
       std::cout << "Dragon has died of death." << std::endl;
    }
    else
    {
       std::cout << "Dragon takes damage of " << amount << "!!" << std::endl;
-      std::cout << "Dragon now has health " << health << " / " << max_health << std::endl;
+      std::cout << "Dragon now has shield_level " << shield_level << std::endl;
    }
 }
 
@@ -58,15 +57,9 @@ bool PlayerDragon::is_dead()
 }
 
 
-int PlayerDragon::get_health()
+int PlayerDragon::get_shield_level()
 {
-   return health;
-}
-
-
-int PlayerDragon::get_max_health()
-{
-   return max_health;
+   return shield_level;
 }
 
 
@@ -85,6 +78,13 @@ int PlayerDragon::get_speed_level()
 int PlayerDragon::get_options_level()
 {
    return options_level;
+}
+
+
+void PlayerDragon::increment_shield_level()
+{
+   shield_level += 1;
+   if (shield_level >= 3) shield_level = 3;
 }
 
 
@@ -113,11 +113,14 @@ float PlayerDragon::calculate_max_velocity()
 {
    switch(speed_level)
    {
-   case 1:
+   case 0:
       return 5.0f;
       break;
+   case 1:
+      return 7.0f;
+      break;
    case 2:
-      return 8.0f;
+      return 9.0f;
       break;
    case 3:
       return 11.0f;

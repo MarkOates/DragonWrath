@@ -14,8 +14,7 @@ GameplayScreenHud::GameplayScreenHud(AllegroFlare::Framework &framework)
    : bitmap_bin(framework.get_bitmap_bin_ref())
    , font_bin(framework.get_font_bin_ref())
    , player_lives(0)
-   , player_health(0)
-   , player_max_health(3)
+   , player_shield_level(0)
    , player_bullet_level(0)
    , player_speed_level(0)
    , player_options_level(0)
@@ -165,7 +164,7 @@ void GameplayScreenHud::draw_all_bars()
    float cursor_x = start_x;
    float bar_distance_x = 280;
 
-   draw_bar(cursor_x, y, player_health, player_max_health, "HEALTH");
+   draw_bar(cursor_x, y, player_shield_level, 3, "SHIELD");
    cursor_x += bar_distance_x;
    draw_bar(cursor_x, y, player_bullet_level, 3, "FIREPOWER");
    cursor_x += bar_distance_x;
@@ -195,15 +194,9 @@ void GameplayScreenHud::set_player_lives(int player_lives)
 }
 
 
-void GameplayScreenHud::set_player_health(int player_health)
+void GameplayScreenHud::set_player_shield_level(int player_shield_level)
 {
-   this->player_health = player_health;
-}
-
-
-void GameplayScreenHud::set_player_max_health(int player_max_health)
-{
-   this->player_max_health = player_max_health;
+   this->player_shield_level = player_shield_level;
 }
 
 

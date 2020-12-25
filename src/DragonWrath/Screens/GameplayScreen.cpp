@@ -33,6 +33,17 @@ GameplayScreen::~GameplayScreen()
 {
 }
 
+DragonWrath::Entities::PlayerDragon *GameplayScreen::get_player_dragon()
+{
+   if (current_level)
+   {
+      DragonWrath::SceneCollectionHelper collection_helper(current_level);
+      DragonWrath::Entities::PlayerDragon *player_dragon = collection_helper.get_player_dragon();
+      if (player_dragon) return player_dragon;
+   }
+   return nullptr;
+}
+
 void GameplayScreen::initialize()
 {
    load_next_level();
@@ -105,8 +116,7 @@ void GameplayScreen::primary_timer_func()
 
       if (player_dragon)
       {
-         hud.set_player_health(player_dragon->get_health());
-         hud.set_player_max_health(player_dragon->get_max_health());
+         hud.set_player_shield_level(player_dragon->get_shield_level());
          hud.set_player_bullet_level(player_dragon->get_bullet_level());
          hud.set_player_speed_level(player_dragon->get_speed_level());
          hud.set_player_options_level(player_dragon->get_options_level());
@@ -226,21 +236,33 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          }
       }
       break;
+   case PLAYER_DRAGON_GETS_LIFE_EVENT:
+      {
+         player_lives++;
+      }
+      break;
+   case PLAYER_DRAGON_GETS_SHIELD_BOOST_EVENT:
+      {
+         DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
+         if (player_dragon) player_dragon->increment_shield_level();
+      }
+      break;
+   case PLAYER_DRAGON_GETS_BULLET_BOOST_EVENT:
+      {
+         DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
+         if (player_dragon) player_dragon->increment_bullet_level();
+      }
+      break;
    case PLAYER_DRAGON_GETS_SPEED_BOOST_EVENT:
       {
-         if (current_level)
-         {
-            DragonWrath::SceneCollectionHelper collection_helper(current_level);
-            DragonWrath::Entities::PlayerDragon *player_dragon = collection_helper.get_player_dragon();
-
-            if (player_dragon)
-            {
-               player_dragon->increment_speed_level();
-
-               // TODO: update the hud with the new value
-            }
-         }
-
+         DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
+         if (player_dragon) player_dragon->increment_speed_level();
+      }
+      break;
+   case PLAYER_DRAGON_GETS_OPTIONS_BOOST_EVENT:
+      {
+         DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
+         if (player_dragon) player_dragon->increment_options_level();
       }
       break;
    default:

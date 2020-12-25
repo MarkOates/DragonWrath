@@ -6,6 +6,7 @@
 #include <DragonWrath/Levels/Base.hpp>
 #include <DragonWrath/Worlds/Base.hpp>
 #include <DragonWrath/Screens/GameplayScreenHud.hpp>
+#include <DragonWrath/Entities/PlayerDragon.hpp>
 
 
 namespace DragonWrath
@@ -22,6 +23,8 @@ namespace DragonWrath
 
          int player_lives;
          int player_score;
+
+         DragonWrath::Entities::PlayerDragon *get_player_dragon();
 
       public:
          GameplayScreen(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter);

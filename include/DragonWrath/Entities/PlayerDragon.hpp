@@ -17,8 +17,8 @@ namespace DragonWrath
             DEAD
          };
          state_t state;
-         int max_health;
-         int health;
+
+         int shield_level;
          int bullet_level;
          int speed_level;
          int options_level;
@@ -29,12 +29,13 @@ namespace DragonWrath
 
          void take_damage(int amount);
          bool is_dead();
-         int get_health();
-         int get_max_health();
+
+         int get_shield_level();
          int get_bullet_level();
          int get_speed_level();
          int get_options_level();
 
+         void increment_shield_level();
          void increment_bullet_level();
          void increment_speed_level();
          void increment_options_level();

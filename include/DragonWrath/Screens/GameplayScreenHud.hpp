@@ -15,8 +15,7 @@ namespace DragonWrath
          AllegroFlare::FontBin &font_bin;
 
          int player_lives;
-         int player_health;
-         int player_max_health;
+         int player_shield_level;
          int player_bullet_level;
          int player_speed_level;
          int player_options_level;
@@ -43,8 +42,7 @@ namespace DragonWrath
          void draw();
 
          void set_player_lives(int player_lives);
-         void set_player_health(int player_health);
-         void set_player_max_health(int player_max_health);
+         void set_player_shield_level(int player_shield_level);
          void set_player_bullet_level(int player_bullet_level);
          void set_player_speed_level(int player_speed_level);
          void set_player_options_level(int player_options_level);
