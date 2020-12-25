@@ -18,6 +18,7 @@ namespace DragonWrath
       void emit_start_gameplay_screen_event();
       void emit_increase_player_score(int points_to_add);
       void emit_spawn_speed_boost_power_up_event(float x, float y);
+      void emit_player_dragon_gets_speed_boost();
    };
 }
 

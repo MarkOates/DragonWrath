@@ -126,6 +126,11 @@ void SceneCollisionHelper::update_power_up_collisions_on_player_dragon()
 
          int points_to_add = 200;
          user_event_emitter.emit_increase_player_score(points_to_add);
+
+         if (power_up->is_type("SpeedBoost"))
+         {
+            user_event_emitter.emit_player_dragon_gets_speed_boost();
+         }
       }
    }
 }

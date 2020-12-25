@@ -12,7 +12,7 @@ namespace PowerUps
 
 
 SpeedBoost::SpeedBoost(ElementID *parent, float x, float y)
-   : DragonWrath::Entities::PowerUps::Base(parent, "speed_boost", x, y)
+   : DragonWrath::Entities::PowerUps::Base(parent, "SpeedBoost", x, y)
 {
 }
 

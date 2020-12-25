@@ -135,23 +135,23 @@ void GameplayScreen::primary_timer_func()
 void GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
 {
    DragonWrath::SceneCollectionHelper scene_collection_helper(current_level);
-   Entities::Base *player_dragon = scene_collection_helper.get_player_dragon();
+   Entities::PlayerDragon *player_dragon = scene_collection_helper.get_player_dragon();
 
    DragonWrath::EntityFactory entity_factory(framework, current_level);
 
    switch(ev->keyboard.keycode)
    {
    case ALLEGRO_KEY_UP:
-      if (player_dragon) player_dragon->velocity.y = -8;
+      if (player_dragon) player_dragon->velocity.y = -player_dragon->calculate_max_velocity();
       break;
    case ALLEGRO_KEY_DOWN:
-      if (player_dragon) player_dragon->velocity.y = 8;
+      if (player_dragon) player_dragon->velocity.y = player_dragon->calculate_max_velocity();
       break;
    case ALLEGRO_KEY_LEFT:
-      if (player_dragon) player_dragon->velocity.x = -8;
+      if (player_dragon) player_dragon->velocity.x = -player_dragon->calculate_max_velocity();
       break;
    case ALLEGRO_KEY_RIGHT:
-      if (player_dragon) player_dragon->velocity.x = 8;
+      if (player_dragon) player_dragon->velocity.x = player_dragon->calculate_max_velocity();
       break;
    case ALLEGRO_KEY_SPACE:
       {
@@ -216,6 +216,23 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
             float speed_boost_spawn_y = ev->user.data3;
             entity_factory.create_speed_boost(speed_boost_spawn_x, speed_boost_spawn_y);
          }
+      }
+      break;
+   case PLAYER_DRAGON_GETS_SPEED_BOOST_EVENT:
+      {
+         if (current_level)
+         {
+            DragonWrath::SceneCollectionHelper collection_helper(current_level);
+            DragonWrath::Entities::PlayerDragon *player_dragon = collection_helper.get_player_dragon();
+
+            if (player_dragon)
+            {
+               player_dragon->increment_speed_level();
+
+               // TODO: update the hud with the new value
+            }
+         }
+
       }
       break;
    default:

@@ -1,2 +1,2 @@
 - North Star: Add power-ups
-  - Current Objective: Add speed powerups
+  - Current Objective: Level up the dragon stats when collecting speed boost

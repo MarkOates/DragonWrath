@@ -23,6 +23,12 @@ Base::~Base()
 }
 
 
+bool Base::is_type(std::string type_to_check)
+{
+   return exists("type", type_to_check);
+}
+
+
 } // namespace PowerUps
 } // namespace Entities
 } // namespace DragonWrath

@@ -19,6 +19,7 @@ namespace DragonWrath
          state_t state;
          int max_health;
          int health;
+         int speed_level;
 
       public:
          PlayerDragon(ElementID *parent, float x, float y);
@@ -28,6 +29,11 @@ namespace DragonWrath
          bool is_dead();
          int get_health();
          int get_max_health();
+         int get_speed_level();
+
+         void increment_speed_level();
+
+         float calculate_max_velocity();
       };
    }
 }

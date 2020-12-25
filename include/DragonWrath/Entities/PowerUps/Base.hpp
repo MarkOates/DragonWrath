@@ -15,6 +15,8 @@ namespace DragonWrath
          public:
             Base(ElementID *parent, std::string type, float x, float y);
             ~Base();
+
+            bool is_type(std::string type_to_check);
          };
       }
    }

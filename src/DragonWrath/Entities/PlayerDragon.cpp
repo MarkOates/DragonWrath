@@ -1,7 +1,9 @@
 
 
 #include <DragonWrath/Entities/PlayerDragon.hpp>
+
 #include <DragonWrath/EntityTypeNames.hpp>
+#include <sstream>
 
 
 namespace DragonWrath
@@ -15,6 +17,7 @@ PlayerDragon::PlayerDragon(ElementID *parent, float x, float y)
    , state(ALIVE)
    , max_health(3)
    , health(3)
+   , speed_level(1)
 {
 }
 
@@ -62,6 +65,46 @@ int PlayerDragon::get_health()
 int PlayerDragon::get_max_health()
 {
    return max_health;
+}
+
+
+int PlayerDragon::get_speed_level()
+{
+   return speed_level;
+}
+
+
+void PlayerDragon::increment_speed_level()
+{
+   speed_level += 1;
+   if (speed_level >= 3) speed_level = 3;
+}
+
+
+float PlayerDragon::calculate_max_velocity()
+{
+   switch(speed_level)
+   {
+   case 1:
+      return 5.0f;
+      break;
+   case 2:
+      return 8.0f;
+      break;
+   case 3:
+      return 11.0f;
+      break;
+   default:
+      {
+         std::stringstream error_message;
+         error_message << "PlayerDragon::calculate_max_velocity(): error, unrecognized speed_level of \""
+            << speed_level
+            << "\""
+            << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+      break;
+   }
 }
 
 
