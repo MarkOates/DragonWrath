@@ -14,8 +14,13 @@ namespace DragonWrath
          AllegroFlare::BitmapBin &bitmap_bin;
          AllegroFlare::FontBin &font_bin;
 
+         int player_lives;
          int player_health;
          int player_max_health;
+         int player_bullet_level;
+         int player_speed_level;
+         int player_options_level;
+
          int player_score;
 
          bool game_over_banner_showing;
@@ -24,14 +29,14 @@ namespace DragonWrath
          bool debug_mode;
          float level_scroll_timer;
 
-      public:
-         GameplayScreenHud(AllegroFlare::Framework &framework);
-         ~GameplayScreenHud();
-
-         void draw_health_bar();
+         void draw_bar(float x, float y, int value, int max_value=3, std::string label="");
          void draw_player_score();
          void draw_game_over_banner();
          void draw_level_complete_banner();
+
+      public:
+         GameplayScreenHud(AllegroFlare::Framework &framework);
+         ~GameplayScreenHud();
 
          void draw();
 

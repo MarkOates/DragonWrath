@@ -13,8 +13,12 @@ namespace Screens
 GameplayScreenHud::GameplayScreenHud(AllegroFlare::Framework &framework)
    : bitmap_bin(framework.get_bitmap_bin_ref())
    , font_bin(framework.get_font_bin_ref())
+   , player_lives(0)
    , player_health(0)
-   , player_max_health(10)
+   , player_max_health(3)
+   , player_bullet_level(0)
+   , player_speed_level(0)
+   , player_options_level(0)
    , player_score(0)
    , game_over_banner_showing(false)
    , level_complete_banner_showing(false)
@@ -29,32 +33,29 @@ GameplayScreenHud::~GameplayScreenHud()
 }
 
 
-void GameplayScreenHud::draw_health_bar()
+void GameplayScreenHud::draw_bar(float x, float y, int value, int max_value, std::string label)
 {
-   float x = 60;
-   float y = 20;
+   //float x = 130;
+   //float y = 60;
+   float bar_max_width = 180;
+   float bar_height = 30;
 
-   float health_bar_max_width = 480;
-   float health_bar_height = 40;
-
-   float health_percentage = (float)player_health / player_max_health;
+   float percentage = (float)value / max_value;
 
    ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.25, 0.25, 0.25, 1.0};
    ALLEGRO_COLOR fill_color = ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
    ALLEGRO_COLOR border_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
 
-   ALLEGRO_FONT *font = font_bin.auto_get("ChronoTrigger.ttf 32");
-   std::stringstream health_text;
-   health_text << player_health << "/" << player_max_health;
-
-   al_draw_text(font, ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}, 10, 10, 0, health_text.str().c_str());
-
    // backfill
-   al_draw_filled_rectangle(x, y, x+health_bar_max_width, y+health_bar_height, backfill_color);
+   al_draw_filled_rectangle(x, y, x+bar_max_width, y+bar_height, backfill_color);
    // active health
-   al_draw_filled_rectangle(x, y, x+health_bar_max_width*health_percentage, y+health_bar_height, fill_color);
+   al_draw_filled_rectangle(x, y, x+bar_max_width*percentage, y+bar_height, fill_color);
    // frame
-   al_draw_rectangle(x, y, x+health_bar_max_width, y+health_bar_height, border_color, 4.0f);
+   al_draw_rectangle(x, y, x+bar_max_width, y+bar_height, border_color, 4.0f);
+
+   // draw text
+   ALLEGRO_FONT *font = font_bin.auto_get("ChronoTrigger.ttf 48");
+   al_draw_text(font, ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}, x, y-45, 0, label.c_str());
 }
 
 
@@ -144,7 +145,7 @@ void GameplayScreenHud::draw_level_complete_banner()
 
 void GameplayScreenHud::draw()
 {
-   draw_health_bar();
+   draw_bar(130, 60, player_health, player_max_health, "HEALTH");
    if (game_over_banner_showing) draw_game_over_banner();
    if (level_complete_banner_showing) draw_level_complete_banner();
 
