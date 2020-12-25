@@ -47,9 +47,9 @@ void UserEventEmitter::emit_increase_player_score(int points_to_add)
 void UserEventEmitter::emit_spawn_speed_boost_power_up_event(float x, float y)
 {
    ALLEGRO_EVENT event;
-   event.user.type = SPAWN_POWER_UP_EVENT;
-   event.user.data2 = x;
-   event.user.data3 = y;
+   event.user.type = SPAWN_LIFE_POWER_UP_EVENT;
+   event.user.data1 = x;
+   event.user.data2 = y;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 

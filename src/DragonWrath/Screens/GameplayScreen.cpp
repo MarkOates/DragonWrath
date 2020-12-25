@@ -224,15 +224,58 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          player_score += points_to_add;
       }
       break;
-   case SPAWN_POWER_UP_EVENT:
+   case SPAWN_LIFE_POWER_UP_EVENT:
       {
          if (current_level)
          {
             DragonWrath::EntityFactory entity_factory(framework, current_level);
-
-            float speed_boost_spawn_x = ev->user.data2;
-            float speed_boost_spawn_y = ev->user.data3;
-            entity_factory.create_speed_boost(speed_boost_spawn_x, speed_boost_spawn_y);
+            float spawn_x = ev->user.data1;
+            float spawn_y = ev->user.data2;
+            //entity_factory.create_one_up(spawn_x, spawn_y);
+         }
+      }
+      break;
+   case SPAWN_SPEED_POWER_UP_EVENT:
+      {
+         if (current_level)
+         {
+            DragonWrath::EntityFactory entity_factory(framework, current_level);
+            float spawn_x = ev->user.data1;
+            float spawn_y = ev->user.data2;
+            entity_factory.create_speed_boost(spawn_x, spawn_y);
+         }
+      }
+      break;
+   case SPAWN_BULLET_POWER_UP_EVENT:
+      {
+         if (current_level)
+         {
+            DragonWrath::EntityFactory entity_factory(framework, current_level);
+            float spawn_x = ev->user.data1;
+            float spawn_y = ev->user.data2;
+            //entity_factory.create_bullet_boost(spawn_x, spawn_y);
+         }
+      }
+      break;
+   case SPAWN_SHIELD_POWER_UP_EVENT:
+      {
+         if (current_level)
+         {
+            DragonWrath::EntityFactory entity_factory(framework, current_level);
+            float spawn_x = ev->user.data1;
+            float spawn_y = ev->user.data2;
+            //entity_factory.create_shield_boost(spawn_x, spawn_y);
+         }
+      }
+      break;
+   case SPAWN_OPTION_POWER_UP_EVENT:
+      {
+         if (current_level)
+         {
+            DragonWrath::EntityFactory entity_factory(framework, current_level);
+            float spawn_x = ev->user.data1;
+            float spawn_y = ev->user.data2;
+            //entity_factory.create_option_boost(spawn_x, spawn_y);
          }
       }
       break;
