@@ -33,6 +33,8 @@ namespace DragonWrath
          void draw_player_score();
          void draw_game_over_banner();
          void draw_level_complete_banner();
+         void draw_player_lives();
+         void draw_all_bars();
 
       public:
          GameplayScreenHud(AllegroFlare::Framework &framework);

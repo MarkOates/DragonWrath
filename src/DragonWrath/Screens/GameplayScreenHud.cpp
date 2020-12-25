@@ -37,7 +37,7 @@ void GameplayScreenHud::draw_bar(float x, float y, int value, int max_value, std
 {
    //float x = 130;
    //float y = 60;
-   float bar_max_width = 180;
+   float bar_max_width = 210;
    float bar_height = 30;
 
    float percentage = (float)value / max_value;
@@ -61,8 +61,8 @@ void GameplayScreenHud::draw_bar(float x, float y, int value, int max_value, std
 
 void GameplayScreenHud::draw_player_score()
 {
-   float x = 1920 - 300;
-   float y = 20;
+   float x = 1920 - 320;
+   float y = 30;
 
    ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
    ALLEGRO_FONT *font = font_bin.auto_get("ChronoTrigger.ttf 72");
@@ -143,9 +143,43 @@ void GameplayScreenHud::draw_level_complete_banner()
 }
 
 
+void GameplayScreenHud::draw_player_lives()
+{
+   float x = 120;
+   float y = 30;
+
+   ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+   ALLEGRO_FONT *font = font_bin.auto_get("ChronoTrigger.ttf 72");
+   std::stringstream player_lives_text;
+   player_lives_text << "LIVES: " << player_lives;
+
+   al_draw_text(font, text_color, x, y, 0, player_lives_text.str().c_str());
+}
+
+
+void GameplayScreenHud::draw_all_bars()
+{
+   float start_x = 420;
+   float y = 60;
+
+   float cursor_x = start_x;
+   float bar_distance_x = 280;
+
+   draw_bar(cursor_x, y, player_health, player_max_health, "HEALTH");
+   cursor_x += bar_distance_x;
+   draw_bar(cursor_x, y, player_bullet_level, 3, "FIREPOWER");
+   cursor_x += bar_distance_x;
+   draw_bar(cursor_x, y, player_speed_level, 3, "SPEED");
+   cursor_x += bar_distance_x;
+   draw_bar(cursor_x, y, player_options_level, 3, "OPTION");
+}
+
+
 void GameplayScreenHud::draw()
 {
-   draw_bar(130, 60, player_health, player_max_health, "HEALTH");
+   draw_player_lives();
+   draw_all_bars();
+
    if (game_over_banner_showing) draw_game_over_banner();
    if (level_complete_banner_showing) draw_level_complete_banner();
 
