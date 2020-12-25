@@ -17,7 +17,9 @@ PlayerDragon::PlayerDragon(ElementID *parent, float x, float y)
    , state(ALIVE)
    , max_health(3)
    , health(3)
+   , bullet_level(1)
    , speed_level(1)
+   , options_level(1)
 {
 }
 
@@ -68,9 +70,28 @@ int PlayerDragon::get_max_health()
 }
 
 
+int PlayerDragon::get_bullet_level()
+{
+   return bullet_level;
+}
+
+
 int PlayerDragon::get_speed_level()
 {
    return speed_level;
+}
+
+
+int PlayerDragon::get_options_level()
+{
+   return options_level;
+}
+
+
+void PlayerDragon::increment_bullet_level()
+{
+   bullet_level += 1;
+   if (bullet_level >= 3) bullet_level = 3;
 }
 
 
@@ -78,6 +99,13 @@ void PlayerDragon::increment_speed_level()
 {
    speed_level += 1;
    if (speed_level >= 3) speed_level = 3;
+}
+
+
+void PlayerDragon::increment_options_level()
+{
+   options_level += 1;
+   if (options_level >= 3) options_level = 3;
 }
 
 

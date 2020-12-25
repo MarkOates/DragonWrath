@@ -20,6 +20,7 @@ namespace DragonWrath
          DragonWrath::Screens::GameplayScreenHud hud;
          DragonWrath::Worlds::Base world;
 
+         int player_lives;
          int player_score;
 
       public:

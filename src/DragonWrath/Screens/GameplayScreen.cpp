@@ -24,6 +24,7 @@ GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework, DragonWrath::
    , current_level(nullptr)
    , hud(framework)
    , world(framework, user_event_emitter, "World of DragonWrath", { "level_1", "level_2" })
+   , player_lives(3)
    , player_score(0)
 {
 }
@@ -35,7 +36,6 @@ GameplayScreen::~GameplayScreen()
 void GameplayScreen::initialize()
 {
    load_next_level();
-   player_score = 0;
 }
 
 void GameplayScreen::draw_you_have_won_banner()
@@ -101,11 +101,20 @@ void GameplayScreen::primary_timer_func()
          hud.activate_level_complete_banner();
       }
 
+      hud.set_player_lives(this->player_lives);
+
       if (player_dragon)
       {
          hud.set_player_health(player_dragon->get_health());
          hud.set_player_max_health(player_dragon->get_max_health());
+         hud.set_player_bullet_level(player_dragon->get_bullet_level());
+         hud.set_player_speed_level(player_dragon->get_speed_level());
+         hud.set_player_options_level(player_dragon->get_options_level());
       }
+
+      hud.set_player_score(this->player_score);
+
+
       if (current_level && current_level->is_type(TIMED_SCROLL))
       {
          DragonWrath::Levels::TimedScroll *timed_scroll_level =
@@ -114,7 +123,6 @@ void GameplayScreen::primary_timer_func()
          hud.debug__set_level_scroll_timer(level_scroll_timer);
       }
 
-      hud.set_player_score(this->player_score);
 
       // draw
       current_level->draw();
