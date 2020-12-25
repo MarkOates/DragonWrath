@@ -44,12 +44,76 @@ void UserEventEmitter::emit_increase_player_score(int points_to_add)
 }
 
 
+void UserEventEmitter::emit_spawn_extra_life_power_up_event(float x, float y)
+{
+   ALLEGRO_EVENT event;
+   event.user.type = SPAWN_EXTRA_LIFE_POWER_UP_EVENT;
+   event.user.data1 = x;
+   event.user.data2 = y;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_spawn_shield_boost_power_up_event(float x, float y)
+{
+   ALLEGRO_EVENT event;
+   event.user.type = SPAWN_SHIELD_BOOST_POWER_UP_EVENT;
+   event.user.data1 = x;
+   event.user.data2 = y;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_spawn_bullet_boost_power_up_event(float x, float y)
+{
+   ALLEGRO_EVENT event;
+   event.user.type = SPAWN_BULLET_BOOST_POWER_UP_EVENT;
+   event.user.data1 = x;
+   event.user.data2 = y;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
 void UserEventEmitter::emit_spawn_speed_boost_power_up_event(float x, float y)
 {
    ALLEGRO_EVENT event;
-   event.user.type = SPAWN_LIFE_POWER_UP_EVENT;
+   event.user.type = SPAWN_SPEED_BOOST_POWER_UP_EVENT;
    event.user.data1 = x;
    event.user.data2 = y;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_spawn_option_boost_power_up_event(float x, float y)
+{
+   ALLEGRO_EVENT event;
+   event.user.type = SPAWN_OPTION_BOOST_POWER_UP_EVENT;
+   event.user.data1 = x;
+   event.user.data2 = y;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_player_dragon_gets_extra_life()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAYER_DRAGON_GETS_EXTRA_LIFE_EVENT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_player_dragon_gets_shield_boost()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAYER_DRAGON_GETS_SHIELD_BOOST_EVENT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_player_dragon_gets_bullet_boost()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAYER_DRAGON_GETS_BULLET_BOOST_EVENT;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
@@ -58,6 +122,14 @@ void UserEventEmitter::emit_player_dragon_gets_speed_boost()
 {
    ALLEGRO_EVENT event;
    event.user.type = PLAYER_DRAGON_GETS_SPEED_BOOST_EVENT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_player_dragon_gets_option_boost()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAYER_DRAGON_GETS_OPTION_BOOST_EVENT;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 

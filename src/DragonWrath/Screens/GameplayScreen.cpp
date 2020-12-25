@@ -224,7 +224,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          player_score += points_to_add;
       }
       break;
-   case SPAWN_LIFE_POWER_UP_EVENT:
+   case SPAWN_EXTRA_LIFE_POWER_UP_EVENT:
       {
          if (current_level)
          {
@@ -235,7 +235,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          }
       }
       break;
-   case SPAWN_SPEED_POWER_UP_EVENT:
+   case SPAWN_SPEED_BOOST_POWER_UP_EVENT:
       {
          if (current_level)
          {
@@ -246,7 +246,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          }
       }
       break;
-   case SPAWN_BULLET_POWER_UP_EVENT:
+   case SPAWN_BULLET_BOOST_POWER_UP_EVENT:
       {
          if (current_level)
          {
@@ -257,7 +257,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          }
       }
       break;
-   case SPAWN_SHIELD_POWER_UP_EVENT:
+   case SPAWN_SHIELD_BOOST_POWER_UP_EVENT:
       {
          if (current_level)
          {
@@ -268,7 +268,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          }
       }
       break;
-   case SPAWN_OPTION_POWER_UP_EVENT:
+   case SPAWN_OPTION_BOOST_POWER_UP_EVENT:
       {
          if (current_level)
          {
@@ -279,7 +279,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          }
       }
       break;
-   case PLAYER_DRAGON_GETS_LIFE_EVENT:
+   case PLAYER_DRAGON_GETS_EXTRA_LIFE_EVENT:
       {
          player_lives++;
       }

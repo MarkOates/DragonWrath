@@ -73,7 +73,11 @@ void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
 
                float power_up_spawn_x = enemy->place.position.x;
                float power_up_spawn_y = enemy->place.position.y;
+               //user_event_emitter.emit_spawn_extra_life_power_up_event(power_up_spawn_x, power_up_spawn_y);
+               //user_event_emitter.emit_spawn_shield_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
+               //user_event_emitter.emit_spawn_bullet_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
                user_event_emitter.emit_spawn_speed_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
+               //user_event_emitter.emit_spawn_option_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
             }
 
             bullet->flag_for_deletion();
@@ -127,10 +131,11 @@ void SceneCollisionHelper::update_power_up_collisions_on_player_dragon()
          int points_to_add = 200;
          user_event_emitter.emit_increase_player_score(points_to_add);
 
-         if (power_up->is_type("SpeedBoost"))
-         {
-            user_event_emitter.emit_player_dragon_gets_speed_boost();
-         }
+         if (power_up->is_type("ExtraLife")) user_event_emitter.emit_player_dragon_gets_extra_life();
+         if (power_up->is_type("ShieldBoost")) user_event_emitter.emit_player_dragon_gets_shield_boost();
+         if (power_up->is_type("BulletBoost")) user_event_emitter.emit_player_dragon_gets_bullet_boost();
+         if (power_up->is_type("SpeedBoost")) user_event_emitter.emit_player_dragon_gets_speed_boost();
+         if (power_up->is_type("OptionBoost")) user_event_emitter.emit_player_dragon_gets_option_boost();
       }
    }
 }
