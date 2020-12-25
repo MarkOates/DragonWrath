@@ -21,7 +21,7 @@ namespace DragonWrath
          int shield_level;
          int bullet_level;
          int speed_level;
-         int options_level;
+         int option_level;
 
       public:
          PlayerDragon(ElementID *parent, float x, float y);
@@ -33,12 +33,12 @@ namespace DragonWrath
          int get_shield_level();
          int get_bullet_level();
          int get_speed_level();
-         int get_options_level();
+         int get_option_level();
 
          void increment_shield_level();
          void increment_bullet_level();
          void increment_speed_level();
-         void increment_options_level();
+         void increment_option_level();
 
          float calculate_max_velocity();
       };

@@ -17,7 +17,7 @@ GameplayScreenHud::GameplayScreenHud(AllegroFlare::Framework &framework)
    , player_shield_level(0)
    , player_bullet_level(0)
    , player_speed_level(0)
-   , player_options_level(0)
+   , player_option_level(0)
    , player_score(0)
    , game_over_banner_showing(false)
    , level_complete_banner_showing(false)
@@ -170,7 +170,7 @@ void GameplayScreenHud::draw_all_bars()
    cursor_x += bar_distance_x;
    draw_bar(cursor_x, y, player_speed_level, 3, "SPEED");
    cursor_x += bar_distance_x;
-   draw_bar(cursor_x, y, player_options_level, 3, "OPTION");
+   draw_bar(cursor_x, y, player_option_level, 3, "OPTION");
 }
 
 
@@ -212,9 +212,9 @@ void GameplayScreenHud::set_player_speed_level(int player_speed_level)
 }
 
 
-void GameplayScreenHud::set_player_options_level(int player_options_level)
+void GameplayScreenHud::set_player_option_level(int player_option_level)
 {
-   this->player_options_level = player_options_level;
+   this->player_option_level = player_option_level;
 }
 
 

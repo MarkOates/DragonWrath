@@ -10,11 +10,11 @@ namespace DragonWrath
    {
       namespace PowerUps
       {
-         class OneUp : public DragonWrath::Entities::PowerUps::Base
+         class ExtraLife : public DragonWrath::Entities::PowerUps::Base
          {
          public:
-            OneUp(ElementID *parent, float x, float y);
-            ~OneUp();
+            ExtraLife(ElementID *parent, float x, float y);
+            ~ExtraLife();
          };
       }
    }

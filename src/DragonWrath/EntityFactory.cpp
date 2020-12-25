@@ -234,19 +234,83 @@ DragonWrath::Entities::PlayerDragon *EntityFactory::create_player_dragon(float x
 }
 
 
+DragonWrath::Entities::PowerUps::ExtraLife *EntityFactory::create_extra_life(float x, float y)
+{
+   DragonWrath::Entities::PowerUps::ExtraLife *entity =
+      new DragonWrath::Entities::PowerUps::ExtraLife(current_level, x, y);
+
+   ALLEGRO_BITMAP *source_bitmap = framework.bitmap("power_ups/extra_life.png");
+   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
+   entity->bitmap.bitmap(bitmap);
+   entity->bitmap.align(0.5, 0.5);
+   entity->set(ALWAYS_ON_TOP);
+   entity->place.size = AllegroFlare::vec2d(96, 96);
+
+   return entity;
+}
+
+
+DragonWrath::Entities::PowerUps::ShieldBoost *EntityFactory::create_shield_boost(float x, float y)
+{
+   DragonWrath::Entities::PowerUps::ShieldBoost *entity =
+      new DragonWrath::Entities::PowerUps::ShieldBoost(current_level, x, y);
+
+   ALLEGRO_BITMAP *source_bitmap = framework.bitmap("power_ups/shield_boost.png");
+   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
+   entity->bitmap.bitmap(bitmap);
+   entity->bitmap.align(0.5, 0.5);
+   entity->set(ALWAYS_ON_TOP);
+   entity->place.size = AllegroFlare::vec2d(96, 96);
+
+   return entity;
+}
+
+
+DragonWrath::Entities::PowerUps::BulletBoost *EntityFactory::create_bullet_boost(float x, float y)
+{
+   DragonWrath::Entities::PowerUps::BulletBoost *entity =
+      new DragonWrath::Entities::PowerUps::BulletBoost(current_level, x, y);
+
+   ALLEGRO_BITMAP *source_bitmap = framework.bitmap("power_ups/bullet_boost.png");
+   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
+   entity->bitmap.bitmap(bitmap);
+   entity->bitmap.align(0.5, 0.5);
+   entity->set(ALWAYS_ON_TOP);
+   entity->place.size = AllegroFlare::vec2d(96, 96);
+
+   return entity;
+}
+
+
 DragonWrath::Entities::PowerUps::SpeedBoost *EntityFactory::create_speed_boost(float x, float y)
 {
-   DragonWrath::Entities::PowerUps::SpeedBoost *speed_boost =
+   DragonWrath::Entities::PowerUps::SpeedBoost *entity =
       new DragonWrath::Entities::PowerUps::SpeedBoost(current_level, x, y);
 
    ALLEGRO_BITMAP *source_bitmap = framework.bitmap("power_ups/speed_boost.png");
-   ALLEGRO_BITMAP *speed_boost_bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
-   speed_boost->bitmap.bitmap(speed_boost_bitmap);
-   speed_boost->bitmap.align(0.5, 0.5);
-   speed_boost->set(ALWAYS_ON_TOP);
-   speed_boost->place.size = AllegroFlare::vec2d(96, 96);
+   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
+   entity->bitmap.bitmap(bitmap);
+   entity->bitmap.align(0.5, 0.5);
+   entity->set(ALWAYS_ON_TOP);
+   entity->place.size = AllegroFlare::vec2d(96, 96);
 
-   return speed_boost;
+   return entity;
+}
+
+
+DragonWrath::Entities::PowerUps::OptionBoost *EntityFactory::create_option_boost(float x, float y)
+{
+   DragonWrath::Entities::PowerUps::OptionBoost *entity =
+      new DragonWrath::Entities::PowerUps::OptionBoost(current_level, x, y);
+
+   ALLEGRO_BITMAP *source_bitmap = framework.bitmap("power_ups/option_boost.png");
+   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
+   entity->bitmap.bitmap(bitmap);
+   entity->bitmap.align(0.5, 0.5);
+   entity->set(ALWAYS_ON_TOP);
+   entity->place.size = AllegroFlare::vec2d(96, 96);
+
+   return entity;
 }
 
 

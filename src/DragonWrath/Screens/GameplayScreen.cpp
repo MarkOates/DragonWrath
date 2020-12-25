@@ -119,7 +119,7 @@ void GameplayScreen::primary_timer_func()
          hud.set_player_shield_level(player_dragon->get_shield_level());
          hud.set_player_bullet_level(player_dragon->get_bullet_level());
          hud.set_player_speed_level(player_dragon->get_speed_level());
-         hud.set_player_options_level(player_dragon->get_options_level());
+         hud.set_player_option_level(player_dragon->get_option_level());
       }
 
       hud.set_player_score(this->player_score);
@@ -231,7 +231,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
             DragonWrath::EntityFactory entity_factory(framework, current_level);
             float spawn_x = ev->user.data1;
             float spawn_y = ev->user.data2;
-            //entity_factory.create_one_up(spawn_x, spawn_y);
+            entity_factory.create_extra_life(spawn_x, spawn_y);
          }
       }
       break;
@@ -253,7 +253,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
             DragonWrath::EntityFactory entity_factory(framework, current_level);
             float spawn_x = ev->user.data1;
             float spawn_y = ev->user.data2;
-            //entity_factory.create_bullet_boost(spawn_x, spawn_y);
+            entity_factory.create_bullet_boost(spawn_x, spawn_y);
          }
       }
       break;
@@ -264,7 +264,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
             DragonWrath::EntityFactory entity_factory(framework, current_level);
             float spawn_x = ev->user.data1;
             float spawn_y = ev->user.data2;
-            //entity_factory.create_shield_boost(spawn_x, spawn_y);
+            entity_factory.create_shield_boost(spawn_x, spawn_y);
          }
       }
       break;
@@ -275,7 +275,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
             DragonWrath::EntityFactory entity_factory(framework, current_level);
             float spawn_x = ev->user.data1;
             float spawn_y = ev->user.data2;
-            //entity_factory.create_option_boost(spawn_x, spawn_y);
+            entity_factory.create_option_boost(spawn_x, spawn_y);
          }
       }
       break;
@@ -302,10 +302,10 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          if (player_dragon) player_dragon->increment_speed_level();
       }
       break;
-   case PLAYER_DRAGON_GETS_OPTIONS_BOOST_EVENT:
+   case PLAYER_DRAGON_GETS_OPTION_BOOST_EVENT:
       {
          DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
-         if (player_dragon) player_dragon->increment_options_level();
+         if (player_dragon) player_dragon->increment_option_level();
       }
       break;
    default:

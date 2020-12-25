@@ -10,11 +10,11 @@ namespace DragonWrath
    {
       namespace PowerUps
       {
-         class OptionsBoost : public DragonWrath::Entities::PowerUps::Base
+         class OptionBoost : public DragonWrath::Entities::PowerUps::Base
          {
          public:
-            OptionsBoost(ElementID *parent, float x, float y);
-            ~OptionsBoost();
+            OptionBoost(ElementID *parent, float x, float y);
+            ~OptionBoost();
          };
       }
    }

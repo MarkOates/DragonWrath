@@ -18,7 +18,7 @@ namespace DragonWrath
          int player_shield_level;
          int player_bullet_level;
          int player_speed_level;
-         int player_options_level;
+         int player_option_level;
 
          int player_score;
 
@@ -45,7 +45,7 @@ namespace DragonWrath
          void set_player_shield_level(int player_shield_level);
          void set_player_bullet_level(int player_bullet_level);
          void set_player_speed_level(int player_speed_level);
-         void set_player_options_level(int player_options_level);
+         void set_player_option_level(int player_option_level);
          void set_player_score(int player_score);
 
          void activate_game_over_banner();

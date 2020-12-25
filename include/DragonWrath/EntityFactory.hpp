@@ -7,10 +7,14 @@
 #include <DragonWrath/Entities/Enemies/GreenDragon.hpp>
 #include <DragonWrath/Entities/Enemies/RedDragon.hpp>
 #include <DragonWrath/Entities/Enemies/PurpleDragon.hpp>
-#include <DragonWrath/Entities/PowerUps/SpeedBoost.hpp>
 #include <DragonWrath/Entities/Base.hpp>
 #include <DragonWrath/Entities/PlayerBullet.hpp>
 #include <DragonWrath/Entities/PlayerDragon.hpp>
+#include <DragonWrath/Entities/PowerUps/ExtraLife.hpp>
+#include <DragonWrath/Entities/PowerUps/ShieldBoost.hpp>
+#include <DragonWrath/Entities/PowerUps/BulletBoost.hpp>
+#include <DragonWrath/Entities/PowerUps/SpeedBoost.hpp>
+#include <DragonWrath/Entities/PowerUps/OptionBoost.hpp>
 
 namespace DragonWrath
 {
@@ -59,7 +63,11 @@ namespace DragonWrath
          );
       DragonWrath::Entities::PlayerBullet *create_player_bullet(float x, float y);
       DragonWrath::Entities::PlayerDragon *create_player_dragon(float x, float y);
+      DragonWrath::Entities::PowerUps::ExtraLife *create_extra_life(float x, float y);
+      DragonWrath::Entities::PowerUps::ShieldBoost *create_shield_boost(float x, float y);
+      DragonWrath::Entities::PowerUps::BulletBoost *create_bullet_boost(float x, float y);
       DragonWrath::Entities::PowerUps::SpeedBoost *create_speed_boost(float x, float y);
+      DragonWrath::Entities::PowerUps::OptionBoost *create_option_boost(float x, float y);
 
       std::vector<DragonWrath::Entities::Base *> create_10_random_enemies();
    };

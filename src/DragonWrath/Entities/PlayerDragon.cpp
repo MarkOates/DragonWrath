@@ -18,7 +18,7 @@ PlayerDragon::PlayerDragon(ElementID *parent, float x, float y)
    , shield_level(0)
    , bullet_level(0)
    , speed_level(0)
-   , options_level(0)
+   , option_level(0)
 {
 }
 
@@ -75,9 +75,9 @@ int PlayerDragon::get_speed_level()
 }
 
 
-int PlayerDragon::get_options_level()
+int PlayerDragon::get_option_level()
 {
-   return options_level;
+   return option_level;
 }
 
 
@@ -102,10 +102,10 @@ void PlayerDragon::increment_speed_level()
 }
 
 
-void PlayerDragon::increment_options_level()
+void PlayerDragon::increment_option_level()
 {
-   options_level += 1;
-   if (options_level >= 3) options_level = 3;
+   option_level += 1;
+   if (option_level >= 3) option_level = 3;
 }
 
 
