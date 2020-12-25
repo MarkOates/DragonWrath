@@ -47,9 +47,7 @@ DragonWrath::Levels::Base *Base::create_next_level_and_destroy_current()
       DragonWrath::LevelFactory level_factory(framework, user_event_emitter);
 
       std::string next_level_identifier = levels_to_load[current_level_index_num + 1];
-      std::cout << "loading next level \"" << next_level_identifier << "\"...";
       current_level = level_factory.create_level_by_identifier(next_level_identifier);
-      std::cout << "done." << std::endl;
 
       current_level_index_num++;
    }
@@ -60,10 +58,8 @@ DragonWrath::Levels::Base *Base::create_next_level_and_destroy_current()
 
 bool Base::next_level_exists()
 {
-   std::cout << "current_level_index_num " << current_level_index_num << std::endl;
-   std::cout << "levels_to_load.size() " << levels_to_load.size() << std::endl;
-
    return (current_level_index_num + 1) < (int)levels_to_load.size();
+
 }
 
 

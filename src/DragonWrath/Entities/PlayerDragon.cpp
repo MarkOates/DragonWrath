@@ -32,7 +32,6 @@ void PlayerDragon::take_damage(int amount)
 {
    if (is_dead())
    {
-      std::cout << "Dragon cannot take damage because he is dead." << std::endl;
       return;
    }
 
@@ -41,12 +40,6 @@ void PlayerDragon::take_damage(int amount)
    {
       shield_level = 0;
       state = DEAD;
-      std::cout << "Dragon has died of death." << std::endl;
-   }
-   else
-   {
-      std::cout << "Dragon takes damage of " << amount << "!!" << std::endl;
-      std::cout << "Dragon now has shield_level " << shield_level << std::endl;
    }
 }
 

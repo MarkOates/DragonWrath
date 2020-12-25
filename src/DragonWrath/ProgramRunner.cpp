@@ -13,8 +13,6 @@ DragonWrath::ProgramRunner::~ProgramRunner()
 
 void DragonWrath::ProgramRunner::run()
 {
-   std::cout << "DragonWrath run started successfully." << std::endl;
-
    AllegroFlare::Display *display;
    AllegroFlare::Screens screens;
    AllegroFlare::Framework framework(screens);
@@ -33,8 +31,5 @@ void DragonWrath::ProgramRunner::run()
    framework.run_loop();
 
    delete screen_manager;
-
-
-   std::cout << "DragonWrath exited the master loop successfully." << std::endl;
 }
 

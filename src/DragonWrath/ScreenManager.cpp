@@ -64,7 +64,6 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
    if (ev->type != SCREEN_MANAGER_SWITCH_SCREEN_EVENT) return;
 
    int index_of_level_to_start = ev->user.data1;
-   std::cout << "index_of_level_to_start: " << index_of_level_to_start << std::endl;
 
    DragonWrath::Screens::Base *newly_created_screen = nullptr;
 
@@ -72,7 +71,6 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
    {
    case 1:
       {
-         std::cout << "  creating TitleScreen" << std::endl;
          DragonWrath::Screens::TitleScreen *title_screen =
             new DragonWrath::Screens::TitleScreen(framework, user_event_emitter);
          newly_created_screen = title_screen;
@@ -80,7 +78,6 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
       break;
    case 2:
       {
-         std::cout << "  creating GameplayScreen" << std::endl;
          DragonWrath::Screens::GameplayScreen *gameplay_screen =
             new DragonWrath::Screens::GameplayScreen(framework, user_event_emitter);
          gameplay_screen->initialize();
