@@ -17,6 +17,7 @@ FastRefireWithAngledOut::FastRefireWithAngledOut(
    )
    : DragonWrath::Weapons::Base(user_event_emitter)
    , player_dragon(player_dragon)
+   , activated(false)
    , bullet_refire_counter(0.0)
    , bullet_refire_counter_length(1.0 / 6.0)
    , angled_bullet_refire_counter(0.0)
