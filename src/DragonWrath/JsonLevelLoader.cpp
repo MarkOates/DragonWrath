@@ -99,6 +99,7 @@ namespace DragonWrath
 
 
 JsonLevelLoader::JsonLevelLoader()
+   : output_loading_debug_to_cout(false)
 {
 }
 
@@ -133,7 +134,7 @@ DragonWrath::Levels::TimedScroll *JsonLevelLoader::create_timed_scroll_from_sour
    // grab the duration
 
    float duration = get_or_raise_float(j, "duration");
-   std::cout << "duration: " << duration << std::endl;
+   if (output_loading_debug_to_cout) std::cout << "duration: " << duration << std::endl;
 
 
    // assemble the list of enemies to spawn
@@ -142,7 +143,7 @@ DragonWrath::Levels::TimedScroll *JsonLevelLoader::create_timed_scroll_from_sour
    if (j.contains("enemies"))
    {
       json enemies = j["enemies"];
-      std::cout << "enemies: " << enemies.size() << std::endl;
+      if (output_loading_debug_to_cout) std::cout << "enemies: " << enemies.size() << std::endl;
       for (json::iterator it = enemies.begin(); it != enemies.end(); ++it)
       {
          float spawn_time = get_or_raise_float((*it), "spawn_time");
@@ -151,11 +152,14 @@ DragonWrath::Levels::TimedScroll *JsonLevelLoader::create_timed_scroll_from_sour
          float spawn_y = get_or_raise_float((*it), "spawn_y");
          std::string movement_strategy = get_or_raise_string((*it), "movement_strategy");
 
-         std::cout << "- spawn_time: " << spawn_time << std::endl;
-         std::cout << "  type: " << type << std::endl;
-         std::cout << "  spawn_x: " << spawn_x << std::endl;
-         std::cout << "  spawn_y: " << spawn_y << std::endl;
-         std::cout << "  movement_strategy: " << movement_strategy << std::endl;
+         if (output_loading_debug_to_cout)
+         {
+            std::cout << "- spawn_time: " << spawn_time << std::endl;
+            std::cout << "  type: " << type << std::endl;
+            std::cout << "  spawn_x: " << spawn_x << std::endl;
+            std::cout << "  spawn_y: " << spawn_y << std::endl;
+            std::cout << "  movement_strategy: " << movement_strategy << std::endl;
+         }
 
          enemies_to_spawn_result.push_back(EnemyToSpawn(spawn_time, type, spawn_x, spawn_y, movement_strategy));
       }

@@ -7,6 +7,9 @@ namespace DragonWrath
 {
    class JsonLevelLoader
    {
+   private:
+      bool output_loading_debug_to_cout;
+
    public:
       JsonLevelLoader();
       ~JsonLevelLoader();
