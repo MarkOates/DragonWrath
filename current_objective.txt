@@ -1,1 +1,2 @@
 - North Star: Implement behavior for remaining power-ups
+  - Warm-up: Plugin the level progress meter to TimedScroll

@@ -99,10 +99,17 @@ void GameplayScreen::primary_timer_func()
       DragonWrath::SceneCollectionHelper collection_helper(current_level);
       DragonWrath::Entities::PlayerDragon *player_dragon = collection_helper.get_player_dragon();
 
+
+      //////
       // update
+      //////
       current_level->update();
 
+
+      //////
       // update the hud
+      //////
+
       if (player_dragon && player_dragon->is_dead())
       {
          hud.activate_game_over_banner();
@@ -134,14 +141,25 @@ void GameplayScreen::primary_timer_func()
       }
 
 
+      //////
       // draw
+      //////
+
       current_level->draw();
       hud.draw();
 
+
+      //////
       // cleanup
+      //////
+
       current_level->cleanup();
 
+
+      //////
       // see if the next level should be loaded
+      //////
+
       if (current_level->is_ready_to_destroy()) load_next_level();
    }
    else
