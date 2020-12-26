@@ -138,6 +138,9 @@ void GameplayScreen::primary_timer_func()
             static_cast<DragonWrath::Levels::TimedScroll *>(current_level);
          float level_scroll_timer = timed_scroll_level->get_timer();
          hud.debug__set_level_scroll_timer(level_scroll_timer);
+
+         float level_progress_position = timed_scroll_level->calculate_level_progress_percentage();
+         hud.set_level_progress_position(level_progress_position);
       }
 
 

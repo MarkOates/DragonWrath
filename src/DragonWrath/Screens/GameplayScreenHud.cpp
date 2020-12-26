@@ -177,7 +177,6 @@ void GameplayScreenHud::draw_all_bars()
 
 void GameplayScreenHud::draw_level_progress_meter()
 {
-//void GameplayScreenHud::draw_bar(float x, float y, int value, int max_value, std::string label)
    float bar_max_width = 520;
    float bar_height = 15;
    float x = 1920 / 2 - bar_max_width / 2;
@@ -185,16 +184,16 @@ void GameplayScreenHud::draw_level_progress_meter()
 
    float percentage = level_progress_position;
 
+   if (percentage <= 0.0) percentage = 0.0f;
+   if (percentage >= 1.0) percentage = 1.0f;
+
    ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.25, 0.25, 0.25, 1.0};
    ALLEGRO_COLOR fill_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
-   //ALLEGRO_COLOR border_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
 
    // backfill
    al_draw_filled_rectangle(x, y, x+bar_max_width, y+bar_height, backfill_color);
    // active health
    al_draw_filled_rectangle(x, y, x+bar_max_width*percentage, y+bar_height, fill_color);
-   // frame
-   //al_draw_rectangle(x, y, x+bar_max_width, y+bar_height, border_color, 4.0f);
 }
 
 

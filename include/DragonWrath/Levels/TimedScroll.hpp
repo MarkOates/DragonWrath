@@ -50,6 +50,7 @@ namespace DragonWrath
          void update_level_specific_behavior() override;
 
          float get_timer();
+         float calculate_level_progress_percentage();
 
          bool is_completed() override;
       };

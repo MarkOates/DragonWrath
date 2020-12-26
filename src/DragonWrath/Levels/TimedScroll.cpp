@@ -118,6 +118,19 @@ float TimedScroll::get_timer()
 }
 
 
+float TimedScroll::calculate_level_progress_percentage()
+{
+   if (duration_to_end <= 0) return 0.0;
+
+   float percentage = timer / duration_to_end;
+
+   if (percentage <= 0.0) percentage = 0.0f;
+   if (percentage >= 1.0) percentage = 1.0f;
+
+   return percentage;
+}
+
+
 bool TimedScroll::is_completed()
 {
    return timer >= duration_to_end;
