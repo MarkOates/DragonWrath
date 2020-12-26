@@ -20,7 +20,6 @@ PlayerDragon::PlayerDragon(ElementID *parent, float x, float y)
    , speed_level(0)
    , option_level(0)
    , shooting(false)
-   , shooting_start_time(0.0)
 {
 }
 
@@ -54,15 +53,7 @@ bool PlayerDragon::is_dead()
 
 void PlayerDragon::activate_shooting()
 {
-   if (is_shooting())
-   {
-      return;
-   }
-   else
-   {
-      shooting_start_time = al_get_time();
-      this->shooting = true;
-   }
+   this->shooting = true;
 }
 
 
@@ -75,12 +66,6 @@ void PlayerDragon::deactivate_shooting()
 bool PlayerDragon::is_shooting()
 {
    return this->shooting;
-}
-
-
-float PlayerDragon::get_shooting_start_time()
-{
-   return this->shooting_start_time;
 }
 
 
