@@ -4,6 +4,11 @@
 #include <DragonWrath/EntityTypeNames.hpp>
 #include <DragonWrath/MovementStrategyNames.hpp>
 #include <DragonWrath/Weapons/BasicRefire.hpp>
+#include <DragonWrath/JsonLevelLoader.hpp>
+#include <string>
+#include <fstream>
+#include <streambuf>
+
 
 namespace DragonWrath
 {
@@ -43,6 +48,18 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_1
 }
 
 
+static std::string load_file_contents(std::string filename)
+{
+   // WARNING! this helper function does not raise an exception if the file does not exist
+   // TODO raise error when file is not present
+
+   std::ifstream t(filename);
+   std::string str((std::istreambuf_iterator<char>(t)),
+                    std::istreambuf_iterator<char>());
+   return str;
+}
+
+
 std::vector<EnemyToSpawn> LevelFactory::build_5_dragon_wave(std::string dragon_type, int num_dragons, float frequency, float y, std::string movement_strategy)
 {
    std::vector<EnemyToSpawn> result = {};
@@ -70,47 +87,24 @@ std::vector<EnemyToSpawn> LevelFactory::append(std::vector<EnemyToSpawn> a, std:
 
 DragonWrath::Levels::TimedScroll *LevelFactory::create_level_1()
 {
-   // enemies to create
-  // EnemyToSpawn(float spawn_time, std::string enemy_type, float spawn_x, float spawn_y, std::string movement_strategy);
-   float screen_h = 1080;
-   float upper_y = screen_h/4;
-   float middle_y = screen_h/2;
-   float lower_y = screen_h/4*3;
+   // load the level source json from file
+   std::string level_source_json = load_file_contents("data/levels/level_1.json");
 
-   std::vector<EnemyToSpawn> result_enemies_list = {};
-   float delay_for_first_wave_start = 2.0;
-   float wave_start = delay_for_first_wave_start;
-
-   result_enemies_list = append(result_enemies_list, offset_spawn_time(build_5_dragon_wave(YELLOW_DRAGON, 5, 0.4, upper_y, MOVE_LEFT), wave_start + 0.0));
-   result_enemies_list = append(result_enemies_list, offset_spawn_time(build_5_dragon_wave(YELLOW_DRAGON, 5, 0.4, lower_y, MOVE_LEFT), wave_start + 3.0));
-   result_enemies_list = append(result_enemies_list, offset_spawn_time(build_5_dragon_wave(YELLOW_DRAGON, 5, 0.4, middle_y, MOVE_LEFT), wave_start + 5.0));
-   wave_start += 7.0;
-
-   result_enemies_list = append(result_enemies_list, offset_spawn_time(build_5_dragon_wave(BLUE_DRAGON, 3, 0.4, middle_y, SIN_WAVE_MOVE_LEFT), wave_start + 0.0));
-   wave_start += 7.0;
-
-   result_enemies_list = append(result_enemies_list, offset_spawn_time(build_5_dragon_wave(PURPLE_DRAGON, 1, 0.4, upper_y, SIN_WAVE_MOVE_LEFT), wave_start + 0.0));
-   result_enemies_list = append(result_enemies_list, offset_spawn_time(build_5_dragon_wave(PURPLE_DRAGON, 1, 0.4, middle_y, SIN_WAVE_MOVE_LEFT), wave_start + 1.0));
-   result_enemies_list = append(result_enemies_list, offset_spawn_time(build_5_dragon_wave(PURPLE_DRAGON, 1, 0.4, lower_y, SIN_WAVE_MOVE_LEFT), wave_start + 2.0));
-   wave_start += 7.0;
-
-   result_enemies_list = append(result_enemies_list, offset_spawn_time(build_5_dragon_wave(BLUE_DRAGON, 3, 0.4, upper_y, SIN_WAVE_MOVE_LEFT), wave_start + 0.0));
-   result_enemies_list = append(result_enemies_list, offset_spawn_time(build_5_dragon_wave(BLUE_DRAGON, 3, 0.4, lower_y, SIN_WAVE_MOVE_LEFT), wave_start + 0.0));
-   wave_start += 7.0;
-
+   // load the level from json
+   DragonWrath::JsonLevelLoader json_level_loader;
    DragonWrath::Levels::TimedScroll *timed_scroll_level =
-      new DragonWrath::Levels::TimedScroll(framework, user_event_emitter, 60 * 3, result_enemies_list);
+      json_level_loader.create_timed_scroll_from_source(level_source_json, framework, user_event_emitter);
    DragonWrath::EntityFactory entity_factory(framework, timed_scroll_level);
 
    // create player dragon
    DragonWrath::Entities::PlayerDragon *created_player_dragon = entity_factory.create_player_dragon(480, 1080/2);
-   DragonWrath::Weapons::Base *weapon_to_equip = new DragonWrath::Weapons::BasicRefire(
-         created_player_dragon,
-         user_event_emitter
-      );
+
+   // create and equip the weapon on the dragon
+   DragonWrath::Weapons::Base *weapon_to_equip = new DragonWrath::Weapons::BasicRefire(created_player_dragon, user_event_emitter);
    created_player_dragon->equip_weapon(weapon_to_equip);
 
    return timed_scroll_level;
+
 }
 
 

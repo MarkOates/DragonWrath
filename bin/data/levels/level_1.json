@@ -1,0 +1,26 @@
+{
+  "type": "TimedScroll",
+  "duration": 116,
+  "enemies": [
+    { "spawn_time": 1, "type": "yellow_dragon", "spawn_x": 1900, "spawn_y": 300, "movement_strategy": "move_left"},
+    { "spawn_time": 2, "type": "purple_dragon", "spawn_x": 1900, "spawn_y": 600, "movement_strategy": "move_left"},
+    { "spawn_time": 3, "type": "green_dragon", "spawn_x": 1900, "spawn_y": 800, "movement_strategy": "move_left"},
+    { "spawn_time": 4, "type": "yellow_dragon", "spawn_x": 1900, "spawn_y": 300, "movement_strategy": "move_left"},
+    { "spawn_time": 5, "type": "purple_dragon", "spawn_x": 1900, "spawn_y": 600, "movement_strategy": "move_left"},
+    { "spawn_time": 6, "type": "green_dragon", "spawn_x": 1900, "spawn_y": 800, "movement_strategy": "move_left"},
+
+    { "spawn_time": 10, "type": "blue_dragon", "spawn_x": 1900, "spawn_y": 300, "movement_strategy": "sin_wave_move_left"},
+    { "spawn_time": 10.5, "type": "blue_dragon", "spawn_x": 1900, "spawn_y": 400, "movement_strategy": "sin_wave_move_left"},
+    { "spawn_time": 11, "type": "blue_dragon", "spawn_x": 1900, "spawn_y": 500, "movement_strategy": "move_left"},
+    { "spawn_time": 11.5, "type": "blue_dragon", "spawn_x": 1900, "spawn_y": 500, "movement_strategy": "move_left"},
+    { "spawn_time": 12, "type": "blue_dragon", "spawn_x": 1900, "spawn_y": 300, "movement_strategy": "sin_wave_move_left"},
+    { "spawn_time": 12.5, "type": "blue_dragon", "spawn_x": 1900, "spawn_y": 400, "movement_strategy": "sin_wave_move_left"},
+
+    { "spawn_time": 15, "type": "yellow_dragon", "spawn_x": 1900, "spawn_y": 300, "movement_strategy": "move_left"},
+    { "spawn_time": 16, "type": "purple_dragon", "spawn_x": 1900, "spawn_y": 600, "movement_strategy": "move_left"},
+    { "spawn_time": 17, "type": "green_dragon", "spawn_x": 1900, "spawn_y": 800, "movement_strategy": "move_left"},
+    { "spawn_time": 18, "type": "yellow_dragon", "spawn_x": 1900, "spawn_y": 300, "movement_strategy": "move_left"},
+    { "spawn_time": 19, "type": "purple_dragon", "spawn_x": 1900, "spawn_y": 600, "movement_strategy": "move_left"},
+    { "spawn_time": 20, "type": "green_dragon", "spawn_x": 1900, "spawn_y": 800, "movement_strategy": "move_left"}
+  ]
+}

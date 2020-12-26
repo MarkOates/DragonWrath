@@ -12,4 +12,4 @@ This is my official entry into [KrampusHack 2020](https://tins.amarillion.org/kr
 * C++ IRC client: https://github.com/fredimachado/IRCClient
 * NES Soundfont: https://musical-artifacts.com/artifacts/23
 * SNES Soundfont(s): https://www.williamkage.com/snes_soundfonts/
-
+* nlohmann json: https://github.com/nlohmann/json
