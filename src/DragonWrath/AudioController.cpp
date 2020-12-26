@@ -13,9 +13,9 @@ namespace DragonWrath
 
 AudioController::AudioController(AllegroFlare::SampleBin &sample_bin)
    : sample_bin(sample_bin)
-   , game_show_music(sample_bin.auto_get("game_show_music.ogg"))
+   , game_show_music(sample_bin.auto_get("01 sawsquarenoise - Tittle Screen.ogg"))
    , storyboard_music(sample_bin.auto_get("storyboard_music.ogg"))
-   , haunting_music(sample_bin.auto_get("haunting_atmosphere-01.ogg"))
+   , haunting_music(sample_bin.auto_get("02 sawsquarenoise - Stage 1.ogg"))
    , hurt_sound_effect(sample_bin.auto_get("217192__rt759__game-voice-3.wav"))
    , tada_sound_effect(sample_bin.auto_get("tada.ogg"))
    , win_cheer_sound_effect(sample_bin.auto_get("win_cheer.ogg"))
@@ -95,6 +95,10 @@ void AudioController::play_strong_punch_sound_effect()
 
 void AudioController::play_audio_track_by_id(int track_id)
 {
+   std::cout << "*** Playing audio track by id: " << track_id << " ***" << std::endl;
+   std::cout << "*** Playing audio track by id: " << track_id << " ***" << std::endl;
+   std::cout << "*** Playing audio track by id: " << track_id << " ***" << std::endl;
+
    if (track_id == current_music_track_num) return;
 
    stop_all();

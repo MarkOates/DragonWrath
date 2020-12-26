@@ -144,6 +144,7 @@ void GameplayScreen::load_next_level()
 {
    hud.deactivate_all_banners();
    current_level = world.create_next_level_and_destroy_current();
+   user_event_emitter.emit_play_level_1_music_event();
 }
 
 

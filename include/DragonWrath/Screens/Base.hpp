@@ -11,6 +11,8 @@ namespace DragonWrath
       public:
          Base();
          ~Base();
+
+         virtual void start();
       };
    }
 }

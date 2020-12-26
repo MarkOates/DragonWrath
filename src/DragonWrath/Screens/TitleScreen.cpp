@@ -60,6 +60,12 @@ void TitleScreen::draw_main_title()
 }
 
 
+void TitleScreen::start()
+{
+   user_event_emitter.emit_play_title_screen_music_event();
+}
+
+
 void TitleScreen::primary_timer_func()
 {
    al_clear_to_color(AllegroFlare::color::black);

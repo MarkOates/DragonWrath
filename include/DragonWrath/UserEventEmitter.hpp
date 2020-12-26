@@ -31,6 +31,9 @@ namespace DragonWrath
       void emit_player_dragon_gets_bullet_boost();
       void emit_player_dragon_gets_speed_boost();
       void emit_player_dragon_gets_option_boost();
+
+      void emit_play_title_screen_music_event();
+      void emit_play_level_1_music_event();
    };
 }
 

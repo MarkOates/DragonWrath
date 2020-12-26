@@ -5,6 +5,7 @@
 #include <AllegroFlare/Framework.hpp>
 #include <DragonWrath/Screens/Base.hpp>
 #include <DragonWrath/UserEventEmitter.hpp>
+#include <DragonWrath/AudioController.hpp>
 
 
 namespace DragonWrath
@@ -17,6 +18,7 @@ namespace DragonWrath
       DragonWrath::Screens::Base *current_screen;
       ALLEGRO_EVENT_SOURCE screen_switcher_event_souce;
       DragonWrath::UserEventEmitter user_event_emitter;
+      DragonWrath::AudioController audio_controller;
 
    public:
       ScreenManager(AllegroFlare::Framework &framework, AllegroFlare::Screens &screens);

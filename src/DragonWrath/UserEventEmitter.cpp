@@ -1,6 +1,7 @@
 
 #include <DragonWrath/UserEventEmitter.hpp>
 
+#include <DragonWrath/MusicTrackNames.hpp>
 #include <DragonWrath/UserEventNames.hpp>
 #include <sstream>
 
@@ -142,6 +143,26 @@ void UserEventEmitter::emit_player_dragon_gets_option_boost()
    event.user.type = PLAYER_DRAGON_GETS_OPTION_BOOST_EVENT;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
+
+
+void UserEventEmitter::emit_play_title_screen_music_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAY_MUSIC_TRACK;
+   event.user.data1 = GAME_SHOW_MUSIC;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+
+void UserEventEmitter::emit_play_level_1_music_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAY_MUSIC_TRACK;
+   event.user.data1 = HAUNTING_MUSIC;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
 
 
 } // namespace DragonWrath
