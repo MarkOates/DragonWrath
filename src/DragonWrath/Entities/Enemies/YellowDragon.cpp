@@ -32,7 +32,7 @@ void YellowDragon::update()
    if (movement_strategy == MOVE_LEFT)
    {
       velocity.position.y = 0;
-      velocity.position.x = -8;
+      velocity.position.x = -5;
    }
    else if (movement_strategy == MOVE_RIGHT)
    {
@@ -46,7 +46,7 @@ void YellowDragon::update()
    }
    else if (movement_strategy == SIN_WAVE_MOVE_LEFT)
    {
-      velocity.position.x = -8;
+      velocity.position.x = -2;
       velocity.position.y = sin(al_get_time() * 4) * 10;
    }
    else

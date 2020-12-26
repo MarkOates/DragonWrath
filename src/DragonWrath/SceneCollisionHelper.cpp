@@ -73,11 +73,17 @@ void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
 
                float power_up_spawn_x = enemy->place.position.x;
                float power_up_spawn_y = enemy->place.position.y;
-               //user_event_emitter.emit_spawn_extra_life_power_up_event(power_up_spawn_x, power_up_spawn_y);
-               //user_event_emitter.emit_spawn_shield_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
-               user_event_emitter.emit_spawn_bullet_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
-               //user_event_emitter.emit_spawn_speed_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
-               //user_event_emitter.emit_spawn_option_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
+
+               int selection = rand() % 10;
+               switch(selection)
+               {
+               case 0: user_event_emitter.emit_spawn_extra_life_power_up_event(power_up_spawn_x, power_up_spawn_y); break;
+               case 1: user_event_emitter.emit_spawn_shield_boost_power_up_event(power_up_spawn_x, power_up_spawn_y); break;
+               case 2: user_event_emitter.emit_spawn_bullet_boost_power_up_event(power_up_spawn_x, power_up_spawn_y); break;
+               case 3: user_event_emitter.emit_spawn_speed_boost_power_up_event(power_up_spawn_x, power_up_spawn_y); break;
+               case 4: user_event_emitter.emit_spawn_option_boost_power_up_event(power_up_spawn_x, power_up_spawn_y); break;
+               default: break;
+               }
             }
 
             bullet->flag_for_deletion();
