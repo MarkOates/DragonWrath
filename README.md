@@ -13,3 +13,4 @@ This is my official entry into [KrampusHack 2020](https://tins.amarillion.org/kr
 * NES Soundfont: https://musical-artifacts.com/artifacts/23
 * SNES Soundfont(s): https://www.williamkage.com/snes_soundfonts/
 * nlohmann json: https://github.com/nlohmann/json
+* The Essential Retro Video Game Sound Collection: https://opengameart.org/content/512-sound-effects-8-bit-style
