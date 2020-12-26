@@ -22,7 +22,7 @@ GameplayScreenHud::GameplayScreenHud(AllegroFlare::Framework &framework)
    , game_over_banner_showing(false)
    , level_complete_banner_showing(false)
    , debug_mode(true)
-   , level_scroll_timer(0)
+   , debug__level_scroll_timer(0)
 {
 }
 
@@ -259,7 +259,7 @@ void GameplayScreenHud::debug__show_level_scroll_timer()
 {
    ALLEGRO_FONT *font = font_bin.auto_get("ChronoTrigger.ttf 32");
    std::stringstream level_scroll_timer_text;
-   level_scroll_timer_text << (int)level_scroll_timer;
+   level_scroll_timer_text << (int)debug__level_scroll_timer;
 
    al_draw_text(
       font,
@@ -274,7 +274,7 @@ void GameplayScreenHud::debug__show_level_scroll_timer()
 
 void GameplayScreenHud::debug__set_level_scroll_timer(float time)
 {
-   this->level_scroll_timer = time;
+   this->debug__level_scroll_timer = time;
 }
 
 

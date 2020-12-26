@@ -26,7 +26,7 @@ namespace DragonWrath
          bool level_complete_banner_showing;
 
          bool debug_mode;
-         float level_scroll_timer;
+         float debug__level_scroll_timer;
 
          void draw_bar(float x, float y, int value, int max_value=3, std::string label="");
          void draw_player_score();
