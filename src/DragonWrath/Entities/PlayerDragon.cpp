@@ -19,6 +19,7 @@ PlayerDragon::PlayerDragon(ElementID *parent, float x, float y)
    , bullet_level(0)
    , speed_level(0)
    , option_level(0)
+   , shooting(false)
 {
 }
 
@@ -47,6 +48,24 @@ void PlayerDragon::take_damage(int amount)
 bool PlayerDragon::is_dead()
 {
    return state == DEAD;
+}
+
+
+void PlayerDragon::activate_shooting()
+{
+   this->shooting = true;
+}
+
+
+void PlayerDragon::deactivate_shooting()
+{
+   this->shooting = false;
+}
+
+
+bool PlayerDragon::is_shooting()
+{
+   return this->shooting;
 }
 
 

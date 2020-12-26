@@ -23,12 +23,18 @@ namespace DragonWrath
          int speed_level;
          int option_level;
 
+         bool shooting;
+
       public:
          PlayerDragon(ElementID *parent, float x, float y);
          ~PlayerDragon();
 
          void take_damage(int amount);
          bool is_dead();
+
+         void activate_shooting();
+         void deactivate_shooting();
+         bool is_shooting();
 
          int get_shield_level();
          int get_bullet_level();
