@@ -9,21 +9,7 @@
 using json = nlohmann::json;
 
 
-namespace DragonWrath
-{
-
-
-JsonLevelLoader::JsonLevelLoader()
-{
-}
-
-
-JsonLevelLoader::~JsonLevelLoader()
-{
-}
-
-
-std::string type_as_string(json::value_t type)
+static std::string type_as_string(json::value_t type)
 {
    if (type == json::value_t::null) { return "json::value_t::null"; }
    if (type == json::value_t::boolean) { return "json::value_t::boolean"; }
@@ -42,7 +28,7 @@ std::string type_as_string(json::value_t type)
 }
 
 
-float get_or_default_float(json j, std::string key, float default_value)
+static float get_or_default_float(json j, std::string key, float default_value)
 {
    if (!j.contains(key)) return default_value;
    if (!j[key].is_number())
@@ -59,7 +45,7 @@ float get_or_default_float(json j, std::string key, float default_value)
 }
 
 
-float get_or_raise_float(json j, std::string key)
+static float get_or_raise_float(json j, std::string key)
 {
    if (!j.contains(key))
    {
@@ -75,7 +61,7 @@ float get_or_raise_float(json j, std::string key)
 }
 
 
-std::string get_or_default_string(json j, std::string key, std::string default_value)
+static std::string get_or_default_string(json j, std::string key, std::string default_value)
 {
    if (!j.contains(key)) return default_value;
    if (!j[key].is_string())
@@ -92,7 +78,7 @@ std::string get_or_default_string(json j, std::string key, std::string default_v
 }
 
 
-std::string get_or_raise_string(json j, std::string key)
+static std::string get_or_raise_string(json j, std::string key)
 {
    if (!j.contains(key))
    {
@@ -105,6 +91,20 @@ std::string get_or_raise_string(json j, std::string key)
       throw std::runtime_error(error_message.str());
    }
    return j[key].get<std::string>();
+}
+
+
+namespace DragonWrath
+{
+
+
+JsonLevelLoader::JsonLevelLoader()
+{
+}
+
+
+JsonLevelLoader::~JsonLevelLoader()
+{
 }
 
 
