@@ -19,6 +19,7 @@ GameplayScreenHud::GameplayScreenHud(AllegroFlare::Framework &framework)
    , player_speed_level(0)
    , player_option_level(0)
    , player_score(0)
+   , level_progress_position(0.0f)
    , game_over_banner_showing(false)
    , level_complete_banner_showing(false)
    , debug_mode(true)
@@ -174,15 +175,38 @@ void GameplayScreenHud::draw_all_bars()
 }
 
 
+void GameplayScreenHud::draw_level_progress_meter()
+{
+//void GameplayScreenHud::draw_bar(float x, float y, int value, int max_value, std::string label)
+   float bar_max_width = 520;
+   float bar_height = 15;
+   float x = 1920 / 2 - bar_max_width / 2;
+   float y = 1080 - 70;
+
+   float percentage = level_progress_position;
+
+   ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.25, 0.25, 0.25, 1.0};
+   ALLEGRO_COLOR fill_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+   //ALLEGRO_COLOR border_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+
+   // backfill
+   al_draw_filled_rectangle(x, y, x+bar_max_width, y+bar_height, backfill_color);
+   // active health
+   al_draw_filled_rectangle(x, y, x+bar_max_width*percentage, y+bar_height, fill_color);
+   // frame
+   //al_draw_rectangle(x, y, x+bar_max_width, y+bar_height, border_color, 4.0f);
+}
+
+
 void GameplayScreenHud::draw()
 {
    draw_player_lives();
    draw_all_bars();
+   draw_level_progress_meter();
+   draw_player_score();
 
    if (game_over_banner_showing) draw_game_over_banner();
    if (level_complete_banner_showing) draw_level_complete_banner();
-
-   draw_player_score();
 
    if (debug_mode) debug__show_level_scroll_timer();
 }
@@ -224,6 +248,12 @@ void GameplayScreenHud::set_player_score(int player_score)
 }
 
 
+float GameplayScreenHud::set_level_progress_position(float level_progress_position)
+{
+   this->level_progress_position = level_progress_position;
+}
+
+
 void GameplayScreenHud::activate_game_over_banner()
 {
    this->game_over_banner_showing = true;
@@ -259,14 +289,14 @@ void GameplayScreenHud::debug__show_level_scroll_timer()
 {
    ALLEGRO_FONT *font = font_bin.auto_get("ChronoTrigger.ttf 32");
    std::stringstream level_scroll_timer_text;
-   level_scroll_timer_text << (int)debug__level_scroll_timer;
+   level_scroll_timer_text << "seconds in level: " << (int)debug__level_scroll_timer;
 
    al_draw_text(
       font,
       ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0},
-      1920/2,
+      50,
       1080-50,
-      ALLEGRO_ALIGN_CENTER,
+      0,
       level_scroll_timer_text.str().c_str()
    );
 }

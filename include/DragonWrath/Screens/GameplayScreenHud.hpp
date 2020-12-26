@@ -21,6 +21,7 @@ namespace DragonWrath
          int player_option_level;
 
          int player_score;
+         float level_progress_position;
 
          bool game_over_banner_showing;
          bool level_complete_banner_showing;
@@ -34,6 +35,7 @@ namespace DragonWrath
          void draw_level_complete_banner();
          void draw_player_lives();
          void draw_all_bars();
+         void draw_level_progress_meter();
 
       public:
          GameplayScreenHud(AllegroFlare::Framework &framework);
@@ -47,6 +49,8 @@ namespace DragonWrath
          void set_player_speed_level(int player_speed_level);
          void set_player_option_level(int player_option_level);
          void set_player_score(int player_score);
+
+         float set_level_progress_position(float level_progress_position);
 
          void activate_game_over_banner();
          void activate_level_complete_banner();
