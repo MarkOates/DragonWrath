@@ -1,3 +1,2 @@
 - North Star: Implement behavior for remaining power-ups
   - Next Objective: Implement option_level ability on PlayerDragon
-  - Current Objective: Implement bullet_level ability
