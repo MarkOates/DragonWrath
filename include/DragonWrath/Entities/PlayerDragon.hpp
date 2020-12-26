@@ -24,6 +24,7 @@ namespace DragonWrath
          int option_level;
 
          bool shooting;
+         float shooting_start_time;
 
       public:
          PlayerDragon(ElementID *parent, float x, float y);
@@ -35,6 +36,7 @@ namespace DragonWrath
          void activate_shooting();
          void deactivate_shooting();
          bool is_shooting();
+         float get_shooting_start_time();
 
          int get_shield_level();
          int get_bullet_level();
