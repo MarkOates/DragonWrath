@@ -219,6 +219,9 @@ namespace AllegroFlare
       //instance = nullptr;
 
       bitmaps.clear(); // this needs to be fixed
+      samples.clear(); // this needs to be fixed
+      fonts.clear(); // this needs to be fixed
+      models.clear(); // this needs to be fixed
 
       initialized = false;
 
