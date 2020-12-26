@@ -25,6 +25,7 @@ namespace DragonWrath
          int player_score;
 
          DragonWrath::Entities::PlayerDragon *get_player_dragon();
+         void update_player_dragon_shooting();
 
       public:
          GameplayScreen(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter);

@@ -90,6 +90,23 @@ void GameplayScreen::load_next_level()
    current_level = world.create_next_level_and_destroy_current();
 }
 
+
+void GameplayScreen::update_player_dragon_shooting()
+{
+   DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
+   if (!player_dragon) return;
+
+   if (player_dragon->is_shooting())
+   {
+      DragonWrath::EntityFactory entity_factory(framework, current_level);
+
+      float bullet_spawn_x = player_dragon->place.position.x;
+      float bullet_spawn_y = player_dragon->place.position.y;
+      entity_factory.create_player_bullet(bullet_spawn_x, bullet_spawn_y);
+   }
+}
+
+
 void GameplayScreen::primary_timer_func()
 {
    al_clear_to_color(AllegroFlare::color::black);
@@ -104,6 +121,8 @@ void GameplayScreen::primary_timer_func()
       // update
       //////
       current_level->update();
+
+      update_player_dragon_shooting();
 
 
       //////
@@ -193,14 +212,7 @@ void GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
       if (player_dragon) player_dragon->velocity.x = player_dragon->calculate_max_velocity();
       break;
    case ALLEGRO_KEY_SPACE:
-      {
-         if (player_dragon)
-         {
-            float bullet_spawn_x = player_dragon->place.position.x;
-            float bullet_spawn_y = player_dragon->place.position.y;
-            entity_factory.create_player_bullet(bullet_spawn_x, bullet_spawn_y);
-         }
-      }
+      if (player_dragon) player_dragon->activate_shooting();
       break;
    case ALLEGRO_KEY_ESCAPE:
       framework.shutdown_program = true;
@@ -212,8 +224,7 @@ void GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
 
 void GameplayScreen::key_up_func(ALLEGRO_EVENT *ev)
 {
-   DragonWrath::SceneCollectionHelper scene_collection_helper(current_level);
-   Entities::Base *player_dragon = scene_collection_helper.get_player_dragon();
+   Entities::PlayerDragon *player_dragon = get_player_dragon();
 
    switch(ev->keyboard.keycode)
    {
@@ -228,6 +239,9 @@ void GameplayScreen::key_up_func(ALLEGRO_EVENT *ev)
       break;
    case ALLEGRO_KEY_RIGHT:
       if (player_dragon) player_dragon->velocity.x = 0;
+      break;
+   case ALLEGRO_KEY_SPACE:
+      if (player_dragon) player_dragon->deactivate_shooting();
       break;
    default:
       break;
