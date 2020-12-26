@@ -1,2 +1,3 @@
 - North Star: Implement behavior for remaining power-ups
-  - Warm-up: Plugin the level progress meter to TimedScroll
+  - Next Objective: Implement option_level ability on PlayerDragon
+  - Current Objective: Implement bullet_level ability
