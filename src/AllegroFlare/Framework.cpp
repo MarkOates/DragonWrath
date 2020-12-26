@@ -130,6 +130,13 @@ namespace AllegroFlare
 
 
 
+   SampleBin &Framework::get_sample_bin_ref()
+   {
+      return samples;
+   }
+
+
+
    FontBin &Framework::get_font_bin_ref()
    {
       return fonts;
