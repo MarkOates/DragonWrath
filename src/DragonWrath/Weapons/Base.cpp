@@ -23,6 +23,20 @@ Base::~Base()
 }
 
 
+void Base::activate()
+{
+}
+
+
+void Base::deactivate()
+{
+}
+
+
+void Base::update()
+{
+}
+
 
 } // namespace Weapons
 } // namespace DragonWrath

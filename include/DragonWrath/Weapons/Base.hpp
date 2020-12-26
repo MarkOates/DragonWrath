@@ -16,6 +16,10 @@ namespace DragonWrath
       public:
          Base(DragonWrath::UserEventEmitter &user_event_emitter);
          ~Base();
+
+         virtual void activate();
+         virtual void deactivate();
+         virtual void update();
       };
    }
 }
