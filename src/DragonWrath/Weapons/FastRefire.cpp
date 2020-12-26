@@ -1,7 +1,7 @@
 
 
 
-#include <DragonWrath/Weapons/BasicRefire.hpp>
+#include <DragonWrath/Weapons/FastRefire.hpp>
 
 
 
@@ -11,27 +11,26 @@ namespace Weapons
 {
 
 
-BasicRefire::BasicRefire(
+FastRefire::FastRefire(
       DragonWrath::Entities::PlayerDragon *player_dragon,
       DragonWrath::UserEventEmitter &user_event_emitter
    )
    : DragonWrath::Weapons::Base(user_event_emitter)
-   , activated(false)
    , player_dragon(player_dragon)
    , bullet_refire_counter(0.0)
-   , bullet_refire_counter_length(1.0 / 2.0)
+   , bullet_refire_counter_length(1.0 / 5.0)
 {
 }
 
 
 
-BasicRefire::~BasicRefire()
+FastRefire::~FastRefire()
 {
 }
 
 
 
-void BasicRefire::activate()
+void FastRefire::activate()
 {
    if (is_activated())
    {
@@ -39,19 +38,19 @@ void BasicRefire::activate()
    }
    else
    {
-      this->activated = true;
       bullet_refire_counter = 0.0f;
+      this->activated = true;
    }
 }
 
 
-void BasicRefire::deactivate()
+void FastRefire::deactivate()
 {
    this->activated = false;
 }
 
 
-void BasicRefire::update()
+void FastRefire::update()
 {
    if (is_activated())
    {
@@ -72,11 +71,10 @@ void BasicRefire::update()
 }
 
 
-bool BasicRefire::is_activated()
+bool FastRefire::is_activated()
 {
    return activated;
 }
-
 
 
 } // namespace Weapons

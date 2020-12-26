@@ -4,6 +4,7 @@
 #include <DragonWrath/Screens/Base.hpp>
 #include <AllegroFlare/Framework.hpp>
 #include <DragonWrath/Levels/Base.hpp>
+#include <DragonWrath/UserEventEmitter.hpp>
 #include <DragonWrath/Worlds/Base.hpp>
 #include <DragonWrath/Screens/GameplayScreenHud.hpp>
 #include <DragonWrath/Entities/PlayerDragon.hpp>
@@ -17,6 +18,7 @@ namespace DragonWrath
       {
       private:
          AllegroFlare::Framework &framework;
+         DragonWrath::UserEventEmitter &user_event_emitter;
          DragonWrath::Levels::Base *current_level;
          DragonWrath::Screens::GameplayScreenHud hud;
          DragonWrath::Worlds::Base world;
@@ -36,6 +38,7 @@ namespace DragonWrath
          void draw_you_have_won_banner();
 
          void load_next_level();
+         void dequip_upgrade_and_equp_weapon_upgrade_on_player_dragon();
 
          void primary_timer_func() override;
          void key_down_func(ALLEGRO_EVENT *ev) override;

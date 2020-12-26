@@ -1,6 +1,11 @@
 #include <DragonWrath/Screens/GameplayScreen.hpp>
 
 #include <DragonWrath/Entities/Base.hpp>
+#include <DragonWrath/Weapons/Base.hpp>
+#include <DragonWrath/Weapons/BasicRefire.hpp>
+#include <DragonWrath/Weapons/FastRefire.hpp>
+#include <DragonWrath/Weapons/FastRefireWithAngledOut.hpp>
+#include <DragonWrath/Weapons/TwinFastRefire.hpp>
 #include <DragonWrath/SceneCollectionHelper.hpp>
 #include <DragonWrath/EntityAttributeNames.hpp>
 #include <DragonWrath/LevelTypeNames.hpp>
@@ -21,9 +26,10 @@ namespace Screens
 GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter)
    : DragonWrath::Screens::Base()
    , framework(framework)
+   , user_event_emitter(user_event_emitter)
    , current_level(nullptr)
    , hud(framework)
-   , world(framework, user_event_emitter, "World of DragonWrath", { "level_1", "level_2" })
+   , world(framework, this->user_event_emitter, "World of DragonWrath", { "level_1", "level_2" })
    , player_lives(3)
    , player_score(0)
 {
@@ -47,6 +53,56 @@ DragonWrath::Entities::PlayerDragon *GameplayScreen::get_player_dragon()
 void GameplayScreen::initialize()
 {
    load_next_level();
+}
+
+void GameplayScreen::dequip_upgrade_and_equp_weapon_upgrade_on_player_dragon()
+{
+   DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
+   if (!player_dragon) return;
+   if (player_dragon->is_bullet_level_at_max()) return;
+
+   if (player_dragon->has_weapon())
+   {
+      DragonWrath::Weapons::Base *weapon = player_dragon->get_weapon();
+      player_dragon->dequip_weapon();
+      delete weapon;
+   }
+
+   player_dragon->increment_bullet_level();
+
+   int player_weapon_level = player_dragon->get_bullet_level();
+   DragonWrath::Weapons::Base *weapon_to_equip = nullptr;
+   switch (player_weapon_level)
+   {
+   case 0:
+      weapon_to_equip = new DragonWrath::Weapons::BasicRefire(player_dragon, user_event_emitter);
+      break;
+   case 1:
+      weapon_to_equip = new DragonWrath::Weapons::FastRefire(player_dragon, user_event_emitter);
+      break;
+   case 2:
+      weapon_to_equip = new DragonWrath::Weapons::FastRefireWithAngledOut(player_dragon, user_event_emitter);
+      break;
+   case 3:
+      weapon_to_equip = new DragonWrath::Weapons::TwinFastRefire(player_dragon, user_event_emitter);
+      break;
+   default:
+      {
+         std::stringstream error_message;
+         error_message << "GameplayScreen::dequip_upgrade_and_equp_weapon_upgrade_on_player_dragon(): "
+            << "error: unrecognized player_weapon_level of \""
+            << player_weapon_level
+            << "\""
+            << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+      break;
+   }
+
+   if (weapon_to_equip)
+   {
+      player_dragon->equip_weapon(weapon_to_equip);
+   }
 }
 
 void GameplayScreen::draw_you_have_won_banner()
@@ -96,13 +152,10 @@ void GameplayScreen::update_player_dragon_shooting()
    DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
    if (!player_dragon) return;
 
-   if (player_dragon->is_shooting())
+   if (player_dragon->has_weapon())
    {
-      DragonWrath::EntityFactory entity_factory(framework, current_level);
-
-      float bullet_spawn_x = player_dragon->place.position.x;
-      float bullet_spawn_y = player_dragon->place.position.y;
-      entity_factory.create_player_bullet(bullet_spawn_x, bullet_spawn_y);
+      DragonWrath::Weapons::Base *weapon = player_dragon->get_weapon();
+      if (weapon) weapon->update();
    }
 }
 
@@ -212,7 +265,11 @@ void GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
       if (player_dragon) player_dragon->velocity.x = player_dragon->calculate_max_velocity();
       break;
    case ALLEGRO_KEY_SPACE:
-      if (player_dragon) player_dragon->activate_shooting();
+      if (player_dragon && player_dragon->has_weapon())
+      {
+         DragonWrath::Weapons::Base *weapon = player_dragon->get_weapon();
+         if (weapon) weapon->activate();
+      }
       break;
    case ALLEGRO_KEY_ESCAPE:
       framework.shutdown_program = true;
@@ -241,7 +298,11 @@ void GameplayScreen::key_up_func(ALLEGRO_EVENT *ev)
       if (player_dragon) player_dragon->velocity.x = 0;
       break;
    case ALLEGRO_KEY_SPACE:
-      if (player_dragon) player_dragon->deactivate_shooting();
+      if (player_dragon && player_dragon->has_weapon())
+      {
+         DragonWrath::Weapons::Base *weapon = player_dragon->get_weapon();
+         if (weapon) weapon->deactivate();
+      }
       break;
    default:
       break;
@@ -253,6 +314,17 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
 {
    switch (ev->type)
    {
+   case SPAWN_PLAYER_BULLET_EVENT:
+      {
+         if (current_level)
+         {
+            DragonWrath::EntityFactory entity_factory(framework, current_level);
+            float spawn_x = ev->user.data1;
+            float spawn_y = ev->user.data2;
+            entity_factory.create_player_bullet(spawn_x, spawn_y);
+         }
+      }
+      break;
    case INCREASE_PLAYER_SCORE_EVENT:
       {
          int points_to_add = ev->user.data1;
@@ -328,7 +400,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
    case PLAYER_DRAGON_GETS_BULLET_BOOST_EVENT:
       {
          DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
-         if (player_dragon) player_dragon->increment_bullet_level();
+         if (player_dragon) dequip_upgrade_and_equp_weapon_upgrade_on_player_dragon();
       }
       break;
    case PLAYER_DRAGON_GETS_SPEED_BOOST_EVENT:

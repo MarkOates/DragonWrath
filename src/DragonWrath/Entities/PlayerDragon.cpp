@@ -15,17 +15,30 @@ namespace Entities
 PlayerDragon::PlayerDragon(ElementID *parent, float x, float y)
    : DragonWrath::Entities::Base(parent, PLAYER_DRAGON, x, y)
    , state(ALIVE)
+   , shooting(false)
    , shield_level(0)
    , bullet_level(0)
    , speed_level(0)
    , option_level(0)
-   , shooting(false)
+   , weapon(nullptr)
 {
 }
 
 
 PlayerDragon::~PlayerDragon()
 {
+}
+
+
+void PlayerDragon::equip_weapon(DragonWrath::Weapons::Base *weapon)
+{
+   this->weapon = weapon;
+}
+
+
+void PlayerDragon::dequip_weapon()
+{
+   this->weapon = nullptr;
 }
 
 
@@ -53,19 +66,21 @@ bool PlayerDragon::is_dead()
 
 void PlayerDragon::activate_shooting()
 {
+   std::cout << "activating shooting" << std::endl;
    this->shooting = true;
 }
 
 
 void PlayerDragon::deactivate_shooting()
 {
+   std::cout << "deactivating shooting" << std::endl;
    this->shooting = false;
 }
 
 
 bool PlayerDragon::is_shooting()
 {
-   return this->shooting;
+   return shooting;
 }
 
 
@@ -90,6 +105,18 @@ int PlayerDragon::get_speed_level()
 int PlayerDragon::get_option_level()
 {
    return option_level;
+}
+
+
+DragonWrath::Weapons::Base *PlayerDragon::get_weapon()
+{
+   return weapon;
+}
+
+
+bool PlayerDragon::has_weapon()
+{
+   return weapon != nullptr;
 }
 
 
@@ -118,6 +145,30 @@ void PlayerDragon::increment_option_level()
 {
    option_level += 1;
    if (option_level >= 3) option_level = 3;
+}
+
+
+bool PlayerDragon::is_shield_level_at_max()
+{
+   return shield_level == 3;
+}
+
+
+bool PlayerDragon::is_bullet_level_at_max()
+{
+   return bullet_level == 3;
+}
+
+
+bool PlayerDragon::is_speed_level_at_max()
+{
+   return speed_level == 3;
+}
+
+
+bool PlayerDragon::is_option_level_at_max()
+{
+   return option_level == 3;
 }
 
 

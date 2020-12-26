@@ -10,22 +10,24 @@ namespace DragonWrath
 {
    namespace Weapons
    {
-      class BasicRefire : public DragonWrath::Weapons::Base
+      class FastRefireWithAngledOut : public DragonWrath::Weapons::Base
       {
       private:
          DragonWrath::Entities::PlayerDragon *player_dragon;
          bool activated;
          float bullet_refire_counter;
          float bullet_refire_counter_length;
+         float angled_bullet_refire_counter;
+         float angled_bullet_refire_counter_length;
 
          bool is_activated();
 
       public:
-         BasicRefire(
+         FastRefireWithAngledOut(
                DragonWrath::Entities::PlayerDragon *player_dragon,
                DragonWrath::UserEventEmitter &user_event_emitter
             );
-         ~BasicRefire();
+         ~FastRefireWithAngledOut();
 
          void activate() override;
          void deactivate() override;

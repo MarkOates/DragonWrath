@@ -44,6 +44,16 @@ void UserEventEmitter::emit_increase_player_score(int points_to_add)
 }
 
 
+void UserEventEmitter::emit_spawn_player_bullet_event(float x, float y)
+{
+   ALLEGRO_EVENT event;
+   event.user.type = SPAWN_PLAYER_BULLET_EVENT;
+   event.user.data1 = x;
+   event.user.data2 = y;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
 void UserEventEmitter::emit_spawn_extra_life_power_up_event(float x, float y)
 {
    ALLEGRO_EVENT event;

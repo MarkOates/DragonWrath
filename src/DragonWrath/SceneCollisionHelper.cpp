@@ -75,8 +75,8 @@ void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
                float power_up_spawn_y = enemy->place.position.y;
                //user_event_emitter.emit_spawn_extra_life_power_up_event(power_up_spawn_x, power_up_spawn_y);
                //user_event_emitter.emit_spawn_shield_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
-               //user_event_emitter.emit_spawn_bullet_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
-               user_event_emitter.emit_spawn_speed_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
+               user_event_emitter.emit_spawn_bullet_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
+               //user_event_emitter.emit_spawn_speed_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
                //user_event_emitter.emit_spawn_option_boost_power_up_event(power_up_spawn_x, power_up_spawn_y);
             }
 

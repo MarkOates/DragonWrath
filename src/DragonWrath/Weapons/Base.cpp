@@ -23,19 +23,26 @@ Base::~Base()
 }
 
 
+
 void Base::activate()
 {
+   // to be implemented by derived class, if necessary
 }
+
 
 
 void Base::deactivate()
 {
+   // to be implemented by derived class, if necessary
 }
+
 
 
 void Base::update()
 {
+   // to be implemented by derived class, if necessary
 }
+
 
 
 } // namespace Weapons

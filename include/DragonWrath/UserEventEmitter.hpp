@@ -18,6 +18,8 @@ namespace DragonWrath
       void emit_start_gameplay_screen_event();
       void emit_increase_player_score(int points_to_add);
 
+      void emit_spawn_player_bullet_event(float x, float y);
+
       void emit_spawn_extra_life_power_up_event(float x, float y);
       void emit_spawn_shield_boost_power_up_event(float x, float y);
       void emit_spawn_bullet_boost_power_up_event(float x, float y);

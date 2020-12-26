@@ -1,7 +1,7 @@
 
 
 
-#include <DragonWrath/Weapons/BasicRefire.hpp>
+#include <DragonWrath/Weapons/TwinFastRefire.hpp>
 
 
 
@@ -11,27 +11,27 @@ namespace Weapons
 {
 
 
-BasicRefire::BasicRefire(
+TwinFastRefire::TwinFastRefire(
       DragonWrath::Entities::PlayerDragon *player_dragon,
       DragonWrath::UserEventEmitter &user_event_emitter
    )
    : DragonWrath::Weapons::Base(user_event_emitter)
-   , activated(false)
    , player_dragon(player_dragon)
+   , activated(false)
    , bullet_refire_counter(0.0)
-   , bullet_refire_counter_length(1.0 / 2.0)
+   , bullet_refire_counter_length(1.0 / 8.0)
 {
 }
 
 
 
-BasicRefire::~BasicRefire()
+TwinFastRefire::~TwinFastRefire()
 {
 }
 
 
 
-void BasicRefire::activate()
+void TwinFastRefire::activate()
 {
    if (is_activated())
    {
@@ -39,19 +39,19 @@ void BasicRefire::activate()
    }
    else
    {
-      this->activated = true;
       bullet_refire_counter = 0.0f;
+      this->activated = true;
    }
 }
 
 
-void BasicRefire::deactivate()
+void TwinFastRefire::deactivate()
 {
    this->activated = false;
 }
 
 
-void BasicRefire::update()
+void TwinFastRefire::update()
 {
    if (is_activated())
    {
@@ -65,18 +65,26 @@ void BasicRefire::update()
             // bullet is fired
             float emit_bullet_from_x = player_dragon->place.position.x;
             float emit_bullet_from_y = player_dragon->place.position.y;
-            user_event_emitter.emit_spawn_player_bullet_event(emit_bullet_from_x, emit_bullet_from_y);
+            float bullet_distance = 30;
+            float bullet_h_distance = bullet_distance/2;
+            user_event_emitter.emit_spawn_player_bullet_event(
+                  emit_bullet_from_x,
+                  emit_bullet_from_y - bullet_h_distance
+               );
+            user_event_emitter.emit_spawn_player_bullet_event(
+                  emit_bullet_from_x,
+                  emit_bullet_from_y + bullet_h_distance
+               );
          }
       }
    }
 }
 
 
-bool BasicRefire::is_activated()
+bool TwinFastRefire::is_activated()
 {
    return activated;
 }
-
 
 
 } // namespace Weapons

@@ -49,9 +49,8 @@ void TrackPlayerDragon::update()
          }
          else
          {
-            std::stringstream error_message;
-            error_message << "TrackPlayerDragon::update(): error: player_dragon is unexpectedly nullptr" << std::endl;
-            throw std::runtime_error(error_message.str());
+            // expected behavior:
+            // player_dragon has been removed from the scene, and is no longer able to be tracked.
          }
       }
       else

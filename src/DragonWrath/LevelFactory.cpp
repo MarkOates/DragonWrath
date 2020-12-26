@@ -3,6 +3,7 @@
 #include <DragonWrath/EntityFactory.hpp>
 #include <DragonWrath/EntityTypeNames.hpp>
 #include <DragonWrath/MovementStrategyNames.hpp>
+#include <DragonWrath/Weapons/BasicRefire.hpp>
 
 namespace DragonWrath
 {
@@ -28,7 +29,12 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_1
    DragonWrath::EntityFactory entity_factory(framework, timed_scroll_level);
 
    // create player dragon
-   entity_factory.create_player_dragon(480, 1080/2);
+   DragonWrath::Entities::PlayerDragon *created_player_dragon = entity_factory.create_player_dragon(480, 1080/2);
+   DragonWrath::Weapons::Base *weapon_to_equip = new DragonWrath::Weapons::BasicRefire(
+         created_player_dragon,
+         user_event_emitter
+      );
+   created_player_dragon->equip_weapon(weapon_to_equip);
 
    // create random enemies
    entity_factory.create_10_random_enemies();
@@ -42,11 +48,11 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_t
    // enemies to create
   // EnemyToSpawn(float spawn_time, std::string enemy_type, float spawn_x, float spawn_y, std::string movement_strategy);
    std::vector<EnemyToSpawn> enemies_to_spawn = {
-      { 0, PURPLE_DRAGON, 1920*0.75 - 300, 1080/2 - 100, MOVE_LEFT},
-      //{ 0.5, GREEN_DRAGON, 1920*0.75 - 150, 1080/2 - 50,  MOVE_LEFT},
-      //{ 1, PURPLE_DRAGON, 1920*0.75 + 0,   1080/2 + 0,   MOVE_LEFT},
-      //{ 1.5, RED_DRAGON, 1920*0.75 + 150, 1080/2 + 50,  MOVE_LEFT},
-      //{ 2, YELLOW_DRAGON, 1920*0.75 + 300, 1080/2 + 100, MOVE_LEFT},
+      { 0, PURPLE_DRAGON, 1920*0.95, 1080/2 - 100, MOVE_LEFT},
+      { 1, GREEN_DRAGON, 1920*0.95, 1080/2 - 50,  MOVE_LEFT},
+      { 2, PURPLE_DRAGON, 1920*0.95,   1080/2 + 0,   MOVE_LEFT},
+      { 3, RED_DRAGON, 1920*0.95, 1080/2 + 50,  MOVE_LEFT},
+      { 4, YELLOW_DRAGON, 1920*0.95, 1080/2 + 100, MOVE_LEFT},
    };
 
    DragonWrath::Levels::TimedScroll *timed_scroll_level =
@@ -54,7 +60,12 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_t
    DragonWrath::EntityFactory entity_factory(framework, timed_scroll_level);
 
    // create player dragon
-   entity_factory.create_player_dragon(480, 1080/2);
+   DragonWrath::Entities::PlayerDragon *created_player_dragon = entity_factory.create_player_dragon(480, 1080/2);
+   DragonWrath::Weapons::Base *weapon_to_equip = new DragonWrath::Weapons::BasicRefire(
+         created_player_dragon,
+         user_event_emitter
+      );
+   created_player_dragon->equip_weapon(weapon_to_equip);
 
    return timed_scroll_level;
 }

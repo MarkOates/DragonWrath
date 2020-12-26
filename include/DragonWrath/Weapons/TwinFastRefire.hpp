@@ -10,7 +10,7 @@ namespace DragonWrath
 {
    namespace Weapons
    {
-      class BasicRefire : public DragonWrath::Weapons::Base
+      class TwinFastRefire : public DragonWrath::Weapons::Base
       {
       private:
          DragonWrath::Entities::PlayerDragon *player_dragon;
@@ -21,11 +21,11 @@ namespace DragonWrath
          bool is_activated();
 
       public:
-         BasicRefire(
+         TwinFastRefire(
                DragonWrath::Entities::PlayerDragon *player_dragon,
                DragonWrath::UserEventEmitter &user_event_emitter
             );
-         ~BasicRefire();
+         ~TwinFastRefire();
 
          void activate() override;
          void deactivate() override;

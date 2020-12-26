@@ -10,12 +10,12 @@ namespace DragonWrath
    {
       class Base
       {
-      private:
+      protected:
          DragonWrath::UserEventEmitter &user_event_emitter;
 
       public:
          Base(DragonWrath::UserEventEmitter &user_event_emitter);
-         ~Base();
+         virtual ~Base();
 
          virtual void activate();
          virtual void deactivate();
