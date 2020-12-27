@@ -349,6 +349,23 @@ std::vector<DragonWrath::Entities::Base *> EntityFactory::create_10_random_enemi
 }
 
 
+DragonWrath::Entities::Backgrounds::Base *EntityFactory::create_background()
+{
+   //ALLEGRO_BITMAP *source_bitmap = framework.bitmap("backgrounds/Sky3.png");
+   AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
+   DragonWrath::Entities::Backgrounds::Base *background =
+      new DragonWrath::Entities::Backgrounds::Base(current_level, bitmap_bin);
+
+   //ALLEGRO_BITMAP *source_bitmap = framework.bitmap("backgrounds/Cloud2.png");
+   //ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("sky-and-cloud3", source_bitmap, 0.0);
+   //background->bitmap.bitmap(bitmap);
+   //background->bitmap.align(0, 0);
+   //background->bitmap.scale_to_fit(1920, 1080);
+
+   return background;
+}
+
+
 }
 
 

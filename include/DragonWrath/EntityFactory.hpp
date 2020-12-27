@@ -15,6 +15,7 @@
 #include <DragonWrath/Entities/PowerUps/BulletBoost.hpp>
 #include <DragonWrath/Entities/PowerUps/SpeedBoost.hpp>
 #include <DragonWrath/Entities/PowerUps/OptionBoost.hpp>
+#include <DragonWrath/Entities/Backgrounds/Base.hpp>
 
 namespace DragonWrath
 {
@@ -70,6 +71,10 @@ namespace DragonWrath
       DragonWrath::Entities::PowerUps::OptionBoost *create_option_boost(float x, float y);
 
       std::vector<DragonWrath::Entities::Base *> create_10_random_enemies();
+
+      // backgrounds
+
+      DragonWrath::Entities::Backgrounds::Base *create_background();
    };
 }
 

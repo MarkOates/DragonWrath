@@ -103,6 +103,9 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_level_1()
    DragonWrath::Weapons::Base *weapon_to_equip = new DragonWrath::Weapons::BasicRefire(created_player_dragon, user_event_emitter);
    created_player_dragon->equip_weapon(weapon_to_equip);
 
+   // create a basic background
+   DragonWrath::Entities::Backgrounds::Base *background = entity_factory.create_background();
+
    return timed_scroll_level;
 
 }
