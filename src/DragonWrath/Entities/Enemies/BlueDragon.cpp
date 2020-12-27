@@ -47,7 +47,7 @@ void BlueDragon::update()
    else if (movement_strategy == SIN_WAVE_MOVE_LEFT)
    {
       velocity.position.x = -8;
-      velocity.position.y = sin(al_get_time() * 4) * 10;
+      velocity.position.y = sin((al_get_time() - get_created_at()) * 4) * 10;
    }
    else
    {

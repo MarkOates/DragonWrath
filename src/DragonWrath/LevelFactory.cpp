@@ -88,7 +88,7 @@ std::vector<EnemyToSpawn> LevelFactory::append(std::vector<EnemyToSpawn> a, std:
 DragonWrath::Levels::TimedScroll *LevelFactory::create_level_1()
 {
    // load the level source json from file
-   std::string level_source_json = load_file_contents("data/levels/level_1.json");
+   std::string level_source_json = load_file_contents("data/levels/level_1.generated.json");
 
    // load the level from json
    DragonWrath::JsonLevelLoader json_level_loader;

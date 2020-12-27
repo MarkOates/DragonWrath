@@ -1,0 +1,503 @@
+{
+  "type": "TimedScroll",
+  "duration": 116,
+  "enemies": [
+    {
+      "spawn_time": 0.0,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 0.75,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 1.5,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 3.0,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 3.75,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 4.5,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 11.0,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 11.4,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 11.8,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 12.2,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 12.6,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 15.0,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 15.4,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 15.8,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 16.2,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 16.6,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 21.0,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 21.75,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 22.5,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 23.25,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 24.0,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 21.0,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 21.75,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 22.5,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 23.25,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 24.0,
+      "type": "yellow_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 23,
+      "type": "purple_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 20,
+      "movement_strategy": "moving_left"
+    },
+    {
+      "spawn_time": 23,
+      "type": "purple_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 1060,
+      "movement_strategy": "moving_left"
+    },
+    {
+      "spawn_time": 30.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 30.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 32,
+      "type": "purple_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 20,
+      "movement_strategy": "moving_left"
+    },
+    {
+      "spawn_time": 32,
+      "type": "purple_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 1060,
+      "movement_strategy": "moving_left"
+    },
+    {
+      "spawn_time": 34.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 405,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 34.75,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 405,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 34.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 675,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 34.75,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 675,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 36,
+      "type": "purple_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "moving_left"
+    },
+    {
+      "spawn_time": 36,
+      "type": "purple_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "moving_left"
+    },
+    {
+      "spawn_time": 38.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 38.75,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 39.5,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 38.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 38.75,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 39.5,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 40,
+      "type": "purple_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 20,
+      "movement_strategy": "moving_left"
+    },
+    {
+      "spawn_time": 40,
+      "type": "purple_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 1060,
+      "movement_strategy": "moving_left"
+    },
+    {
+      "spawn_time": 42.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 405,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 42.75,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 405,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 43.5,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 405,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 44.25,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 405,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 42.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 675,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 42.75,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 675,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 43.5,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 675,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 44.25,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 675,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 44,
+      "type": "purple_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "moving_left"
+    },
+    {
+      "spawn_time": 44,
+      "type": "purple_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "moving_left"
+    },
+    {
+      "spawn_time": 50.0,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 50.4,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 50.8,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 51.2,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 51.6,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 540.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 54.0,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 54.4,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 54.8,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 55.2,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 55.6,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 58.0,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 58.4,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 58.8,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 59.2,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810.0,
+      "movement_strategy": "sin_wave_move_left"
+    },
+    {
+      "spawn_time": 59.6,
+      "type": "blue_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810.0,
+      "movement_strategy": "sin_wave_move_left"
+    }
+  ]
+}
