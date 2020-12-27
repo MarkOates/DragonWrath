@@ -164,19 +164,35 @@ class LevelBuilder
     #result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_lower_middle);
     start_time += 4;
 
-    result += set_of_n_in_a_row(n: 3, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle)
-    result += set_of_n_in_a_row(n: 3, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle)
+    result += set_of_n_in_a_row(n: 4, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle)
+    result += set_of_n_in_a_row(n: 4, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle)
 
     result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_top);
     result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_bottom); start_time += 4;
 
-    result += set_of_n_in_a_row(n: 3, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_upper_middle)
-    result += set_of_n_in_a_row(n: 3, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_lower_middle)
+    result += set_of_n_in_a_row(n: 4, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_upper_middle)
+    result += set_of_n_in_a_row(n: 4, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_lower_middle)
 
     #result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_upper_middle);
     #result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_lower_middle);
-    start_time += 4;
+    start_time += 8;
 
+    result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle, movement_strategy: "towards_player_dragon_but_maintain_trajectory")
+    start_time += 1;
+    result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle, movement_strategy: "towards_player_dragon_but_maintain_trajectory")
+    start_time += 1;
+    result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_upper_middle, movement_strategy: "towards_player_dragon_but_maintain_trajectory")
+    start_time += 1;
+    result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_lower_middle, movement_strategy: "towards_player_dragon_but_maintain_trajectory")
+    start_time += 1;
+    result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle, movement_strategy: "towards_player_dragon_but_maintain_trajectory")
+    start_time += 1;
+    result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle, movement_strategy: "towards_player_dragon_but_maintain_trajectory")
+    start_time += 1;
+    result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_upper_middle, movement_strategy: "towards_player_dragon_but_maintain_trajectory")
+    start_time += 1;
+    result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_lower_middle, movement_strategy: "towards_player_dragon_but_maintain_trajectory")
+    start_time += 1;
 
 
     # starter yellow dragons in simple rows

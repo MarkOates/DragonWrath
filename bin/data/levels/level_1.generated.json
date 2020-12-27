@@ -815,6 +815,13 @@
       "movement_strategy": "move_left"
     },
     {
+      "spawn_time": 94.25,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "move_left"
+    },
+    {
       "spawn_time": 92.0,
       "type": "red_dragon",
       "spawn_x": 1910,
@@ -830,6 +837,13 @@
     },
     {
       "spawn_time": 93.5,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 94.25,
       "type": "red_dragon",
       "spawn_x": 1910,
       "spawn_y": 810,
@@ -871,6 +885,13 @@
       "movement_strategy": "move_left"
     },
     {
+      "spawn_time": 98.25,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 405,
+      "movement_strategy": "move_left"
+    },
+    {
       "spawn_time": 96.0,
       "type": "red_dragon",
       "spawn_x": 1910,
@@ -890,6 +911,69 @@
       "spawn_x": 1910,
       "spawn_y": 675,
       "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 98.25,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 675,
+      "movement_strategy": "move_left"
+    },
+    {
+      "spawn_time": 104.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "towards_player_dragon_but_maintain_trajectory"
+    },
+    {
+      "spawn_time": 105.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "towards_player_dragon_but_maintain_trajectory"
+    },
+    {
+      "spawn_time": 106.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 405,
+      "movement_strategy": "towards_player_dragon_but_maintain_trajectory"
+    },
+    {
+      "spawn_time": 107.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 675,
+      "movement_strategy": "towards_player_dragon_but_maintain_trajectory"
+    },
+    {
+      "spawn_time": 108.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 270,
+      "movement_strategy": "towards_player_dragon_but_maintain_trajectory"
+    },
+    {
+      "spawn_time": 109.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 810,
+      "movement_strategy": "towards_player_dragon_but_maintain_trajectory"
+    },
+    {
+      "spawn_time": 110.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 405,
+      "movement_strategy": "towards_player_dragon_but_maintain_trajectory"
+    },
+    {
+      "spawn_time": 111.0,
+      "type": "red_dragon",
+      "spawn_x": 1910,
+      "spawn_y": 675,
+      "movement_strategy": "towards_player_dragon_but_maintain_trajectory"
     },
     {
       "spawn_time": 112.0,
