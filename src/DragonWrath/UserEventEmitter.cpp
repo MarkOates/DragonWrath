@@ -1,7 +1,7 @@
 
 #include <DragonWrath/UserEventEmitter.hpp>
 
-#include <DragonWrath/MusicTrackNames.hpp>
+#include <DragonWrath/MusicAndSoundEffectTrackNames.hpp>
 #include <DragonWrath/UserEventNames.hpp>
 #include <sstream>
 
@@ -149,17 +149,25 @@ void UserEventEmitter::emit_play_title_screen_music_event()
 {
    ALLEGRO_EVENT event;
    event.user.type = PLAY_MUSIC_TRACK;
-   event.user.data1 = GAME_SHOW_MUSIC;
+   event.user.data1 = TITLE_SCREEN_MUSIC;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
-
 
 
 void UserEventEmitter::emit_play_level_1_music_event()
 {
    ALLEGRO_EVENT event;
    event.user.type = PLAY_MUSIC_TRACK;
-   event.user.data1 = HAUNTING_MUSIC;
+   event.user.data1 = LEVEL_1_MUSIC;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_play_player_shooting_bullet_sound_effect_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAY_SOUND_EFFECT;
+   event.user.data1 = PLAYER_SHOOT_BULLET_SOUND_EFFECT;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 

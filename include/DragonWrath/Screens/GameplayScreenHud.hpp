@@ -50,7 +50,7 @@ namespace DragonWrath
          void set_player_option_level(int player_option_level);
          void set_player_score(int player_score);
 
-         float set_level_progress_position(float level_progress_position);
+         void set_level_progress_position(float level_progress_position);
 
          void activate_game_over_banner();
          void activate_level_complete_banner();

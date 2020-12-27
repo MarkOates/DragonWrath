@@ -19,9 +19,19 @@ ScreenManager::ScreenManager(AllegroFlare::Framework &framework, AllegroFlare::S
    , current_screen(nullptr)
    , screen_switcher_event_souce()
    , user_event_emitter(screen_switcher_event_souce)
-   , audio_controller(framework.get_sample_bin_ref())
+   , audio_controller(
+         framework.get_sample_bin_ref(),
+         std::vector<AudioRepositoryElement>{
+            { TITLE_SCREEN_MUSIC, "01 sawsquarenoise - Tittle Screen.ogg", true },
+            { LEVEL_1_MUSIC, "02 sawsquarenoise - Stage 1.ogg", true },
+         },
+         std::vector<AudioRepositoryElement>{
+            { PLAYER_SHOOT_BULLET_SOUND_EFFECT, "sfx_wpn_laser8.wav", false },
+         }
+      )
 {
 }
+
 
 
 ScreenManager::~ScreenManager()
@@ -33,6 +43,7 @@ void ScreenManager::initialize()
 {
    al_init_user_event_source(&screen_switcher_event_souce);
    al_register_event_source(framework.event_queue, &screen_switcher_event_souce);
+   audio_controller.initialize();
 }
 
 
@@ -67,20 +78,13 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
    case PLAY_MUSIC_TRACK:
       {
          int track_id = ev->user.data1;
-         audio_controller.play_audio_track_by_id(track_id);
+         audio_controller.play_music_track_by_id(track_id);
       }
       break;
    case PLAY_SOUND_EFFECT:
       {
          int sound_effect_id = ev->user.data1;
-         std::string *track_id_str_ptr = (std::string *)ev->user.data2;
-
-         if (sound_effect_id != 0) audio_controller.play_sound_effect_by_id(sound_effect_id);
-         if (track_id_str_ptr)
-         {
-            audio_controller.play_sound_effect_by_name(*track_id_str_ptr);
-            delete track_id_str_ptr;
-         }
+         audio_controller.play_sound_effect_by_id(sound_effect_id);
       }
       break;
    case SCREEN_MANAGER_SWITCH_SCREEN_EVENT:

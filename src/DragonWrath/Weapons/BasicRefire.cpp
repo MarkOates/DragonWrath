@@ -16,8 +16,8 @@ BasicRefire::BasicRefire(
       DragonWrath::UserEventEmitter &user_event_emitter
    )
    : DragonWrath::Weapons::Base(user_event_emitter)
-   , activated(false)
    , player_dragon(player_dragon)
+   , activated(false)
    , bullet_refire_counter(0.0)
    , bullet_refire_counter_length(1.0 / 2.0)
 {
@@ -66,6 +66,7 @@ void BasicRefire::update()
             float emit_bullet_from_x = player_dragon->place.position.x;
             float emit_bullet_from_y = player_dragon->place.position.y;
             user_event_emitter.emit_spawn_player_bullet_event(emit_bullet_from_x, emit_bullet_from_y);
+            user_event_emitter.emit_play_player_shooting_bullet_sound_effect_event();
          }
       }
    }

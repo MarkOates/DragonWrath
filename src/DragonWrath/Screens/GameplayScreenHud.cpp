@@ -247,7 +247,7 @@ void GameplayScreenHud::set_player_score(int player_score)
 }
 
 
-float GameplayScreenHud::set_level_progress_position(float level_progress_position)
+void GameplayScreenHud::set_level_progress_position(float level_progress_position)
 {
    this->level_progress_position = level_progress_position;
 }

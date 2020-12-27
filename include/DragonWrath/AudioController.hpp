@@ -3,6 +3,7 @@
 
 #include <allegro_flare/sound_object.h>
 #include <AllegroFlare/SampleBin.hpp>
+#include <DragonWrath/MusicAndSoundEffectTrackNames.hpp>
 #include <map>
 
 
@@ -12,34 +13,35 @@ namespace DragonWrath
    {
    private:
       AllegroFlare::SampleBin &sample_bin;
+      std::string sound_effects_identifier_prefix;
+      std::string music_tracks_identifier_prefix;
+      std::vector<AudioRepositoryElement> sound_effect_elements;
+      std::vector<AudioRepositoryElement> music_track_elements;
+      std::map<int, Sound*> sound_effects;
+      std::map<int, Sound*> music_tracks;
+      int current_music_track_id;
+      float global_volume;
 
-      Sound game_show_music;
-      Sound storyboard_music;
-      Sound haunting_music;
-      Sound hurt_sound_effect;
-      Sound tada_sound_effect;
-      Sound win_cheer_sound_effect;
-      Sound strong_punch_sound_effect;
-      int current_music_track_num;
+      bool output_loading_debug_to_cout;
 
-      std::map<std::string, Sound*> sound_effects;
+      Sound *find_sound_effect_by_id(int id);
+      Sound *find_music_track_by_id(int id);
 
    public:
-      AudioController(AllegroFlare::SampleBin &sample_bin);
+      AudioController(
+            AllegroFlare::SampleBin &sample_bin,
+            std::vector<AudioRepositoryElement> music_track_elements,
+            std::vector<AudioRepositoryElement> sound_effect_elements
+         );
       ~AudioController();
 
-      void play_game_show_music();
-      void play_storyboard_music();
-      void play_haunting_music();
-      void play_hurt_sound_effect();
-      void play_tada_sound_effect();
-      void play_strong_punch_sound_effect();
-
+      void initialize();
       void stop_all();
 
-      void play_audio_track_by_id(int id);
+      void set_global_volume(float volume);
+
+      void play_music_track_by_id(int id);
       void play_sound_effect_by_id(int id);
-      void play_sound_effect_by_name(std::string id_str);
    };
 }
 

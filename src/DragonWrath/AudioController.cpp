@@ -3,7 +3,7 @@
 
 #include <DragonWrath/AudioController.hpp>
 
-#include <DragonWrath/MusicTrackNames.hpp>
+//#include <DragonWrath/MusicTrackNames.hpp>
 //#include <framework/framework.hpp>
 
 
@@ -11,148 +11,144 @@ namespace DragonWrath
 {
 
 
-AudioController::AudioController(AllegroFlare::SampleBin &sample_bin)
+AudioController::AudioController(AllegroFlare::SampleBin &sample_bin,
+      std::vector<AudioRepositoryElement> music_track_elements,
+      std::vector<AudioRepositoryElement> sound_effect_elements
+   )
    : sample_bin(sample_bin)
-   , game_show_music(sample_bin.auto_get("01 sawsquarenoise - Tittle Screen.ogg"))
-   , storyboard_music(sample_bin.auto_get("storyboard_music.ogg"))
-   , haunting_music(sample_bin.auto_get("02 sawsquarenoise - Stage 1.ogg"))
-   , hurt_sound_effect(sample_bin.auto_get("217192__rt759__game-voice-3.wav"))
-   , tada_sound_effect(sample_bin.auto_get("tada.ogg"))
-   , win_cheer_sound_effect(sample_bin.auto_get("win_cheer.ogg"))
-   , strong_punch_sound_effect(sample_bin.auto_get("strong_punch.ogg"))
-   , current_music_track_num(-1)
+   , sound_effects_identifier_prefix("sound_effects/")
+   , music_tracks_identifier_prefix("music_tracks/")
+   , sound_effect_elements(sound_effect_elements)
+   , music_track_elements(music_track_elements)
    , sound_effects()
+   , music_tracks()
+   , current_music_track_id(-1)
+   , global_volume(0.2)
+   , output_loading_debug_to_cout(false)
 {
-   game_show_music.loop(true);
-   storyboard_music.loop(true);
-   haunting_music.loop(true);
 }
-
 
 
 AudioController::~AudioController()
 {
    stop_all();
+
    for (auto &sound_effect : sound_effects) delete sound_effect.second;
+   for (auto &music_track : music_tracks) delete music_track.second;
 }
 
+
+void AudioController::initialize()
+{
+   if (output_loading_debug_to_cout) std::cout << "Loading assets in AudioController... " << std::endl;
+   if (output_loading_debug_to_cout) std::cout << "sound_effects:" << std::endl;
+   for (auto &sound_effect_element : sound_effect_elements)
+   {
+      int id = sound_effect_element.id;
+      std::string filename = sound_effect_element.filename;
+      bool loop = sound_effect_element.loop;
+
+      std::string asset_key = sound_effects_identifier_prefix + filename;
+
+      if (output_loading_debug_to_cout) std::cout << "- asset_key: " << asset_key << std::endl;
+
+      ALLEGRO_SAMPLE *sample = sample_bin.auto_get(asset_key);
+      Sound *sound = new Sound(sample);
+      sound->loop(loop);
+      sound->volume(global_volume);
+
+      // TODO manage case where id already exists for this record
+
+      sound_effects[id] = sound;
+   }
+   if (output_loading_debug_to_cout) std::cout << "music_tracks:" << std::endl;
+   for (auto &music_track_element : music_track_elements)
+   {
+      int id = music_track_element.id;
+      std::string filename = music_track_element.filename;
+      bool loop = music_track_element.loop;
+
+      std::string asset_key = music_tracks_identifier_prefix + filename;
+
+      if (output_loading_debug_to_cout) std::cout << "- asset_key: " << asset_key << std::endl;
+
+      ALLEGRO_SAMPLE *sample = sample_bin.auto_get(asset_key);
+      Sound *sound = new Sound(sample);
+      sound->loop(loop);
+      sound->volume(global_volume);
+
+      // TODO manage case where id already exists for this record
+
+      music_tracks[id] = sound;
+   }
+}
 
 
 void AudioController::stop_all()
 {
-   haunting_music.stop();
-   storyboard_music.stop();
-   game_show_music.stop();
-   hurt_sound_effect.stop();
-   tada_sound_effect.stop();
-   win_cheer_sound_effect.stop();
-   strong_punch_sound_effect.stop();
+   for (auto &sound_effect : sound_effects) sound_effect.second->stop();
+   for (auto &music_track : music_tracks) music_track.second->stop();
+
+   current_music_track_id = -1;
 }
 
 
-
-void AudioController::play_game_show_music()
+Sound *AudioController::find_sound_effect_by_id(int id)
 {
-   play_audio_track_by_id(GAME_SHOW_MUSIC);
+   std::map<int, Sound*>::iterator it = sound_effects.find(id);
+   if (it == sound_effects.end())
+   {
+      std::cout << "AudioController::play_sound_effect_by_id() error: "
+         << "unable to find element with id \""
+         << id
+         << "\""
+         << std::endl;
+      return nullptr;
+   }
+
+   return it->second;
 }
 
 
-
-void AudioController::play_storyboard_music()
+Sound *AudioController::find_music_track_by_id(int id)
 {
-   play_audio_track_by_id(STORYBOARD_MUSIC);
+   std::map<int, Sound*>::iterator it = music_tracks.find(id);
+   if (it == sound_effects.end())
+   {
+      std::cout << "AudioController::play_music_track_by_id() error: "
+         << "unable to find element with id \""
+         << id
+         << "\""
+         << std::endl;
+      return nullptr;
+   }
+
+   return it->second;
 }
 
 
-
-void AudioController::play_haunting_music()
+void AudioController::set_global_volume(float volume)
 {
-   play_audio_track_by_id(HAUNTING_MUSIC);
+   for (auto &sound_effect : sound_effects) sound_effect.second->volume(global_volume);
+   for (auto &music_track : music_tracks) music_track.second->volume(global_volume);
 }
 
 
-
-void AudioController::play_hurt_sound_effect()
+void AudioController::play_music_track_by_id(int id)
 {
-   play_sound_effect_by_id(HURT_SOUND_EFFECT);
-}
-
-
-
-void AudioController::play_tada_sound_effect()
-{
-   play_sound_effect_by_id(TADA_SOUND_EFFECT);
-}
-
-
-
-void AudioController::play_strong_punch_sound_effect()
-{
-   play_sound_effect_by_id(STRONG_PUNCH_SOUND_EFFECT);
-}
-
-
-
-void AudioController::play_audio_track_by_id(int track_id)
-{
-   std::cout << "*** Playing audio track by id: " << track_id << " ***" << std::endl;
-   std::cout << "*** Playing audio track by id: " << track_id << " ***" << std::endl;
-   std::cout << "*** Playing audio track by id: " << track_id << " ***" << std::endl;
-
-   if (track_id == current_music_track_num) return;
+   if (id == current_music_track_id) return;
 
    stop_all();
-   current_music_track_num = track_id;
 
-   switch (track_id)
-   {
-   case GAME_SHOW_MUSIC:
-      game_show_music.play();
-      break;
-   case HAUNTING_MUSIC:
-      haunting_music.play();
-      break;
-   case STORYBOARD_MUSIC:
-      storyboard_music.play();
-      break;
-   default:
-      break;
-   }
-}
-
-
-
-void AudioController::play_sound_effect_by_id(int track_id)
-{
-   switch (track_id)
-   {
-   case HURT_SOUND_EFFECT:
-      hurt_sound_effect.play();
-      break;
-   case WIN_CHEER_SOUND_EFFECT:
-      win_cheer_sound_effect.play();
-      break;
-   case TADA_SOUND_EFFECT:
-      tada_sound_effect.play();
-      break;
-   case STRONG_PUNCH_SOUND_EFFECT:
-      strong_punch_sound_effect.play();
-      break;
-   default:
-      break;
-   }
-}
-
-
-
-void AudioController::play_sound_effect_by_name(std::string id_str)
-{
-   std::map<std::string, Sound*>::iterator it = sound_effects.find(id_str);
-   if (it == sound_effects.end()) sound_effects[id_str] = new Sound(sample_bin.auto_get(id_str));
-
-   Sound *sound = sound_effects[id_str];
+   Sound *sound = find_music_track_by_id(id);
    if (sound) sound->play();
-   else std::cout << "AudioController::play_sound_effect_by_id(std::string id_str) could not play \"" << id_str << "\"" << std::endl;
+}
+
+
+void AudioController::play_sound_effect_by_id(int id)
+{
+   Sound *sound = find_sound_effect_by_id(id);
+   if (sound) sound->play();
 }
 
 
