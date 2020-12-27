@@ -16,7 +16,7 @@ namespace Enemies
 
 
 RedDragon::RedDragon(ElementID *parent, float x, float y)
-   : DragonWrath::Entities::Enemies::Base(parent, "basic_enemy", x, y, 1, 600)
+   : DragonWrath::Entities::Enemies::Base(parent, "basic_enemy", x, y, 4, 600)
    , movement_strategy(SIN_WAVE_MOVE_LEFT)
 {
 }
@@ -43,6 +43,16 @@ void RedDragon::update()
    {
       velocity.position.x = 0;
       velocity.position.y = 0;
+   }
+   else if (movement_strategy == MOVE_DOWN_LEFT)
+   {
+      velocity.position.x = -8;
+      velocity.position.y = 8 * 0.2;
+   }
+   else if (movement_strategy == MOVE_UP_LEFT)
+   {
+      velocity.position.x = -8;
+      velocity.position.y = -8 * 0.2;
    }
    else if (movement_strategy == SIN_WAVE_MOVE_LEFT)
    {

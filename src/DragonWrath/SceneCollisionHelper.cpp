@@ -78,7 +78,7 @@ void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
                float power_up_spawn_x = enemy->place.position.x;
                float power_up_spawn_y = enemy->place.position.y;
 
-               int selection = rand() % 10;
+               int selection = rand() % 100;
                switch(selection)
                {
                case 0: user_event_emitter.emit_spawn_extra_life_power_up_event(power_up_spawn_x, power_up_spawn_y); break;

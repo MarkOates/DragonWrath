@@ -24,12 +24,12 @@ class LevelBuilder
     1080 / 8 * 3
   end
 
-  def screen_inner_lower_middle
-    1080 / 8 * 5
-  end
-
   def screen_middle
     1080 / 2
+  end
+
+  def screen_inner_lower_middle
+    1080 / 8 * 5
   end
 
   def screen_lower_middle
@@ -68,24 +68,20 @@ class LevelBuilder
 
   def enemies
     result = []
-    start_time = 0;
+    start_time = 1; 
 
     result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_upper_middle); start_time += 3;
     result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_lower_middle); start_time += 3;
+    result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_middle); start_time += 3;
 
-    start_time += 5;
+    start_time = 12; # Start of A
 
-    result += set_of_5_in_a_row(start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 4;
-    result += set_of_5_in_a_row(start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 4;
+    result += set_of_5_in_a_row(start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 4;
+    result += set_of_5_in_a_row(start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 4;
 
-    start_time += 2;
 
-    result += set_of_5_in_a_row(start_time: start_time, x: screen_right, y: screen_upper_middle)
-    result += set_of_5_in_a_row(start_time: start_time, x: screen_right, y: screen_lower_middle)
-    result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_top);
-    result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_bottom); start_time += 4;
 
-    start_time += 5;
+    start_time = 25;
 
     result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle)
     result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle)
@@ -111,13 +107,173 @@ class LevelBuilder
     result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_upper_middle);
     result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_lower_middle); start_time += 4;
 
-    # B-section of the music
 
+    # B-section of the music
     start_time = 50
 
-    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 4;
-    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 4;
-    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_lower_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 4;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+
+    #result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+    #result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+    #result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+
+
+    # C-section of the music
+
+    # waves of blue dragons
+    start_time = 60.0
+
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+    #result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+
+
+    start_time = 75.0
+
+    result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_upper_middle); start_time += 3;
+    result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_lower_middle); start_time += 3;
+    result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_middle); start_time += 3;
+
+
+
+    # steady stream of red and purple dragons
+    start_time = 87.0
+
+    result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle)
+    result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle)
+
+    result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_top);
+    result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_bottom); start_time += 4;
+
+    result += set_of_n_in_a_row(n: 2, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_upper_middle)
+    result += set_of_n_in_a_row(n: 2, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_lower_middle)
+
+    result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_upper_middle);
+    result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_lower_middle); start_time += 4;
+
+    result += set_of_n_in_a_row(n: 3, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle)
+    result += set_of_n_in_a_row(n: 3, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle)
+
+    result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_top);
+    result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_bottom); start_time += 4;
+
+    result += set_of_n_in_a_row(n: 4, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_upper_middle)
+    result += set_of_n_in_a_row(n: 4, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_lower_middle)
+
+    result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_upper_middle);
+    result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_lower_middle); start_time += 4;
+
+
+
+    # starter yellow dragons in simple rows
+    start_time = 112
+
+    result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_upper_middle); start_time += 3;
+    result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_lower_middle); start_time += 3;
+    result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_middle); start_time += 3;
+
+
+
+    # two small waves of red dragons flying in at an angle
+    start_time = 124
+
+    result += set_of_n_in_a_row(n: 5, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_middle, movement_strategy: "move_up_left")
+    result += set_of_n_in_a_row(n: 5, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle, movement_strategy: "move_up_left")
+
+    start_time += 6
+
+    result += set_of_n_in_a_row(n: 5, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle, movement_strategy: "move_down_left")
+    result += set_of_n_in_a_row(n: 5, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_middle, movement_strategy: "move_down_left")
+
+
+    # waves of blue dragons
+
+    start_time = 137.0
+
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+    result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+    #result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+
+
+
+    # last set of starter yellow dragons in simple rows
+    start_time = 149
+
+    result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_upper_middle); start_time += 3;
+    result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_lower_middle); start_time += 3;
+    result += set_of_n_in_a_row(n: 3, start_time: start_time, x: screen_right, y: screen_middle); start_time += 3;
+
+
+    ## biggest wave
+    wave_start_time = 162
+    #wave_start_time = 0
+    begin
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_upper_middle)
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_lower_middle)
+
+      result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_top);
+      result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_bottom); start_time += 3;
+
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle)
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle)
+
+      result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_upper_middle);
+      result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_lower_middle); start_time += 3;
+
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_upper_middle)
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_lower_middle)
+
+      result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_top);
+      result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_bottom); start_time += 3;
+
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle)
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle)
+
+      result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_upper_middle);
+      result += one_purple_dragon(start_time: start_time + 2, x: screen_right, y: screen_lower_middle); start_time += 3;
+    end
+    begin
+      start_time = wave_start_time + 12
+
+      result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+      result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+      result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.4, movement_strategy: "sin_wave_move_left"); start_time += 2.5;
+
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_upper_middle)
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_lower_middle); start_time += 3
+
+      result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+      result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+      result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_upper_middle)
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_lower_middle); start_time += 3
+
+      result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+      result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_upper_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+      result += sin_of_n_in_a_row(n: 5, start_time: start_time, enemy_type: "blue_dragon", x: screen_right, y: screen_middle, delay: 0.2, movement_strategy: "sin_wave_move_left"); start_time += 1.5;
+
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_upper_middle)
+      result += set_of_n_in_a_row(n: 1, enemy_type: "red_dragon", start_time: start_time, x: screen_right, y: screen_inner_lower_middle); start_time += 3
+    end
 
 
     return result;
@@ -128,7 +284,7 @@ class LevelBuilder
   def get_result_json
     result = {
       "type": "TimedScroll",
-      "duration": 116,
+      "duration": 200,
       "enemies": enemies,
     }
     result
