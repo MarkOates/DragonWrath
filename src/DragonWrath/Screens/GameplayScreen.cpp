@@ -186,6 +186,7 @@ void GameplayScreen::primary_timer_func()
       if (player_dragon && player_dragon->is_dead())
       {
          hud.activate_game_over_banner();
+         user_event_emitter.emit_play_game_over_music();
       }
       else if (current_level && current_level->is_completed())
       {
