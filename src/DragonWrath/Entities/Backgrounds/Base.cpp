@@ -4,6 +4,7 @@
 #include <DragonWrath/Entities/Backgrounds/Base.hpp>
 
 #include <AllegroFlare/Useful.hpp>
+#include <allegro_flare/blender.h>
 
 
 namespace DragonWrath
@@ -66,7 +67,17 @@ void Base::draw()
    offset_x += 1.0f;
    offset_y = -110;
    ALLEGRO_BITMAP *texture = bitmap_bin.auto_get("backgrounds/Cloud3a.png");
-   draw_offset_textured_rectangle(0, 0, 1920, 1080, offset_x, offset_y, texture);
+   draw_offset_textured_rectangle(0, 0, 1920, 1080, offset_x * 1.0, offset_y * 1.0, texture);
+}
+
+
+void Base::draw_foregrounds()
+{
+   //set_blender(allegro_flare::BLENDER_MULTIPLY);
+   offset_y = -190;
+   ALLEGRO_BITMAP *texture = bitmap_bin.auto_get("backgrounds/Cloud2.png");
+   draw_offset_textured_rectangle(0, 0, 1920, 1080, offset_x * 2.0, offset_y * 2.0, texture, ALLEGRO_COLOR{0.75f,0.75f,0.75f,0.75f});
+   //set_blender(allegro_flare::BLENDER_ADDITIVE);
 }
 
 

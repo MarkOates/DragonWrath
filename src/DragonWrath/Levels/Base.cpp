@@ -61,6 +61,8 @@ void Base::draw()
 
    for (auto &entity : y_sorted_entities) if (!entity->exists(ALWAYS_ON_TOP)) entity->draw();
    for (auto &entity : y_sorted_entities) if (entity->exists(ALWAYS_ON_TOP)) entity->draw();
+
+   for (auto &background : collection_helper.get_all_backgrounds()) background->draw_foregrounds();
 }
 
 

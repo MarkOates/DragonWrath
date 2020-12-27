@@ -130,6 +130,15 @@ std::vector<Entities::PowerUps::Base *> SceneCollectionHelper::get_all_power_ups
       );
 }
 
+
+std::vector<Entities::Backgrounds::Base *> SceneCollectionHelper::get_all_backgrounds()
+{
+   return AllegroFlare::ElementID::recast_collection<Entities::Backgrounds::Base>(
+         scene->find_all_descendants("type", "background")
+      );
+}
+
+
 std::vector<Entities::PlayerBullet *> SceneCollectionHelper::get_all_player_bullets()
 {
    if (!scene) return {};

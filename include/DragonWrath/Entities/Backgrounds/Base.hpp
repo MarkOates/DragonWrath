@@ -24,6 +24,7 @@ namespace DragonWrath
             ~Base();
 
             void draw() override;
+            void draw_foregrounds();
          };
       }
    }
