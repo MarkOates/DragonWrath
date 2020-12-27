@@ -64,12 +64,16 @@ void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
             int damage_from_bullet = 1;
 
             enemy->take_damage(damage_from_bullet);
+            user_event_emitter.emit_play_enemy_takes_hit_sound_effect_event();
+
             if (enemy->is_dead())
             {
                enemy->flag_for_deletion();
 
                int points_to_add = enemy->get_points_worth();
                user_event_emitter.emit_increase_player_score(points_to_add);
+
+               user_event_emitter.emit_play_enemy_explosion_sound_effect_event();
 
                float power_up_spawn_x = enemy->place.position.x;
                float power_up_spawn_y = enemy->place.position.y;

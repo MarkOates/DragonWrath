@@ -1,1 +1,1 @@
-Objective: Clean up the AudioController
+Objective: Add enemy hit sound effect

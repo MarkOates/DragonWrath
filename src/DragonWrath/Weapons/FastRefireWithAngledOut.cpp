@@ -58,10 +58,13 @@ void FastRefireWithAngledOut::update()
 {
    if (is_activated())
    {
+      bool bullet_was_fired = false;
+
       // bullet_refire_counter
       bullet_refire_counter -= (1.0/60.0);
       if (bullet_refire_counter <= 0.0f)
       {
+         bullet_was_fired = true;
          bullet_refire_counter += bullet_refire_counter_length;
 
          if (player_dragon)
@@ -77,6 +80,7 @@ void FastRefireWithAngledOut::update()
       angled_bullet_refire_counter -= (1.0/60.0);
       if (angled_bullet_refire_counter <= 0.0f)
       {
+         bullet_was_fired = true;
          angled_bullet_refire_counter += angled_bullet_refire_counter_length;
 
          if (player_dragon)
@@ -87,6 +91,11 @@ void FastRefireWithAngledOut::update()
             user_event_emitter.emit_spawn_player_bullet_event(emit_bullet_from_x, emit_bullet_from_y - 32);
             user_event_emitter.emit_spawn_player_bullet_event(emit_bullet_from_x, emit_bullet_from_y + 32);
          }
+      }
+
+      if (bullet_was_fired)
+      {
+         user_event_emitter.emit_play_player_shooting_bullet_sound_effect_event();
       }
    }
 }

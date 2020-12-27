@@ -66,6 +66,7 @@ void FastRefire::update()
             float emit_bullet_from_x = player_dragon->place.position.x;
             float emit_bullet_from_y = player_dragon->place.position.y;
             user_event_emitter.emit_spawn_player_bullet_event(emit_bullet_from_x, emit_bullet_from_y);
+            user_event_emitter.emit_play_player_shooting_bullet_sound_effect_event();
          }
       }
    }

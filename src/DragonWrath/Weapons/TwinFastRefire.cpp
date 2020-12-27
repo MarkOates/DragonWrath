@@ -75,6 +75,7 @@ void TwinFastRefire::update()
                   emit_bullet_from_x,
                   emit_bullet_from_y + bullet_h_distance
                );
+            user_event_emitter.emit_spawn_player_bullet_event(emit_bullet_from_x, emit_bullet_from_y);
          }
       }
    }

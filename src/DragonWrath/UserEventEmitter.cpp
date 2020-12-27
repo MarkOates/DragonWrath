@@ -172,6 +172,25 @@ void UserEventEmitter::emit_play_player_shooting_bullet_sound_effect_event()
 }
 
 
+void UserEventEmitter::emit_play_enemy_takes_hit_sound_effect_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAY_SOUND_EFFECT;
+   event.user.data1 = ENEMY_TAKES_HIT_SOUND_EFFECT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_play_enemy_explosion_sound_effect_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAY_SOUND_EFFECT;
+   event.user.data1 = ENEMY_EXPLOSION_SOUND_EFFECT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+
 
 } // namespace DragonWrath
 
