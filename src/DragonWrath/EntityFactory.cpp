@@ -240,7 +240,7 @@ DragonWrath::Entities::PowerUps::ExtraLife *EntityFactory::create_extra_life(flo
       new DragonWrath::Entities::PowerUps::ExtraLife(current_level, x, y);
 
    ALLEGRO_BITMAP *source_bitmap = framework.bitmap("power_ups/extra_life.png");
-   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
+   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("extra-life", source_bitmap, 0.0);
    entity->bitmap.bitmap(bitmap);
    entity->bitmap.align(0.5, 0.5);
    entity->set(ALWAYS_ON_TOP);
@@ -256,7 +256,7 @@ DragonWrath::Entities::PowerUps::ShieldBoost *EntityFactory::create_shield_boost
       new DragonWrath::Entities::PowerUps::ShieldBoost(current_level, x, y);
 
    ALLEGRO_BITMAP *source_bitmap = framework.bitmap("power_ups/shield_boost.png");
-   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
+   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("shield-boost", source_bitmap, 0.0);
    entity->bitmap.bitmap(bitmap);
    entity->bitmap.align(0.5, 0.5);
    entity->set(ALWAYS_ON_TOP);
@@ -272,7 +272,7 @@ DragonWrath::Entities::PowerUps::BulletBoost *EntityFactory::create_bullet_boost
       new DragonWrath::Entities::PowerUps::BulletBoost(current_level, x, y);
 
    ALLEGRO_BITMAP *source_bitmap = framework.bitmap("power_ups/bullet_boost.png");
-   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
+   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("bullet-boost", source_bitmap, 0.0);
    entity->bitmap.bitmap(bitmap);
    entity->bitmap.align(0.5, 0.5);
    entity->set(ALWAYS_ON_TOP);
@@ -304,7 +304,7 @@ DragonWrath::Entities::PowerUps::OptionBoost *EntityFactory::create_option_boost
       new DragonWrath::Entities::PowerUps::OptionBoost(current_level, x, y);
 
    ALLEGRO_BITMAP *source_bitmap = framework.bitmap("power_ups/option_boost.png");
-   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("speed-boost", source_bitmap, 0.0);
+   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("option-boost", source_bitmap, 0.0);
    entity->bitmap.bitmap(bitmap);
    entity->bitmap.align(0.5, 0.5);
    entity->set(ALWAYS_ON_TOP);

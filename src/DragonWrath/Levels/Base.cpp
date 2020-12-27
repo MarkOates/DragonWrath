@@ -81,10 +81,12 @@ bool Base::is_type(std::string type)
 }
 
 
+
 bool Base::is_ready_to_destroy()
 {
    return level_end_padding_timer <= 0.0f;
 }
+
 
 
 } // namespace Levels

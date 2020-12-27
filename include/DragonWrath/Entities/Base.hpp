@@ -12,6 +12,9 @@ namespace DragonWrath
    {
       class Base : public AllegroFlare::ElementID
       {
+      private:
+         float created_at;
+
       public:
          allegro_flare::placement2d place;
          allegro_flare::placement2d velocity;
@@ -22,6 +25,8 @@ namespace DragonWrath
 
          virtual void update();
          virtual void draw();
+
+         float get_created_at();
 
          void flag_for_deletion();
          bool collides(const Base &other);

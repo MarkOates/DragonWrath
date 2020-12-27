@@ -17,6 +17,8 @@ namespace DragonWrath
             ~Base();
 
             bool is_type(std::string type_to_check);
+
+            void update() override;
          };
       }
    }

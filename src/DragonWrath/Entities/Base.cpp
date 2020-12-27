@@ -18,6 +18,7 @@ Base::Base(ElementID *parent, std::string type, float x, float y)
    , place(x, y, 1, 1)
    , velocity()
    , bitmap(nullptr)
+   , created_at(al_get_time())
 {
    set("type", type);
    velocity.scale = AllegroFlare::vec2d(0, 0);
@@ -52,6 +53,11 @@ void Base::draw()
    place.restore_transform();
 }
 
+
+float Base::get_created_at()
+{
+   return created_at;
+}
 
 
 bool Base::collides(const Base &other)
