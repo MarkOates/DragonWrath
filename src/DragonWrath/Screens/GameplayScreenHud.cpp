@@ -3,6 +3,8 @@
 
 #include <sstream>
 #include <iomanip>
+#include <AllegroFlare/Color.hpp>
+
 
 namespace DragonWrath
 {
@@ -39,19 +41,28 @@ void GameplayScreenHud::draw_bar(float x, float y, int value, int max_value, std
    //float y = 60;
    float bar_max_width = 210;
    float bar_height = 30;
+   float border_thickness = 4.0f;
 
    float percentage = (float)value / max_value;
 
-   ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.25, 0.25, 0.25, 1.0};
-   ALLEGRO_COLOR fill_color = ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
+   ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.25};
+   //ALLEGRO_COLOR fill_color = ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
+   ALLEGRO_COLOR blue_fill_color = al_color_html("#406ec5");
+   ALLEGRO_COLOR light_blue_fill_color = al_color_html("#3b83d7");
    ALLEGRO_COLOR border_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
 
    // backfill
    al_draw_filled_rectangle(x, y, x+bar_max_width, y+bar_height, backfill_color);
    // active health
-   al_draw_filled_rectangle(x, y, x+bar_max_width*percentage, y+bar_height, fill_color);
+   al_draw_filled_rectangle(
+         x + border_thickness * 1.5,
+         y + border_thickness * 1.5,
+         x + border_thickness * 1.5 + (bar_max_width*percentage) - border_thickness * 3,
+         y + border_thickness * 1.5 + bar_height - border_thickness * 3,
+         light_blue_fill_color
+      );
    // frame
-   al_draw_rectangle(x, y, x+bar_max_width, y+bar_height, border_color, 4.0f);
+   al_draw_rectangle(x, y, x+bar_max_width, y+bar_height, border_color, border_thickness);
 
    // draw text
    ALLEGRO_FONT *font = font_bin.auto_get("ChronoTrigger.ttf 48");

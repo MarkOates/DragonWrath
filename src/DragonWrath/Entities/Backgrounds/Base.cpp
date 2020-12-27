@@ -5,6 +5,8 @@
 
 #include <AllegroFlare/Useful.hpp>
 #include <allegro_flare/blender.h>
+#include <DragonWrath/Levels/TimedScroll.hpp>
+#include <DragonWrath/LevelTypeNames.hpp>
 
 
 namespace DragonWrath
@@ -50,6 +52,14 @@ Base::Base(AllegroFlare::ElementID *parent, AllegroFlare::BitmapBin &bitmap_bin)
    , bitmap_bin(bitmap_bin)
    , offset_x(0)
    , offset_y(0)
+   , background_layers({
+         { 0, 0, 1.0, bitmap_bin.auto_get("backgrounds/Sky3.png") },
+         { 0, -116, 50.0, bitmap_bin.auto_get("backgrounds/Cloud3a.png") }
+      })
+   , foreground_layers({
+         //{ 0, 100, 40.0, bitmap_bin.auto_get("backgrounds/Cloud2.png") },
+         { 0, -350, 120.0, bitmap_bin.auto_get("backgrounds/Cloud2.png") }
+      })
 {
 }
 
@@ -59,25 +69,77 @@ Base::~Base()
 }
 
 
+void Base::update()
+{
+   if (get_parent() && get_parent()->exists("type", TIMED_SCROLL))
+   {
+      DragonWrath::Levels::TimedScroll *timed_scroll_level = 
+         static_cast<DragonWrath::Levels::TimedScroll*>(get_parent());
+      offset_x = timed_scroll_level->get_timer();
+   }
+   else
+   {
+      offset_x += 1.0f;
+      offset_y = 0;
+   }
+}
+
+
 void Base::draw()
 {
-   ALLEGRO_BITMAP *back_texture = bitmap_bin.auto_get("backgrounds/Sky3.png");
-   draw_offset_textured_rectangle(0, 0, 1920, 1080, 0, 0, back_texture);
+   for (auto &background_layer : background_layers)
+   {
+      if (background_layer.bitmap)
+      {
+         draw_offset_textured_rectangle(
+               0,
+               0,
+               1920,
+               1080,
+               offset_x * background_layer.offset_scale + background_layer.offset_x,
+               offset_y * background_layer.offset_scale + background_layer.offset_y,
+               background_layer.bitmap
+            );
+      }
+   }
 
-   offset_x += 1.0f;
-   offset_y = -110;
-   ALLEGRO_BITMAP *texture = bitmap_bin.auto_get("backgrounds/Cloud3a.png");
-   draw_offset_textured_rectangle(0, 0, 1920, 1080, offset_x * 1.0, offset_y * 1.0, texture);
+
+   //ALLEGRO_BITMAP *back_texture = bitmap_bin.auto_get("backgrounds/Sky3.png");
+
+   //offset_y = -116;
+
+   //float this_layer_offset_scale = 20.0f;
+   //ALLEGRO_BITMAP *texture = bitmap_bin.auto_get("backgrounds/Cloud3a.png");
+   //draw_offset_textured_rectangle(0, 0, 1920, 1080, offset_x * this_layer_offset_scale, offset_y, texture);
 }
 
 
 void Base::draw_foregrounds()
 {
-   //set_blender(allegro_flare::BLENDER_MULTIPLY);
-   offset_y = -190;
-   ALLEGRO_BITMAP *texture = bitmap_bin.auto_get("backgrounds/Cloud2.png");
-   draw_offset_textured_rectangle(0, 0, 1920, 1080, offset_x * 2.0, offset_y * 2.0, texture, ALLEGRO_COLOR{0.75f,0.75f,0.75f,0.75f});
-   //set_blender(allegro_flare::BLENDER_ADDITIVE);
+   for (auto &foreground_layer : foreground_layers)
+   {
+      if (foreground_layer.bitmap)
+      {
+         draw_offset_textured_rectangle(
+               0,
+               0,
+               1920,
+               1080,
+               offset_x * foreground_layer.offset_scale + foreground_layer.offset_x,
+               offset_y * foreground_layer.offset_scale + foreground_layer.offset_y,
+               foreground_layer.bitmap,
+               ALLEGRO_COLOR{0.75f, 0.75f, 0.75f, 0.75f}
+            );
+      }
+   }
+
+   ////set_blender(allegro_flare::BLENDER_MULTIPLY);
+   //offset_y = -(190 + 190) * 2.0;
+
+   //float this_layer_offset_scale = 40.0f;
+   //ALLEGRO_BITMAP *texture = bitmap_bin.auto_get("backgrounds/Cloud2.png");
+   //draw_offset_textured_rectangle(0, 0, 1920, 1080, offset_x * this_layer_offset_scale, offset_y * 2.0, texture, ALLEGRO_COLOR{0.75f,0.75f,0.75f,0.75f});
+   ////set_blender(allegro_flare::BLENDER_ADDITIVE);
 }
 
 

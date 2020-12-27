@@ -19,10 +19,31 @@ namespace DragonWrath
             float offset_x;
             float offset_y;
 
+            class BackgroundLayer
+            {
+            public:
+               float offset_x;
+               float offset_y;
+               float offset_scale;
+               ALLEGRO_BITMAP *bitmap;
+            };
+            std::vector<BackgroundLayer> background_layers;
+
+            class ForegroundLayer
+            {
+            public:
+               float offset_x;
+               float offset_y;
+               float offset_scale;
+               ALLEGRO_BITMAP *bitmap;
+            };
+            std::vector<ForegroundLayer> foreground_layers;
+
          public:
             Base(AllegroFlare::ElementID *parent, AllegroFlare::BitmapBin &bitmap_bin);
             ~Base();
 
+            void update() override;
             void draw() override;
             void draw_foregrounds();
          };
