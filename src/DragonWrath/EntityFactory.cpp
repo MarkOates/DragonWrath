@@ -4,6 +4,7 @@
 #include <DragonWrath/EntityAttributeNames.hpp>
 #include <DragonWrath/EntityTypeNames.hpp>
 #include <DragonWrath/MovementStrategyNames.hpp>
+#include <DragonWrath/SceneCollectionHelper.hpp>
 #include <AllegroFlare/Useful.hpp>
 #include <allegro_flare/image_processing.h>
 
@@ -195,6 +196,25 @@ DragonWrath::Entities::Enemies::RedDragon *EntityFactory::create_red_dragon(floa
    red_dragon->place.flip.x = true;
    red_dragon->place.size = default_enemy_dragon_size();
 
+   if (movement_strategy == TOWARDS_PLAYER_DRAGON_BUT_MAINTAIN_TRAJECTORY)
+   {
+      DragonWrath::SceneCollectionHelper scene_collection_helper(current_level);
+      DragonWrath::Entities::PlayerDragon *player_dragon = scene_collection_helper.get_player_dragon();
+      float speed = 8;
+
+      if (player_dragon)
+      {
+         AllegroFlare::vec2d direction_vector =
+            (player_dragon->place.position - red_dragon->place.position).normalized();
+         red_dragon->velocity.position = direction_vector * speed;
+      }
+      else
+      {
+         red_dragon->velocity.x = -speed;
+         red_dragon->velocity.y = 0;
+      }
+   }
+
    red_dragon->set_movement_strategy(movement_strategy);
 
    return red_dragon;
@@ -211,7 +231,7 @@ DragonWrath::Entities::Enemies::PurpleDragon *EntityFactory::create_purple_drago
    purple_dragon->bitmap.align(0.5, 0.5);
    purple_dragon->place.flip.x = true;
    purple_dragon->place.size = default_enemy_dragon_size();
-
+   purple_dragon->initialize_movement_strategy();
 
    return purple_dragon;
 }

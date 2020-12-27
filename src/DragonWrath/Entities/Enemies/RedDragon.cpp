@@ -34,6 +34,11 @@ void RedDragon::update()
       velocity.position.y = 0;
       velocity.position.x = -8;
    }
+   else if (movement_strategy == TOWARDS_PLAYER_DRAGON_BUT_MAINTAIN_TRAJECTORY)
+   {
+      //velocity.position.y = 0;
+      //velocity.position.x = -8;
+   }
    else if (movement_strategy == MOVE_RIGHT)
    {
       velocity.position.y = 0;

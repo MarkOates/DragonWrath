@@ -21,6 +21,7 @@ namespace DragonWrath
             ~PurpleDragon();
 
             void update() override;
+            void initialize_movement_strategy();
          };
       }
    }

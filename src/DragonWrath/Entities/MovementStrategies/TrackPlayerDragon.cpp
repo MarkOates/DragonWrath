@@ -29,6 +29,30 @@ TrackPlayerDragon::~TrackPlayerDragon()
 }
 
 
+void TrackPlayerDragon::initialize()
+{
+   if (entity)
+   {
+      DragonWrath::Levels::Base *root = static_cast<DragonWrath::Levels::Base *>(entity->get_root());
+      DragonWrath::SceneCollectionHelper scene_collection_helper(root);
+      DragonWrath::Entities::PlayerDragon *player_dragon = scene_collection_helper.get_player_dragon();
+      float speed = 8;
+
+      if (player_dragon)
+      {
+         AllegroFlare::vec2d direction_vector =
+            (player_dragon->place.position - entity->place.position).normalized();
+         entity->velocity.position = direction_vector * speed;
+      }
+      else
+      {
+         entity->velocity.x = -speed;
+         entity->velocity.y = 0;
+      }
+   }
+}
+
+
 void TrackPlayerDragon::update()
 {
    if (entity)

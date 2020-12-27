@@ -21,6 +21,7 @@ namespace DragonWrath
             TrackPlayerDragon(DragonWrath::Entities::Base *entity, float speed=5);
             ~TrackPlayerDragon();
 
+            void initialize() override;
             void update() override;
          };
       }

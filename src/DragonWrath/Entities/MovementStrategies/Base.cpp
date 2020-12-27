@@ -21,6 +21,11 @@ Base::~Base()
 }
 
 
+void Base::initialize()
+{
+}
+
+
 void Base::update()
 {
 }

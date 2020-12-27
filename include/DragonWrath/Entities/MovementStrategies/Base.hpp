@@ -13,6 +13,8 @@ namespace DragonWrath
             Base();
             virtual ~Base();
 
+            virtual void initialize();
+
             virtual void update();
          };
       }
