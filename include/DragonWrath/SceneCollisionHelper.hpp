@@ -16,6 +16,7 @@ namespace DragonWrath
       DragonWrath::UserEventEmitter &user_event_emitter;
 
       void update_entities_position_by_velocity();
+      void prevent_player_dragon_from_exiting_screen_bounds();
       void update_entities();
       void update_player_bullet_collisions_on_enemies();
       void update_enemy_collisions_on_player_dragon();

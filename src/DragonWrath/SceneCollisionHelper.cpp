@@ -37,6 +37,17 @@ void SceneCollisionHelper::update_entities_position_by_velocity()
 }
 
 
+void SceneCollisionHelper::prevent_player_dragon_from_exiting_screen_bounds()
+{
+   Entities::PlayerDragon *player_dragon = collections.get_player_dragon();
+   if (!player_dragon) return;
+
+   if (player_dragon->place.position.x <= 0) player_dragon->place.position.x = 0;
+   if (player_dragon->place.position.x >= 1920) player_dragon->place.position.x = 1920;
+   if (player_dragon->place.position.y <= 0) player_dragon->place.position.y = 0;
+   if (player_dragon->place.position.y >= 1080) player_dragon->place.position.y = 1080;
+}
+
 
 void SceneCollisionHelper::update_entities()
 {
@@ -155,14 +166,15 @@ void SceneCollisionHelper::update_power_up_collisions_on_player_dragon()
 void SceneCollisionHelper::destroy_entities_that_are_off_screen()
 {
    std::vector<Entities::Base *> all_entities = collections.get_all_entities();
+   float padding = 50;
 
    //float padding = -50;
    for (auto &entity : all_entities)
    {
-      if (entity->place.x < 0) entity->flag_for_deletion();
-      if (entity->place.x > 1920) entity->flag_for_deletion();
-      if (entity->place.y < 0) entity->flag_for_deletion();
-      if (entity->place.y > 1080) entity->flag_for_deletion();
+      if (entity->place.x < (0 - padding)) entity->flag_for_deletion();
+      if (entity->place.x > (1920 + padding)) entity->flag_for_deletion();
+      if (entity->place.y < (0 - padding)) entity->flag_for_deletion();
+      if (entity->place.y > (1080 + padding)) entity->flag_for_deletion();
    }
 }
 
@@ -258,6 +270,7 @@ void SceneCollisionHelper::resolve_collisions()
 
    update_entities();
    update_entities_position_by_velocity();
+   prevent_player_dragon_from_exiting_screen_bounds();
    update_player_bullet_collisions_on_enemies();
    update_power_up_collisions_on_player_dragon();
    update_enemy_collisions_on_player_dragon();
