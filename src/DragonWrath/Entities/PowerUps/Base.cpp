@@ -2,6 +2,8 @@
 
 #include <DragonWrath/Entities/PowerUps/Base.hpp>
 
+#include <math.h>
+
 
 namespace DragonWrath
 {
