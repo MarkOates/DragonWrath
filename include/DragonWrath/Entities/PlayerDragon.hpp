@@ -35,6 +35,7 @@ namespace DragonWrath
          void dequip_weapon();
 
          void take_damage(int amount);
+         void kill();
          bool is_dead();
 
          void activate_shooting();

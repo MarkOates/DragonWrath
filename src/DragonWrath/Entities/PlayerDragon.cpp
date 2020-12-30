@@ -50,12 +50,16 @@ void PlayerDragon::take_damage(int amount)
    }
 
    shield_level -= amount;
-   if (shield_level < 0)
-   {
-      shield_level = 0;
-      state = DEAD;
-   }
+   if (shield_level < 0) kill();
 }
+
+
+void PlayerDragon::kill()
+{
+   shield_level = 0;
+   state = DEAD;
+}
+
 
 
 bool PlayerDragon::is_dead()
