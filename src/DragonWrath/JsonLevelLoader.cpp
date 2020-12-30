@@ -139,7 +139,7 @@ DragonWrath::Levels::TimedScroll *JsonLevelLoader::create_timed_scroll_from_sour
 
    // assemble the list of enemies to spawn
 
-   std::vector<EnemyToSpawn> enemies_to_spawn_result = {};
+   std::vector<DragonWrath::Levels::TimedScroll::EnemyToSpawn> enemies_to_spawn_result = {};
    if (j.contains("enemies"))
    {
       json enemies = j["enemies"];
@@ -161,7 +161,9 @@ DragonWrath::Levels::TimedScroll *JsonLevelLoader::create_timed_scroll_from_sour
             std::cout << "  movement_strategy: " << movement_strategy << std::endl;
          }
 
-         enemies_to_spawn_result.push_back(EnemyToSpawn(spawn_time, type, spawn_x, spawn_y, movement_strategy));
+         enemies_to_spawn_result.push_back(
+               DragonWrath::Levels::TimedScroll::EnemyToSpawn(spawn_time, type, spawn_x, spawn_y, movement_strategy)
+            );
       }
    }
 

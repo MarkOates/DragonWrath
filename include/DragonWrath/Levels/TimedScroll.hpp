@@ -4,33 +4,33 @@
 #include <DragonWrath/Levels/Base.hpp>
 
 
-class EnemyToSpawn
-{
-public:
-  bool spawned;
-  float spawn_time;
-  std::string enemy_type;
-  float spawn_x;
-  float spawn_y;
-  std::string movement_strategy;
-
-  EnemyToSpawn(
-        float spawn_time,
-        std::string enemy_type,
-        float spawn_x,
-        float spawn_y,
-        std::string movement_strategy
-     );
-  ~EnemyToSpawn();
-};
-
-
 namespace DragonWrath
 {
    namespace Levels
    {
       class TimedScroll : public DragonWrath::Levels::Base
       {
+      public:
+         class EnemyToSpawn
+         {
+         public:
+           bool spawned;
+           float spawn_time;
+           std::string enemy_type;
+           float spawn_x;
+           float spawn_y;
+           std::string movement_strategy;
+
+           EnemyToSpawn(
+                 float spawn_time,
+                 std::string enemy_type,
+                 float spawn_x,
+                 float spawn_y,
+                 std::string movement_strategy
+              );
+           ~EnemyToSpawn();
+         };
+
       private:
          AllegroFlare::Framework &framework;
          float timer;

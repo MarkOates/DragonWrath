@@ -6,7 +6,13 @@
 #include <allegro5/allegro.h>
 
 
-EnemyToSpawn::EnemyToSpawn(float spawn_time, std::string enemy_type, float spawn_x, float spawn_y, std::string movement_strategy)
+namespace DragonWrath
+{
+namespace Levels
+{
+
+
+TimedScroll::EnemyToSpawn::EnemyToSpawn(float spawn_time, std::string enemy_type, float spawn_x, float spawn_y, std::string movement_strategy)
    : spawned(false)
    , spawn_time(spawn_time)
    , enemy_type(enemy_type)
@@ -16,14 +22,9 @@ EnemyToSpawn::EnemyToSpawn(float spawn_time, std::string enemy_type, float spawn
 {}
 
 
-EnemyToSpawn::~EnemyToSpawn()
+TimedScroll::EnemyToSpawn::~EnemyToSpawn()
 {}
 
-
-namespace DragonWrath
-{
-namespace Levels
-{
 
 
 TimedScroll::TimedScroll(
