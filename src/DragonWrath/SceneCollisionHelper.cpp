@@ -59,6 +59,25 @@ void SceneCollisionHelper::update_entities()
 
 
 
+void SceneCollisionHelper::update_player_bullet_collisions_on_terrain()
+{
+   std::vector<Entities::PlayerBullet *> player_bullets = collections.get_all_player_bullets();
+   std::vector<Entities::Terrains::Base *> terrains = collections.get_all_terrains();
+
+   for (auto &terrain : terrains)
+   {
+      for (auto &player_bullet : player_bullets)
+      {
+         if (player_bullet->collides(*terrain))
+         {
+            player_bullet->flag_for_deletion();
+            user_event_emitter.emit_play_bullet_deflected_sound_event();
+         }
+      }
+   }
+}
+
+
 void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
 {
    // start with player bullets
@@ -102,6 +121,29 @@ void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
             }
 
             bullet->flag_for_deletion();
+         }
+      }
+   }
+}
+
+
+
+void SceneCollisionHelper::update_terrain_collisions_on_player_dragon()
+{
+   Entities::PlayerDragon *player_dragon = collections.get_player_dragon();
+   std::vector<Entities::Terrains::Base *> terrains = collections.get_all_terrains();
+
+   if (!player_dragon) return;
+   if (player_dragon && player_dragon->is_dead()) return;
+
+   for (auto &terrain : terrains)
+   {
+      if (player_dragon->collides(*terrain))
+      {
+         player_dragon->kill();
+         if (player_dragon->is_dead())
+         {
+            player_dragon->flag_for_deletion();
          }
       }
    }
@@ -271,8 +313,10 @@ void SceneCollisionHelper::resolve_collisions()
    update_entities();
    update_entities_position_by_velocity();
    prevent_player_dragon_from_exiting_screen_bounds();
+   update_player_bullet_collisions_on_terrain();
    update_player_bullet_collisions_on_enemies();
    update_power_up_collisions_on_player_dragon();
+   update_terrain_collisions_on_player_dragon();
    update_enemy_collisions_on_player_dragon();
    destroy_entities_that_are_off_screen();
    //limit_sprites_to_world_bounds();

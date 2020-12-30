@@ -19,6 +19,8 @@ namespace DragonWrath
       void prevent_player_dragon_from_exiting_screen_bounds();
       void update_entities();
       void update_player_bullet_collisions_on_enemies();
+      void update_player_bullet_collisions_on_terrain();
+      void update_terrain_collisions_on_player_dragon();
       void update_enemy_collisions_on_player_dragon();
       void update_power_up_collisions_on_player_dragon();
       void destroy_entities_that_are_off_screen();
