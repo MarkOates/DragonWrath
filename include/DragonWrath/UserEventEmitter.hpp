@@ -47,6 +47,7 @@ namespace DragonWrath
 
       void emit_play_player_shooting_bullet_sound_effect_event();
       void emit_play_enemy_takes_hit_sound_effect_event();
+      void emit_play_bullet_deflected_sound_event();
       void emit_play_enemy_explosion_sound_effect_event();
    };
 }

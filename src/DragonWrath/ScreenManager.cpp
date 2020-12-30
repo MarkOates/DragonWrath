@@ -30,6 +30,7 @@ ScreenManager::ScreenManager(AllegroFlare::Framework &framework, AllegroFlare::S
             { PLAYER_SHOOT_BULLET_SOUND_EFFECT, "sfx_wpn_laser8.wav", false },
             { ENEMY_TAKES_HIT_SOUND_EFFECT, "sfx_wpn_punch3.wav", false },
             { ENEMY_EXPLOSION_SOUND_EFFECT, "sfx_wpn_punch4.wav", false },
+            { BULLET_DEFLECTED_SOUND_EFFECT, "sfx_wpn_noammo1.wav", false },
          }
       )
 {

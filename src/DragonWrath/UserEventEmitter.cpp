@@ -190,6 +190,15 @@ void UserEventEmitter::emit_play_enemy_takes_hit_sound_effect_event()
 }
 
 
+void UserEventEmitter::emit_play_bullet_deflected_sound_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAY_SOUND_EFFECT;
+   event.user.data1 = BULLET_DEFLECTED_SOUND_EFFECT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
 void UserEventEmitter::emit_play_enemy_explosion_sound_effect_event()
 {
    ALLEGRO_EVENT event;
