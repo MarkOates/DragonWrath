@@ -19,7 +19,8 @@ BasicRefire::BasicRefire(
    , player_dragon(player_dragon)
    , activated(false)
    , bullet_refire_counter(0.0)
-   , bullet_refire_counter_length(1.0 / 2.0)
+   //, bullet_refire_counter_length(1.0 / 2.0)
+   , bullet_refire_counter_length(1.0 / 5.0)
 {
 }
 
