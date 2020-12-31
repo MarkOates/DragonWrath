@@ -75,7 +75,7 @@ void ScreenManager::key_down_func(ALLEGRO_EVENT *ev)
       break;
    case ALLEGRO_KEY_3:
       {
-         user_event_emitter.emit_start_game_over_screen();
+         user_event_emitter.emit_start_game_over_screen_event();
       }
       break;
    }
@@ -105,7 +105,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
       break;
    case GAME_OVER_EVENT:
       {
-         user_event_emitter.emit_start_game_over_screen();
+         user_event_emitter.emit_start_game_over_screen_event();
       }
       break;
    case SCREEN_MANAGER_SWITCH_SCREEN_EVENT:

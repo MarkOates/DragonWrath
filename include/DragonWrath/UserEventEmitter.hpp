@@ -18,7 +18,8 @@ namespace DragonWrath
 
       void emit_start_title_screen_event();
       void emit_start_gameplay_screen_event();
-      void emit_start_game_over_screen();
+      void emit_start_game_over_screen_event();
+      void emit_start_game_won_screen_event();
 
       // spawn entity events
 
@@ -45,6 +46,7 @@ namespace DragonWrath
       void emit_restart_current_level_event();
       void emit_load_next_level_event();
       void emit_game_over_event();
+      void emit_game_won_event();
 
       // music events
 

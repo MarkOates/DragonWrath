@@ -37,11 +37,20 @@ void UserEventEmitter::emit_start_gameplay_screen_event()
 }
 
 
-void UserEventEmitter::emit_start_game_over_screen()
+void UserEventEmitter::emit_start_game_over_screen_event()
 {
    ALLEGRO_EVENT event;
    event.user.type = SCREEN_MANAGER_SWITCH_SCREEN_EVENT;
    event.user.data1 = SCREEN_GAME_OVER_SCREEN;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_start_game_won_screen_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = SCREEN_MANAGER_SWITCH_SCREEN_EVENT;
+   event.user.data1 = SCREEN_GAME_WON_SCREEN;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
@@ -193,6 +202,14 @@ void UserEventEmitter::emit_game_over_event()
 {
    ALLEGRO_EVENT event;
    event.user.type = GAME_OVER_EVENT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_game_won_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = GAME_WON_EVENT;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
