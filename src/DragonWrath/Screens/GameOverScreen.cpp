@@ -62,7 +62,7 @@ void GameOverScreen::draw_main_title()
 
 void GameOverScreen::start()
 {
-   user_event_emitter.emit_play_title_screen_music_event();
+   user_event_emitter.emit_play_game_over_music();
 }
 
 
@@ -76,7 +76,7 @@ void GameOverScreen::primary_timer_func()
 
 void GameOverScreen::key_down_func(ALLEGRO_EVENT *ev)
 {
-   user_event_emitter.emit_play_title_screen_music_event();
+   user_event_emitter.emit_start_title_screen_event();
 }
 
 
