@@ -36,6 +36,7 @@ namespace DragonWrath
          void draw();
          void cleanup();
 
+         void make_player_dragon_take_life_or_die();
 
       public:
          GameplayScreen(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter);

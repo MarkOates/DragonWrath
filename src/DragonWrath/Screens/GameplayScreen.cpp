@@ -230,6 +230,20 @@ void GameplayScreen::cleanup()
 }
 
 
+void GameplayScreen::make_player_dragon_take_life_or_die()
+{
+   if (player_lives <= 0)
+   {
+      user_event_emitter.emit_game_over_event();
+   }
+   else
+   {
+      player_lives--;
+      user_event_emitter.emit_restart_current_level_event();
+   }
+}
+
+
 void GameplayScreen::primary_timer_func()
 {
    update();
@@ -423,15 +437,7 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
       break;
    case PLAYER_DRAGON_DIES_EVENT:
       {
-         if (player_lives <= 0)
-         {
-            user_event_emitter.emit_game_over_event();
-         }
-         else
-         {
-            player_lives--;
-            user_event_emitter.emit_restart_current_level_event();
-         }
+         make_player_dragon_take_life_or_die();
       }
       break;
    case RESTART_CURRENT_LEVEL_EVENT:
