@@ -148,6 +148,12 @@ void GameplayScreen::load_next_level()
 }
 
 
+void GameplayScreen::update_current_level()
+{
+   if (current_level) current_level->update();
+}
+
+
 void GameplayScreen::update_player_dragon_shooting()
 {
    DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
@@ -161,87 +167,90 @@ void GameplayScreen::update_player_dragon_shooting()
 }
 
 
+void GameplayScreen::update_hud()
+{
+   DragonWrath::SceneCollectionHelper collection_helper(current_level);
+   DragonWrath::Entities::PlayerDragon *player_dragon = collection_helper.get_player_dragon();
+
+   if (player_dragon && player_dragon->is_dead())
+   {
+      hud.activate_game_over_banner();
+      user_event_emitter.emit_play_game_over_music();
+   }
+   else if (current_level && current_level->is_completed())
+   {
+      hud.activate_level_complete_banner();
+   }
+
+   hud.set_player_lives(this->player_lives);
+
+   if (player_dragon)
+   {
+      hud.set_player_shield_level(player_dragon->get_shield_level());
+      hud.set_player_bullet_level(player_dragon->get_bullet_level());
+      hud.set_player_speed_level(player_dragon->get_speed_level());
+      hud.set_player_option_level(player_dragon->get_option_level());
+   }
+
+   hud.set_player_score(this->player_score);
+
+   if (current_level && current_level->is_type(TIMED_SCROLL))
+   {
+      DragonWrath::Levels::TimedScroll *timed_scroll_level =
+         static_cast<DragonWrath::Levels::TimedScroll *>(current_level);
+      float level_scroll_timer = timed_scroll_level->get_timer();
+      hud.debug__set_level_scroll_timer(level_scroll_timer);
+
+      float level_progress_position = timed_scroll_level->calculate_level_progress_percentage();
+      hud.set_level_progress_position(level_progress_position);
+   }
+}
+
+
+void GameplayScreen::update()
+{
+   update_current_level();
+   update_player_dragon_shooting();
+   update_hud();
+}
+
+
+void GameplayScreen::draw()
+{
+   if (current_level)
+   {
+      current_level->draw();
+   }
+
+   hud.draw();
+
+   if (!current_level)
+   {
+      draw_you_have_won_banner();
+   }
+}
+
+
+void GameplayScreen::cleanup()
+{
+   if (current_level)
+   {
+      current_level->cleanup();
+   }
+}
+
+
 void GameplayScreen::primary_timer_func()
 {
    al_clear_to_color(AllegroFlare::color::black);
 
-   if (current_level)
+   update();
+   draw();
+   cleanup();
+
+   if (current_level && current_level->is_ready_to_destroy())
    {
-      DragonWrath::SceneCollectionHelper collection_helper(current_level);
-      DragonWrath::Entities::PlayerDragon *player_dragon = collection_helper.get_player_dragon();
-
-
-      //////
-      // update
-      //////
-      current_level->update();
-
-      update_player_dragon_shooting();
-
-
-      //////
-      // update the hud
-      //////
-
-      if (player_dragon && player_dragon->is_dead())
-      {
-         hud.activate_game_over_banner();
-         user_event_emitter.emit_play_game_over_music();
-      }
-      else if (current_level && current_level->is_completed())
-      {
-         hud.activate_level_complete_banner();
-      }
-
-      hud.set_player_lives(this->player_lives);
-
-      if (player_dragon)
-      {
-         hud.set_player_shield_level(player_dragon->get_shield_level());
-         hud.set_player_bullet_level(player_dragon->get_bullet_level());
-         hud.set_player_speed_level(player_dragon->get_speed_level());
-         hud.set_player_option_level(player_dragon->get_option_level());
-      }
-
-      hud.set_player_score(this->player_score);
-
-
-      if (current_level && current_level->is_type(TIMED_SCROLL))
-      {
-         DragonWrath::Levels::TimedScroll *timed_scroll_level =
-            static_cast<DragonWrath::Levels::TimedScroll *>(current_level);
-         float level_scroll_timer = timed_scroll_level->get_timer();
-         hud.debug__set_level_scroll_timer(level_scroll_timer);
-
-         float level_progress_position = timed_scroll_level->calculate_level_progress_percentage();
-         hud.set_level_progress_position(level_progress_position);
-      }
-
-
-      //////
-      // draw
-      //////
-
-      current_level->draw();
-      hud.draw();
-
-
-      //////
-      // cleanup
-      //////
-
-      current_level->cleanup();
-
-
-      //////
-      // see if the next level should be loaded
-      //////
-
-      if (current_level->is_ready_to_destroy()) load_next_level();
-   }
-   else
-   {
-      draw_you_have_won_banner();
+      load_next_level();
    }
 }
 
