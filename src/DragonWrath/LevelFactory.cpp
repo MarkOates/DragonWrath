@@ -60,31 +60,6 @@ static std::string load_file_contents(std::string filename)
 }
 
 
-std::vector<EnemyToSpawn> LevelFactory::build_5_dragon_wave(std::string dragon_type, int num_dragons, float frequency, float y, std::string movement_strategy)
-{
-   std::vector<EnemyToSpawn> result = {};
-
-   for (int i=0; i<num_dragons; i++) {
-      result.push_back({ frequency * i, dragon_type, 1920-5, y, movement_strategy });
-   };
-   return result;
-}
-
-
-std::vector<EnemyToSpawn> LevelFactory::offset_spawn_time(std::vector<EnemyToSpawn> original, float time_offset)
-{
-   for (auto &enemy : original) enemy.spawn_time += time_offset;
-   return original;
-}
-
-
-std::vector<EnemyToSpawn> LevelFactory::append(std::vector<EnemyToSpawn> a, std::vector<EnemyToSpawn> b)
-{
-   a.insert(a.end(), b.begin(), b.end());
-   return a;
-}
-
-
 DragonWrath::Levels::TimedScroll *LevelFactory::create_level_1()
 {
    // load the level source json from file

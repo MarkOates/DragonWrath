@@ -12,10 +12,6 @@ namespace DragonWrath
       AllegroFlare::Framework &framework;
       DragonWrath::UserEventEmitter &user_event_emitter;
 
-      std::vector<EnemyToSpawn> build_5_dragon_wave(std::string dragon_type, int num_dragons, float frequency, float y, std::string movement_strategy);
-      std::vector<EnemyToSpawn> offset_spawn_time(std::vector<EnemyToSpawn> original, float time_offset);
-      std::vector<EnemyToSpawn> append(std::vector<EnemyToSpawn> a, std::vector<EnemyToSpawn> b);
-
    public:
       LevelFactory(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter);
       ~LevelFactory();
