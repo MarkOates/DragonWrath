@@ -16,6 +16,7 @@
 #include <DragonWrath/Entities/PowerUps/SpeedBoost.hpp>
 #include <DragonWrath/Entities/PowerUps/OptionBoost.hpp>
 #include <DragonWrath/Entities/Backgrounds/Base.hpp>
+#include <DragonWrath/Entities/Terrains/Pillar.hpp>
 
 namespace DragonWrath
 {
@@ -37,6 +38,8 @@ namespace DragonWrath
       EntityFactory(AllegroFlare::Framework &framework, DragonWrath::Levels::Base *current_level);
 
       ~EntityFactory();
+
+      // enemy dragons
 
       DragonWrath::Entities::Enemies::GreenDragon *create_green_dragon(
             float x,
@@ -62,19 +65,31 @@ namespace DragonWrath
             float x,
             float y
          );
+
+      // player
+
       DragonWrath::Entities::PlayerBullet *create_player_bullet(float x, float y);
       DragonWrath::Entities::PlayerDragon *create_player_dragon(float x, float y);
+
+      // power ups
+
       DragonWrath::Entities::PowerUps::ExtraLife *create_extra_life(float x, float y);
       DragonWrath::Entities::PowerUps::ShieldBoost *create_shield_boost(float x, float y);
       DragonWrath::Entities::PowerUps::BulletBoost *create_bullet_boost(float x, float y);
       DragonWrath::Entities::PowerUps::SpeedBoost *create_speed_boost(float x, float y);
       DragonWrath::Entities::PowerUps::OptionBoost *create_option_boost(float x, float y);
 
-      std::vector<DragonWrath::Entities::Base *> create_10_random_enemies();
-
       // backgrounds
 
       DragonWrath::Entities::Backgrounds::Base *create_background();
+
+      // terrains
+
+      DragonWrath::Entities::Terrains::Pillar *create_pillar();
+
+      // composite
+
+      std::vector<DragonWrath::Entities::Base *> create_10_random_enemies();
    };
 }
 

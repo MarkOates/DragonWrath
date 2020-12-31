@@ -334,21 +334,6 @@ DragonWrath::Entities::PowerUps::OptionBoost *EntityFactory::create_option_boost
 }
 
 
-std::vector<DragonWrath::Entities::Base *> EntityFactory::create_10_random_enemies()
-{
-   std::vector<DragonWrath::Entities::Base *> result;
-
-   for (int i=0; i<10; i++)
-   {
-      float x = AllegroFlare::random_float(1920/2, 1920);
-      float y = AllegroFlare::random_float(0, 1080);
-      result.push_back(create_yellow_dragon(x, y, SIN_WAVE_MOVE_LEFT));
-   }
-
-   return result;
-}
-
-
 DragonWrath::Entities::Backgrounds::Base *EntityFactory::create_background()
 {
    //ALLEGRO_BITMAP *source_bitmap = framework.bitmap("backgrounds/Sky3.png");
@@ -363,6 +348,42 @@ DragonWrath::Entities::Backgrounds::Base *EntityFactory::create_background()
    //background->bitmap.scale_to_fit(1920, 1080);
 
    return background;
+}
+
+
+DragonWrath::Entities::Terrains::Pillar *EntityFactory::create_pillar()
+{
+   AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
+   ALLEGRO_BITMAP *source_bitmap = framework.bitmap("terrains/simple_rock.png");
+   ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("pillar-texture", source_bitmap, 0.0);
+
+   float scale = (4 * 16);
+
+   DragonWrath::Entities::Terrains::Pillar *pillar = new DragonWrath::Entities::Terrains::Pillar(
+            current_level,
+            10 * scale,
+            scale * 3,
+            scale * 1,
+            scale * 6,
+            bitmap
+         );
+
+   return pillar;
+}
+
+
+std::vector<DragonWrath::Entities::Base *> EntityFactory::create_10_random_enemies()
+{
+   std::vector<DragonWrath::Entities::Base *> result;
+
+   for (int i=0; i<10; i++)
+   {
+      float x = AllegroFlare::random_float(1920/2, 1920);
+      float y = AllegroFlare::random_float(0, 1080);
+      result.push_back(create_yellow_dragon(x, y, SIN_WAVE_MOVE_LEFT));
+   }
+
+   return result;
 }
 
 
