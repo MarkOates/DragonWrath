@@ -3,6 +3,7 @@
 
 #include <DragonWrath/MusicAndSoundEffectTrackNames.hpp>
 #include <DragonWrath/UserEventNames.hpp>
+#include <DragonWrath/ScreenNames.hpp>
 #include <sstream>
 
 namespace DragonWrath
@@ -22,7 +23,7 @@ void UserEventEmitter::emit_start_title_screen_event()
 {
    ALLEGRO_EVENT event;
    event.user.type = SCREEN_MANAGER_SWITCH_SCREEN_EVENT;
-   event.user.data1 = 1;
+   event.user.data1 = SCREEN_TITLE_SCREEN;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
@@ -31,7 +32,16 @@ void UserEventEmitter::emit_start_gameplay_screen_event()
 {
    ALLEGRO_EVENT event;
    event.user.type = SCREEN_MANAGER_SWITCH_SCREEN_EVENT;
-   event.user.data1 = 2;
+   event.user.data1 = SCREEN_GAMEPLAY_SCREEN;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_start_game_over_screen()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = SCREEN_MANAGER_SWITCH_SCREEN_EVENT;
+   event.user.data1 = SCREEN_GAME_OVER_SCREEN;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
@@ -175,6 +185,14 @@ void UserEventEmitter::emit_load_next_level_event()
 {
    ALLEGRO_EVENT event;
    event.user.type = LOAD_NEXT_LEVEL_EVENT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_game_over_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = GAME_OVER_EVENT;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 

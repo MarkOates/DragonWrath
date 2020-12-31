@@ -4,7 +4,9 @@
 
 #include <DragonWrath/Screens/GameplayScreen.hpp>
 #include <DragonWrath/Screens/TitleScreen.hpp>
+#include <DragonWrath/Screens/GameOverScreen.hpp>
 #include <DragonWrath/UserEventNames.hpp>
+#include <DragonWrath/ScreenNames.hpp>
 
 
 
@@ -71,6 +73,11 @@ void ScreenManager::key_down_func(ALLEGRO_EVENT *ev)
          user_event_emitter.emit_start_gameplay_screen_event();
       }
       break;
+   case ALLEGRO_KEY_3:
+      {
+         user_event_emitter.emit_start_game_over_screen();
+      }
+      break;
    }
 }
 
@@ -96,6 +103,11 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
          audio_controller.stop_all();
       }
       break;
+   case GAME_OVER_EVENT:
+      {
+         user_event_emitter.emit_start_game_over_screen();
+      }
+      break;
    case SCREEN_MANAGER_SWITCH_SCREEN_EVENT:
       {
          int index_of_level_to_start = ev->user.data1;
@@ -104,19 +116,27 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
 
          switch(index_of_level_to_start)
          {
-         case 1:
+         case SCREEN_TITLE_SCREEN:
             {
                DragonWrath::Screens::TitleScreen *title_screen =
                   new DragonWrath::Screens::TitleScreen(framework, user_event_emitter);
                newly_created_screen = title_screen;
             }
             break;
-         case 2:
+         case SCREEN_GAMEPLAY_SCREEN:
             {
                DragonWrath::Screens::GameplayScreen *gameplay_screen =
                   new DragonWrath::Screens::GameplayScreen(framework, user_event_emitter);
                gameplay_screen->initialize();
                newly_created_screen = gameplay_screen;
+            }
+            break;
+         case SCREEN_GAME_OVER_SCREEN:
+            {
+               DragonWrath::Screens::GameOverScreen *game_over_screen =
+                  new DragonWrath::Screens::GameOverScreen(framework, user_event_emitter);
+               game_over_screen->start();
+               newly_created_screen = game_over_screen;
             }
             break;
          default:
