@@ -163,10 +163,26 @@ void UserEventEmitter::emit_player_dragon_dies_event()
 }
 
 
+void UserEventEmitter::emit_restart_current_level_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = RESTART_CURRENT_LEVEL_EVENT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
 void UserEventEmitter::emit_load_next_level_event()
 {
    ALLEGRO_EVENT event;
    event.user.type = LOAD_NEXT_LEVEL_EVENT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
+void UserEventEmitter::emit_stop_all_music_and_sound_effects_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = STOP_ALL_MUSIC_AND_SOUND_EFFECTS_EVENT;
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
