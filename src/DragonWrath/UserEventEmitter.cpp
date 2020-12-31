@@ -105,6 +105,16 @@ void UserEventEmitter::emit_spawn_option_boost_power_up_event(float x, float y)
 }
 
 
+void UserEventEmitter::emit_spawn_slash_poof_event(float x, float y)
+{
+   ALLEGRO_EVENT event;
+   event.user.type = SPAWN_SLASH_POOF_EVENT;
+   event.user.data1 = x;
+   event.user.data2 = y;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
 void UserEventEmitter::emit_player_dragon_gets_extra_life()
 {
    ALLEGRO_EVENT event;

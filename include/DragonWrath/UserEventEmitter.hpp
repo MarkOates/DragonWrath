@@ -27,6 +27,7 @@ namespace DragonWrath
       void emit_spawn_bullet_boost_power_up_event(float x, float y);
       void emit_spawn_speed_boost_power_up_event(float x, float y);
       void emit_spawn_option_boost_power_up_event(float x, float y);
+      void emit_spawn_slash_poof_event(float x, float y);
 
       // stats, equipment, and powerup events
 
