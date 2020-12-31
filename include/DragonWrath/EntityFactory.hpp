@@ -17,6 +17,7 @@
 #include <DragonWrath/Entities/PowerUps/OptionBoost.hpp>
 #include <DragonWrath/Entities/Backgrounds/Base.hpp>
 #include <DragonWrath/Entities/Terrains/Pillar.hpp>
+#include <DragonWrath/Entities/MotionFX/SequentialFrameAnimation.hpp>
 
 namespace DragonWrath
 {
@@ -70,6 +71,10 @@ namespace DragonWrath
 
       DragonWrath::Entities::PlayerBullet *create_player_bullet(float x, float y);
       DragonWrath::Entities::PlayerDragon *create_player_dragon(float x, float y);
+
+      // motion fx
+
+      DragonWrath::Entities::MotionFX::SequentialFrameAnimation *create_slash_poof(float x, float y);
 
       // power ups
 

@@ -254,6 +254,17 @@ DragonWrath::Entities::PlayerDragon *EntityFactory::create_player_dragon(float x
 }
 
 
+DragonWrath::Entities::MotionFX::SequentialFrameAnimation *EntityFactory::create_slash_poof(float x, float y)
+{
+   ALLEGRO_BITMAP *atlas = framework.bitmap("motion_fx/slash_poof_fx.png");
+
+   DragonWrath::Entities::MotionFX::SequentialFrameAnimation *slash_poof =
+      new DragonWrath::Entities::MotionFX::SequentialFrameAnimation(current_level, atlas, 48, 48, 4, x, y);
+
+   return slash_poof;
+}
+
+
 DragonWrath::Entities::PowerUps::ExtraLife *EntityFactory::create_extra_life(float x, float y)
 {
    DragonWrath::Entities::PowerUps::ExtraLife *entity =
