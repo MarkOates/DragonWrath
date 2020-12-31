@@ -2,6 +2,7 @@
 
 #include <AllegroFlare/Framework.hpp>
 #include <DragonWrath/Levels/Base.hpp>
+#include <DragonWrath/Entities/Base.hpp>
 
 
 namespace DragonWrath
@@ -11,48 +12,46 @@ namespace DragonWrath
       class Boss : public DragonWrath::Levels::Base
       {
       public:
-         class EnemyToSpawn
+         class SuperBoss : public DragonWrath::Entities::Base
          {
          public:
-           bool spawned;
-           float spawn_time;
-           std::string enemy_type;
-           float spawn_x;
-           float spawn_y;
-           std::string movement_strategy;
+            bool spawned;
+            float spawn_time;
+            std::string enemy_type;
+            float spawn_x;
+            float spawn_y;
+            std::string movement_strategy;
 
-           EnemyToSpawn(
-                 float spawn_time,
-                 std::string enemy_type,
-                 float spawn_x,
-                 float spawn_y,
-                 std::string movement_strategy
-              );
-           ~EnemyToSpawn();
+            SuperBoss(
+                  AllegroFlare::ElementID *parent,
+                  float spawn_time,
+                  std::string enemy_type,
+                  float spawn_x,
+                  float spawn_y,
+                  std::string movement_strategy
+                  );
+           ~SuperBoss();
          };
+
+         bool completed;
 
       private:
          AllegroFlare::Framework &framework;
-         float timer;
-         float duration_to_end;
-         const float timer_step;
-         std::vector<EnemyToSpawn> enemies_to_spawn;
 
       public:
          Boss(
                AllegroFlare::Framework &framework,
-               DragonWrath::UserEventEmitter &user_event_emitter,
-               float duration,
-               std::vector<EnemyToSpawn> enemies_to_spawn={}
+               DragonWrath::UserEventEmitter &user_event_emitter
             );
          ~Boss();
 
+         void spawn_super_boss();
+
          void update_level_specific_behavior() override;
 
-         float get_timer();
-         float calculate_level_progress_percentage();
-
          bool is_completed() override;
+         void activate_completed();
+         void deactivate_completed();
       };
    }
 }
