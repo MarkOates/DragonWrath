@@ -28,6 +28,21 @@ Base::~Base()
 }
 
 
+bool Base::level_exists_at_current_index()
+{
+   if (current_level_index_num < 0) return false;
+   if (current_level_index_num >= levels_to_load.size()) return false;
+   return true;
+}
+
+
+bool Base::next_level_exists()
+{
+   return (current_level_index_num + 1) < (int)levels_to_load.size();
+
+}
+
+
 std::string Base::get_title()
 {
    return title;
@@ -74,22 +89,6 @@ DragonWrath::Levels::Base *Base::create_next_level_and_destroy_current()
 
    return current_level;
 }
-
-
-bool Base::level_exists_at_current_index()
-{
-   if (current_level_index_num < 0) return false;
-   if (current_level_index_num >= levels_to_load.size()) return false;
-   return true;
-}
-
-
-bool Base::next_level_exists()
-{
-   return (current_level_index_num + 1) < (int)levels_to_load.size();
-
-}
-
 
 
 } // namespace Worlds
