@@ -5,6 +5,8 @@
 
 namespace DragonWrath
 {
+namespace Entities
+{
 namespace MotionFX
 {
 
@@ -75,6 +77,7 @@ void SequentialFrameAnimation::draw()
 }
 
 
+} // Entities
 } // MotionFX
 } // DragonWrath
 
