@@ -38,6 +38,10 @@ namespace DragonWrath
       void emit_player_dragon_gets_speed_boost();
       void emit_player_dragon_gets_option_boost();
 
+      // gameplay events
+
+      void emit_player_dragon_dies_event();
+
       // music events
 
       void emit_play_title_screen_music_event();

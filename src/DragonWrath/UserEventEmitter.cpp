@@ -155,6 +155,14 @@ void UserEventEmitter::emit_player_dragon_gets_option_boost()
 }
 
 
+void UserEventEmitter::emit_player_dragon_dies_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAYER_DRAGON_DIES_EVENT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
 void UserEventEmitter::emit_play_title_screen_music_event()
 {
    ALLEGRO_EVENT event;

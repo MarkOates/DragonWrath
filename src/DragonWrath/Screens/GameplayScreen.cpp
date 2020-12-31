@@ -428,6 +428,15 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          if (player_dragon) player_dragon->increment_option_level();
       }
       break;
+   case PLAYER_DRAGON_DIES_EVENT:
+      {
+         std::stringstream error_message;
+         error_message << "GameplayScreen::user_event_func(): "
+            << "error: PLAYER_DRAGON_DIES_EVENT is not implemented"
+            << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+      break;
    default:
       break;
    }
