@@ -388,6 +388,17 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
          }
       }
       break;
+   case SPAWN_SLASH_POOF_EVENT:
+      {
+         if (current_level)
+         {
+            DragonWrath::EntityFactory entity_factory(framework, current_level);
+            float spawn_x = ev->user.data1;
+            float spawn_y = ev->user.data2;
+            entity_factory.create_slash_poof(spawn_x, spawn_y);
+         }
+      }
+      break;
    case PLAYER_DRAGON_GETS_EXTRA_LIFE_EVENT:
       {
          player_lives++;
