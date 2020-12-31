@@ -29,7 +29,7 @@ namespace DragonWrath
          DragonWrath::Entities::PlayerDragon *get_player_dragon();
 
          void update_current_level();
-         void update_player_dragon_shooting();
+         void update_achievements();
          void update_hud();
 
          void update();
@@ -42,8 +42,6 @@ namespace DragonWrath
          ~GameplayScreen();
 
          void initialize();
-
-         void draw_you_have_won_banner();
 
          void restart_current_level();
          void load_next_level();

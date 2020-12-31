@@ -5,6 +5,7 @@
 #include <DragonWrath/Screens/GameplayScreen.hpp>
 #include <DragonWrath/Screens/TitleScreen.hpp>
 #include <DragonWrath/Screens/GameOverScreen.hpp>
+#include <DragonWrath/Screens/GameWonScreen.hpp>
 #include <DragonWrath/UserEventNames.hpp>
 #include <DragonWrath/ScreenNames.hpp>
 
@@ -108,6 +109,11 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
          user_event_emitter.emit_start_game_over_screen_event();
       }
       break;
+   case GAME_WON_EVENT:
+      {
+         user_event_emitter.emit_start_game_won_screen_event();
+      }
+      break;
    case SCREEN_MANAGER_SWITCH_SCREEN_EVENT:
       {
          int index_of_level_to_start = ev->user.data1;
@@ -137,6 +143,14 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
                   new DragonWrath::Screens::GameOverScreen(framework, user_event_emitter);
                game_over_screen->start();
                newly_created_screen = game_over_screen;
+            }
+            break;
+         case SCREEN_GAME_WON_SCREEN:
+            {
+               DragonWrath::Screens::GameWonScreen *game_won_screen =
+                  new DragonWrath::Screens::GameWonScreen(framework, user_event_emitter);
+               game_won_screen->start();
+               newly_created_screen = game_won_screen;
             }
             break;
          default:

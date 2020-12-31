@@ -105,41 +105,6 @@ void GameplayScreen::dequip_upgrade_and_equp_weapon_upgrade_on_player_dragon()
    }
 }
 
-void GameplayScreen::draw_you_have_won_banner()
-{
-   ALLEGRO_FONT *title_text_font = framework.font("ChronoTrigger.ttf 100");
-   ALLEGRO_FONT *subtitle_text_font = framework.font("ChronoTrigger.ttf 60");
-
-   std::string title_text = "--  CONGRATULATIONS  --";
-   std::string subtitle_text = "You have won the game";
-
-   ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
-
-   float title_text_x = 1920 / 2;
-   float title_text_y = 1080 / 2 - 150;
-
-   float subtitle_text_x = 1920 / 2;
-   float subtitle_text_y = 1080 / 2 + 100;
-
-   al_draw_text(
-      title_text_font,
-      text_color,
-      title_text_x,
-      title_text_y,
-      ALLEGRO_ALIGN_CENTER,
-      title_text.c_str()
-   );
-   al_draw_text(
-      subtitle_text_font,
-      text_color,
-      subtitle_text_x,
-      subtitle_text_y,
-      ALLEGRO_ALIGN_CENTER,
-      subtitle_text.c_str()
-   );
-}
-
-
 void GameplayScreen::restart_current_level()
 {
    hud.deactivate_all_banners();
@@ -158,8 +123,9 @@ void GameplayScreen::load_next_level()
 }
 
 
-void GameplayScreen::update_player_dragon_shooting()
+void GameplayScreen::update_current_level()
 {
+   // update the player dragon's weapon
    DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
    if (!player_dragon) return;
 
@@ -167,6 +133,34 @@ void GameplayScreen::update_player_dragon_shooting()
    {
       DragonWrath::Weapons::Base *weapon = player_dragon->get_weapon();
       if (weapon) weapon->update();
+   }
+
+   // update the current level
+   if (current_level) current_level->update();
+}
+
+
+void GameplayScreen::update_achievements()
+{
+   DragonWrath::Entities::PlayerDragon *player_dragon = get_player_dragon();
+
+   // check if we need to load the next level
+   if (current_level && current_level->is_ready_to_destroy())
+   {
+      user_event_emitter.emit_load_next_level_event();
+   }
+
+   // check if the player dragon is dead
+   if (player_dragon && player_dragon->is_dead()) // <---- sloppy
+   {
+      user_event_emitter.emit_player_dragon_dies_event();
+   }
+
+   // check if the game has been won
+   if (!current_level)
+   {
+      user_event_emitter.emit_game_won_event(); // <---- also sloppy, this assumes the game won event is captured
+                                                //       otherwise this will continue to emit repeatedly
    }
 }
 
@@ -176,12 +170,7 @@ void GameplayScreen::update_hud()
    DragonWrath::SceneCollectionHelper collection_helper(current_level);
    DragonWrath::Entities::PlayerDragon *player_dragon = collection_helper.get_player_dragon();
 
-   if (player_dragon && player_dragon->is_dead())
-   {
-      hud.activate_game_over_banner();
-      user_event_emitter.emit_play_game_over_music();
-   }
-   else if (current_level && current_level->is_completed())
+   if (current_level && current_level->is_completed())
    {
       hud.activate_level_complete_banner();
    }
@@ -214,7 +203,7 @@ void GameplayScreen::update_hud()
 void GameplayScreen::update()
 {
    update_current_level();
-   update_player_dragon_shooting();
+   update_achievements();
    update_hud();
 }
 
@@ -229,11 +218,6 @@ void GameplayScreen::draw()
    }
 
    hud.draw();
-
-   if (!current_level)
-   {
-      draw_you_have_won_banner();
-   }
 }
 
 
@@ -251,12 +235,8 @@ void GameplayScreen::primary_timer_func()
    update();
    draw();
    cleanup();
-
-   if (current_level && current_level->is_ready_to_destroy())
-   {
-      load_next_level();
-   }
 }
+
 
 void GameplayScreen::key_down_func(ALLEGRO_EVENT *ev)
 {
@@ -443,11 +423,25 @@ void GameplayScreen::user_event_func(ALLEGRO_EVENT *ev)
       break;
    case PLAYER_DRAGON_DIES_EVENT:
       {
-         std::stringstream error_message;
-         error_message << "GameplayScreen::user_event_func(): "
-            << "error: PLAYER_DRAGON_DIES_EVENT is not implemented"
-            << std::endl;
-         throw std::runtime_error(error_message.str());
+         if (player_lives <= 0)
+         {
+            user_event_emitter.emit_game_over_event();
+         }
+         else
+         {
+            player_lives--;
+            user_event_emitter.emit_restart_current_level_event();
+         }
+      }
+      break;
+   case RESTART_CURRENT_LEVEL_EVENT:
+      {
+         restart_current_level();
+      }
+      break;
+   case LOAD_NEXT_LEVEL_EVENT:
+      {
+         load_next_level();
       }
       break;
    default:
