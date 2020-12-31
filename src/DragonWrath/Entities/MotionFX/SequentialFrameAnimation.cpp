@@ -22,12 +22,16 @@ SequentialFrameAnimation::SequentialFrameAnimation(
    )
    : Base(parent, "frame_animation", x, y, 0)
    , sprite_sheet(atlas, frame_width, frame_height, scale)
-   , frames_per_second(12.0)
-   , num_frames(sprite_sheet.get_num_sprites())
+   , frames_per_second(24.0)
+   , num_frames(-1)
    , current_frame(-1)
 {
+   sprite_sheet.initialize();
+
+   num_frames = sprite_sheet.get_num_sprites();
+
    bitmap.position(0, 0)
-      .align(0.5, 1.0)
+      .align(0.5, 0.5)
       .color(AllegroFlare::color::white);
 }
 

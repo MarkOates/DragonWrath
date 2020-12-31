@@ -100,14 +100,21 @@ void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
             {
                enemy->flag_for_deletion();
 
+               // add points
                int points_to_add = enemy->get_points_worth();
                user_event_emitter.emit_increase_player_score(points_to_add);
 
+               // sound effect
                user_event_emitter.emit_play_enemy_explosion_sound_effect_event();
 
+               // explosion animation
+               float explosion_spawn_x = enemy->place.position.x;
+               float explosion_spawn_y = enemy->place.position.y;
+               user_event_emitter.emit_spawn_slash_poof_event(explosion_spawn_x, explosion_spawn_y);
+
+               // spawn random powerup
                float power_up_spawn_x = enemy->place.position.x;
                float power_up_spawn_y = enemy->place.position.y;
-
                int selection = rand() % 100;
                switch(selection)
                {

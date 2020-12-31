@@ -1,1 +1,1 @@
-Objective: Add animation engine with explosions
+Objective: Add "splash poof" animation to dying enemy
