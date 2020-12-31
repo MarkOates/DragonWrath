@@ -140,17 +140,21 @@ void GameplayScreen::draw_you_have_won_banner()
 }
 
 
-void GameplayScreen::load_next_level()
+void GameplayScreen::restart_current_level()
 {
    hud.deactivate_all_banners();
-   current_level = world.create_next_level_and_destroy_current();
+   current_level = world.reload_current_level();
+   user_event_emitter.emit_stop_all_music_and_sound_effects_event();
    user_event_emitter.emit_play_level_1_music_event();
 }
 
 
-void GameplayScreen::update_current_level()
+void GameplayScreen::load_next_level()
 {
-   if (current_level) current_level->update();
+   hud.deactivate_all_banners();
+   current_level = world.create_next_level_and_destroy_current();
+   user_event_emitter.emit_stop_all_music_and_sound_effects_event();
+   user_event_emitter.emit_play_level_1_music_event();
 }
 
 

@@ -45,6 +45,7 @@ namespace DragonWrath
 
          void draw_you_have_won_banner();
 
+         void restart_current_level();
          void load_next_level();
          void dequip_upgrade_and_equp_weapon_upgrade_on_player_dragon();
 
