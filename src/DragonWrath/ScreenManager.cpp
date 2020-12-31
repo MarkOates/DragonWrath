@@ -91,6 +91,11 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
          audio_controller.play_sound_effect_by_id(sound_effect_id);
       }
       break;
+   case STOP_ALL_MUSIC_AND_SOUND_EFFECTS_EVENT:
+      {
+         audio_controller.stop_all();
+      }
+      break;
    case SCREEN_MANAGER_SWITCH_SCREEN_EVENT:
       {
          int index_of_level_to_start = ev->user.data1;
