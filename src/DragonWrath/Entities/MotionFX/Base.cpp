@@ -5,6 +5,8 @@
 
 namespace DragonWrath
 {
+namespace Entities
+{
 namespace MotionFX
 {
 
@@ -29,6 +31,7 @@ void Base::update()
 
 
 } // namespace MotionFX
+} // namespace Entities
 } // namespace DragonWrath
 
 
