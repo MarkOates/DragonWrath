@@ -39,7 +39,6 @@ bool Base::level_exists_at_current_index()
 bool Base::next_level_exists()
 {
    return (current_level_index_num + 1) < (int)levels_to_load.size();
-
 }
 
 
