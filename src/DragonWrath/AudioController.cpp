@@ -23,7 +23,7 @@ AudioController::AudioController(AllegroFlare::SampleBin &sample_bin,
    , sound_effects()
    , music_tracks()
    , current_music_track_id(-1)
-   , global_volume(0.2)
+   , global_volume(0.1)
    , output_loading_debug_to_cout(false)
 {
 }
