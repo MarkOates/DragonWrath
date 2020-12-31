@@ -1,1 +1,1 @@
-Objective: Add "splash poof" animation to dying enemy
+Objective: Player dies, loses lives, and restarts the level
