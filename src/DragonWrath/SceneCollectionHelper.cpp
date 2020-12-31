@@ -131,6 +131,16 @@ std::vector<Entities::PowerUps::Base *> SceneCollectionHelper::get_all_power_ups
 }
 
 
+
+std::vector<Entities::Terrains::Base *> SceneCollectionHelper::get_all_terrains()
+{
+   return AllegroFlare::ElementID::recast_collection<Entities::Terrains::Base>(
+         scene->find_all_descendants("type", "terrain")
+      );
+}
+
+
+
 std::vector<Entities::Backgrounds::Base *> SceneCollectionHelper::get_all_backgrounds()
 {
    return AllegroFlare::ElementID::recast_collection<Entities::Backgrounds::Base>(

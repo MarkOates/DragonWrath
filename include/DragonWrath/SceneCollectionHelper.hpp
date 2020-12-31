@@ -9,6 +9,7 @@
 #include <DragonWrath/Entities/PlayerDragon.hpp>
 #include <DragonWrath/Entities/PlayerBullet.hpp>
 #include <DragonWrath/Entities/Backgrounds/Base.hpp>
+#include <DragonWrath/Entities/Terrains/Base.hpp>
 #include <DragonWrath/Levels/Base.hpp>
 
 
@@ -41,6 +42,7 @@ namespace DragonWrath
       std::vector<Entities::Base *> get_all_flagged_for_deletion();
       std::vector<Entities::Enemies::Base *> get_all_enemies();
       std::vector<Entities::PowerUps::Base *> get_all_power_ups();
+      std::vector<Entities::Terrains::Base *> get_all_terrains();
       std::vector<Entities::Backgrounds::Base *> get_all_backgrounds();
       std::vector<Entities::PlayerBullet *> get_all_player_bullets();
       Entities::PlayerDragon *get_player_dragon();
