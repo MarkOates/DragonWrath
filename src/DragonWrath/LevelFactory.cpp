@@ -86,6 +86,32 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_level_1()
 }
 
 
+DragonWrath::Levels::TimedScroll *LevelFactory::create_level_2()
+{
+   // load the level source json from file
+   std::string level_source_json = load_file_contents("data/levels/level_2.generated.json");
+
+   // load the level from json
+   DragonWrath::JsonLevelLoader json_level_loader;
+   DragonWrath::Levels::TimedScroll *timed_scroll_level =
+      json_level_loader.create_timed_scroll_from_source(level_source_json, framework, user_event_emitter);
+   DragonWrath::EntityFactory entity_factory(framework, timed_scroll_level);
+
+   // create player dragon
+   DragonWrath::Entities::PlayerDragon *created_player_dragon = entity_factory.create_player_dragon(480, 1080/2);
+
+   // create and equip the weapon on the dragon
+   DragonWrath::Weapons::Base *weapon_to_equip = new DragonWrath::Weapons::BasicRefire(created_player_dragon, user_event_emitter);
+   created_player_dragon->equip_weapon(weapon_to_equip);
+
+   // create a basic background
+   DragonWrath::Entities::Backgrounds::Base *background = entity_factory.create_background();
+
+   return timed_scroll_level;
+
+}
+
+
 DragonWrath::Levels::TimedScroll *LevelFactory::create_timed_scroll_level_with_test_enemies()
 {
    std::vector<DragonWrath::Levels::TimedScroll::EnemyToSpawn> enemies_to_spawn = {
@@ -122,7 +148,7 @@ DragonWrath::Levels::Base *LevelFactory::create_level_by_identifier(std::string 
    }
    else if (identifier == "level_2")
    {
-      result = create_timed_scroll_level_with_10_random_enemies();
+      result = create_level_2();
    }
    else
    {

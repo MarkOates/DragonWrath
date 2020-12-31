@@ -21,6 +21,7 @@ namespace DragonWrath
       DragonWrath::Levels::Base *create_level_by_identifier(std::string identifier);
 
       DragonWrath::Levels::TimedScroll *create_level_1();
+      DragonWrath::Levels::TimedScroll *create_level_2();
    };
 }
 
