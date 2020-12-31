@@ -41,6 +41,7 @@ namespace DragonWrath
       // gameplay events
 
       void emit_player_dragon_dies_event();
+      void emit_load_next_level_event();
 
       // music events
 

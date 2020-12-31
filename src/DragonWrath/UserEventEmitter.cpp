@@ -163,6 +163,14 @@ void UserEventEmitter::emit_player_dragon_dies_event()
 }
 
 
+void UserEventEmitter::emit_load_next_level_event()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = LOAD_NEXT_LEVEL_EVENT;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
 void UserEventEmitter::emit_play_title_screen_music_event()
 {
    ALLEGRO_EVENT event;
