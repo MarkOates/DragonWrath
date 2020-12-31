@@ -16,7 +16,7 @@ std::string title, std::vector<std::string> levels_to_load)
    : framework(framework)
    , user_event_emitter(user_event_emitter)
    , title(title)
-   , levels_to_load({ "level_1", "level_2" })
+   , levels_to_load(levels_to_load)
    , current_level_index_num(-1)
    , current_level(nullptr)
 {
