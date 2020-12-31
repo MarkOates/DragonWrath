@@ -217,6 +217,8 @@ void GameplayScreen::update()
 
 void GameplayScreen::draw()
 {
+   al_clear_to_color(AllegroFlare::color::black);
+
    if (current_level)
    {
       current_level->draw();
@@ -242,8 +244,6 @@ void GameplayScreen::cleanup()
 
 void GameplayScreen::primary_timer_func()
 {
-   al_clear_to_color(AllegroFlare::color::black);
-
    update();
    draw();
    cleanup();
