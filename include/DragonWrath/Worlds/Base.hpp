@@ -25,8 +25,10 @@ namespace DragonWrath
 
          std::string get_title();
 
+         DragonWrath::Levels::Base *reload_current_level();
          DragonWrath::Levels::Base *create_next_level_and_destroy_current();
 
+         bool level_exists_at_current_index();
          bool next_level_exists();
       };
    }
