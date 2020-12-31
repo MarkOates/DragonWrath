@@ -353,7 +353,6 @@ DragonWrath::Entities::Backgrounds::Base *EntityFactory::create_background()
 
 DragonWrath::Entities::Terrains::Pillar *EntityFactory::create_pillar()
 {
-   AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
    ALLEGRO_BITMAP *source_bitmap = framework.bitmap("terrains/simple_rock.png");
    ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("pillar-texture", source_bitmap, 0.0);
 
