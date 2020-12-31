@@ -29,7 +29,7 @@ GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework, DragonWrath::
    , user_event_emitter(user_event_emitter)
    , current_level(nullptr)
    , hud(framework)
-   , world(framework, this->user_event_emitter, "World of DragonWrath", { "level_1", "level_2", "level_3", "boss" })
+   , world(framework, this->user_event_emitter, "World of DragonWrath", { "level_1", "boss" })
    , player_lives(3)
    , player_score(0)
 {
