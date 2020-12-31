@@ -1,1 +1,1 @@
-Objective: Add enemy hit sound effect
+Objective: Clean up dangling code
