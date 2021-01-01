@@ -16,7 +16,7 @@ namespace Enemies
 
 
 SuperBoss::SuperBoss(AllegroFlare::ElementID *parent)
-   : DragonWrath::Entities::Enemies::Base(parent, "SuperBoss", 1920/5*4, 1080/2, 3, 10000)
+   : DragonWrath::Entities::Enemies::Base(parent, "SuperBoss", 1920/5*4, 1080/2, 100, 10000)
 {}
 
 
