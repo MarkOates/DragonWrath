@@ -13,12 +13,22 @@ namespace DragonWrath
       private:
          AllegroFlare::Framework &framework;
          DragonWrath::UserEventEmitter &user_event_emitter;
+         float duration_to_allow_exit;
+         float timer_to_allow_exit;
+         bool exitable;
+
+         bool is_exitable();
+         void activate_exitable();
+         void deactivate_exitable();
+
+         void update_timer_to_allow_exit();
+         void draw_you_have_won_banner();
+         void draw_press_any_key_to_return_to_the_title_screen();
+         void draw_sunset_background();
 
       public:
          GameWonScreen(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter);
          ~GameWonScreen();
-
-         void draw_you_have_won_banner();
 
          void start() override;
 
