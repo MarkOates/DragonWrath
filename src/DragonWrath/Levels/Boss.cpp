@@ -3,6 +3,7 @@
 #include <DragonWrath/LevelTypeNames.hpp>
 #include <DragonWrath/EntityTypeNames.hpp>
 #include <DragonWrath/EntityFactory.hpp>
+#include <DragonWrath/SceneCollectionHelper.hpp>
 #include <allegro5/allegro.h>
 
 
@@ -12,43 +13,47 @@ namespace Levels
 {
 
 
-Boss::SuperBoss::SuperBoss(AllegroFlare::ElementID *parent, float spawn_time, std::string enemy_type, float spawn_x, float spawn_y, std::string movement_strategy)
-   : DragonWrath::Entities::Base(parent, "SuperBoss", spawn_x, spawn_y)
-   , spawned(false)
-   , spawn_time(spawn_time)
-   , enemy_type(enemy_type)
-   , spawn_x(spawn_x)
-   , spawn_y(spawn_y)
-   , movement_strategy(movement_strategy)
-{}
-
-
-Boss::SuperBoss::~SuperBoss()
-{}
-
-
-
 Boss::Boss(
       AllegroFlare::Framework &framework,
       DragonWrath::UserEventEmitter &user_event_emitter
    )
-   : DragonWrath::Levels::Base(TIMED_SCROLL, user_event_emitter)
+   : DragonWrath::Levels::Base("Boss", user_event_emitter)
+   , completed(false)
+   , started_at(0)
    , framework(framework)
 {}
 
 
 Boss::~Boss()
-{}
+{
+}
+
+
+
+void Boss::start()
+{
+   spawn_super_boss();
+}
 
 
 void Boss::spawn_super_boss()
 {
+   DragonWrath::Entities::Enemies::SuperBoss *super_boss = new DragonWrath::Entities::Enemies::SuperBoss(this);
+   super_boss->bitmap.bitmap(framework.bitmap("enemies/bosses/attack_loop_2.png"));
+   super_boss->bitmap.align(0.5, 0.5);
+   super_boss->bitmap.scale(6, 6);
+   super_boss->bitmap.flip(true, false);
+   super_boss->place.size = AllegroFlare::vec2d(100, 100);
 }
 
 
 void Boss::update_level_specific_behavior()
 {
-   DragonWrath::EntityFactory entity_factory(framework, this);
+   SceneCollectionHelper collection_helper(this);
+   DragonWrath::Entities::Enemies::SuperBoss *super_boss = collection_helper.get_super_boss();
+
+   if (!super_boss) activate_completed();
+   if (super_boss && super_boss->is_dead()) activate_completed();
 }
 
 

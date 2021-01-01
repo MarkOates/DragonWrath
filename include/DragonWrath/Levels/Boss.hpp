@@ -3,6 +3,7 @@
 #include <AllegroFlare/Framework.hpp>
 #include <DragonWrath/Levels/Base.hpp>
 #include <DragonWrath/Entities/Base.hpp>
+#include <DragonWrath/Entities/Enemies/SuperBoss.hpp>
 
 
 namespace DragonWrath
@@ -11,41 +12,19 @@ namespace DragonWrath
    {
       class Boss : public DragonWrath::Levels::Base
       {
-      public:
-         class SuperBoss : public DragonWrath::Entities::Base
-         {
-         public:
-            bool spawned;
-            float spawn_time;
-            std::string enemy_type;
-            float spawn_x;
-            float spawn_y;
-            std::string movement_strategy;
-
-            SuperBoss(
-                  AllegroFlare::ElementID *parent,
-                  float spawn_time,
-                  std::string enemy_type,
-                  float spawn_x,
-                  float spawn_y,
-                  std::string movement_strategy
-                  );
-           ~SuperBoss();
-         };
-
-         bool completed;
-
       private:
          AllegroFlare::Framework &framework;
-
-      public:
-         Boss(
-               AllegroFlare::Framework &framework,
-               DragonWrath::UserEventEmitter &user_event_emitter
-            );
-         ~Boss();
+         bool completed;
+         float started_at;
 
          void spawn_super_boss();
+         DragonWrath::Entities::Enemies::SuperBoss *get_super_boss();
+
+      public:
+         Boss(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter);
+         ~Boss();
+
+         void start();
 
          void update_level_specific_behavior() override;
 
