@@ -122,7 +122,7 @@ void SceneCollisionHelper::update_player_bullet_collisions_on_enemies()
                case 1: user_event_emitter.emit_spawn_shield_boost_power_up_event(power_up_spawn_x, power_up_spawn_y); break;
                case 2: user_event_emitter.emit_spawn_bullet_boost_power_up_event(power_up_spawn_x, power_up_spawn_y); break;
                case 3: user_event_emitter.emit_spawn_speed_boost_power_up_event(power_up_spawn_x, power_up_spawn_y); break;
-               case 4: user_event_emitter.emit_spawn_option_boost_power_up_event(power_up_spawn_x, power_up_spawn_y); break;
+               //case 4: user_event_emitter.emit_spawn_option_boost_power_up_event(power_up_spawn_x, power_up_spawn_y); break;
                default: break;
                }
             }
@@ -171,7 +171,7 @@ void SceneCollisionHelper::update_enemy_collisions_on_player_dragon()
       if (player_dragon->collides(*enemy))
       {
          player_dragon->take_damage(1);
-         enemy->flag_for_deletion();
+         if (!enemy->exists("type", "SuperBoss")) enemy->flag_for_deletion();
 
          if (player_dragon->is_dead())
          {

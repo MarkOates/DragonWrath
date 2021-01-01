@@ -1,6 +1,7 @@
 #pragma once
 
 #include <DragonWrath/Levels/Base.hpp>
+#include <DragonWrath/Levels/Boss.hpp>
 #include <AllegroFlare/Framework.hpp>
 #include <DragonWrath/Entities/Enemies/YellowDragon.hpp>
 #include <DragonWrath/Entities/Enemies/BlueDragon.hpp>
@@ -16,6 +17,7 @@
 #include <DragonWrath/Entities/PowerUps/SpeedBoost.hpp>
 #include <DragonWrath/Entities/PowerUps/OptionBoost.hpp>
 #include <DragonWrath/Entities/Backgrounds/Base.hpp>
+#include <DragonWrath/Entities/Backgrounds/Boss.hpp>
 #include <DragonWrath/Entities/Terrains/Pillar.hpp>
 #include <DragonWrath/Entities/MotionFX/SequentialFrameAnimation.hpp>
 
@@ -84,9 +86,10 @@ namespace DragonWrath
       DragonWrath::Entities::PowerUps::SpeedBoost *create_speed_boost(float x, float y);
       DragonWrath::Entities::PowerUps::OptionBoost *create_option_boost(float x, float y);
 
-      // backgrounds
+      // background
 
-      DragonWrath::Entities::Backgrounds::Base *create_background();
+      DragonWrath::Entities::Backgrounds::Base *create_basic_background();
+      DragonWrath::Entities::Backgrounds::Boss *create_boss_background();
 
       // terrains
 

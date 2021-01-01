@@ -345,12 +345,23 @@ DragonWrath::Entities::PowerUps::OptionBoost *EntityFactory::create_option_boost
 }
 
 
-DragonWrath::Entities::Backgrounds::Base *EntityFactory::create_background()
+DragonWrath::Entities::Backgrounds::Base *EntityFactory::create_basic_background()
 {
    //ALLEGRO_BITMAP *source_bitmap = framework.bitmap("backgrounds/Sky3.png");
    AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
    DragonWrath::Entities::Backgrounds::Base *background =
-      new DragonWrath::Entities::Backgrounds::Base(current_level, bitmap_bin);
+      new DragonWrath::Entities::Backgrounds::Base(
+            current_level,
+            bitmap_bin,
+            std::vector<DragonWrath::Entities::Backgrounds::Base::BackgroundLayer>{
+                  { 0, 0, 1.0, bitmap_bin.auto_get("backgrounds/Sky3.png") },
+                  { 0, -116, 50.0, bitmap_bin.auto_get("backgrounds/Cloud3a.png") }
+               },
+            std::vector<DragonWrath::Entities::Backgrounds::Base::ForegroundLayer>{
+                  //{ 0, 100, 40.0, bitmap_bin.auto_get("backgrounds/Cloud2.png") },
+                  { 0, -350, 120.0, bitmap_bin.auto_get("backgrounds/Cloud2.png") }
+               }
+            );
 
    //ALLEGRO_BITMAP *source_bitmap = framework.bitmap("backgrounds/Cloud2.png");
    //ALLEGRO_BITMAP *bitmap = get_or_generate_modified_bitmap("sky-and-cloud3", source_bitmap, 0.0);
@@ -359,6 +370,15 @@ DragonWrath::Entities::Backgrounds::Base *EntityFactory::create_background()
    //background->bitmap.scale_to_fit(1920, 1080);
 
    return background;
+}
+
+
+DragonWrath::Entities::Backgrounds::Boss *EntityFactory::create_boss_background()
+{
+   AllegroFlare::BitmapBin &bitmap_bin = framework.get_bitmap_bin_ref();
+   DragonWrath::Entities::Backgrounds::Boss *boss_background =
+      new DragonWrath::Entities::Backgrounds::Boss(current_level, bitmap_bin);
+   return boss_background;
 }
 
 

@@ -4,10 +4,17 @@
 #include <DragonWrath/EntityTypeNames.hpp>
 #include <DragonWrath/MovementStrategyNames.hpp>
 #include <DragonWrath/Weapons/BasicRefire.hpp>
+//#include <DragonWrath/Entities/Backgrounds/Boss.hpp>
+//#include <DragonWrath/Entities/Backgrounds/Boss.hpp>
 #include <DragonWrath/JsonLevelLoader.hpp>
 #include <string>
 #include <fstream>
 #include <streambuf>
+
+
+//DragonWrath::Entities::Backgrounds::Boss *boss_background = entity_factory.create_boss_background
+//{
+//}
 
 
 namespace DragonWrath
@@ -79,23 +86,18 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_level_1()
    created_player_dragon->equip_weapon(weapon_to_equip);
 
    // create a basic background
-   DragonWrath::Entities::Backgrounds::Base *background = entity_factory.create_background();
+   entity_factory.create_basic_background();
 
    return timed_scroll_level;
 
 }
 
 
-DragonWrath::Levels::TimedScroll *LevelFactory::create_level_2()
+DragonWrath::Levels::Boss *LevelFactory::create_boss_level()
 {
-   // load the level source json from file
-   std::string level_source_json = load_file_contents("data/levels/level_2.generated.json");
+   DragonWrath::Levels::Boss *boss_level = new DragonWrath::Levels::Boss(framework, user_event_emitter);
 
-   // load the level from json
-   DragonWrath::JsonLevelLoader json_level_loader;
-   DragonWrath::Levels::TimedScroll *timed_scroll_level =
-      json_level_loader.create_timed_scroll_from_source(level_source_json, framework, user_event_emitter);
-   DragonWrath::EntityFactory entity_factory(framework, timed_scroll_level);
+   DragonWrath::EntityFactory entity_factory(framework, boss_level);
 
    // create player dragon
    DragonWrath::Entities::PlayerDragon *created_player_dragon = entity_factory.create_player_dragon(480, 1080/2);
@@ -105,10 +107,10 @@ DragonWrath::Levels::TimedScroll *LevelFactory::create_level_2()
    created_player_dragon->equip_weapon(weapon_to_equip);
 
    // create a basic background
-   DragonWrath::Entities::Backgrounds::Base *background = entity_factory.create_background();
+   entity_factory.create_boss_background();
 
-   return timed_scroll_level;
 
+   return boss_level;
 }
 
 
@@ -146,14 +148,14 @@ DragonWrath::Levels::Base *LevelFactory::create_level_by_identifier(std::string 
    {
       result = create_level_1();
    }
-   else if (identifier == "level_2")
+   else if (identifier == "boss")
    {
-      result = create_level_2();
+      result = create_boss_level();
    }
    else
    {
       std::stringstream error_message;
-      error_message << "DragonWrath::Levels::Base::create_level_by_identifier(): "
+      error_message << "DragonWrath::LevelFactory::create_level_by_identifier(): "
          << "error: undefined identifier \""
          << identifier
          << "\""

@@ -15,6 +15,7 @@
 #include <DragonWrath/Levels/TimedScroll.hpp>
 #include <DragonWrath/UserEventEmitter.hpp>
 #include <DragonWrath/UserEventNames.hpp>
+#include <DragonWrath/Levels/Boss.hpp>
 
 
 namespace DragonWrath
@@ -30,6 +31,7 @@ GameplayScreen::GameplayScreen(AllegroFlare::Framework &framework, DragonWrath::
    , current_level(nullptr)
    , hud(framework)
    , world(framework, this->user_event_emitter, "World of DragonWrath", { "level_1", "boss" })
+   //, world(framework, this->user_event_emitter, "World of DragonWrath", { "boss" })
    , player_lives(3)
    , player_score(0)
 {
@@ -111,6 +113,16 @@ void GameplayScreen::restart_current_level()
    current_level = world.reload_current_level();
    user_event_emitter.emit_stop_all_music_and_sound_effects_event();
    user_event_emitter.emit_play_level_1_music_event();
+
+   if (current_level && current_level->is_type(TIMED_SCROLL))
+   {
+      hud.activate_level_progress_meter();
+   }
+
+   if (current_level->is_type(BOSS))
+   {
+      static_cast<DragonWrath::Levels::Boss*>(current_level)->start();
+   }
 }
 
 
@@ -120,6 +132,16 @@ void GameplayScreen::load_next_level()
    current_level = world.create_next_level_and_destroy_current();
    user_event_emitter.emit_stop_all_music_and_sound_effects_event();
    user_event_emitter.emit_play_level_1_music_event();
+
+   if (current_level && current_level->is_type(TIMED_SCROLL))
+   {
+      hud.activate_level_progress_meter();
+   }
+
+   if (current_level && current_level->is_type(BOSS))
+   {
+      static_cast<DragonWrath::Levels::Boss*>(current_level)->start();
+   }
 }
 
 

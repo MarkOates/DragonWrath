@@ -50,9 +50,9 @@ TitleScreen::TitleScreen(AllegroFlare::Framework &framework, DragonWrath::UserEv
    , slides()
 {
    slides = {
-      {1, 3.5, &TitleScreen::draw_powered_by_allegro},
-      {5.5, 3.5, &TitleScreen::draw_krampushack_2020},
-      {10, 3, &TitleScreen::draw_game_by_mark_oates},
+      {1, 3.5, &TitleScreen::draw_krampushack_2020},
+      {5.5, 3.5, &TitleScreen::draw_game_by_mark_oates},
+      {10, 3, &TitleScreen::draw_powered_by_allegro},
       {13.5, 37, &TitleScreen::draw_sunset_background},
       {14.25, 37, &TitleScreen::draw_main_title}
    };

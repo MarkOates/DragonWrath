@@ -165,6 +165,14 @@ Entities::PlayerDragon *SceneCollectionHelper::get_player_dragon()
 
 
 
+Entities::Enemies::SuperBoss *SceneCollectionHelper::get_super_boss()
+{
+   if (!scene) return nullptr;
+   return static_cast<Entities::Enemies::SuperBoss *>(scene->find_first_descendant("type", "SuperBoss"));
+}
+
+
+
 
 //std::vector<KidEntity *> SceneCollectionHelper::get_kids_flagged_for_deletion()
 //{

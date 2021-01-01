@@ -10,6 +10,7 @@
 #include <DragonWrath/Entities/PlayerBullet.hpp>
 #include <DragonWrath/Entities/Backgrounds/Base.hpp>
 #include <DragonWrath/Entities/Terrains/Base.hpp>
+#include <DragonWrath/Entities/Enemies/SuperBoss.hpp>
 #include <DragonWrath/Levels/Base.hpp>
 
 
@@ -46,6 +47,7 @@ namespace DragonWrath
       std::vector<Entities::Backgrounds::Base *> get_all_backgrounds();
       std::vector<Entities::PlayerBullet *> get_all_player_bullets();
       Entities::PlayerDragon *get_player_dragon();
+      Entities::Enemies::SuperBoss *get_super_boss();
       //std::vector<Enemy::Base *> get_enemies_flagged_for_deletion();
       //std::vector<KidEntity *> get_kids_flagged_for_deletion();
       //std::vector<DoorEntity *> get_doors();
