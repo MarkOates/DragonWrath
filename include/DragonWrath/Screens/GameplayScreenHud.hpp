@@ -25,6 +25,7 @@ namespace DragonWrath
 
          bool game_over_banner_showing;
          bool level_complete_banner_showing;
+         bool level_progress_meter_showing;
 
          bool debug_mode;
          float debug__level_scroll_timer;
@@ -52,11 +53,14 @@ namespace DragonWrath
 
          void set_level_progress_position(float level_progress_position);
 
+         void activate_level_progress_meter();
          void activate_game_over_banner();
          void activate_level_complete_banner();
+         void deactivate_level_progress_meter();
          void deactivate_game_over_banner();
          void deactivate_level_complete_banner();
          void deactivate_all_banners();
+         bool is_progress_meter_showing();
 
          void debug__show_level_scroll_timer();
          void debug__set_level_scroll_timer(float time);

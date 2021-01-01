@@ -24,6 +24,7 @@ GameplayScreenHud::GameplayScreenHud(AllegroFlare::Framework &framework)
    , level_progress_position(0.0f)
    , game_over_banner_showing(false)
    , level_complete_banner_showing(false)
+   , level_progress_meter_showing(true)
    , debug_mode(true)
    , debug__level_scroll_timer(0)
 {
@@ -53,14 +54,19 @@ void GameplayScreenHud::draw_bar(float x, float y, int value, int max_value, std
 
    // backfill
    al_draw_filled_rectangle(x, y, x+bar_max_width, y+bar_height, backfill_color);
+
    // active health
-   al_draw_filled_rectangle(
-         x + border_thickness * 1.5,
-         y + border_thickness * 1.5,
-         x + border_thickness * 1.5 + (bar_max_width*percentage) - border_thickness * 3,
-         y + border_thickness * 1.5 + bar_height - border_thickness * 3,
-         light_blue_fill_color
-      );
+   if (percentage >= 0.0001f)
+   {
+      al_draw_filled_rectangle(
+            x + border_thickness * 1.5,
+            y + border_thickness * 1.5,
+            x + border_thickness * 1.5 + (bar_max_width*percentage) - border_thickness * 3,
+            y + border_thickness * 1.5 + bar_height - border_thickness * 3,
+            light_blue_fill_color
+         );
+   }
+
    // frame
    al_draw_rectangle(x, y, x+bar_max_width, y+bar_height, border_color, border_thickness);
 
@@ -170,7 +176,7 @@ void GameplayScreenHud::draw_player_lives()
 
 void GameplayScreenHud::draw_all_bars()
 {
-   float start_x = 420;
+   float start_x = 420 + 150;
    float y = 60;
 
    float cursor_x = start_x;
@@ -181,8 +187,8 @@ void GameplayScreenHud::draw_all_bars()
    draw_bar(cursor_x, y, player_bullet_level, 3, "FIREPOWER");
    cursor_x += bar_distance_x;
    draw_bar(cursor_x, y, player_speed_level, 3, "SPEED");
-   cursor_x += bar_distance_x;
-   draw_bar(cursor_x, y, player_option_level, 3, "OPTION");
+   //cursor_x += bar_distance_x;
+   //draw_bar(cursor_x, y, player_option_level, 3, "OPTION");
 }
 
 
@@ -212,7 +218,7 @@ void GameplayScreenHud::draw()
 {
    draw_player_lives();
    draw_all_bars();
-   draw_level_progress_meter();
+   if (is_progress_meter_showing()) draw_level_progress_meter();
    draw_player_score();
 
    if (game_over_banner_showing) draw_game_over_banner();
@@ -270,9 +276,21 @@ void GameplayScreenHud::activate_game_over_banner()
 }
 
 
+void GameplayScreenHud::activate_level_progress_meter()
+{
+   this->level_progress_meter_showing = true;
+}
+
+
 void GameplayScreenHud::activate_level_complete_banner()
 {
    this->level_complete_banner_showing = true;
+}
+
+
+void GameplayScreenHud::deactivate_level_progress_meter()
+{
+   this->level_progress_meter_showing = false;
 }
 
 
@@ -292,6 +310,12 @@ void GameplayScreenHud::deactivate_all_banners()
 {
    deactivate_game_over_banner();
    deactivate_level_complete_banner();
+}
+
+
+bool GameplayScreenHud::is_progress_meter_showing()
+{
+   return this->level_progress_meter_showing;
 }
 
 
