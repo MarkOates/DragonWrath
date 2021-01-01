@@ -16,7 +16,7 @@ namespace Enemies
 
 
 RedDragon::RedDragon(ElementID *parent, float x, float y)
-   : DragonWrath::Entities::Enemies::Base(parent, "basic_enemy", x, y, 4, 600)
+   : DragonWrath::Entities::Enemies::Base(parent, "RedDragon", x, y, 4, 600)
    , movement_strategy(SIN_WAVE_MOVE_LEFT)
 {
 }

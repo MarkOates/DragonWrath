@@ -18,6 +18,7 @@ Base::Base(AllegroFlare::ElementID *parent, std::string type, float x, float y, 
    , points_worth(points_worth)
    , dead(false)
 {
+   set("enemy");
 }
 
 

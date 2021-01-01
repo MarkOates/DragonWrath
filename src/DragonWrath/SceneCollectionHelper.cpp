@@ -119,7 +119,7 @@ std::vector<Entities::Enemies::Base *> SceneCollectionHelper::get_all_enemies()
    // that would look like { "type" => "Entities::Enemies::Base:PurpleDragon" }, and we would need
    // a new selection method that would likely mean setting a simple property on the Enemies::Base
    // class, a-la { "enemy" }, and done via a call to ElementID::set("enemy").
-   return AllegroFlare::ElementID::recast_collection<Entities::Enemies::Base>(scene->find_all_descendants("type", "basic_enemy"));
+   return AllegroFlare::ElementID::recast_collection<Entities::Enemies::Base>(scene->find_all_descendants("enemy"));
 }
 
 

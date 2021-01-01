@@ -16,7 +16,7 @@ namespace Enemies
 
 
 BlueDragon::BlueDragon(ElementID *parent, float x, float y)
-   : DragonWrath::Entities::Enemies::Base(parent, "basic_enemy", x, y, 2, 200)
+   : DragonWrath::Entities::Enemies::Base(parent, "BlueDragon", x, y, 2, 200)
    , movement_strategy(SIN_WAVE_MOVE_LEFT)
 {
 }
