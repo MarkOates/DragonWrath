@@ -54,6 +54,7 @@ namespace DragonWrath
       void emit_play_title_screen_music_event();
       void emit_play_level_1_music_event();
       void emit_play_game_over_music();
+      void emit_play_game_won_music();
 
       // sound effect events
 
