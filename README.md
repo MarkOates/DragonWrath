@@ -3,6 +3,17 @@
 This is my official entry into [KrampusHack 2020](https://tins.amarillion.org/krampu20).
 
 
+# Build
+
+You should be able to build the program by simply envoking `make`.  You should
+then have an executable in the `bin/` folder that you can run to play the game.
+
+```
+make
+./bin/DragonWrath.exe
+```
+
+
 ### Resources
 
 * https://sanctumpixel.itch.io/baby-dragon-pixel-art-character
