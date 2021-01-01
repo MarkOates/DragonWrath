@@ -32,6 +32,7 @@ Boss::~Boss()
 
 void Boss::start()
 {
+   user_event_emitter.emit_play_final_boss_music();
    spawn_super_boss();
 }
 

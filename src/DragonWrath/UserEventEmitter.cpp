@@ -240,6 +240,15 @@ void UserEventEmitter::emit_play_level_1_music_event()
 }
 
 
+void UserEventEmitter::emit_play_final_boss_music()
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAY_MUSIC_TRACK;
+   event.user.data1 = FINAL_BOSS_MUSIC;
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
 void UserEventEmitter::emit_play_game_over_music()
 {
    ALLEGRO_EVENT event;

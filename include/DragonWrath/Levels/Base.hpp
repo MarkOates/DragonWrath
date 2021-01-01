@@ -11,7 +11,7 @@ namespace DragonWrath
    {
       class Base : public AllegroFlare::ElementID
       {
-      private:
+      protected:
          DragonWrath::UserEventEmitter &user_event_emitter;
          virtual void update_level_specific_behavior() = 0;
          void update_collisions();

@@ -29,6 +29,7 @@ ScreenManager::ScreenManager(AllegroFlare::Framework &framework, AllegroFlare::S
             { LEVEL_1_MUSIC, "02 sawsquarenoise - Stage 1.ogg", true },
             { GAME_OVER_SCREEN_MUSIC, "05 sawsquarenoise - Boss Splash.ogg", false },
             { GAME_WON_SCREEN_MUSIC, "sawsquarenoise_-_10_-_Towel_Defence_Ending.ogg", false },
+            { FINAL_BOSS_MUSIC, "Boss Theme.ogg", true },
          },
          std::vector<AudioRepositoryElement>{
             { PLAYER_SHOOT_BULLET_SOUND_EFFECT, "sfx_wpn_laser8.wav", false },
