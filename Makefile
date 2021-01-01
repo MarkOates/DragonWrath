@@ -19,9 +19,9 @@ endif
 
 main: objects program
 	@echo "=========== building levels through script ============="
-	ruby scripts/level_builder.rb
+	#ruby scripts/level_builder.rb
 	@echo "=========== running executable ============="
-	./bin/DragonWrath.exe
+	#./bin/DragonWrath.exe
 
 
 objects: $(OBJECTS)
