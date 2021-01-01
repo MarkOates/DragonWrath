@@ -112,34 +112,73 @@ void TitleScreen::draw_sunset_background()
    ALLEGRO_BITMAP *sunset_background = framework.bitmap("backgrounds/SkyAndCloud5.png");
    if (!sunset_background) return;
 
-   draw_offset_textured_rectangle(0, 0, 1920, 1080, 0, 0, sunset_background);
+   ALLEGRO_COLOR blackout = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.0};
+   ALLEGRO_COLOR dark_gray = ALLEGRO_COLOR{0.25, 0.25, 0.25, 0.25};
+   ALLEGRO_COLOR light_gray = ALLEGRO_COLOR{0.75, 0.75, 0.75, 0.75};
+   ALLEGRO_COLOR full_white = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+
+   ALLEGRO_COLOR final_color = full_white;
+
+   draw_offset_textured_rectangle(0, 0, 1920, 1080, 0, 0, sunset_background, final_color);
 }
 
 
 void TitleScreen::draw_menu_items()
 {
    ALLEGRO_FONT *text_font = framework.font("ChronoTrigger.ttf 60");
+   ALLEGRO_FONT *hilighted_menu_cursor_bracket_font = framework.font("ChronoTrigger.ttf 120");
    float center_x = 1920 / 2;
    float top_y = 1080 / 2 + 100;
    float text_x = 1920 / 2;
    float text_y = 1080 / 2 + 100;
-   float menu_spacing_y = 80;
-   std::string text = "Press ENTER key to START";
+   float menu_spacing_y = 70;
+   //std::string text = "Press ENTER key to START";
    ALLEGRO_COLOR darker_text_color = ALLEGRO_COLOR{0.678, 0.847, 0.902, 1.0}; // a nice light blue
-   ALLEGRO_COLOR hilighted_menu_item_text_color = fmod(al_get_time(), 0.4f) < 0.2 ? ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0} : darker_text_color;
+   ALLEGRO_COLOR hilighted_menu_item_text_color = fmod(al_get_time(), 0.2f) < 0.1 ? ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0} : darker_text_color;
    ALLEGRO_COLOR normal_menu_item_text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+   ALLEGRO_COLOR hilighted_menu_selector_bracket_color = al_color_name("yellow");
 
    int list_item_index = 0;
    for (auto &menu_item : menu_items)
    {
+      bool is_selected = (list_item_index == menu_cursor_pos);
+      float y = text_y + list_item_index * menu_spacing_y;
       std::string text = std::get<0>(menu_item);
-      ALLEGRO_COLOR menu_item_text_color = (list_item_index == menu_cursor_pos) ? hilighted_menu_item_text_color : normal_menu_item_text_color;
+      ALLEGRO_COLOR menu_item_text_color = is_selected ? hilighted_menu_item_text_color : normal_menu_item_text_color;
+      
+      // rectangle behind menu item
+
+      float rectangle_padding_x = 80;
+      float rectangle_padding_y = 8;
+      float rectangle_width = al_get_text_width(text_font, text.c_str()) + rectangle_padding_x * 2;
+      float rectangle_h_width = rectangle_width / 2;
+      ALLEGRO_COLOR rectangle_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.25};
+      al_draw_filled_rectangle(
+            center_x - rectangle_h_width,
+            y - rectangle_padding_y,
+            center_x + rectangle_h_width,
+            y + rectangle_padding_y + al_get_font_line_height(text_font),
+            rectangle_color
+         );
+
+      if (is_selected)
+      {
+         // selection bracket
+         al_draw_text(
+            hilighted_menu_cursor_bracket_font,
+            hilighted_menu_selector_bracket_color,
+            text_x,
+            y - 15,
+            ALLEGRO_ALIGN_CENTER,
+            "[                    ]"
+         );
+      }
 
       al_draw_text(
          text_font,
          menu_item_text_color,
          text_x,
-         text_y + list_item_index * menu_spacing_y,
+         y,
          ALLEGRO_ALIGN_CENTER,
          text.c_str()
       );
