@@ -4,7 +4,8 @@
 
 #include <allegro5/allegro_color.h>
 #include <AllegroFlare/Color.hpp>
-#include <math.h> // for fmod
+#include <cmath>
+#include <math.h>
 
 
 static ALLEGRO_VERTEX build_vertex(float x, float y, float z, ALLEGRO_COLOR col, float u, float v)
@@ -117,7 +118,7 @@ void TitleScreen::draw_main_title()
 
    ALLEGRO_COLOR title_text_color = al_color_name("yellow");
    ALLEGRO_COLOR subtitle_darker_text_color = ALLEGRO_COLOR{0.678, 0.847, 0.902, 1.0}; // a nice light blue
-   ALLEGRO_COLOR subtitle_text_color = fmod(al_get_time(), 0.5) < 0.25 ? ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0} : subtitle_darker_text_color;
+   ALLEGRO_COLOR subtitle_text_color = fmod(al_get_time(), 0.5f) < 0.25 ? ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0} : subtitle_darker_text_color;
 
    float title_text_x = 1920 / 2;
    float title_text_y = 1080 / 2 - 150;
