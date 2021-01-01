@@ -1,6 +1,7 @@
 
 
 #include <DragonWrath/Entities/MovementStrategies/SinWaveAlongRightScreenEdge.hpp>
+#include <math.h> // for windows sin
 
 
 namespace DragonWrath
