@@ -19,6 +19,7 @@ namespace DragonWrath
             float offset_x;
             float offset_y;
 
+         public:
             class BackgroundLayer
             {
             public:
@@ -40,12 +41,17 @@ namespace DragonWrath
             std::vector<ForegroundLayer> foreground_layers;
 
          public:
-            Base(AllegroFlare::ElementID *parent, AllegroFlare::BitmapBin &bitmap_bin);
+            Base(
+                  AllegroFlare::ElementID *parent,
+                  AllegroFlare::BitmapBin &bitmap_bin,
+                  std::vector<DragonWrath::Entities::Backgrounds::Base::BackgroundLayer> background_layers={},
+                  std::vector<DragonWrath::Entities::Backgrounds::Base::ForegroundLayer> foreground_layers={}
+               );
             ~Base();
 
-            void update() override;
-            void draw() override;
-            void draw_foregrounds();
+            void virtual update() override;
+            void virtual draw() override;
+            void virtual draw_foregrounds();
          };
       }
    }

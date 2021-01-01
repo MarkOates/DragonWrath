@@ -47,19 +47,18 @@ static void draw_offset_textured_rectangle(float x1, float y1, float x2, float y
 }
 
 
-Base::Base(AllegroFlare::ElementID *parent, AllegroFlare::BitmapBin &bitmap_bin)
+Base::Base(
+      AllegroFlare::ElementID *parent,
+      AllegroFlare::BitmapBin &bitmap_bin, 
+      std::vector<DragonWrath::Entities::Backgrounds::Base::BackgroundLayer> background_layers,
+      std::vector<DragonWrath::Entities::Backgrounds::Base::ForegroundLayer> foreground_layers
+   )
    : DragonWrath::Entities::Base(parent, "background", 0, 0)
    , bitmap_bin(bitmap_bin)
    , offset_x(0)
    , offset_y(0)
-   , background_layers({
-         { 0, 0, 1.0, bitmap_bin.auto_get("backgrounds/Sky3.png") },
-         { 0, -116, 50.0, bitmap_bin.auto_get("backgrounds/Cloud3a.png") }
-      })
-   , foreground_layers({
-         //{ 0, 100, 40.0, bitmap_bin.auto_get("backgrounds/Cloud2.png") },
-         { 0, -350, 120.0, bitmap_bin.auto_get("backgrounds/Cloud2.png") }
-      })
+   , background_layers(background_layers)
+   , foreground_layers(foreground_layers)
 {
 }
 
@@ -76,11 +75,6 @@ void Base::update()
       DragonWrath::Levels::TimedScroll *timed_scroll_level = 
          static_cast<DragonWrath::Levels::TimedScroll*>(get_parent());
       offset_x = timed_scroll_level->get_timer();
-   }
-   else
-   {
-      offset_x += 1.0f;
-      offset_y = 0;
    }
 }
 
