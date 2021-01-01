@@ -17,6 +17,15 @@ namespace DragonWrath
          float time_jump;
 
          std::vector<std::tuple<float, float, void (DragonWrath::Screens::TitleScreen::*)()>> slides;
+         std::vector<std::tuple<std::string, void (DragonWrath::Screens::TitleScreen::*)()>> menu_items;
+
+         int menu_cursor_pos;
+         void move_cursor_up();
+         void move_cursor_down();
+         void activate_current_menu_selection();
+
+         int num_menu_items();
+         bool is_menu_active();
 
          float time_since_start();
 
@@ -29,11 +38,15 @@ namespace DragonWrath
          void draw_krampushack_2020();
          void draw_sunset_background();
          void draw_main_title();
+         void draw_menu_items();
 
          void start() override;
+         void start_new_game();
+         void exit();
 
          void primary_timer_func() override;
          void key_down_func(ALLEGRO_EVENT *ev) override;
+         void key_char_func(ALLEGRO_EVENT *ev) override;
       };
    }
 }

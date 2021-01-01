@@ -50,13 +50,21 @@ TitleScreen::TitleScreen(AllegroFlare::Framework &framework, DragonWrath::UserEv
    , started_at(0)
    , time_jump(0)
    , slides()
+   , menu_items()
+   , menu_cursor_pos(0)
 {
    slides = {
       {1, 3.5, &TitleScreen::draw_krampushack_2020},
       {5.5, 3.5, &TitleScreen::draw_game_by_mark_oates},
       {10, 3, &TitleScreen::draw_powered_by_allegro},
       {13.5, 37, &TitleScreen::draw_sunset_background},
-      {14.25, 37, &TitleScreen::draw_main_title}
+      {14.25, 37, &TitleScreen::draw_main_title},
+      {15.75, 37, &TitleScreen::draw_menu_items},
+   };
+
+   menu_items = {
+      {"Start New Game", &TitleScreen::start_new_game},
+      {"Exit", &TitleScreen::exit},
    };
 }
 
@@ -69,7 +77,7 @@ TitleScreen::~TitleScreen()
 void TitleScreen::draw_powered_by_allegro()
 {
    ALLEGRO_FONT *text_font = framework.font("ChronoTrigger.ttf 60");
-   std::string text = "Made with Allegro";
+   std::string text = "made with Allegro";
    ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
    float text_x = 1920 / 2;
    float text_y = 1080 / 2 - 60;
@@ -80,7 +88,7 @@ void TitleScreen::draw_powered_by_allegro()
 void TitleScreen::draw_game_by_mark_oates()
 {
    ALLEGRO_FONT *text_font = framework.font("ChronoTrigger.ttf 60");
-   std::string text = "Game by Mark Oates";
+   std::string text = "a game by Mark Oates";
    ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
    float text_x = 1920 / 2;
    float text_y = 1080 / 2 - 60;
@@ -108,24 +116,67 @@ void TitleScreen::draw_sunset_background()
 }
 
 
+void TitleScreen::draw_menu_items()
+{
+   ALLEGRO_FONT *text_font = framework.font("ChronoTrigger.ttf 60");
+   float center_x = 1920 / 2;
+   float top_y = 1080 / 2 + 100;
+   float text_x = 1920 / 2;
+   float text_y = 1080 / 2 + 100;
+   float menu_spacing_y = 80;
+   std::string text = "Press ENTER key to START";
+   ALLEGRO_COLOR darker_text_color = ALLEGRO_COLOR{0.678, 0.847, 0.902, 1.0}; // a nice light blue
+   ALLEGRO_COLOR hilighted_menu_item_text_color = fmod(al_get_time(), 0.4f) < 0.2 ? ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0} : darker_text_color;
+   ALLEGRO_COLOR normal_menu_item_text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+
+   int list_item_index = 0;
+   for (auto &menu_item : menu_items)
+   {
+      std::string text = std::get<0>(menu_item);
+      ALLEGRO_COLOR menu_item_text_color = (list_item_index == menu_cursor_pos) ? hilighted_menu_item_text_color : normal_menu_item_text_color;
+
+      al_draw_text(
+         text_font,
+         menu_item_text_color,
+         text_x,
+         text_y + list_item_index * menu_spacing_y,
+         ALLEGRO_ALIGN_CENTER,
+         text.c_str()
+      );
+
+      list_item_index++;
+   }
+}
+
+
 void TitleScreen::draw_main_title()
 {
    ALLEGRO_FONT *title_text_font = framework.font("ChronoTrigger.ttf 300");
    ALLEGRO_FONT *subtitle_text_font = framework.font("ChronoTrigger.ttf 60");
 
    std::string title_text = "DRAGONWRATH";
-   std::string subtitle_text = "Press ENTER key to START";
+   //std::string subtitle_text = "Press ENTER key to START";
 
    ALLEGRO_COLOR title_text_color = al_color_name("yellow");
-   ALLEGRO_COLOR subtitle_darker_text_color = ALLEGRO_COLOR{0.678, 0.847, 0.902, 1.0}; // a nice light blue
-   ALLEGRO_COLOR subtitle_text_color = fmod(al_get_time(), 0.5f) < 0.25 ? ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0} : subtitle_darker_text_color;
+   ALLEGRO_COLOR title_text_dropshadow_color = AllegroFlare::color::color(al_color_name("yellow"), 0.2);
+   //ALLEGRO_COLOR subtitle_darker_text_color = ALLEGRO_COLOR{0.678, 0.847, 0.902, 1.0}; // a nice light blue
+   //ALLEGRO_COLOR subtitle_text_color = fmod(al_get_time(), 0.5f) < 0.25 ? ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0} : subtitle_darker_text_color;
 
    float title_text_x = 1920 / 2;
-   float title_text_y = 1080 / 2 - 150;
+   float title_text_y = 1080 / 2 - 180;
+   float title_text_dropshadow_y_offset = 20;
 
-   float subtitle_text_x = 1920 / 2;
-   float subtitle_text_y = 1080 / 2 + 100;
+   //float subtitle_text_x = 1920 / 2;
+   //float subtitle_text_y = 1080 / 2 + 100;
 
+   al_draw_text(
+      title_text_font,
+      title_text_dropshadow_color,
+      title_text_x,
+      title_text_y+title_text_dropshadow_y_offset,
+      ALLEGRO_ALIGN_CENTER,
+      title_text.c_str()
+   );
    al_draw_text(
       title_text_font,
       title_text_color,
@@ -134,14 +185,14 @@ void TitleScreen::draw_main_title()
       ALLEGRO_ALIGN_CENTER,
       title_text.c_str()
    );
-   al_draw_text(
-      subtitle_text_font,
-      subtitle_text_color,
-      subtitle_text_x,
-      subtitle_text_y,
-      ALLEGRO_ALIGN_CENTER,
-      subtitle_text.c_str()
-   );
+   //al_draw_text(
+      //subtitle_text_font,
+      //subtitle_text_color,
+      //subtitle_text_x,
+      //subtitle_text_y,
+      //ALLEGRO_ALIGN_CENTER,
+      //subtitle_text.c_str()
+   //);
 }
 
 
@@ -151,6 +202,54 @@ void TitleScreen::start()
    time_jump = 0;
    user_event_emitter.emit_stop_all_music_and_sound_effects_event();
    user_event_emitter.emit_play_title_screen_music_event();
+}
+
+
+void TitleScreen::start_new_game()
+{
+   user_event_emitter.emit_start_gameplay_screen_event();
+}
+
+
+void TitleScreen::exit()
+{
+   framework.shutdown_program = true;
+}
+
+
+void TitleScreen::move_cursor_up()
+{
+   menu_cursor_pos--;
+   if (menu_cursor_pos < 0) menu_cursor_pos += menu_items.size();
+}
+
+
+void TitleScreen::move_cursor_down()
+{
+   menu_cursor_pos++;
+   if (menu_cursor_pos >= num_menu_items()) menu_cursor_pos -= num_menu_items();
+}
+
+
+void TitleScreen::activate_current_menu_selection()
+{
+   if (menu_items.empty()) return;
+   std::tuple<std::string, void (DragonWrath::Screens::TitleScreen::*)()> menu_item = menu_items[menu_cursor_pos];
+
+   void (DragonWrath::Screens::TitleScreen::*menu_function)() = std::get<1>(menu_item);
+   if (menu_function) (this->*menu_function)();
+}
+
+
+int TitleScreen::num_menu_items()
+{
+   return menu_items.size();
+}
+
+
+bool TitleScreen::is_menu_active()
+{
+   return (time_since_start() > 15.75);
 }
 
 
@@ -181,6 +280,23 @@ void TitleScreen::primary_timer_func()
 }
 
 
+void TitleScreen::key_char_func(ALLEGRO_EVENT *ev)
+{
+   if (is_menu_active())
+   {
+      switch(ev->keyboard.keycode)
+      {
+      case ALLEGRO_KEY_UP:
+         move_cursor_up();
+         break;
+      case ALLEGRO_KEY_DOWN:
+         move_cursor_down();
+         break;
+      }
+   }
+}
+
+
 void TitleScreen::key_down_func(ALLEGRO_EVENT *ev)
 {
    if (ev->keyboard.keycode == ALLEGRO_KEY_ESCAPE) framework.shutdown_program = true;
@@ -191,9 +307,9 @@ void TitleScreen::key_down_func(ALLEGRO_EVENT *ev)
       time_jump = (14.0f - time_since_start());
    }
 
-   if (ev->keyboard.keycode == ALLEGRO_KEY_ENTER && time_since_start() > 14.0f)
+   if (is_menu_active() && ev->keyboard.keycode == ALLEGRO_KEY_ENTER)
    {
-      user_event_emitter.emit_start_gameplay_screen_event();
+      activate_current_menu_selection();
    }
 }
 
