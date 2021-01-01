@@ -17,7 +17,7 @@ Boss::Boss(
       AllegroFlare::Framework &framework,
       DragonWrath::UserEventEmitter &user_event_emitter
    )
-   : DragonWrath::Levels::Base("Boss", user_event_emitter)
+   : DragonWrath::Levels::Base(BOSS, user_event_emitter)
    , completed(false)
    , started_at(0)
    , framework(framework)
