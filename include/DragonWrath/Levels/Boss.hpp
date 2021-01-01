@@ -17,7 +17,7 @@ namespace DragonWrath
          bool completed;
          float started_at;
 
-         void spawn_super_boss();
+         void create_super_boss();
          DragonWrath::Entities::Enemies::SuperBoss *get_super_boss();
 
       public:
