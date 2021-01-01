@@ -4,7 +4,7 @@
 
 #include <allegro5/allegro_color.h>
 #include <AllegroFlare/Color.hpp>
-#include <cmath> // for fmod
+#include <math.h> // for fmod
 
 
 static ALLEGRO_VERTEX build_vertex(float x, float y, float z, ALLEGRO_COLOR col, float u, float v)
