@@ -10,6 +10,9 @@ namespace DragonWrath
    private:
       ALLEGRO_EVENT_SOURCE &screen_switcher_event_souce;
 
+      ALLEGRO_EVENT build_emit_play_sound_effect_by_identifier(std::string identifier);
+      ALLEGRO_EVENT build_emit_play_music_track_identifier(std::string identifier);
+
    public:
       UserEventEmitter(ALLEGRO_EVENT_SOURCE &screen_switcher_event_souce);
       ~UserEventEmitter();

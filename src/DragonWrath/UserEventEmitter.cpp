@@ -10,6 +10,24 @@ namespace DragonWrath
 {
 
 
+ALLEGRO_EVENT UserEventEmitter::build_emit_play_sound_effect_by_identifier(std::string identifier)
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAY_SOUND_EFFECT;
+   event.user.data1 = (intptr_t)(void *)(new std::string(identifier));
+   return event;
+}
+
+
+ALLEGRO_EVENT UserEventEmitter::build_emit_play_music_track_identifier(std::string identifier)
+{
+   ALLEGRO_EVENT event;
+   event.user.type = PLAY_MUSIC_TRACK;
+   event.user.data1 = (intptr_t)(void *)(new std::string(identifier));
+   return event;
+}
+
+
 UserEventEmitter::UserEventEmitter(ALLEGRO_EVENT_SOURCE &screen_switcher_event_souce)
    : screen_switcher_event_souce(screen_switcher_event_souce)
 {}
@@ -224,81 +242,63 @@ void UserEventEmitter::emit_stop_all_music_and_sound_effects_event()
 
 void UserEventEmitter::emit_play_title_screen_music_event()
 {
-   ALLEGRO_EVENT event;
-   event.user.type = PLAY_MUSIC_TRACK;
-   event.user.data1 = (intptr_t)(void *)(new std::string(TITLE_SCREEN_MUSIC));
+   ALLEGRO_EVENT event = build_emit_play_music_track_identifier(TITLE_SCREEN_MUSIC);
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
 
 void UserEventEmitter::emit_play_level_1_music_event()
 {
-   ALLEGRO_EVENT event;
-   event.user.type = PLAY_MUSIC_TRACK;
-   event.user.data1 = (intptr_t)(void *)(new std::string(LEVEL_1_MUSIC));
+   ALLEGRO_EVENT event = build_emit_play_music_track_identifier(LEVEL_1_MUSIC);
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
 
 void UserEventEmitter::emit_play_final_boss_music()
 {
-   ALLEGRO_EVENT event;
-   event.user.type = PLAY_MUSIC_TRACK;
-   event.user.data1 = (intptr_t)(void *)(new std::string(FINAL_BOSS_MUSIC));
+   ALLEGRO_EVENT event = build_emit_play_music_track_identifier(FINAL_BOSS_MUSIC);
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
 
 void UserEventEmitter::emit_play_game_over_music()
 {
-   ALLEGRO_EVENT event;
-   event.user.type = PLAY_MUSIC_TRACK;
-   event.user.data1 = (intptr_t)(void *)(new std::string(GAME_OVER_SCREEN_MUSIC));
+   ALLEGRO_EVENT event = build_emit_play_music_track_identifier(GAME_OVER_SCREEN_MUSIC);
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
 
 void UserEventEmitter::emit_play_game_won_music()
 {
-   ALLEGRO_EVENT event;
-   event.user.type = PLAY_MUSIC_TRACK;
-   event.user.data1 = (intptr_t)(void *)(new std::string(GAME_WON_SCREEN_MUSIC));
+   ALLEGRO_EVENT event = build_emit_play_music_track_identifier(GAME_WON_SCREEN_MUSIC);
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
 
 void UserEventEmitter::emit_play_player_shooting_bullet_sound_effect_event()
 {
-   ALLEGRO_EVENT event;
-   event.user.type = PLAY_SOUND_EFFECT;
-   event.user.data1 = (intptr_t)(void *)(new std::string(PLAYER_SHOOT_BULLET_SOUND_EFFECT));
+   ALLEGRO_EVENT event = build_emit_play_sound_effect_by_identifier(PLAYER_SHOOT_BULLET_SOUND_EFFECT);
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
 
 void UserEventEmitter::emit_play_enemy_takes_hit_sound_effect_event()
 {
-   ALLEGRO_EVENT event;
-   event.user.type = PLAY_SOUND_EFFECT;
-   event.user.data1 = (intptr_t)(void *)(new std::string(ENEMY_TAKES_HIT_SOUND_EFFECT));
+   ALLEGRO_EVENT event = build_emit_play_sound_effect_by_identifier(ENEMY_TAKES_HIT_SOUND_EFFECT);
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
 
 void UserEventEmitter::emit_play_bullet_deflected_sound_event()
 {
-   ALLEGRO_EVENT event;
-   event.user.type = PLAY_SOUND_EFFECT;
-   event.user.data1 = (intptr_t)(void *)(new std::string(BULLET_DEFLECTED_SOUND_EFFECT));
+   ALLEGRO_EVENT event = build_emit_play_sound_effect_by_identifier(BULLET_DEFLECTED_SOUND_EFFECT);
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
 
 void UserEventEmitter::emit_play_enemy_explosion_sound_effect_event()
 {
-   ALLEGRO_EVENT event;
-   event.user.type = PLAY_SOUND_EFFECT;
-   event.user.data1 = (intptr_t)(void *)(new std::string(ENEMY_EXPLOSION_SOUND_EFFECT));
+   ALLEGRO_EVENT event = build_emit_play_sound_effect_by_identifier(ENEMY_EXPLOSION_SOUND_EFFECT);
    al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
 }
 
