@@ -144,7 +144,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
             {
                DragonWrath::Screens::TitleScreen *title_screen =
                   new DragonWrath::Screens::TitleScreen(framework, user_event_emitter);
-               newly_created_screen->initialize();
+               title_screen->initialize();
                newly_created_screen = title_screen;
             }
             break;
