@@ -17,12 +17,22 @@ namespace DragonWrath
       UserEventEmitter(ALLEGRO_EVENT_SOURCE &screen_switcher_event_souce);
       ~UserEventEmitter();
 
-      // screen change events
+      // system level screen change events
 
       void emit_start_title_screen_event();
       void emit_start_gameplay_screen_event();
       void emit_start_game_over_screen_event();
       void emit_start_game_won_screen_event();
+      void emit_game_over_event();
+      void emit_game_won_event();
+      void emit_stop_all_music_and_sound_effects_event();
+      void emit_play_title_screen_music_event();
+      void emit_play_game_over_music();
+      void emit_play_game_won_music();
+
+
+      // gameplay level events
+
 
       // spawn entity events
 
@@ -48,17 +58,11 @@ namespace DragonWrath
       void emit_player_dragon_dies_event();
       void emit_restart_current_level_event();
       void emit_load_next_level_event();
-      void emit_game_over_event();
-      void emit_game_won_event();
 
       // music events
 
-      void emit_stop_all_music_and_sound_effects_event();
-      void emit_play_title_screen_music_event();
       void emit_play_level_1_music_event();
       void emit_play_final_boss_music();
-      void emit_play_game_over_music();
-      void emit_play_game_won_music();
 
       // sound effect events
 
