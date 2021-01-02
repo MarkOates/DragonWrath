@@ -23,6 +23,8 @@ void DragonWrath::ProgramRunner::run()
    framework.initialize();
    display = framework.create_display(AllegroFlare::Display::RESOLUTION_HD_1080);
 
+   // these two lists are essentially a fragment of a master DragonWrath config:
+
    std::map<std::string, AudioRepositoryElement> music_track_elements = std::map<std::string, AudioRepositoryElement>{
          { TITLE_SCREEN_MUSIC, { "TitleScreen - With Edit - 01.ogg", false } },
          { LEVEL_1_MUSIC, { "02 sawsquarenoise - Stage 1.ogg", true } },
