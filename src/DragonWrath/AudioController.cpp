@@ -12,8 +12,8 @@ namespace DragonWrath
 
 
 AudioController::AudioController(AllegroFlare::SampleBin &sample_bin,
-      std::vector<AudioRepositoryElement> music_track_elements,
-      std::vector<AudioRepositoryElement> sound_effect_elements
+      std::map<std::string, AudioRepositoryElement> music_track_elements,
+      std::map<std::string, AudioRepositoryElement> sound_effect_elements
    )
    : sample_bin(sample_bin)
    , sound_effects_identifier_prefix("sound_effects/")
@@ -22,7 +22,7 @@ AudioController::AudioController(AllegroFlare::SampleBin &sample_bin,
    , music_track_elements(music_track_elements)
    , sound_effects()
    , music_tracks()
-   , current_music_track_id(-1)
+   , current_music_track_identifier("")
    , global_volume(0.1)
    , output_loading_debug_to_cout(false)
 {
@@ -44,9 +44,9 @@ void AudioController::initialize()
    if (output_loading_debug_to_cout) std::cout << "sound_effects:" << std::endl;
    for (auto &sound_effect_element : sound_effect_elements)
    {
-      int id = sound_effect_element.id;
-      std::string filename = sound_effect_element.filename;
-      bool loop = sound_effect_element.loop;
+      std::string identifier = sound_effect_element.first;
+      std::string filename = sound_effect_element.second.filename;
+      bool loop = sound_effect_element.second.loop;
 
       std::string asset_key = sound_effects_identifier_prefix + filename;
 
@@ -57,16 +57,16 @@ void AudioController::initialize()
       sound->loop(loop);
       sound->volume(global_volume);
 
-      // TODO manage case where id already exists for this record
+      // TODO manage case where identifier already exists for this record
 
-      sound_effects[id] = sound;
+      sound_effects[identifier] = sound;
    }
    if (output_loading_debug_to_cout) std::cout << "music_tracks:" << std::endl;
    for (auto &music_track_element : music_track_elements)
    {
-      int id = music_track_element.id;
-      std::string filename = music_track_element.filename;
-      bool loop = music_track_element.loop;
+      std::string identifier = music_track_element.first;
+      std::string filename = music_track_element.second.filename;
+      bool loop = music_track_element.second.loop;
 
       std::string asset_key = music_tracks_identifier_prefix + filename;
 
@@ -77,9 +77,9 @@ void AudioController::initialize()
       sound->loop(loop);
       sound->volume(global_volume);
 
-      // TODO manage case where id already exists for this record
+      // TODO manage case where identifier already exists for this record
 
-      music_tracks[id] = sound;
+      music_tracks[identifier] = sound;
    }
 }
 
@@ -89,18 +89,18 @@ void AudioController::stop_all()
    for (auto &sound_effect : sound_effects) sound_effect.second->stop();
    for (auto &music_track : music_tracks) music_track.second->stop();
 
-   current_music_track_id = -1;
+   current_music_track_identifier = "";
 }
 
 
-Sound *AudioController::find_sound_effect_by_id(int id)
+Sound *AudioController::find_sound_effect_by_identifier(std::string identifier)
 {
-   std::map<int, Sound*>::iterator it = sound_effects.find(id);
+   std::map<std::string, Sound*>::iterator it = sound_effects.find(identifier);
    if (it == sound_effects.end())
    {
-      std::cout << "AudioController::play_sound_effect_by_id() error: "
-         << "unable to find element with id \""
-         << id
+      std::cout << "AudioController::play_sound_effect_by_identifier() error: "
+         << "unable to find element with identifier \""
+         << identifier
          << "\""
          << std::endl;
       return nullptr;
@@ -110,14 +110,14 @@ Sound *AudioController::find_sound_effect_by_id(int id)
 }
 
 
-Sound *AudioController::find_music_track_by_id(int id)
+Sound *AudioController::find_music_track_by_identifier(std::string identifier)
 {
-   std::map<int, Sound*>::iterator it = music_tracks.find(id);
+   std::map<std::string, Sound*>::iterator it = music_tracks.find(identifier);
    if (it == sound_effects.end())
    {
-      std::cout << "AudioController::play_music_track_by_id() error: "
-         << "unable to find element with id \""
-         << id
+      std::cout << "AudioController::play_music_track_by_identifier() error: "
+         << "unable to find element with identifier \""
+         << identifier
          << "\""
          << std::endl;
       return nullptr;
@@ -134,20 +134,20 @@ void AudioController::set_global_volume(float volume)
 }
 
 
-void AudioController::play_music_track_by_id(int id)
+void AudioController::play_music_track_by_identifier(std::string identifier)
 {
-   if (id == current_music_track_id) return;
+   if (identifier == current_music_track_identifier) return;
 
    stop_all();
 
-   Sound *sound = find_music_track_by_id(id);
+   Sound *sound = find_music_track_by_identifier(identifier);
    if (sound) sound->play();
 }
 
 
-void AudioController::play_sound_effect_by_id(int id)
+void AudioController::play_sound_effect_by_identifier(std::string identifier)
 {
-   Sound *sound = find_sound_effect_by_id(id);
+   Sound *sound = find_sound_effect_by_identifier(identifier);
    if (sound) sound->play();
 }
 

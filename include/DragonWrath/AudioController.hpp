@@ -15,23 +15,23 @@ namespace DragonWrath
       AllegroFlare::SampleBin &sample_bin;
       std::string sound_effects_identifier_prefix;
       std::string music_tracks_identifier_prefix;
-      std::vector<AudioRepositoryElement> sound_effect_elements;
-      std::vector<AudioRepositoryElement> music_track_elements;
-      std::map<int, Sound*> sound_effects;
-      std::map<int, Sound*> music_tracks;
-      int current_music_track_id;
+      std::map<std::string, AudioRepositoryElement> sound_effect_elements;
+      std::map<std::string, AudioRepositoryElement> music_track_elements;
+      std::map<std::string, Sound*> sound_effects;
+      std::map<std::string, Sound*> music_tracks;
+      std::string current_music_track_identifier;
       float global_volume;
 
       bool output_loading_debug_to_cout;
 
-      Sound *find_sound_effect_by_id(int id);
-      Sound *find_music_track_by_id(int id);
+      Sound *find_sound_effect_by_identifier(std::string identifier);
+      Sound *find_music_track_by_identifier(std::string identifier);
 
    public:
       AudioController(
             AllegroFlare::SampleBin &sample_bin,
-            std::vector<AudioRepositoryElement> music_track_elements,
-            std::vector<AudioRepositoryElement> sound_effect_elements
+            std::map<std::string, AudioRepositoryElement> music_track_elements,
+            std::map<std::string, AudioRepositoryElement> sound_effect_elements
          );
       ~AudioController();
 
@@ -40,8 +40,8 @@ namespace DragonWrath
 
       void set_global_volume(float volume);
 
-      void play_music_track_by_id(int id);
-      void play_sound_effect_by_id(int id);
+      void play_music_track_by_identifier(std::string identifier);
+      void play_sound_effect_by_identifier(std::string identifier);
    };
 }
 

@@ -24,8 +24,8 @@ namespace DragonWrath
       ScreenManager(
             AllegroFlare::Framework &framework,
             AllegroFlare::Screens &screens,
-            std::vector<AudioRepositoryElement> music_track_elements={},
-            std::vector<AudioRepositoryElement> sound_effect_elements={}
+            std::map<std::string, AudioRepositoryElement> music_track_elements={},
+            std::map<std::string, AudioRepositoryElement> sound_effect_elements={}
          );
       ~ScreenManager();
 

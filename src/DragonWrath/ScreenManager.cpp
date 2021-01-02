@@ -18,8 +18,8 @@ namespace DragonWrath
 ScreenManager::ScreenManager(
          AllegroFlare::Framework &framework,
          AllegroFlare::Screens &screens,
-         std::vector<AudioRepositoryElement> music_track_elements,
-         std::vector<AudioRepositoryElement> sound_effect_elements
+         std::map<std::string, AudioRepositoryElement> music_track_elements,
+         std::map<std::string, AudioRepositoryElement> sound_effect_elements
       )
    : AllegroFlare::Screen()
    , framework(framework)
@@ -81,14 +81,40 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
    {
    case PLAY_MUSIC_TRACK:
       {
-         int track_id = ev->user.data1;
-         audio_controller.play_music_track_by_id(track_id);
+         std::string *music_track_identifier = (std::string *)(ev->user.data1);
+         if (!music_track_identifier)
+         {
+            std::stringstream error_message;
+            error_message
+               << "ScreenManager::user_event_func(): PLAY_MUSIC_TRACK error: "
+               << "music_track_identifier is missing; expecting (string*) type but is nullptr\"";
+            throw std::runtime_error(error_message.str());
+         }
+         else
+         {
+            audio_controller.play_music_track_by_identifier(*music_track_identifier);
+            delete music_track_identifier;
+            ev->user.data1 = 0;
+         }
       }
       break;
    case PLAY_SOUND_EFFECT:
       {
-         int sound_effect_id = ev->user.data1;
-         audio_controller.play_sound_effect_by_id(sound_effect_id);
+         std::string *sound_effect_identifier = (std::string *)(ev->user.data1);
+         if (!sound_effect_identifier)
+         {
+            std::stringstream error_message;
+            error_message
+               << "ScreenManager::user_event_func(): PLAY_SOUND_EFFECT error: "
+               << "sound_effect_identifier is missing; expecting (string*) type but is nullptr\"";
+            throw std::runtime_error(error_message.str());
+         }
+         else
+         {
+            audio_controller.play_sound_effect_by_identifier(*sound_effect_identifier);
+            delete sound_effect_identifier;
+            ev->user.data1 = 0;
+         }
       }
       break;
    case STOP_ALL_MUSIC_AND_SOUND_EFFECTS_EVENT:
