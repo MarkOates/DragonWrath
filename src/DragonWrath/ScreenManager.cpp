@@ -25,8 +25,8 @@ ScreenManager::ScreenManager(
    , framework(framework)
    , screens(screens)
    , current_screen(nullptr)
-   , screen_switcher_event_souce()
-   , user_event_emitter(screen_switcher_event_souce)
+   , user_event_emitter_souce()
+   , user_event_emitter(user_event_emitter_souce)
    , audio_controller(framework.get_sample_bin_ref(), music_track_elements, sound_effect_elements)
 {
 }
@@ -40,8 +40,9 @@ ScreenManager::~ScreenManager()
 
 void ScreenManager::initialize()
 {
-   al_init_user_event_source(&screen_switcher_event_souce);
-   al_register_event_source(framework.event_queue, &screen_switcher_event_souce);
+   al_init_user_event_source(&user_event_emitter_souce);
+   al_register_event_source(framework.event_queue, &user_event_emitter_souce);
+
    audio_controller.initialize();
 }
 
@@ -144,6 +145,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
             {
                DragonWrath::Screens::TitleScreen *title_screen =
                   new DragonWrath::Screens::TitleScreen(framework, user_event_emitter);
+               newly_created_screen->initialize();
                newly_created_screen = title_screen;
             }
             break;
@@ -159,7 +161,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
             {
                DragonWrath::Screens::GameOverScreen *game_over_screen =
                   new DragonWrath::Screens::GameOverScreen(framework, user_event_emitter);
-               game_over_screen->start();
+               game_over_screen->initialize();
                newly_created_screen = game_over_screen;
             }
             break;
@@ -167,7 +169,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
             {
                DragonWrath::Screens::GameWonScreen *game_won_screen =
                   new DragonWrath::Screens::GameWonScreen(framework, user_event_emitter);
-               game_won_screen->start();
+               game_won_screen->initialize();
                newly_created_screen = game_won_screen;
             }
             break;

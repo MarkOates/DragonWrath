@@ -16,7 +16,7 @@ namespace DragonWrath
       AllegroFlare::Framework &framework;
       AllegroFlare::Screens &screens;
       DragonWrath::Screens::Base *current_screen;
-      ALLEGRO_EVENT_SOURCE screen_switcher_event_souce;
+      ALLEGRO_EVENT_SOURCE user_event_emitter_souce;
       DragonWrath::UserEventEmitter user_event_emitter;
       DragonWrath::AudioController audio_controller;
 
@@ -31,7 +31,7 @@ namespace DragonWrath
 
       void load_initial_screen();
 
-      void initialize();
+      void initialize() override;
 
       void key_down_func(ALLEGRO_EVENT *ev) override;
       void user_event_func(ALLEGRO_EVENT *ev) override;
