@@ -7,6 +7,8 @@
 #include <World/BasicScreens/GameOverScreen.hpp>
 #include <World/BasicScreens/GameWonScreen.hpp>
 
+#include <sstream>
+
 
 namespace World
 {
@@ -45,6 +47,23 @@ AllegroFlare::Screen *Factory::create_game_over_screen()
 AllegroFlare::Screen *Factory::create_game_won_screen()
 {
    return new World::BasicScreens::GameWonScreen(display);
+}
+
+
+AllegroFlare::Screen *Factory::create_from_identifier(std::string identifier)
+{
+   if (identifier == "TITLE_SCREEN") return create_title_screen();
+   if (identifier == "GAMEPLAY_SCREEN") return create_gameplay_screen();
+   if (identifier == "GAME_OVER_SCREEN") return create_game_over_screen();
+   if (identifier == "GAME_WON_SCREEN") return create_game_won_screen();
+
+   std::stringstream error_message;
+   error_message
+      << "ScreenFactory::create_from_identifier(): error: "
+      << "unrecognized identifier \""
+      << identifier
+      << "\"";
+   throw std::runtime_error(error_message.str());
 }
 
 

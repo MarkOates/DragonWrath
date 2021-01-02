@@ -152,7 +152,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
             {
                if (screen_factory)
                {
-                  AllegroFlare::Screen *title_screen = screen_factory->create_title_screen();
+                  AllegroFlare::Screen *title_screen = screen_factory->create_from_identifier("TITLE_SCREEN");
                   newly_created_screen = title_screen;
                   //DragonWrath::Screens::TitleScreen *title_screen =
                      //new DragonWrath::Screens::TitleScreen(framework, event_emitter);
@@ -165,7 +165,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
             {
                if (screen_factory)
                {
-                  AllegroFlare::Screen *gameplay_screen = screen_factory->create_gameplay_screen();
+                  AllegroFlare::Screen *gameplay_screen = screen_factory->create_from_identifier("GAMEPLAY_SCREEN");
                   newly_created_screen = gameplay_screen;
                   //DragonWrath::Screens::GameplayScreen *gameplay_screen =
                      //new DragonWrath::Screens::GameplayScreen(framework, event_emitter);
@@ -178,7 +178,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
             {
                if (screen_factory)
                {
-                  AllegroFlare::Screen *game_over_screen = screen_factory->create_game_over_screen();
+                  AllegroFlare::Screen *game_over_screen = screen_factory->create_from_identifier("GAME_OVER_SCREEN");
                   newly_created_screen = game_over_screen;
                   //DragonWrath::Screens::GameOverScreen *game_over_screen =
                      //new DragonWrath::Screens::GameOverScreen(framework, event_emitter);
@@ -191,7 +191,7 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
             {
                if (screen_factory)
                {
-                  AllegroFlare::Screen *game_won_screen = screen_factory->create_game_won_screen();
+                  AllegroFlare::Screen *game_won_screen = screen_factory->create_from_identifier("GAME_WON_SCREEN");
                   newly_created_screen = game_won_screen;
                   //DragonWrath::Screens::GameWonScreen *game_won_screen =
                      //new DragonWrath::Screens::GameWonScreen(framework, event_emitter);
