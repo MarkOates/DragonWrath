@@ -142,74 +142,23 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
       break;
    case SCREEN_MANAGER_SWITCH_SCREEN_EVENT:
       {
-         int index_of_level_to_start = ev->user.data1;
-
          AllegroFlare::Screen *newly_created_screen = nullptr;
 
-         switch(index_of_level_to_start)
+         std::string *screen_identifier = (std::string *)(ev->user.data1);
+         if (!screen_identifier)
          {
-         case SCREEN_TITLE_SCREEN:
-            {
-               if (screen_factory)
-               {
-                  AllegroFlare::Screen *title_screen = screen_factory->create_from_identifier("TITLE_SCREEN");
-                  newly_created_screen = title_screen;
-                  //DragonWrath::Screens::TitleScreen *title_screen =
-                     //new DragonWrath::Screens::TitleScreen(framework, event_emitter);
-                  //newly_created_screen->initialize();
-                  //newly_created_screen = title_screen;
-               }
-            }
-            break;
-         case SCREEN_GAMEPLAY_SCREEN:
-            {
-               if (screen_factory)
-               {
-                  AllegroFlare::Screen *gameplay_screen = screen_factory->create_from_identifier("GAMEPLAY_SCREEN");
-                  newly_created_screen = gameplay_screen;
-                  //DragonWrath::Screens::GameplayScreen *gameplay_screen =
-                     //new DragonWrath::Screens::GameplayScreen(framework, event_emitter);
-                  //gameplay_screen->initialize();
-                  //newly_created_screen = gameplay_screen;
-               }
-            }
-            break;
-         case SCREEN_GAME_OVER_SCREEN:
-            {
-               if (screen_factory)
-               {
-                  AllegroFlare::Screen *game_over_screen = screen_factory->create_from_identifier("GAME_OVER_SCREEN");
-                  newly_created_screen = game_over_screen;
-                  //DragonWrath::Screens::GameOverScreen *game_over_screen =
-                     //new DragonWrath::Screens::GameOverScreen(framework, event_emitter);
-                  //game_over_screen->initialize();
-                  //newly_created_screen = game_over_screen;
-               }
-            }
-            break;
-         case SCREEN_GAME_WON_SCREEN:
-            {
-               if (screen_factory)
-               {
-                  AllegroFlare::Screen *game_won_screen = screen_factory->create_from_identifier("GAME_WON_SCREEN");
-                  newly_created_screen = game_won_screen;
-                  //DragonWrath::Screens::GameWonScreen *game_won_screen =
-                     //new DragonWrath::Screens::GameWonScreen(framework, event_emitter);
-                  //game_won_screen->initialize();
-                  //newly_created_screen = game_won_screen;
-               }
-            }
-            break;
-         default:
-            {
-               std::stringstream error_message;
-               error_message << "ScreenManager::user_event_func(): error: undefined index_of_level_to_start \""
-                  << index_of_level_to_start
-                  << "\""
-                  << std::endl;
-               throw std::runtime_error(error_message.str());
-            }
-            break;
+            std::stringstream error_message;
+            error_message
+               << "World::ScreenManager::user_event_func(): SCREEN_MANAGER_SWITCH_SCREEN_EVENT error: "
+               << "screen_identifier is missing; expecting (string*) type but is nullptr\"";
+            throw std::runtime_error(error_message.str());
+         }
+         else
+         {
+            AllegroFlare::Screen *title_screen = screen_factory->create_from_identifier(*screen_identifier);
+            newly_created_screen = title_screen;
+            delete screen_identifier;
+            ev->user.data1 = 0;
          }
 
          if (newly_created_screen)
