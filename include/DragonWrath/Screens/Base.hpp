@@ -12,7 +12,8 @@ namespace DragonWrath
          Base();
          ~Base();
 
-         virtual void start();
+         virtual void initialize() override;
+         virtual void start() override;
       };
    }
 }
