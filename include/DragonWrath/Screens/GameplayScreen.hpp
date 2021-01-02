@@ -42,7 +42,7 @@ namespace DragonWrath
          GameplayScreen(AllegroFlare::Framework &framework, DragonWrath::UserEventEmitter &user_event_emitter);
          ~GameplayScreen();
 
-         void initialize() override;
+         void start() override;
 
          void restart_current_level();
          void load_next_level();

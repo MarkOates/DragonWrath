@@ -52,7 +52,7 @@ DragonWrath::Entities::PlayerDragon *GameplayScreen::get_player_dragon()
    return nullptr;
 }
 
-void GameplayScreen::initialize()
+void GameplayScreen::start()
 {
    load_next_level();
 }
