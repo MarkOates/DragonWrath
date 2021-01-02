@@ -44,6 +44,7 @@ void DragonWrath::ProgramRunner::run()
 
    screens.add(screen_manager);
 
+   //screen_manager->start();
    screen_manager->load_initial_screen();
 
    framework.run_loop();

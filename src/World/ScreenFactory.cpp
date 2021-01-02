@@ -7,7 +7,8 @@ namespace World
 {
 
 
-ScreenFactory::ScreenFactory()
+ScreenFactory::ScreenFactory(std::map<std::string, void (World::ScreenFactory::*)()> screen_elements)
+   : screen_elements(screen_elements)
 {
 }
 
@@ -36,6 +37,12 @@ AllegroFlare::Screen *ScreenFactory::create_game_over_screen()
 
 
 AllegroFlare::Screen *ScreenFactory::create_game_won_screen()
+{
+   return nullptr;
+}
+
+
+AllegroFlare::Screen *ScreenFactory::create_from_identifier(std::string identifier)
 {
    return nullptr;
 }

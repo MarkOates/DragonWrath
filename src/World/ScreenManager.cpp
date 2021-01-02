@@ -49,7 +49,7 @@ void ScreenManager::initialize()
 }
 
 
-void ScreenManager::load_initial_screen()
+void ScreenManager::start()
 {
    event_emitter.emit_start_title_screen_event();
 }
@@ -72,6 +72,11 @@ void ScreenManager::key_down_func(ALLEGRO_EVENT *ev)
    case ALLEGRO_KEY_3:
       {
          event_emitter.emit_start_game_over_screen_event();
+      }
+      break;
+   case ALLEGRO_KEY_4:
+      {
+         event_emitter.emit_start_game_won_screen_event();
       }
       break;
    }
@@ -214,8 +219,10 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
                screens.remove(current_screen);
                delete current_screen;
             }
+
             current_screen = newly_created_screen;
             screens.add(newly_created_screen);
+            current_screen->initialize();
             current_screen->start();
          }
       }

@@ -42,7 +42,6 @@ void ScreenManager::initialize()
 {
    al_init_user_event_source(&user_event_emitter_souce);
    al_register_event_source(framework.event_queue, &user_event_emitter_souce);
-
    audio_controller.initialize();
 }
 

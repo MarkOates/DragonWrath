@@ -11,6 +11,8 @@ namespace World
       public:
          GameWonScreen(AllegroFlare::Display *display);
          ~GameWonScreen();
+
+         void primary_timer_func() override;
       };
    }
 }

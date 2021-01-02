@@ -31,7 +31,7 @@ namespace World
          );
       ~ScreenManager();
 
-      void load_initial_screen();
+      void start() override;
 
       void initialize() override;
 

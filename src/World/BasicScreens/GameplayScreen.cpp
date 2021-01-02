@@ -1,6 +1,8 @@
 
 #include <World/BasicScreens/GameplayScreen.hpp>
 
+#include <allegro5/allegro_color.h>
+
 
 namespace World
 {
@@ -16,6 +18,12 @@ GameplayScreen::GameplayScreen(AllegroFlare::Display *display)
 
 GameplayScreen::~GameplayScreen()
 {
+}
+
+
+void GameplayScreen::primary_timer_func()
+{
+   al_clear_to_color(al_color_name("blue"));
 }
 
 

@@ -15,7 +15,8 @@ namespace BasicScreens
 
 
 Factory::Factory(AllegroFlare::Display *display)
-   : display(display)
+   : World::ScreenFactory()
+   , display(display)
 {}
 
 

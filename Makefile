@@ -17,7 +17,7 @@ else
 endif
 
 
-main: objects program
+main: objects program example_program
 	@echo "=========== building levels through script ============="
 	#ruby scripts/level_builder.rb
 	@echo "=========== running executable ============="
@@ -32,6 +32,24 @@ obj/%.o: src/%.cpp
 	@printf "compiling object file \e[1m\e[34m$<\033[0m..."
 	@g++ -c $(MAC_DEV_FLAGS) -std=c++17 $(UNUSED_ARGUMENTS_FLAG) -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -D_XOPEN_SOURCE_EXTENDED
 	@printf "done\n"
+
+
+example_program:
+	@echo "=========== building debug target ============="
+	@g++ -std=gnu++11 $(OBJECTS) ./programs/WorldExample.cpp -o ./bin/WorldExample.exe -I./include -I$(ALLEGRO_DIR)/include -L$(ALLEGRO_DIR)/lib $(ALLEGRO_LIBS)
+	$(eval columns=$(shell tput cols))
+	$(eval banner_width=103)
+	$(eval hcolumns=$(shell expr $(columns) / 2 - $(banner_width) / 2))
+	@printf ' %.0s' {1..$(hcolumns)}
+	@echo "$(TERMINAL_COLOR_GREEN)🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫$(TERMINAL_COLOR_RESET)"
+	@printf ' %.0s' {1..$(hcolumns)}
+	@echo "$(TERMINAL_COLOR_GREEN)🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫   █▀▀▄  █▀▀█  █▀▀  █▀▀  🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫$(TERMINAL_COLOR_RESET)"
+	@printf ' %.0s' {1..$(hcolumns)}
+	@echo "$(TERMINAL_COLOR_GREEN)🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫   █▄▄▀  █▄▄█  ▀▀█  ▀▀█  🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫$(TERMINAL_COLOR_RESET)"
+	@printf ' %.0s' {1..$(hcolumns)}
+	@echo "$(TERMINAL_COLOR_GREEN)🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫   ▀     ▀  ▀  ▀▀▀  ▀▀▀  🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫$(TERMINAL_COLOR_RESET)"
+	@printf ' %.0s' {1..$(hcolumns)}
+	@echo "$(TERMINAL_COLOR_GREEN)🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫 🀫$(TERMINAL_COLOR_RESET)"
 
 
 program:

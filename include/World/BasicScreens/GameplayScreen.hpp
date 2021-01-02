@@ -11,6 +11,8 @@ namespace World
       public:
          GameplayScreen(AllegroFlare::Display *display);
          ~GameplayScreen();
+
+         void primary_timer_func() override;
       };
    }
 }
