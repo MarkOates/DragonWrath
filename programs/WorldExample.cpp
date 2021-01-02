@@ -10,14 +10,69 @@
 
 namespace MyGame
 {
-   class ScreenFactory : public World::BasicScreens::Factory
+   static std::map<std::string, AudioRepositoryElement> MUSIC_TRACK_ELEMENTS = std::map<std::string, AudioRepositoryElement>{
+      { "TITLE_SCREEN_MUSIC", { "TitleScreen - With Edit - 01.ogg", false } },
+      { "LEVEL_1_MUSIC", { "02 sawsquarenoise - Stage 1.ogg", true } },
+      { "GAME_OVER_SCREEN_MUSIC", { "05 sawsquarenoise - Boss Splash.ogg", false } },
+      { "GAME_WON_SCREEN_MUSIC", { "sawsquarenoise_-_10_-_Towel_Defence_Ending.ogg", false } },
+      { "FINAL_BOSS_MUSIC", { "Boss Theme.ogg", true } },
+   };
+   static std::map<std::string, AudioRepositoryElement> SOUND_EFFECT_ELEMENTS = std::map<std::string, AudioRepositoryElement>{
+      { "PLAYER_SHOOT_BULLET_SOUND_EFFECT", { "sfx_wpn_laser8.wav", false } },
+         { "ENEMY_TAKES_HIT_SOUND_EFFECT", { "sfx_wpn_punch3.wav", false } },
+         { "ENEMY_EXPLOSION_SOUND_EFFECT", { "sfx_wpn_punch4.wav", false } },
+         { "BULLET_DEFLECTED_SOUND_EFFECT", { "sfx_wpn_noammo1.wav", false } },
+   };
+
+   class MyMainScreen : public AllegroFlare::Screen
    {
    public:
-      ScreenFactory(AllegroFlare::Display *display)
-         : World::BasicScreens::Factory(display)
+      MyMainScreen() {}
+      ~MyMainScreen() {}
+
+      void primary_timer_func() override
+      {
+         std::cout << "Woo!" << std::endl;
+      }
+   };
+
+   class MyOtherScreen : public AllegroFlare::Screen
+   {
+   public:
+      MyOtherScreen() {}
+      ~MyOtherScreen() {}
+
+      void primary_timer_func() override
+      {
+         std::cout << "Howdy!" << std::endl;
+      }
+   };
+
+   std::string const MY_MAIN_SCREEN_IDENTIFIER = "MyMainScreen";
+   std::string const MY_OTHER_SCREEN_IDENTIFIER = "MyOtherScreen";
+
+   class ScreenFactory : public World::ScreenFactory
+   {
+   public:
+      ScreenFactory()
+         : World::ScreenFactory()
       {}
       ~ScreenFactory()
       {}
+
+      AllegroFlare::Screen *create_from_identifier(std::string identifier) override
+      {
+         if (identifier == MY_MAIN_SCREEN_IDENTIFIER) return new MyMainScreen();
+         if (identifier == MY_OTHER_SCREEN_IDENTIFIER) return new MyOtherScreen();
+
+         std::stringstream error_message;
+         error_message
+            << "MyGame::ScreenFactory::create_from_identifier(): error: "
+            << "unrecognized identifier \""
+            << identifier
+            << "\"";
+         throw std::runtime_error(error_message.str());
+      }
    };
 
    class ProgramConfig
@@ -27,25 +82,10 @@ namespace MyGame
       std::map<std::string, AudioRepositoryElement> sound_effect_elements;
       MyGame::ScreenFactory screen_factory;
 
-      ProgramConfig(
-         AllegroFlare::Display *display,
-         std::map<std::string, AudioRepositoryElement> music_track_elements = std::map<std::string, AudioRepositoryElement>{
-            { "TITLE_SCREEN_MUSIC", { "TitleScreen - With Edit - 01.ogg", false } },
-            { "LEVEL_1_MUSIC", { "02 sawsquarenoise - Stage 1.ogg", true } },
-            { "GAME_OVER_SCREEN_MUSIC", { "05 sawsquarenoise - Boss Splash.ogg", false } },
-            { "GAME_WON_SCREEN_MUSIC", { "sawsquarenoise_-_10_-_Towel_Defence_Ending.ogg", false } },
-            { "FINAL_BOSS_MUSIC", { "Boss Theme.ogg", true } },
-         },
-         std::map<std::string, AudioRepositoryElement> sound_effect_elements = std::map<std::string, AudioRepositoryElement>{
-               { "PLAYER_SHOOT_BULLET_SOUND_EFFECT", { "sfx_wpn_laser8.wav", false } },
-               { "ENEMY_TAKES_HIT_SOUND_EFFECT", { "sfx_wpn_punch3.wav", false } },
-               { "ENEMY_EXPLOSION_SOUND_EFFECT", { "sfx_wpn_punch4.wav", false } },
-               { "BULLET_DEFLECTED_SOUND_EFFECT", { "sfx_wpn_noammo1.wav", false } },
-            }
-      )
-         : music_track_elements(music_track_elements)
-         , sound_effect_elements(sound_effect_elements)
-         , screen_factory(display)
+      ProgramConfig(AllegroFlare::Display *display)
+         : music_track_elements(MUSIC_TRACK_ELEMENTS)
+         , sound_effect_elements(SOUND_EFFECT_ELEMENTS)
+         , screen_factory()
       {}
       ~ProgramConfig() {}
    };
@@ -65,7 +105,7 @@ int main(int argc, char **argv)
 
    MyGame::ProgramConfig program_config(display);
 
-   World::ScreenManager *screen_manager = new World::ScreenManager(framework, screens, program_config.music_track_elements, program_config.sound_effect_elements, &program_config.screen_factory);
+   World::ScreenManager *screen_manager = new World::ScreenManager(framework, screens, program_config.music_track_elements, program_config.sound_effect_elements, &program_config.screen_factory, MyGame::MY_MAIN_SCREEN_IDENTIFIER);
    screen_manager->initialize();
 
    screens.add(screen_manager);

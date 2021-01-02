@@ -20,7 +20,8 @@ ScreenManager::ScreenManager(
          AllegroFlare::Screens &screens,
          std::map<std::string, AudioRepositoryElement> music_track_elements,
          std::map<std::string, AudioRepositoryElement> sound_effect_elements,
-         World::ScreenFactory *screen_factory
+         World::ScreenFactory *screen_factory,
+         std::string initial_screen_identifier
       )
    : AllegroFlare::Screen()
    , framework(framework)
@@ -30,6 +31,7 @@ ScreenManager::ScreenManager(
    , event_emitter(event_emitter_souce)
    , audio_controller(framework.get_sample_bin_ref(), music_track_elements, sound_effect_elements)
    , screen_factory(screen_factory)
+   , initial_screen_identifier(initial_screen_identifier)
 {
 }
 
@@ -51,35 +53,7 @@ void ScreenManager::initialize()
 
 void ScreenManager::start()
 {
-   event_emitter.emit_start_title_screen_event();
-}
-
-
-void ScreenManager::key_down_func(ALLEGRO_EVENT *ev)
-{
-   switch(ev->keyboard.keycode)
-   {
-   case ALLEGRO_KEY_1:
-      {
-         event_emitter.emit_start_title_screen_event();
-      }
-      break;
-   case ALLEGRO_KEY_2:
-      {
-         event_emitter.emit_start_gameplay_screen_event();
-      }
-      break;
-   case ALLEGRO_KEY_3:
-      {
-         event_emitter.emit_start_game_over_screen_event();
-      }
-      break;
-   case ALLEGRO_KEY_4:
-      {
-         event_emitter.emit_start_game_won_screen_event();
-      }
-      break;
-   }
+   event_emitter.emit_start_screen_by_identifier(initial_screen_identifier);
 }
 
 

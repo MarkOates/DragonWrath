@@ -20,6 +20,7 @@ namespace World
       World::EventEmitter event_emitter;
       World::AudioController audio_controller;
       World::ScreenFactory *screen_factory;
+      std::string initial_screen_identifier;
 
    public:
       ScreenManager(
@@ -27,7 +28,8 @@ namespace World
             AllegroFlare::Screens &screens,
             std::map<std::string, AudioRepositoryElement> music_track_elements={},
             std::map<std::string, AudioRepositoryElement> sound_effect_elements={},
-            World::ScreenFactory *screen_factory=nullptr
+            World::ScreenFactory *screen_factory=nullptr,
+            std::string initial_screen_identifier="uninitialized-initial-screen-identifier"
          );
       ~ScreenManager();
 
@@ -35,7 +37,6 @@ namespace World
 
       void initialize() override;
 
-      void key_down_func(ALLEGRO_EVENT *ev) override;
       void user_event_func(ALLEGRO_EVENT *ev) override;
    };
 }
