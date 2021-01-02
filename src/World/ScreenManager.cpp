@@ -20,6 +20,7 @@ ScreenManager::ScreenManager(
          AllegroFlare::Screens &screens,
          std::map<std::string, AudioRepositoryElement> music_track_elements,
          std::map<std::string, AudioRepositoryElement> sound_effect_elements,
+         World::EventEmitter *event_emitter,
          World::ScreenFactory *screen_factory,
          std::string initial_screen_identifier
       )
@@ -27,8 +28,7 @@ ScreenManager::ScreenManager(
    , framework(framework)
    , screens(screens)
    , current_screen(nullptr)
-   , event_emitter_souce()
-   , event_emitter(event_emitter_souce)
+   , event_emitter(event_emitter)
    , audio_controller(framework.get_sample_bin_ref(), music_track_elements, sound_effect_elements)
    , screen_factory(screen_factory)
    , initial_screen_identifier(initial_screen_identifier)
@@ -44,16 +44,13 @@ ScreenManager::~ScreenManager()
 
 void ScreenManager::initialize()
 {
-   al_init_user_event_source(&event_emitter_souce);
-   al_register_event_source(framework.event_queue, &event_emitter_souce);
-
    audio_controller.initialize();
 }
 
 
 void ScreenManager::start()
 {
-   event_emitter.emit_start_screen_by_identifier(initial_screen_identifier);
+   if (event_emitter) event_emitter->emit_start_screen_by_identifier(initial_screen_identifier);
 }
 
 
@@ -106,12 +103,12 @@ void ScreenManager::user_event_func(ALLEGRO_EVENT *ev)
       break;
    case GAME_OVER_EVENT:
       {
-         event_emitter.emit_start_game_over_screen_event();
+         if (event_emitter) event_emitter->emit_start_game_over_screen_event();
       }
       break;
    case GAME_WON_EVENT:
       {
-         event_emitter.emit_start_game_won_screen_event();
+         if (event_emitter) event_emitter->emit_start_game_won_screen_event();
       }
       break;
    case SCREEN_MANAGER_SWITCH_SCREEN_EVENT:
