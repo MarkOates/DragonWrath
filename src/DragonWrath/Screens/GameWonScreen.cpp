@@ -178,6 +178,7 @@ void GameWonScreen::draw_press_any_key_to_return_to_the_title_screen()
 
 void GameWonScreen::start()
 {
+   user_event_emitter.emit_stop_all_music_and_sound_effects_event();
    user_event_emitter.emit_play_game_won_music();
 }
 
