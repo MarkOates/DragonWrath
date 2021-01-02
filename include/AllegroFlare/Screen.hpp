@@ -33,6 +33,9 @@ namespace AllegroFlare
       void set_on_display(Display *display);
       void prepare_drawing_state(bool prepare_3d=false);
 
+      virtual void initialize();
+      virtual void start();
+
       virtual void on_event(ALLEGRO_EVENT *ev);
 
       virtual void primary_timer_func();

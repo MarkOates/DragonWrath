@@ -76,6 +76,18 @@ namespace AllegroFlare
    }
 
 
+   void Screen::initialize()
+   {
+      // to be implemented by derived class, if needed
+   }
+
+
+   void Screen::start()
+   {
+      // to be implemented by derived class, if needed
+   }
+
+
    void Screen::set_on_display(Display *display)
    {
       this->display = display;
