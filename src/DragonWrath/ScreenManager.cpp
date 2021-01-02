@@ -15,29 +15,19 @@ namespace DragonWrath
 {
 
 
-ScreenManager::ScreenManager(AllegroFlare::Framework &framework, AllegroFlare::Screens &screens)
+ScreenManager::ScreenManager(
+         AllegroFlare::Framework &framework,
+         AllegroFlare::Screens &screens,
+         std::vector<AudioRepositoryElement> music_track_elements,
+         std::vector<AudioRepositoryElement> sound_effect_elements
+      )
    : AllegroFlare::Screen()
    , framework(framework)
    , screens(screens)
    , current_screen(nullptr)
    , screen_switcher_event_souce()
    , user_event_emitter(screen_switcher_event_souce)
-   , audio_controller(
-         framework.get_sample_bin_ref(),
-         std::vector<AudioRepositoryElement>{
-            { TITLE_SCREEN_MUSIC, "TitleScreen - With Edit - 01.ogg", false },
-            { LEVEL_1_MUSIC, "02 sawsquarenoise - Stage 1.ogg", true },
-            { GAME_OVER_SCREEN_MUSIC, "05 sawsquarenoise - Boss Splash.ogg", false },
-            { GAME_WON_SCREEN_MUSIC, "sawsquarenoise_-_10_-_Towel_Defence_Ending.ogg", false },
-            { FINAL_BOSS_MUSIC, "Boss Theme.ogg", true },
-         },
-         std::vector<AudioRepositoryElement>{
-            { PLAYER_SHOOT_BULLET_SOUND_EFFECT, "sfx_wpn_laser8.wav", false },
-            { ENEMY_TAKES_HIT_SOUND_EFFECT, "sfx_wpn_punch3.wav", false },
-            { ENEMY_EXPLOSION_SOUND_EFFECT, "sfx_wpn_punch4.wav", false },
-            { BULLET_DEFLECTED_SOUND_EFFECT, "sfx_wpn_noammo1.wav", false },
-         }
-      )
+   , audio_controller(framework.get_sample_bin_ref(), music_track_elements, sound_effect_elements)
 {
 }
 

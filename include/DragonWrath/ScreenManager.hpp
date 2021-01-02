@@ -21,7 +21,12 @@ namespace DragonWrath
       DragonWrath::AudioController audio_controller;
 
    public:
-      ScreenManager(AllegroFlare::Framework &framework, AllegroFlare::Screens &screens);
+      ScreenManager(
+            AllegroFlare::Framework &framework,
+            AllegroFlare::Screens &screens,
+            std::vector<AudioRepositoryElement> music_track_elements={},
+            std::vector<AudioRepositoryElement> sound_effect_elements={}
+         );
       ~ScreenManager();
 
       void load_initial_screen();
