@@ -37,6 +37,12 @@ ALLEGRO_EVENT EventEmitter::build_emit_start_screen_by_identifier(std::string id
 }
 
 
+void EventEmitter::emit(ALLEGRO_EVENT event)
+{
+   al_emit_user_event(&screen_switcher_event_souce, &event, NULL);
+}
+
+
 EventEmitter::EventEmitter(ALLEGRO_EVENT_SOURCE &screen_switcher_event_souce)
    : screen_switcher_event_souce(screen_switcher_event_souce)
 {}

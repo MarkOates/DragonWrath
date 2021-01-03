@@ -10,9 +10,11 @@ namespace World
    private:
       ALLEGRO_EVENT_SOURCE &screen_switcher_event_souce;
 
+   protected:
       ALLEGRO_EVENT build_emit_play_sound_effect_by_identifier(std::string identifier);
       ALLEGRO_EVENT build_emit_play_music_track_by_identifier(std::string identifier);
       ALLEGRO_EVENT build_emit_start_screen_by_identifier(std::string identifier);
+      void emit(ALLEGRO_EVENT event);
 
    public:
       EventEmitter(ALLEGRO_EVENT_SOURCE &screen_switcher_event_souce);

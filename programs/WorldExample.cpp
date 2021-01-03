@@ -28,6 +28,19 @@ namespace MyGame
    std::string const MY_MAIN_SCREEN_IDENTIFIER = "MyMainScreen";
    std::string const MY_OTHER_SCREEN_IDENTIFIER = "MyOtherScreen";
 
+   const int MY_EVENT = ALLEGRO_GET_EVENT_TYPE('M','y','E','v');
+
+   class EventEmitter : public World::EventEmitter
+   {
+   public:
+      void emit_my_event()
+      {
+         ALLEGRO_EVENT event;
+         event.user.type = MY_EVENT;
+         emit(event);
+      }
+   };
+
    class MyMainScreen : public AllegroFlare::Screen
    {
    private:
@@ -47,6 +60,14 @@ namespace MyGame
       void key_down_func(ALLEGRO_EVENT *ev) override
       {
          event_emitter.emit_start_screen_by_identifier(MY_OTHER_SCREEN_IDENTIFIER);
+      }
+
+      void user_event_func(ALLEGRO_EVENT *ev) override
+      {
+         if (ev->type == MY_EVENT)
+         {
+            // execute MY_EVENT
+         }
       }
    };
 
