@@ -30,7 +30,7 @@ namespace MyGame
 
    const int MY_EVENT = ALLEGRO_GET_EVENT_TYPE('M','y','E','v');
 
-   class EventEmitter : public World::EventEmitter
+   class EventEmitter : public World::EventEmitter // currently not used, though
    {
    public:
       void emit_my_event()
