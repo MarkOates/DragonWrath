@@ -63,9 +63,9 @@ ALLEGRO_BITMAP *EntityFactory::get_or_generate_modified_bitmap(
       bitmap_bin.include(generated_bitmap_identifier, scaled_bitmap);
 
       // save the bitmap to the Desktop (for visual reference)
-      std::stringstream filename;
-      filename << "/Users/markoates/Desktop/" << generated_bitmap_identifier;
-      al_save_bitmap(filename.str().c_str(), scaled_bitmap);
+      //std::stringstream filename;
+      //filename << "/Users/markoates/Desktop/" << generated_bitmap_identifier;
+      //al_save_bitmap(filename.str().c_str(), scaled_bitmap);
 
       // return the final result
       return scaled_bitmap;
